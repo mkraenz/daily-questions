@@ -17,7 +17,7 @@ const questions: {
   title: string;
   id: string;
   questionLong: string;
-  type?: "points" | "fulltext";
+  type: "points" | "fulltext";
 }[] = [
   {
     title: "Goals",
@@ -102,7 +102,6 @@ const CustomNavigationApp = () => {
   }
 
   const question = questions[state.routeIndex % questions.length];
-  const answer = state.answers[state.routeIndex % state.answers.length];
 
   if (question.type === "points") {
     return (
