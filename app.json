@@ -1,0 +1,12 @@
+{
+  "name": "dailyquestions",
+  "displayName": "daily-questions",
+  "expo": {
+    "name": "daily-questions",
+    "slug": "daily-questions",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
