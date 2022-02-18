@@ -1,4 +1,3 @@
-import { noop } from "lodash";
 import React, { FC } from "react";
 import { ScrollView, Share, StyleSheet, View } from "react-native";
 import { Button, Paragraph, Title, useTheme } from "react-native-paper";
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    maxHeight: 36,
+    maxHeight: 38,
   },
   answerTitle: {
     paddingRight: 16,
@@ -48,18 +47,19 @@ interface Props {
     type: "points" | "fulltext";
   }[];
   answers: (number | string)[];
+  nav: (index: number) => void;
 }
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-const PointsAnswer: FC<{ title: string; answer: string | number }> = ({
-  title,
-  answer,
-}) => {
-  const gotoQuestion = noop; // TODO
+const PointsAnswer: FC<{
+  title: string;
+  answer: string | number;
+  onClick: () => void;
+}> = ({ title, answer, onClick }) => {
   const theme = useTheme();
   return (
-    <View style={styles.pointsAnswerRow} onTouchEnd={gotoQuestion}>
+    <View style={styles.pointsAnswerRow} onTouchEnd={onClick}>
       <Paragraph style={styles.answerTitle}>{title}</Paragraph>
       <Button mode="outlined" color={theme.colors.text}>
         {answer}
@@ -68,13 +68,13 @@ const PointsAnswer: FC<{ title: string; answer: string | number }> = ({
   );
 };
 
-const FullTextAnswer: FC<{ title: string; answer: string | number }> = ({
-  title,
-  answer,
-}) => {
-  const gotoQuestion = noop; // TODO
+const FullTextAnswer: FC<{
+  title: string;
+  answer: string | number;
+  onClick: () => void;
+}> = ({ title, answer, onClick }) => {
   return (
-    <View style={styles.fulltextRow} onTouchEnd={gotoQuestion}>
+    <View style={styles.fulltextRow} onTouchEnd={onClick}>
       <Paragraph>
         {title}: {answer}
       </Paragraph>
@@ -82,7 +82,7 @@ const FullTextAnswer: FC<{ title: string; answer: string | number }> = ({
   );
 };
 
-const SummaryScreen: FC<Props> = ({ questions, answers }) => {
+const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
   const today = new Date().toISOString().split("T")[0];
   const formatExportMessage = () => {
     const body = questions
@@ -114,6 +114,7 @@ const SummaryScreen: FC<Props> = ({ questions, answers }) => {
                 key={question.id}
                 answer={answers[i]}
                 title={question.title}
+                onClick={() => nav(i)}
               />
             ) : null
           )
@@ -127,6 +128,7 @@ const SummaryScreen: FC<Props> = ({ questions, answers }) => {
                 key={question.id}
                 answer={answers[i]}
                 title={question.title}
+                onClick={() => nav(i)}
               />
             )
           )

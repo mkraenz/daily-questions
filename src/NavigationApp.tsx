@@ -1,10 +1,8 @@
 import React, { Reducer, useReducer } from "react";
 import { StyleSheet, View } from "react-native";
-import { useTheme } from "react-native-paper";
 import FullTextQuestionScreen from "./screens/FullTextQuestionScreen";
 import QuestionScreen from "./screens/QuestionScreen";
 import SummaryScreen from "./screens/SummaryScreen";
-import { FullTheme } from "./theme";
 
 const styles = StyleSheet.create({
   container: {
@@ -81,22 +79,49 @@ const initialState = {
   routeIndex: 0,
   finished: false,
 };
-type Action = { index: number; answer: number | string };
+
+type Action = AnswerAction | NavAction;
+type AnswerAction = {
+  index: number;
+  answer: number | string;
+  type: "answer";
+};
+type NavAction = {
+  type: "nav";
+  index: number;
+};
+
 const reducer: Reducer<typeof initialState, Action> = (state, action) => {
-  const copy = [...state.answers];
-  copy[action.index] = action.answer;
-  const finished = state.routeIndex === questions.length - 1;
-  return { answers: copy, routeIndex: state.routeIndex + 1, finished };
+  switch (action.type) {
+    case "nav": {
+      const finished = state.routeIndex === questions.length - 1;
+      return { ...state, routeIndex: action.index, finished };
+    }
+    case "answer": {
+      const copy = [...state.answers];
+      copy[action.index] = action.answer;
+      const finished = copy.length === questions.length;
+      return {
+        ...state,
+        answers: copy,
+        routeIndex: state.routeIndex + 1,
+        finished,
+      };
+    }
+  }
 };
 
 const CustomNavigationApp = () => {
-  const theme = useTheme() as FullTheme;
   const [state, dispatch] = useReducer(reducer, initialState);
 
   if (state.finished) {
     return (
       <View style={styles.container}>
-        <SummaryScreen questions={questions} answers={state.answers} />
+        <SummaryScreen
+          questions={questions}
+          answers={state.answers}
+          nav={(index) => dispatch({ type: "nav", index })}
+        />
       </View>
     );
   }
@@ -112,7 +137,9 @@ const CustomNavigationApp = () => {
           questionLong={question.questionLong}
           index={state.routeIndex}
           answers={state.answers}
-          onAnswer={(answer) => dispatch({ index: state.routeIndex, answer })}
+          onAnswer={(answer) =>
+            dispatch({ index: state.routeIndex, answer, type: "answer" })
+          }
           visible={true}
         />
       </View>
@@ -127,7 +154,9 @@ const CustomNavigationApp = () => {
         questionLong={question.questionLong}
         index={state.routeIndex}
         answers={state.answers}
-        onAnswer={(answer) => dispatch({ index: state.routeIndex, answer })}
+        onAnswer={(answer) =>
+          dispatch({ index: state.routeIndex, answer, type: "answer" })
+        }
         visible={true}
       />
     </View>
