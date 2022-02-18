@@ -64,7 +64,7 @@ const FullTextQuestionScreen: FC<Props> = ({
       <Button onPress={onNext} style={styles.button} mode="outlined">
         Next
       </Button>
-      {/* once Summary has been shown for the first time, this becomes a buttonish thing that jumps back to the Summary */}
+      {/* TODO once Summary has been shown for the first time, this becomes a buttonish thing that jumps back to the Summary */}
       <Paragraph>{answers.filter(isInteger).join(" ")}</Paragraph>
     </View>
   );
