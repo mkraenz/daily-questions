@@ -9,6 +9,7 @@
     "start": "react-native start",
     "dev": "expo start",
     "dev:clear-cache": "expo start --clear",
+    "deploy": "expo build:android",
     "build": "tsc",
     "build:watch": "tsc -w",
     "test": "jest"
