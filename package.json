@@ -35,6 +35,7 @@
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.67.6",
     "babel-preset-expo": "~9.1.0",
+    "eas-cli": "^0.54.1",
     "expo-cli": "^5.4.11",
     "jest-expo": "^45.0.1",
     "typescript": "^4.7.3"
