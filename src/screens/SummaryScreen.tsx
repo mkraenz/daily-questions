@@ -1,6 +1,32 @@
-import React, { FC } from "react";
-import { ScrollView, Share, StyleSheet, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { last } from "lodash";
+import React, { FC, useEffect, useState } from "react";
+import { ScrollView, Share, StyleSheet, Text, View } from "react-native";
 import { Button, Paragraph, Title, useTheme } from "react-native-paper";
+
+const toDateOnly = (date: Date) => date.toISOString().split("T")[0];
+const STORAGE_KEY = "@eu.kraenz.dailyquestions.historicanswers";
+
+interface HistoricEntry {
+  date: string;
+  answers: (number | string)[];
+}
+const appendToHistory = async (today: Date, answers: (number | string)[]) => {
+  const date = toDateOnly(today);
+  const serializedHistory = (await AsyncStorage.getItem(STORAGE_KEY)) || "[]";
+  console.log(serializedHistory);
+  const history: HistoricEntry[] = JSON.parse(serializedHistory);
+  const newEntry = { date, answers };
+
+  const entryForDateAlreadyExists = last(history)?.date === date;
+  if (entryForDateAlreadyExists) {
+    history[history.length - 1] = newEntry;
+  } else {
+    history.push(newEntry);
+  }
+  console.log(history);
+  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+};
 
 // TODO clean up the css
 const styles = StyleSheet.create({
@@ -96,7 +122,19 @@ const ShareWithWhatsappButton: FC<{
 };
 
 const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
-  const today = new Date().toISOString().split("T")[0];
+  const [secretCounter, setSecretCounter] = useState(0);
+  const [history, setHistory] = useState("");
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await AsyncStorage.getItem(STORAGE_KEY);
+      setHistory(data || "");
+    };
+    loadData();
+  });
+
+  const now = new Date();
+  const today = toDateOnly(now);
   const formatExportMessage = () => {
     const body = questions
       .map((q, i) => {
@@ -109,16 +147,34 @@ const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
     return `${header}${body}`;
   };
   const handleSharePressed = async () => {
+    await appendToHistory(now, answers);
     await Share.share({
       message: formatExportMessage(),
     });
   };
+
+  const increaseSecretCounter = () => {
+    setSecretCounter(secretCounter + 1);
+  };
+  // TODO analytics screen
+  if (secretCounter % 5 === 4) {
+    return (
+      <ScrollView
+        onTouchEnd={increaseSecretCounter}
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
+      >
+        <Text>{history}</Text>
+      </ScrollView>
+    );
+  }
+
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      <Title>Your Dailies from {today}</Title>
+      <Title onPress={increaseSecretCounter}>Your Dailies from {today}</Title>
       <View style={styles.pointsQuestionsContainer}>
         {questions
           .map((question, i) =>
