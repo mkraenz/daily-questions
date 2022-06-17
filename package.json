@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
-    "start": "react-native start",
+    "start": "expo start --dev-client",
     "dev": "expo start",
     "dev:clear-cache": "expo start --clear",
     "deploy": "expo build:android",
@@ -26,8 +26,8 @@
     "react-native-paper": "^4.12.1",
     "react-native-reanimated": "~2.8.0",
     "react-native-screens": "~3.11.1",
-    "react-native-unimodules": "~0.15.0",
-    "react-native-web": "0.17.7"
+    "react-native-web": "0.17.7",
+    "expo-status-bar": "~1.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
