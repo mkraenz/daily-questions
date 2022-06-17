@@ -15,15 +15,14 @@ const styles = StyleSheet.create({
   pointsQuestionsContainer: {
     flex: 1,
     justifyContent: "space-between",
-    maxHeight: "40%",
-    minHeight: "40%",
+    maxHeight: "50%",
+    minHeight: "50%",
   },
   pointsAnswerRow: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    maxHeight: 38,
   },
   answerTitle: {
     paddingRight: 16,
@@ -61,7 +60,11 @@ const PointsAnswer: FC<{
   return (
     <View style={styles.pointsAnswerRow} onTouchEnd={onClick}>
       <Paragraph style={styles.answerTitle}>{title}</Paragraph>
-      <Button mode="outlined" color={theme.colors.text}>
+      <Button
+        mode="outlined"
+        color={theme.colors.text}
+        labelStyle={{ marginVertical: 0, paddingVertical: 9 }}
+      >
         {answer}
       </Button>
     </View>
@@ -79,6 +82,16 @@ const FullTextAnswer: FC<{
         {title}: {answer}
       </Paragraph>
     </View>
+  );
+};
+
+const ShareWithWhatsappButton: FC<{
+  handlePressed: () => void;
+}> = ({ handlePressed }) => {
+  return (
+    <Button icon="share" mode="contained" onPress={handlePressed}>
+      Whatsapp
+    </Button>
   );
 };
 
@@ -134,9 +147,7 @@ const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
           )
           .filter(Boolean)}
       </View>
-      <Button icon="share" mode="contained" onPress={handleSharePressed}>
-        Whatsapp
-      </Button>
+      <ShareWithWhatsappButton handlePressed={handleSharePressed} />
     </ScrollView>
   );
 };
