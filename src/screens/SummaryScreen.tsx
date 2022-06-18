@@ -3,6 +3,8 @@ import { last } from "lodash";
 import React, { FC, useEffect, useState } from "react";
 import { ScrollView, Share, StyleSheet, Text, View } from "react-native";
 import { Button, Paragraph, Title, useTheme } from "react-native-paper";
+import { useDispatch } from "react-redux";
+import { upsert } from "../history/history.slice";
 import { questions } from "../QuestionsNavApp";
 
 const toDateOnly = (date: Date) => date.toISOString().split("T")[0];
@@ -131,6 +133,7 @@ const ShareWithWhatsappButton: FC<{
 const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
   const [secretCounter, setSecretCounter] = useState(0);
   const [history, setHistory] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const loadData = async () => {
@@ -155,6 +158,12 @@ const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
   };
   const handleSharePressed = async () => {
     await appendToHistory(now, answers);
+    dispatch(
+      upsert({
+        date: now.toISOString(),
+        questions: answers.map((a, i) => ({ id: questions[i].id, answer: a })),
+      })
+    );
     await Share.share({
       message: formatExportMessage(),
     });
