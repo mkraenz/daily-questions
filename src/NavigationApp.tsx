@@ -1,19 +1,9 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import React, { FC } from "react";
-import { View } from "react-native";
-import { Text } from "react-native-paper";
 import CustomNavigationApp from "./QuestionsNavApp";
+import About from "./screens/AboutScreen";
 import StatisticsScreen from "./screens/StatisticsScreen";
-
-const About = ({}: {}) => {
-  return (
-    <View>
-      <Text>About This App</Text>
-      <Text>v1.2.0</Text>
-    </View>
-  );
-};
 
 const Drawer = createDrawerNavigator();
 
