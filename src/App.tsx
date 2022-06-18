@@ -20,6 +20,7 @@ import historyReducer from "./history/history.slice";
 import NavigationApp from "./NavigationApp";
 import { lightTheme } from "./theme";
 
+// TODO move the redux stuff to avoid cyclic deps
 const persistConfig = {
   key: "root",
   version: 1,

@@ -1,15 +1,18 @@
 import { isNumber } from "lodash";
-import React from "react";
+import React, { FC } from "react";
 import { Dimensions, Text, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
-import { useStore } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../App";
 import { questions } from "../questions/default-questions";
 
-const StatisticsScreen = () => {
-  const store = useStore<RootState>();
-  const history = store.getState().history.history; // TODO
+const mapState = (state: RootState) => ({
+  history: state.history.history,
+});
+const connector = connect(mapState);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
+const StatisticsScreen: FC<PropsFromRedux> = ({ history }) => {
   if (history.length === 0 || history.length === 1) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -73,4 +76,4 @@ const StatisticsScreen = () => {
   );
 };
 
-export default StatisticsScreen;
+export default connector(StatisticsScreen);
