@@ -13,6 +13,13 @@ yarn build-and-publish:expo:android:app-bundle:prod
 yarn deploy:ota:prod
 ```
 
+### Local installation on phone or emulator
+
+```sh
+java -jar bundletool.jar build-apks --bundle=daily-questions-signed.aab --output=daily-questions.apks --mode=universal
+java -jar bundletool.jar install-apks --apks=daily-questions.apks
+```
+
 ### Notes on future Expo EAS
 
 Currently EAS does not have a free tier for Over-the-air (OTA) updates. The service is called EAS Update but while it's in preview it costs a lot. Therefore, for now I'll stick with the "classic" build and "classic" OTA updates.
