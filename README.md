@@ -6,6 +6,17 @@ Check the [Readme of You are Awesome App! Daily Motivation Up!](https://github.c
 
 ## Deployment
 
+```sh
+# complete rebuild
+yarn build-and-publish:expo:android:app-bundle:prod
+# or alternatively do an OTA update
+yarn deploy:ota:prod
+```
+
+### Notes on future Expo EAS
+
+Currently EAS does not have a free tier for Over-the-air (OTA) updates. The service is called EAS Update but while it's in preview it costs a lot. Therefore, for now I'll stick with the "classic" build and "classic" OTA updates.
+
 See also [EAS Build Guide](https://docs.expo.dev/build/setup/).
 
 ```sh

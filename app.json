@@ -5,10 +5,8 @@
     "name": "daily-questions",
     "slug": "daily-questions",
     "orientation": "default",
-    "version": "1.0.1",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "version": "1.1.0",
+    "assetBundlePatterns": ["**/*"],
     "privacy": "public",
     "android": {
       "package": "eu.kraenz.dailyquestions",

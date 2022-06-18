@@ -10,6 +10,9 @@
     "dev": "expo start",
     "dev:clear-cache": "expo start --clear",
     "deploy": "expo build:android",
+    "deploy:ota": "expo publish",
+    "deploy:ota:prod": "expo publish --release-channel prod",
+    "build-and-publish:expo:android:app-bundle:prod": "NODE_ENV=prod expo build:android --type app-bundle --release-channel prod",
     "build": "tsc",
     "build:watch": "tsc -w",
     "test": "jest"
