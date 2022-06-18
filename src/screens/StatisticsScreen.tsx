@@ -4,138 +4,23 @@ import { Dimensions, Text, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { useStore } from "react-redux";
 import { RootState } from "../App";
-import { questions } from "../QuestionsNavApp";
-
-const mockHistory = [
-  {
-    date: "2020-01-01",
-    qs: [
-      { id: "a5e36d31", a: 4 },
-      { id: "063c6ce1", a: 6 },
-      { id: "aa73eb84", a: 2 },
-      { id: "e881e50e", a: 8 },
-      { id: "ec57f75e", a: 10 },
-      { id: "b1667166", a: 4 },
-      { id: "c5c844e6", a: 5 },
-      { id: "b875a18e", a: "Improving the daily questions app" },
-      {
-        id: "c706f049",
-        a: "Go Shopping since tomorrow's a holiday",
-      },
-    ],
-  },
-  {
-    date: "2020-01-02",
-    qs: [
-      { id: "a5e36d31", a: 5 },
-      { id: "063c6ce1", a: 3 },
-      { id: "aa73eb84", a: 3 },
-      { id: "e881e50e", a: 3 },
-      { id: "ec57f75e", a: 10 },
-      { id: "b1667166", a: 3 },
-      { id: "c5c844e6", a: 3 },
-      { id: "b875a18e", a: "Improving the daily questions app" },
-      {
-        id: "c706f049",
-        a: "Go Shopping since tomorrow's a holiday",
-      },
-    ],
-  },
-  {
-    date: "2020-01-03",
-    qs: [
-      { id: "a5e36d31", a: 8 },
-      { id: "063c6ce1", a: 8 },
-      { id: "aa73eb84", a: 8 },
-      { id: "e881e50e", a: 8 },
-      { id: "ec57f75e", a: 8 },
-      { id: "b1667166", a: 8 },
-      { id: "c5c844e6", a: 8 },
-      { id: "b875a18e", a: "Improving the daily questions app" },
-      {
-        id: "c706f049",
-        a: "Go Shopping since tomorrow's a holiday",
-      },
-    ],
-  },
-  {
-    date: "2020-01-04",
-    qs: [
-      { id: "a5e36d31", a: 2 },
-      { id: "063c6ce1", a: 2 },
-      { id: "aa73eb84", a: 2 },
-      { id: "e881e50e", a: 2 },
-      { id: "ec57f75e", a: 2 },
-      { id: "b1667166", a: 2 },
-      { id: "c5c844e6", a: 2 },
-      { id: "b875a18e", a: "Improving the daily questions app" },
-      {
-        id: "c706f049",
-        a: "Go Shopping since tomorrow's a holiday",
-      },
-    ],
-  },
-  {
-    date: "2020-01-05",
-    qs: [
-      { id: "a5e36d31", a: 2 },
-      { id: "063c6ce1", a: 2 },
-      { id: "aa73eb84", a: 2 },
-      { id: "e881e50e", a: 2 },
-      { id: "ec57f75e", a: 2 },
-      { id: "b1667166", a: 2 },
-      { id: "c5c844e6", a: 2 },
-      { id: "b875a18e", a: "Improving the daily questions app" },
-      {
-        id: "c706f049",
-        a: "Go Shopping since tomorrow's a holiday",
-      },
-    ],
-  },
-  {
-    date: "2020-01-06",
-    qs: [
-      { id: "a5e36d31", a: 2 },
-      { id: "063c6ce1", a: 2 },
-      { id: "aa73eb84", a: 2 },
-      { id: "e881e50e", a: 2 },
-      { id: "ec57f75e", a: 2 },
-      { id: "b1667166", a: 2 },
-      { id: "c5c844e6", a: 2 },
-      { id: "b875a18e", a: "Improving the daily questions app" },
-      {
-        id: "c706f049",
-        a: "Go Shopping since tomorrow's a holiday",
-      },
-    ],
-  },
-  {
-    date: "2020-01-07",
-    qs: [
-      { id: "a5e36d31", a: 2 },
-      { id: "063c6ce1", a: 2 },
-      { id: "aa73eb84", a: 2 },
-      { id: "e881e50e", a: 2 },
-      { id: "ec57f75e", a: 2 },
-      { id: "b1667166", a: 2 },
-      { id: "c5c844e6", a: 2 },
-      { id: "b875a18e", a: "Improving the daily questions app" },
-      {
-        id: "c706f049",
-        a: "Go Shopping since tomorrow's a holiday",
-      },
-    ],
-  },
-];
-
-const questionsidsWithNumberValues = mockHistory[0].qs
-  .filter((q): q is { id: string; a: number } => isNumber(q.a))
-  .map((q) => q.id);
+import { questions } from "../questions/default-questions";
 
 const StatisticsScreen = () => {
   const store = useStore<RootState>();
   const history = store.getState().history.history; // TODO
 
+  if (history.length === 0 || history.length === 1) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>No history yet</Text>
+      </View>
+    );
+  }
+
+  const questionsidsWithNumberValues = history[0].qs
+    .filter((q): q is { id: string; a: number } => isNumber(q.a))
+    .map((q) => q.id);
   return (
     <View>
       <Text>{questions[0].title}</Text>
