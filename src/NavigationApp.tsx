@@ -10,7 +10,7 @@ const About = ({}: {}) => {
   return (
     <View>
       <Text>About This App</Text>
-      <Text>v1.1.0</Text>
+      <Text>v1.2.0</Text>
     </View>
   );
 };
