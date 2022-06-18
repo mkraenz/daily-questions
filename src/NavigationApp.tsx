@@ -19,7 +19,11 @@ const Drawer = createDrawerNavigator();
 const NavigationApp: FC = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator>
+      <Drawer.Navigator
+        screenOptions={{
+          header: () => null, // disable top bar
+        }}
+      >
         <Drawer.Screen name="Dailies" component={CustomNavigationApp} />
         <Drawer.Screen name="About" component={About} />
       </Drawer.Navigator>
