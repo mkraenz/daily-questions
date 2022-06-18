@@ -11,64 +11,65 @@ const styles = StyleSheet.create({
   },
 });
 
-const questions: {
+// TODO
+export const questions: {
   title: string;
-  id: string;
+  id: string; // first 8 chars of a uuid v4
   questionLong: string;
   type: "points" | "fulltext";
 }[] = [
   {
     title: "Goals",
-    id: "a5e36d31-0017-40a0-bf14-67de509ec656",
+    id: "a5e36d31",
     questionLong: "Did I do my best to set clear goals today?",
     type: "points",
   },
   {
     title: "Progress",
-    id: "063c6ce1-316e-4ed8-8215-57e0e72b6d7f",
+    id: "063c6ce1",
     questionLong: "Did I do my best to make progress towards my goals today?",
     type: "points",
   },
   {
     title: "Meaning",
-    id: "aa73eb84-643d-4572-99e6-7f9ab1c1dd6b",
+    id: "aa73eb84",
     questionLong: "Did I do my best to find meaning in what I am doing today?",
     type: "points",
   },
   {
     title: "Happiness",
-    id: "e881e50e-b11c-4988-b983-7fb1dbd5209d",
+    id: "e881e50e",
     questionLong: "Did I do my best to be happy today?",
     type: "points",
   },
   {
     title: "Social",
-    id: "ec57f75e-11f7-42c4-90e8-228f52ab050f",
+    id: "ec57f75e",
     questionLong: "Did I do my best to build positive relationships today?",
     type: "points",
   },
   {
     title: "Responsibility",
-    id: "b1667166-29f1-4401-b73c-8e12da3cdefc",
+    id: "b1667166",
     questionLong:
       "Did I do my best to take responsibility for my actions today?",
     type: "points",
   },
   {
     title: "Improvement",
-    id: "c5c844e6-ddd9-4e2a-abdb-bc6e846f6580",
+    id: "c5c844e6",
     questionLong: "Did I do my best to improve my skills and life today?",
     type: "points",
   },
   {
     title: "Highlight",
-    id: "b875a18e-4ba3-4797-be5f-74bdf2b4a54a",
+    id: "b875a18e",
     questionLong: "",
     type: "fulltext",
   },
   {
     title: "Better",
-    id: "c706f049-0da8-4120-bd45-47f2bd036ad9",
+    id: "c706f049",
     questionLong: "One specific thing I want to do better tomorrow.",
     type: "fulltext",
   },

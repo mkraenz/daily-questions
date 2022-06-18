@@ -3,20 +3,28 @@ import { last } from "lodash";
 import React, { FC, useEffect, useState } from "react";
 import { ScrollView, Share, StyleSheet, Text, View } from "react-native";
 import { Button, Paragraph, Title, useTheme } from "react-native-paper";
+import { questions } from "../QuestionsNavApp";
 
 const toDateOnly = (date: Date) => date.toISOString().split("T")[0];
 const STORAGE_KEY = "@eu.kraenz.dailyquestions.historicanswers";
 
 interface HistoricEntry {
   date: string;
-  answers: (number | string)[];
+  qs: { id: string; a: number | string }[]; // qs = questions, a = answer. shortening to save bytes since AsyncStorage is max 2MB
 }
+type History = HistoricEntry[];
+
 const appendToHistory = async (today: Date, answers: (number | string)[]) => {
   const date = toDateOnly(today);
   const serializedHistory = (await AsyncStorage.getItem(STORAGE_KEY)) || "[]";
-  console.log(serializedHistory);
-  const history: HistoricEntry[] = JSON.parse(serializedHistory);
-  const newEntry = { date, answers };
+  const history: History = JSON.parse(serializedHistory);
+  const newEntry: HistoricEntry = {
+    date,
+    qs: answers.map((a, i) => ({
+      id: questions[i].id, // TODO remove cyclic dependency
+      a: a,
+    })),
+  };
 
   const entryForDateAlreadyExists = last(history)?.date === date;
   if (entryForDateAlreadyExists) {
@@ -24,7 +32,6 @@ const appendToHistory = async (today: Date, answers: (number | string)[]) => {
   } else {
     history.push(newEntry);
   }
-  console.log(history);
   await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(history));
 };
 

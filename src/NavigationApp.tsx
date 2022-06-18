@@ -4,6 +4,7 @@ import React, { FC } from "react";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
 import CustomNavigationApp from "./QuestionsNavApp";
+import StatisticsScreen from "./screens/StatisticsScreen";
 
 const About = ({}: {}) => {
   return (
@@ -25,6 +26,7 @@ const NavigationApp: FC = () => {
         }}
       >
         <Drawer.Screen name="Dailies" component={CustomNavigationApp} />
+        <Drawer.Screen name="Statistics" component={StatisticsScreen} />
         <Drawer.Screen name="About" component={About} />
       </Drawer.Navigator>
     </NavigationContainer>
