@@ -204,7 +204,6 @@ const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
           .filter(Boolean)}
       </View>
       <ShareWithWhatsappButton handlePressed={handleSharePressed} />
-      <Text>v1.1.0</Text>
     </ScrollView>
   );
 };

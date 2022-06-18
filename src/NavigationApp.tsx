@@ -1,166 +1,30 @@
-import React, { Reducer, useReducer } from "react";
-import { StyleSheet, View } from "react-native";
-import FullTextQuestionScreen from "./screens/FullTextQuestionScreen";
-import QuestionScreen from "./screens/QuestionScreen";
-import SummaryScreen from "./screens/SummaryScreen";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
+import React, { FC } from "react";
+import { View } from "react-native";
+import { Text } from "react-native-paper";
+import CustomNavigationApp from "./QuestionsNavApp";
 
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "100%",
-  },
-});
-
-const questions: {
-  title: string;
-  id: string;
-  questionLong: string;
-  type: "points" | "fulltext";
-}[] = [
-  {
-    title: "Goals",
-    id: "a5e36d31-0017-40a0-bf14-67de509ec656",
-    questionLong: "Did I do my best to set clear goals today?",
-    type: "points",
-  },
-  {
-    title: "Progress",
-    id: "063c6ce1-316e-4ed8-8215-57e0e72b6d7f",
-    questionLong: "Did I do my best to make progress towards my goals today?",
-    type: "points",
-  },
-  {
-    title: "Meaning",
-    id: "aa73eb84-643d-4572-99e6-7f9ab1c1dd6b",
-    questionLong: "Did I do my best to find meaning in what I am doing today?",
-    type: "points",
-  },
-  {
-    title: "Happiness",
-    id: "e881e50e-b11c-4988-b983-7fb1dbd5209d",
-    questionLong: "Did I do my best to be happy today?",
-    type: "points",
-  },
-  {
-    title: "Social",
-    id: "ec57f75e-11f7-42c4-90e8-228f52ab050f",
-    questionLong: "Did I do my best to build positive relationships today?",
-    type: "points",
-  },
-  {
-    title: "Responsibility",
-    id: "b1667166-29f1-4401-b73c-8e12da3cdefc",
-    questionLong:
-      "Did I do my best to take responsibility for my actions today?",
-    type: "points",
-  },
-  {
-    title: "Improvement",
-    id: "c5c844e6-ddd9-4e2a-abdb-bc6e846f6580",
-    questionLong: "Did I do my best to improve my skills and life today?",
-    type: "points",
-  },
-  {
-    title: "Highlight",
-    id: "b875a18e-4ba3-4797-be5f-74bdf2b4a54a",
-    questionLong: "",
-    type: "fulltext",
-  },
-  {
-    title: "Better",
-    id: "c706f049-0da8-4120-bd45-47f2bd036ad9",
-    questionLong: "One specific thing I want to do better tomorrow.",
-    type: "fulltext",
-  },
-];
-
-const initialState = {
-  answers: [] as (number | string)[],
-  routeIndex: 0,
-  finished: false,
-};
-
-type Action = AnswerAction | NavAction;
-type AnswerAction = {
-  index: number;
-  answer: number | string;
-  type: "answer";
-};
-type NavAction = {
-  type: "nav";
-  index: number;
-};
-
-const reducer: Reducer<typeof initialState, Action> = (state, action) => {
-  switch (action.type) {
-    case "nav": {
-      const finished = state.routeIndex === questions.length - 1;
-      return { ...state, routeIndex: action.index, finished };
-    }
-    case "answer": {
-      const copy = [...state.answers];
-      copy[action.index] = action.answer;
-      const finished = copy.length === questions.length;
-      return {
-        ...state,
-        answers: copy,
-        routeIndex: state.routeIndex + 1,
-        finished,
-      };
-    }
-  }
-};
-
-const CustomNavigationApp = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  if (state.finished) {
-    return (
-      <View style={styles.container}>
-        <SummaryScreen
-          questions={questions}
-          answers={state.answers}
-          nav={(index) => dispatch({ type: "nav", index })}
-        />
-      </View>
-    );
-  }
-
-  const question = questions[state.routeIndex % questions.length];
-
-  if (question.type === "points") {
-    return (
-      <View style={styles.container}>
-        <QuestionScreen
-          key={question.id}
-          title={question.title}
-          questionLong={question.questionLong}
-          index={state.routeIndex}
-          answers={state.answers}
-          onAnswer={(answer) =>
-            dispatch({ index: state.routeIndex, answer, type: "answer" })
-          }
-          visible={true}
-        />
-      </View>
-    );
-  }
-
+const About = ({}: {}) => {
   return (
-    <View style={styles.container}>
-      <FullTextQuestionScreen
-        key={question.id}
-        title={question.title}
-        questionLong={question.questionLong}
-        index={state.routeIndex}
-        answers={state.answers}
-        onAnswer={(answer) =>
-          dispatch({ index: state.routeIndex, answer, type: "answer" })
-        }
-        visible={true}
-      />
+    <View>
+      <Text>About This App</Text>
+      <Text>v1.1.0</Text>
     </View>
   );
 };
 
-export default CustomNavigationApp;
+const Drawer = createDrawerNavigator();
+
+const NavigationApp: FC = () => {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Dailies" component={CustomNavigationApp} />
+        <Drawer.Screen name="About" component={About} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default NavigationApp;
