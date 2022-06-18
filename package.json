@@ -39,7 +39,9 @@
     "react-native-screens": "~3.11.1",
     "react-native-svg": "12.3.0",
     "react-native-web": "0.17.7",
-    "react-redux": "^8.0.2"
+    "react-redux": "^8.0.2",
+    "redux": "^4.2.0",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -47,6 +49,7 @@
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.67.6",
     "@types/react-redux": "^7.1.24",
+    "@types/redux-persist": "^4.3.1",
     "babel-preset-expo": "~9.1.0",
     "eas-cli": "^0.54.1",
     "expo-cli": "^5.4.11",

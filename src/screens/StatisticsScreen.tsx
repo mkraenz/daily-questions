@@ -2,6 +2,8 @@ import { isNumber } from "lodash";
 import React from "react";
 import { Dimensions, Text, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
+import { useStore } from "react-redux";
+import { RootState } from "../App";
 import { questions } from "../QuestionsNavApp";
 
 const mockHistory = [
@@ -131,14 +133,17 @@ const questionsidsWithNumberValues = mockHistory[0].qs
   .map((q) => q.id);
 
 const StatisticsScreen = () => {
+  const store = useStore<RootState>();
+  const history = store.getState().history.history; // TODO
+
   return (
     <View>
       <Text>{questions[0].title}</Text>
       <LineChart
         data={{
-          labels: mockHistory.map((h) => h.date),
+          labels: history.map((h) => h.date),
           datasets: questionsidsWithNumberValues.map((questionId, index) => {
-            const timeseries = mockHistory.map(
+            const timeseries = history.map(
               (entry) =>
                 (entry.qs.find((q) => q.id === questionId)?.a as number) ?? 0
             );

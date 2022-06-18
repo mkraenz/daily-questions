@@ -1,41 +1,10 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { last } from "lodash";
-import React, { FC, useEffect, useState } from "react";
-import { ScrollView, Share, StyleSheet, Text, View } from "react-native";
+import React, { FC } from "react";
+import { ScrollView, Share, StyleSheet, View } from "react-native";
 import { Button, Paragraph, Title, useTheme } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { upsert } from "../history/history.slice";
-import { questions } from "../QuestionsNavApp";
 
 const toDateOnly = (date: Date) => date.toISOString().split("T")[0];
-const STORAGE_KEY = "@eu.kraenz.dailyquestions.historicanswers";
-
-interface HistoricEntry {
-  date: string;
-  qs: { id: string; a: number | string }[]; // qs = questions, a = answer. shortening to save bytes since AsyncStorage is max 2MB
-}
-type History = HistoricEntry[];
-
-const appendToHistory = async (today: Date, answers: (number | string)[]) => {
-  const date = toDateOnly(today);
-  const serializedHistory = (await AsyncStorage.getItem(STORAGE_KEY)) || "[]";
-  const history: History = JSON.parse(serializedHistory);
-  const newEntry: HistoricEntry = {
-    date,
-    qs: answers.map((a, i) => ({
-      id: questions[i].id, // TODO remove cyclic dependency
-      a: a,
-    })),
-  };
-
-  const entryForDateAlreadyExists = last(history)?.date === date;
-  if (entryForDateAlreadyExists) {
-    history[history.length - 1] = newEntry;
-  } else {
-    history.push(newEntry);
-  }
-  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(history));
-};
 
 // TODO clean up the css
 const styles = StyleSheet.create({
@@ -131,17 +100,7 @@ const ShareWithWhatsappButton: FC<{
 };
 
 const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
-  const [secretCounter, setSecretCounter] = useState(0);
-  const [history, setHistory] = useState("");
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const loadData = async () => {
-      const data = await AsyncStorage.getItem(STORAGE_KEY);
-      setHistory(data || "");
-    };
-    loadData();
-  });
 
   const now = new Date();
   const today = toDateOnly(now);
@@ -157,7 +116,6 @@ const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
     return `${header}${body}`;
   };
   const handleSharePressed = async () => {
-    await appendToHistory(now, answers);
     dispatch(
       upsert({
         date: now.toISOString(),
@@ -169,28 +127,12 @@ const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
     });
   };
 
-  const increaseSecretCounter = () => {
-    setSecretCounter(secretCounter + 1);
-  };
-  // TODO analytics screen
-  if (secretCounter % 5 === 4) {
-    return (
-      <ScrollView
-        onTouchEnd={increaseSecretCounter}
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <Text>{history}</Text>
-      </ScrollView>
-    );
-  }
-
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      <Title onPress={increaseSecretCounter}>Your Dailies from {today}</Title>
+      <Title>Your Dailies from {today}</Title>
       <View style={styles.pointsQuestionsContainer}>
         {questions
           .map((question, i) =>

@@ -9,7 +9,7 @@ interface HistoricEntry {
 }
 type History = HistoricEntry[];
 
-interface HistoryState {
+export interface HistoryState {
   history: History;
 }
 const initialState: HistoryState = { history: [] };
@@ -39,7 +39,7 @@ const historySlice = createSlice({
       if (entryForDateAlreadyExists) {
         state.history[state.history.length - 1] = newEntry;
       } else {
-        state.history.push(newEntry); // TODO does immer support this?
+        state.history.push(newEntry);
       }
     },
   },
