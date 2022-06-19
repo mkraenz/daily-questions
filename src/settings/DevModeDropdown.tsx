@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { Button, Menu } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
-import { RootState } from "../App";
 import { setDevMode } from "../settings/settings.slice";
+import { RootState } from "../store";
 
 const mapState = (state: RootState) => ({ devMode: state.settings.devMode });
 const mapDispatch = { setDevMode };

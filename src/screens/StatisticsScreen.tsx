@@ -4,9 +4,9 @@ import { Dimensions, Text, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
-import { RootState } from "../App";
 import { clearHistory, mockHistory } from "../history/history.slice";
 import { questions } from "../questions/default-questions";
+import { RootState } from "../store";
 
 const mapState = (state: RootState) => ({
   history: state.history.history,
