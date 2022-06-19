@@ -1,4 +1,4 @@
-const mockHistory = [
+export const mockedHistoricData = [
   {
     date: "2020-01-01",
     qs: [

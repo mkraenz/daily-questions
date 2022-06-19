@@ -2,21 +2,34 @@ import { isNumber } from "lodash";
 import React, { FC } from "react";
 import { Dimensions, Text, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
+import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../App";
+import { clearHistory, mockHistory } from "../history/history.slice";
 import { questions } from "../questions/default-questions";
 
 const mapState = (state: RootState) => ({
   history: state.history.history,
+  devMode: state.settings.devMode,
 });
-const connector = connect(mapState);
+const mapDispatch = { clearHistory, mockHistory };
+const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const StatisticsScreen: FC<PropsFromRedux> = ({ history }) => {
+const StatisticsScreen: FC<PropsFromRedux> = ({
+  history,
+  devMode,
+  clearHistory,
+  mockHistory,
+}) => {
   if (history.length === 0 || history.length === 1) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>No history yet</Text>
+        <Text>You completed your dailies {history.length} times.</Text>
+        <Text>
+          Your statistics show up once you've completed at least 2 dailies.
+        </Text>
+        {devMode && <Button onPress={() => mockHistory()}>Mock History</Button>}
       </View>
     );
   }
@@ -24,6 +37,7 @@ const StatisticsScreen: FC<PropsFromRedux> = ({ history }) => {
   const questionsidsWithNumberValues = history[0].qs
     .filter((q): q is { id: string; a: number } => isNumber(q.a))
     .map((q) => q.id);
+  // TODO allow to show only specific questions, e.g. only goals, only goals and progress, etc
   return (
     <View>
       <Text>{questions[0].title}</Text>
@@ -72,6 +86,11 @@ const StatisticsScreen: FC<PropsFromRedux> = ({ history }) => {
           borderRadius: 16,
         }}
       />
+      {devMode && (
+        <Button mode="outlined" onPress={() => clearHistory()}>
+          Clear history
+        </Button>
+      )}
     </View>
   );
 };

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { last } from "lodash";
+import { mockedHistoricData } from "./mock-data";
 
 const toDateOnly = (date: Date) => date.toISOString().split("T")[0];
 
@@ -25,7 +26,6 @@ const historySlice = createSlice({
         questions: { answer: number | string; id: string }[];
       }>
     ) {
-      console.log(JSON.stringify(state, null, 2));
       const date = toDateOnly(new Date(action.payload.date));
       const newEntry: HistoricEntry = {
         date,
@@ -42,8 +42,20 @@ const historySlice = createSlice({
         state.history.push(newEntry);
       }
     },
+    clear(state) {
+      console.log("clearing history");
+      state.history = [];
+    },
+    mockHistory(state) {
+      console.log("mocking history");
+      state.history = mockedHistoricData;
+    },
   },
 });
 
-export const { upsert } = historySlice.actions;
+export const {
+  upsert,
+  clear: clearHistory,
+  mockHistory,
+} = historySlice.actions;
 export default historySlice.reducer;

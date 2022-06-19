@@ -34,3 +34,39 @@ yarn eas whoami
 # build and deploy
 yarn eas build --platform android
 ```
+
+## Development
+
+### FAQ
+
+#### Some redux middleware complaints when used with react-redux
+
+##### Symptom
+
+```log
+A non-serializable value was detected in an action, in the path: `payload`. Value:, Class {
+  "_dispatchInstances": FiberNode {
+...
+SerializableStateInvariantMiddleware took 64ms, which is more than the warning threshold of 32ms.
+...
+```
+
+##### Analysis and Solution
+
+You probably use some code like this
+
+```tsx
+<Button mode="outlined" onPress={clearHistory}>
+  Clear history
+</Button>
+```
+
+where `clearHistory` is an action creator injected using react-redux' `connect` and `mapDispatch`.
+
+`onPress` seems to implicitely pass some argument to the function. So to fix the warning, explicitely ignore the argument and call your function without it like so
+
+```tsx
+<Button mode="outlined" onPress={() => clearHistory()}>
+  Clear history
+</Button>
+```
