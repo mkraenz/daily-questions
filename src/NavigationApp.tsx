@@ -4,7 +4,7 @@ import React, { FC } from "react";
 import { StatusBar } from "react-native";
 import { useTheme } from "react-native-paper";
 import CustomNavQuestionsApp from "./QuestionsNavApp";
-import About from "./screens/AboutScreen";
+import SettingsScreen from "./screens/SettingsScreen";
 import StatisticsScreen from "./screens/StatisticsScreen";
 
 const Drawer = createDrawerNavigator();
@@ -35,7 +35,7 @@ const NavigationApp: FC = () => {
       >
         <Drawer.Screen name="Dailies" component={CustomNavQuestionsApp} />
         <Drawer.Screen name="Statistics" component={StatisticsScreen} />
-        <Drawer.Screen name="About" component={About} />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

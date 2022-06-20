@@ -5,7 +5,7 @@ import DarkModeSwitch from "../settings/DarkModeSwitch";
 import DevModeDropDownMenu from "../settings/DevModeDropdown";
 import VersionAndCopyright from "../settings/VersionAndCopyright";
 
-const About = () => {
+const SettingsScreen = () => {
   return (
     <View
       style={{
@@ -23,4 +23,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default SettingsScreen;
