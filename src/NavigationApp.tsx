@@ -4,8 +4,8 @@ import React, { FC } from "react";
 import { StatusBar } from "react-native";
 import { useTheme } from "react-native-paper";
 import CustomNavQuestionsApp from "./QuestionsNavApp";
-import SettingsScreen from "./screens/SettingsScreen";
 import StatisticsScreen from "./screens/StatisticsScreen";
+import SettingsScreen from "./settings/SettingsScreen";
 
 const Drawer = createDrawerNavigator();
 

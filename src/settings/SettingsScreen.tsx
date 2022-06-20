@@ -1,9 +1,9 @@
 import React from "react";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
-import DarkModeSwitch from "../settings/DarkModeSwitch";
-import DevModeDropDownMenu from "../settings/DevModeDropdown";
-import VersionAndCopyright from "../settings/VersionAndCopyright";
+import DarkModeSwitch from "./DarkModeSwitch";
+import DevModeDropDownMenu from "./DevModeDropdown";
+import VersionAndCopyright from "./VersionAndCopyright";
 
 const SettingsScreen = () => {
   return (
