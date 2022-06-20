@@ -11,6 +11,7 @@ const NavigationApp: FC = () => {
   return (
     <NavigationContainer>
       <Drawer.Navigator
+        initialRouteName="Statistics"
         screenOptions={{
           header: () => null, // disable top bar
         }}

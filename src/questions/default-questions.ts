@@ -50,7 +50,7 @@ export const questions: {
   {
     title: "Highlight",
     id: "b875a18e",
-    questionLong: "",
+    questionLong: "What was my personal highlight today and why?",
     type: "fulltext",
   },
   {

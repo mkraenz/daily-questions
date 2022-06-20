@@ -89,12 +89,12 @@ const FullTextAnswer: FC<{
   );
 };
 
-const ShareWithWhatsappButton: FC<{
+const ShareButton: FC<{
   handlePressed: () => void;
 }> = ({ handlePressed }) => {
   return (
     <Button icon="share" mode="contained" onPress={handlePressed}>
-      Whatsapp
+      Confirm and share
     </Button>
   );
 };
@@ -161,7 +161,7 @@ const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
           )
           .filter(Boolean)}
       </View>
-      <ShareWithWhatsappButton handlePressed={handleSharePressed} />
+      <ShareButton handlePressed={handleSharePressed} />
     </ScrollView>
   );
 };
