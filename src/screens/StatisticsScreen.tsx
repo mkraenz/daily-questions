@@ -53,7 +53,6 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
 
   return (
     <ScrollView>
-      <Text>{questions[0].title}</Text>
       {questionIdsToDisplay.length > 0 ? (
         <LineChart
           data={{

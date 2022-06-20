@@ -1,6 +1,7 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import React, { FC } from "react";
+import { StatusBar } from "react-native";
 import CustomNavigationApp from "./QuestionsNavApp";
 import About from "./screens/AboutScreen";
 import StatisticsScreen from "./screens/StatisticsScreen";
@@ -14,6 +15,7 @@ const NavigationApp: FC = () => {
         initialRouteName="Statistics"
         screenOptions={{
           header: () => null, // disable top bar
+          sceneContainerStyle: { marginTop: StatusBar.currentHeight }, // respect status bar
         }}
       >
         <Drawer.Screen name="Dailies" component={CustomNavigationApp} />
