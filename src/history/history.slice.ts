@@ -8,7 +8,7 @@ interface HistoricEntry {
   date: string;
   qs: { id: string; a: number | string }[]; // qs = questions, a = answer. shortening to save bytes since AsyncStorage is max 2MB
 }
-type History = HistoricEntry[];
+export type History = HistoricEntry[];
 
 export interface HistoryState {
   history: History;

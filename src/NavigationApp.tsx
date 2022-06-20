@@ -12,6 +12,8 @@ const Drawer = createDrawerNavigator();
 const NavigationApp: FC = () => {
   const theme = useTheme();
 
+  const initialRoute = "Statistics"; // TODO revert
+
   return (
     <NavigationContainer
       theme={{
@@ -27,7 +29,7 @@ const NavigationApp: FC = () => {
       }}
     >
       <Drawer.Navigator
-        initialRouteName="Dailies"
+        initialRouteName={initialRoute}
         screenOptions={{
           header: () => null, // disable nav top bar
           sceneContainerStyle: { paddingTop: StatusBar.currentHeight }, // respect status bar
