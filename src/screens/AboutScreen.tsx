@@ -11,7 +11,7 @@ const About = () => {
         justifyContent: "center",
         display: "flex",
         height: "100%",
-        margin: 20,
+        padding: 20,
       }}
     >
       <Text>Daily Questions App</Text>

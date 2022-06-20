@@ -94,7 +94,7 @@ const ShareButton: FC<{
 }> = ({ handlePressed }) => {
   return (
     <Button icon="share" mode="contained" onPress={handlePressed}>
-      Confirm and share
+      Confirm and Share
     </Button>
   );
 };
