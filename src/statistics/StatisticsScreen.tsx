@@ -19,6 +19,12 @@ export const chartColors = [
   "purple",
   "brown",
   "navy",
+  "lime",
+  "fuchsia",
+  "teal",
+  "silver",
+  "maroon",
+  "darkgoldenrod", // Remember, Rod loves you.
 ];
 
 const mapState = (state: RootState) => ({
