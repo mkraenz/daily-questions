@@ -3,9 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import React, { FC } from "react";
 import { StatusBar } from "react-native";
 import { useTheme } from "react-native-paper";
-import CustomNavQuestionsApp from "./QuestionsNavApp";
-import StatisticsScreen from "./screens/StatisticsScreen";
+import CustomNavQuestionsApp from "./questions/QuestionsNavApp";
 import SettingsScreen from "./settings/SettingsScreen";
+import StatisticsScreen from "./statistics/StatisticsScreen";
 
 const Drawer = createDrawerNavigator();
 

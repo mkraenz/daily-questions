@@ -1,9 +1,9 @@
 import React, { Reducer, useReducer } from "react";
 import { StyleSheet, View } from "react-native";
-import { questions } from "./questions/default-questions";
-import FullTextQuestionScreen from "./screens/FullTextQuestionScreen";
-import QuestionScreen from "./screens/QuestionScreen";
-import SummaryScreen from "./screens/SummaryScreen";
+import { questions } from "./default-questions";
+import FullTextQuestionScreen from "./FullTextQuestionScreen";
+import QuestionScreen from "./QuestionScreen";
+import SummaryScreen from "./SummaryScreen";
 
 const styles = StyleSheet.create({
   container: {

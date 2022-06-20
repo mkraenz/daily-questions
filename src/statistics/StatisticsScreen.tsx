@@ -1,13 +1,13 @@
 import React, { FC, useState } from "react";
-import { Dimensions, ScrollView, Text, View } from "react-native";
+import { Dimensions, ScrollView, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
-import { Button } from "react-native-paper";
+import { Button, Text } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { clearHistory, mockHistory } from "../history/history.slice";
 import { questions } from "../questions/default-questions";
-import GraphSelection from "../statistics/GraphSelection";
-import WarningBanner from "../statistics/WarningBanner";
 import { RootState } from "../store";
+import GraphSelection from "./GraphSelection";
+import WarningBanner from "./WarningBanner";
 
 const mapState = (state: RootState) => ({
   history: state.history.history,
