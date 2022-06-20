@@ -6,6 +6,7 @@ interface Question {
   id: string;
   title: string;
   checked: boolean;
+  color: string;
 }
 
 interface Props {
@@ -37,6 +38,7 @@ const GraphSelection: FC<Props> = ({
                 newSelectedQuestions[i] = { ...q, checked: !q.checked };
                 setSelectedQuestions(newSelectedQuestions);
               }}
+              color={q.color}
             />
           </View>
         );

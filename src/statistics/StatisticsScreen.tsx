@@ -9,6 +9,18 @@ import Chart from "./Chart";
 import GraphSelection from "./GraphSelection";
 import WarningBanner from "./WarningBanner";
 
+export const chartColors = [
+  "red",
+  "blue",
+  "yellow",
+  "green",
+  "orange",
+  "aqua",
+  "purple",
+  "brown",
+  "navy",
+];
+
 const mapState = (state: RootState) => ({
   history: state.history.history,
   devMode: state.settings.devMode,
@@ -26,7 +38,12 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
   const getAllQuestionsSelected = () => {
     return questions
       .filter((q) => q.type === "points")
-      .map((q) => ({ id: q.id, title: q.title, checked: true }));
+      .map((q, i) => ({
+        id: q.id,
+        title: q.title,
+        checked: true,
+        color: chartColors[i % chartColors.length],
+      }));
   };
   const [selectedQuestions, setSelectedQuestions] = useState(
     getAllQuestionsSelected()
@@ -46,17 +63,15 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
     );
   }
 
-  const questionIdsToDisplay = selectedQuestions
-    .filter((q) => q.checked)
-    .map((q) => q.id);
-  const noQuestionsSelected = questionIdsToDisplay.length === 0;
+  const noQuestionsSelected =
+    selectedQuestions.filter((q) => q.checked).length === 0;
 
   return (
     <ScrollView>
       {!noQuestionsSelected ? (
         <Chart
           history={history}
-          questionIdsToDisplay={questionIdsToDisplay}
+          selectedQuestions={selectedQuestions}
           width={Dimensions.get("window").width}
         />
       ) : (
