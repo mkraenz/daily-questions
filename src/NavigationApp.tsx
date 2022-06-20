@@ -12,7 +12,7 @@ const Drawer = createDrawerNavigator();
 const NavigationApp: FC = () => {
   const theme = useTheme();
 
-  const initialRoute = "Statistics"; // TODO revert
+  const initialRoute = "Dailies";
 
   return (
     <NavigationContainer
