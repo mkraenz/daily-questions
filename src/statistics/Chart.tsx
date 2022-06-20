@@ -5,9 +5,9 @@ import { History } from "../history/history.slice";
 
 const getXLabels = (history: History, modulo: number = 2) =>
   history.map((h) => toMMDD(h.date)).filter((_, i) => i % modulo === 0);
-
 /** @example for input 2020-01-24, it returns 01-24 */
 const toMMDD = (dateOnly: string) => dateOnly.slice(5);
+
 interface Props {
   selectedQuestions: {
     id: string;
