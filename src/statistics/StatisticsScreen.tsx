@@ -60,9 +60,7 @@ const isWithin = (timeSpan: TimeSpan, dateOnly: string): boolean => {
     case "last 7 days":
       return date >= getNDaysAgo(7);
     case "last 30 days":
-      const result = date >= getNDaysAgo(30);
-      console.log(result, date, getNDaysAgo(30));
-      return result;
+      return date >= getNDaysAgo(30);
     case "last 1 year":
       return date >= getNDaysAgo(365);
     case "lifetime":
