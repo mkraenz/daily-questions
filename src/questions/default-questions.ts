@@ -1,4 +1,4 @@
-export const questions: {
+export const defaultQuestions: {
   title: string;
   id: string; // first 8 chars of a uuid v4
   questionLong: string;

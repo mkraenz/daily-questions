@@ -1,6 +1,6 @@
 import React, { Reducer, useReducer } from "react";
 import { StyleSheet, View } from "react-native";
-import { questions } from "./default-questions";
+import { defaultQuestions } from "./default-questions";
 import FullTextQuestionScreen from "./FullTextQuestionScreen";
 import QuestionScreen from "./QuestionScreen";
 import SummaryScreen from "./SummaryScreen";
@@ -32,13 +32,13 @@ type NavAction = {
 const reducer: Reducer<typeof initialState, Action> = (state, action) => {
   switch (action.type) {
     case "nav": {
-      const finished = state.routeIndex === questions.length - 1;
+      const finished = state.routeIndex === defaultQuestions.length - 1;
       return { ...state, routeIndex: action.index, finished };
     }
     case "answer": {
       const copy = [...state.answers];
       copy[action.index] = action.answer;
-      const finished = copy.length === questions.length;
+      const finished = copy.length === defaultQuestions.length;
       return {
         ...state,
         answers: copy,
@@ -56,7 +56,7 @@ const CustomNavigationApp = () => {
     return (
       <View style={styles.container}>
         <SummaryScreen
-          questions={questions}
+          questions={defaultQuestions}
           answers={state.answers}
           nav={(index) => dispatch({ type: "nav", index })}
         />
@@ -64,7 +64,7 @@ const CustomNavigationApp = () => {
     );
   }
 
-  const question = questions[state.routeIndex % questions.length];
+  const question = defaultQuestions[state.routeIndex % defaultQuestions.length];
 
   if (question.type === "points") {
     return (
