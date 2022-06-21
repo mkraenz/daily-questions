@@ -12,6 +12,7 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
+import questionsReducer from "./customize-questions/questions.slice";
 import historyReducer from "./history/history.slice";
 import settingsReducer from "./settings/settings.slice";
 
@@ -38,6 +39,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   history: historyReducer,
   settings: settingsReducer,
+  questions: questionsReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
