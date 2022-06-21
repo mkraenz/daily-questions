@@ -1,6 +1,6 @@
 # Daily Questions App
 
-Inofficial app to follow Marshall Goldsmith's 6 Daily Questions from his book [Triggers](https://marshallgoldsmith.com/product/triggers-creating-behavior-that-lasts-becoming-the-person-you-want-to-be/).
+Inofficial app to follow Marshall Goldsmith's 6 Daily Questions from his book [Triggers](https://marshallgoldsmith.com/book-page-triggers/).
 
 Check the [Readme of You are Awesome App! Daily Motivation Up!](https://github.com/proSingularity/you-are-awesome-app) on how to debug and much more.
 
