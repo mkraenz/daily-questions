@@ -16,33 +16,47 @@ interface Props {
   }[];
   history: History;
   width: number;
+  height: number;
 }
 
-const Chart: FC<Props> = ({ selectedQuestions, history, width }) => {
+const min = 1;
+const max = 10;
+
+const Chart: FC<Props> = ({ selectedQuestions, history, width, height }) => {
   const theme = useTheme();
+
+  const datasets = selectedQuestions
+    .filter((q) => q.checked)
+    .map((question) => {
+      const timeseries = history.map(
+        (entry) =>
+          (entry.qs.find((q) => q.id === question.id)?.a as number) ?? 0
+      );
+      const color = (opacity = 1) => question.color;
+
+      return {
+        data: timeseries,
+        color,
+      };
+    });
 
   return (
     <LineChart
       data={{
         labels: getXLabels(history),
-        datasets: selectedQuestions
-          .filter((q) => q.checked)
-          .map((question) => {
-            const timeseries = history.map(
-              (entry) =>
-                (entry.qs.find((q) => q.id === question.id)?.a as number) ?? 0
-            );
-            const color = (opacity = 1) => question.color;
-
-            return {
-              data: timeseries,
-              color,
-            };
-          }),
+        datasets: [
+          ...datasets,
+          // hack to render chart down to the min on y axis. See https://github.com/indiespirit/react-native-chart-kit/issues/447#issuecomment-876577927 and the surrounding ticket.
+          {
+            data: [min],
+            color: () => "transparent",
+            strokeWidth: 0,
+            withDots: false,
+          },
+        ],
       }}
       width={width}
-      height={500}
-      yAxisInterval={1} // optional, defaults to 1
+      height={height}
       chartConfig={{
         backgroundColor: theme.colors.surface,
         backgroundGradientFrom: theme.colors.background,
@@ -59,6 +73,10 @@ const Chart: FC<Props> = ({ selectedQuestions, history, width }) => {
           stroke: theme.colors.placeholder,
         },
       }}
+      // hack to render chart up to the max on y axis
+      fromNumber={max}
+      xLabelsOffset={-10}
+      verticalLabelRotation={45}
       bezier
       style={{
         paddingVertical: 8,

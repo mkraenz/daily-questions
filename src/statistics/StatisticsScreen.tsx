@@ -114,6 +114,7 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
           history={historyInTimeSpan}
           selectedQuestions={selectedQuestions}
           width={Dimensions.get("window").width}
+          height={Math.floor((Dimensions.get("window").height * 2) / 3)}
         />
       ) : (
         <WarningBanner
