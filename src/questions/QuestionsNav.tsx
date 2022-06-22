@@ -1,5 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import AddNewQuestionScreen from "./AddNewQuestionScreen";
+import EditQuestionScreen from "./EditQuestionScreen";
 import { QuestionsStackParamList } from "./questions-nav";
 import QuestionsListScreen from "./QuestionsListScreen";
 
@@ -16,6 +17,7 @@ const QuestionsNav = () => {
         }}
       />
       <Stack.Screen name="Add new question" component={AddNewQuestionScreen} />
+      <Stack.Screen name="Edit Question" component={EditQuestionScreen} />
     </Stack.Navigator>
   );
 };

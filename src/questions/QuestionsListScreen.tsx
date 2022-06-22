@@ -13,10 +13,15 @@ interface Props {
   type: "points" | "fulltext";
 }
 
-const ListItem: FC<Props> = ({ title, questionLong, type }) => {
+const ListItem: FC<Props> = ({ title, questionLong, type, id }) => {
   const icon = type === "points" ? "numeric" : "format-color-text";
+  const nav = useNavigation<QuestionsNavigationProp>();
+  const gotoEditQuestion = () => {
+    nav.push("Edit Question", { questionLong, type, id, title });
+  };
   return (
     <List.Item
+      onPress={gotoEditQuestion}
       title={title}
       description={questionLong}
       left={(props) => <List.Icon {...props} icon={icon} />}

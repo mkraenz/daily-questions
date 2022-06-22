@@ -40,9 +40,6 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
         onChangeText={setTitle}
         value={title}
         autoFocus={true}
-        //   style={styles.textInput}
-        //   onPressIn={noop}
-        //   onPressOut={noop}
         autoComplete="off"
         placeholder={prefixed(defaultQuestions[0].title)}
         style={styles.marginBottom}
@@ -52,9 +49,6 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
         multiline={true}
         onChangeText={setLongQuestion}
         value={longQuestion}
-        // style={styles.textInput}
-        // onPressIn={noop}
-        // onPressOut={noop}
         autoComplete="off"
         placeholder={prefixed(defaultQuestions[0].questionLong)}
         style={styles.marginBottom}
