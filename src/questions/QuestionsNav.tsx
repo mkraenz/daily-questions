@@ -1,16 +1,16 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import AddNewQuestionScreen from "./AddNewQuestionScreen";
-import { CustomizeQuestionsStackParamList } from "./questions-nav";
-import CustomizeQuestionsScreen from "./CustomizeQuestionsScreen";
+import { QuestionsStackParamList } from "./questions-nav";
+import QuestionsListScreen from "./QuestionsListScreen";
 
-const Stack = createStackNavigator<CustomizeQuestionsStackParamList>();
+const Stack = createStackNavigator<QuestionsStackParamList>();
 
-const CustomizeQuestionsNavigation = () => {
+const QuestionsNav = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Customize Question"
-        component={CustomizeQuestionsScreen}
+        component={QuestionsListScreen}
         options={{
           header: () => null,
         }}
@@ -20,4 +20,4 @@ const CustomizeQuestionsNavigation = () => {
   );
 };
 
-export default CustomizeQuestionsNavigation;
+export default QuestionsNav;

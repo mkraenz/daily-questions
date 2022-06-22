@@ -26,7 +26,7 @@ interface Props {
   visible: boolean;
 }
 
-const QuestionScreen: FC<Props> = ({
+const PointsQuestionScreen: FC<Props> = ({
   title,
   questionLong,
   index,
@@ -71,4 +71,4 @@ const QuestionScreen: FC<Props> = ({
   );
 };
 
-export default QuestionScreen;
+export default PointsQuestionScreen;

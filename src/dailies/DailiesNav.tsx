@@ -2,7 +2,7 @@ import React, { Reducer, useReducer } from "react";
 import { StyleSheet, View } from "react-native";
 import { defaultQuestions } from "../questions/default-questions";
 import FullTextQuestionScreen from "./FullTextQuestionScreen";
-import QuestionScreen from "./QuestionScreen";
+import PointsQuestionScreen from "./PointsQuestionScreen";
 import SummaryScreen from "./SummaryScreen";
 
 const styles = StyleSheet.create({
@@ -49,7 +49,7 @@ const reducer: Reducer<typeof initialState, Action> = (state, action) => {
   }
 };
 
-const CustomNavigationApp = () => {
+const DailiesCustomNav = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   if (state.finished) {
@@ -69,7 +69,7 @@ const CustomNavigationApp = () => {
   if (question.type === "points") {
     return (
       <View style={styles.container}>
-        <QuestionScreen
+        <PointsQuestionScreen
           key={question.id}
           title={question.title}
           questionLong={question.questionLong}
@@ -101,4 +101,4 @@ const CustomNavigationApp = () => {
   );
 };
 
-export default CustomNavigationApp;
+export default DailiesCustomNav;

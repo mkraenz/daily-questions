@@ -3,8 +3,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import React, { FC } from "react";
 import { StatusBar } from "react-native";
 import { useTheme } from "react-native-paper";
-import CustomizeQuestionsNavigation from "./questions/CustomizeQuestionsNavigation";
-import CustomNavQuestionsApp from "./dailies/QuestionsNavApp";
+import DailiesNav from "./dailies/DailiesNav";
+import QuestionsNav from "./questions/QuestionsNav";
 import SettingsScreen from "./settings/SettingsScreen";
 import StatisticsScreen from "./statistics/StatisticsScreen";
 
@@ -36,12 +36,9 @@ const NavigationApp: FC = () => {
           sceneContainerStyle: { paddingTop: StatusBar.currentHeight }, // respect status bar
         }}
       >
-        <Drawer.Screen name="Dailies" component={CustomNavQuestionsApp} />
+        <Drawer.Screen name="Dailies" component={DailiesNav} />
         <Drawer.Screen name="Statistics" component={StatisticsScreen} />
-        <Drawer.Screen
-          name="Customize Questions"
-          component={CustomizeQuestionsNavigation}
-        />
+        <Drawer.Screen name="Customize Questions" component={QuestionsNav} />
         <Drawer.Screen name="Settings" component={SettingsScreen} />
       </Drawer.Navigator>
     </NavigationContainer>

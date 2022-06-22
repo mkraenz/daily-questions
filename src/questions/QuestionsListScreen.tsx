@@ -4,7 +4,7 @@ import { ScrollView, View } from "react-native";
 import { Button, List } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store";
-import { CustomizeQuestionsScreenNavigationProp } from "./questions-nav";
+import { QuestionsNavigationProp } from "./questions-nav";
 
 interface Props {
   title: string;
@@ -31,8 +31,8 @@ const mapState = (state: RootState) => ({
 const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const CustomizeQuestionsScreen: FC<PropsFromRedux> = ({ questions }) => {
-  const nav = useNavigation<CustomizeQuestionsScreenNavigationProp>();
+const QuestionsListScreen: FC<PropsFromRedux> = ({ questions }) => {
+  const nav = useNavigation<QuestionsNavigationProp>();
   const gotoNewQuestion = () => nav.push("Add new question");
 
   return (
@@ -49,4 +49,4 @@ const CustomizeQuestionsScreen: FC<PropsFromRedux> = ({ questions }) => {
   );
 };
 
-export default connector(CustomizeQuestionsScreen);
+export default connector(QuestionsListScreen);

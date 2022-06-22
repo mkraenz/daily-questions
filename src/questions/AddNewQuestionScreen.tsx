@@ -5,7 +5,7 @@ import { Button, TextInput } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { v4 } from "uuid";
 import { defaultQuestions } from "./default-questions";
-import { CustomizeQuestionsScreenNavigationProp } from "./questions-nav";
+import { QuestionsNavigationProp } from "./questions-nav";
 import { addQuestion } from "./questions.slice";
 import TypeSelection from "./TypeSelection";
 
@@ -22,7 +22,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 const prefixed = (str: string) => `Example: ${str}`;
 
 const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
-  const nav = useNavigation<CustomizeQuestionsScreenNavigationProp>();
+  const nav = useNavigation<QuestionsNavigationProp>();
   const [title, setTitle] = useState("");
   const [longQuestion, setLongQuestion] = useState("");
   const [type, setType] = useState<"points" | "fulltext">("points");
