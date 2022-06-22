@@ -53,15 +53,18 @@ const EditQuestionsScreen: FC<
     nav.goBack();
   };
 
+  const hasErrors = editedTitle === "";
+
   return (
     <View style={[StyleSheet.absoluteFill, { justifyContent: "center" }]}>
       <TextInput
-        label="Title"
+        label="Title*"
         onChangeText={setEditedTitle}
         value={editedTitle}
         autoFocus={true}
         autoComplete="off"
         style={styles.marginBottom}
+        error={hasErrors}
       />
       <TextInput
         label="Full Question"
@@ -76,7 +79,12 @@ const EditQuestionsScreen: FC<
         setType={setEditedType}
         style={styles.marginBottom}
       />
-      <Button mode="contained" onPress={saveEdits} style={styles.marginBottom}>
+      <Button
+        mode="contained"
+        onPress={saveEdits}
+        style={styles.marginBottom}
+        disabled={hasErrors}
+      >
         Save Changes
       </Button>
       <Button

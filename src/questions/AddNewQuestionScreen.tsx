@@ -24,25 +24,32 @@ const prefixed = (str: string) => `Example: ${str}`;
 const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
   const nav = useNavigation<QuestionsNavigationProp>();
   const [title, setTitle] = useState("");
+  const [titleChanged, setTitleChanged] = useState(false);
   const [longQuestion, setLongQuestion] = useState("");
   const [type, setType] = useState<"points" | "fulltext">("points");
 
+  const hasErrors = title === "";
   const addNewQuestion = () => {
     const id = v4().split("-")[0];
     addQuestion({ title, questionLong: longQuestion, type, id, active: true });
     nav.goBack();
   };
+  const handleTitleChanged = (text: string) => {
+    setTitleChanged(true);
+    setTitle(text);
+  };
 
   return (
     <View style={[StyleSheet.absoluteFill, { justifyContent: "center" }]}>
       <TextInput
-        label="Title"
-        onChangeText={setTitle}
+        label="Title*"
+        onChangeText={handleTitleChanged}
         value={title}
         autoFocus={true}
         autoComplete="off"
         placeholder={prefixed(defaultQuestions[0].title)}
         style={styles.marginBottom}
+        error={titleChanged && hasErrors}
       />
       <TextInput
         label="Full Question"
@@ -58,7 +65,7 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
         setType={setType}
         style={styles.marginBottom}
       />
-      <Button mode="contained" onPress={addNewQuestion}>
+      <Button mode="contained" onPress={addNewQuestion} disabled={hasErrors}>
         Create
       </Button>
     </View>
