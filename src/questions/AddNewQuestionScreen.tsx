@@ -3,7 +3,6 @@ import React, { FC, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
-import { v4 } from "uuid";
 import { defaultQuestions } from "./default-questions";
 import { QuestionsNavigationProp } from "./questions-nav";
 import { addQuestion } from "./questions.slice";
@@ -30,8 +29,7 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
 
   const hasErrors = title === "";
   const addNewQuestion = () => {
-    const id = v4().split("-")[0];
-    addQuestion({ title, questionLong: longQuestion, type, id, active: true });
+    addQuestion({ title, questionLong: longQuestion, type, active: true });
     nav.goBack();
   };
   const handleTitleChanged = (text: string) => {

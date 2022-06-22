@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { partition } from "lodash";
+import { v4 } from "uuid";
 import { defaultQuestions } from "./default-questions";
 
 export interface Question {
@@ -15,27 +16,36 @@ export interface QuestionsState {
 }
 const initialState: QuestionsState = { questions: defaultQuestions };
 
+const getUniqueId = (questionsIds: string[]): string => {
+  const id = v4().split("-")[0];
+  const idAlreadyExists = questionsIds.find((qId) => qId === id);
+  if (idAlreadyExists) {
+    return getUniqueId(questionsIds);
+  }
+  return id;
+};
+
 const questionsSlice = createSlice({
   name: "questions",
   initialState,
   reducers: {
-    addQuestion(state, action: PayloadAction<Question>) {
+    addQuestion(state, action: PayloadAction<Omit<Question, "id">>) {
+      const id = getUniqueId(state.questions.map((q) => q.id));
       const [activeQuestions, inactiveQuestions] = partition(
         state.questions,
         (q) => q.active
       );
-      state.questions = [
-        ...activeQuestions,
-        action.payload,
-        ...inactiveQuestions,
-      ];
+      const newQuestion = { ...action.payload, id };
+      state.questions = [...activeQuestions, newQuestion, ...inactiveQuestions];
     },
+
     editQuestion(state, action: PayloadAction<Question>) {
       const index = state.questions.findIndex(
         (q) => q.id === action.payload.id
       );
       state.questions[index] = action.payload;
     },
+
     archiveQuestion(state, action: PayloadAction<{ id: string }>) {
       const index = state.questions.findIndex(
         (q) => q.id === action.payload.id
@@ -46,6 +56,7 @@ const questionsSlice = createSlice({
       state.questions.splice(index, 1);
       state.questions.push(question);
     },
+
     moveQuestion(state, action: PayloadAction<{ to: number; id: string }>) {
       // assuming archival moves archived questions to the end of the questions list
       const { to, id } = action.payload;
