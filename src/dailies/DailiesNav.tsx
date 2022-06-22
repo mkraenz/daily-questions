@@ -1,6 +1,7 @@
-import React, { Reducer, useReducer } from "react";
+import React, { FC, Reducer, useReducer } from "react";
 import { StyleSheet, View } from "react-native";
-import { defaultQuestions } from "../questions/default-questions";
+import { connect, ConnectedProps } from "react-redux";
+import { RootState } from "../store";
 import FullTextQuestionScreen from "./FullTextQuestionScreen";
 import PointsQuestionScreen from "./PointsQuestionScreen";
 import SummaryScreen from "./SummaryScreen";
@@ -29,34 +30,47 @@ type NavAction = {
   index: number;
 };
 
-const reducer: Reducer<typeof initialState, Action> = (state, action) => {
-  switch (action.type) {
-    case "nav": {
-      const finished = state.routeIndex === defaultQuestions.length - 1;
-      return { ...state, routeIndex: action.index, finished };
+const reducerFactory: (
+  questionCount: number
+) => Reducer<typeof initialState, Action> =
+  (questionCount) => (state, action) => {
+    switch (action.type) {
+      case "nav": {
+        const finished = state.routeIndex === questionCount - 1;
+        return { ...state, routeIndex: action.index, finished };
+      }
+      case "answer": {
+        const copy = [...state.answers];
+        copy[action.index] = action.answer;
+        const finished = copy.length === questionCount;
+        return {
+          ...state,
+          answers: copy,
+          routeIndex: state.routeIndex + 1,
+          finished,
+        };
+      }
     }
-    case "answer": {
-      const copy = [...state.answers];
-      copy[action.index] = action.answer;
-      const finished = copy.length === defaultQuestions.length;
-      return {
-        ...state,
-        answers: copy,
-        routeIndex: state.routeIndex + 1,
-        finished,
-      };
-    }
-  }
-};
+  };
 
-const DailiesCustomNav = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+const mapState = (state: RootState) => ({
+  questions: state.questions.questions.filter((q) => q.active),
+});
+const connector = connect(mapState);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
+  // TODO fix dailies nav when questions change during the dailies. Reproduction: do dailies up to summary screen. add a question. go back to summary screen. Observed: Cannot navigate to new question. Expected: Can navigate to new questions
+  const [state, dispatch] = useReducer(
+    reducerFactory(questions.length),
+    initialState
+  );
 
   if (state.finished) {
     return (
       <View style={styles.container}>
         <SummaryScreen
-          questions={defaultQuestions}
+          questions={questions}
           answers={state.answers}
           nav={(index) => dispatch({ type: "nav", index })}
         />
@@ -64,7 +78,7 @@ const DailiesCustomNav = () => {
     );
   }
 
-  const question = defaultQuestions[state.routeIndex % defaultQuestions.length];
+  const question = questions[state.routeIndex % questions.length];
 
   if (question.type === "points") {
     return (
@@ -101,4 +115,4 @@ const DailiesCustomNav = () => {
   );
 };
 
-export default DailiesCustomNav;
+export default connector(DailiesCustomNav);
