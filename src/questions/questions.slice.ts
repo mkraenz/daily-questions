@@ -6,6 +6,7 @@ export interface Question {
   id: string; // first 8 chars of a uuid v4
   questionLong: string;
   type: "points" | "fulltext";
+  active: boolean;
 }
 
 export interface QuestionsState {
@@ -26,8 +27,13 @@ const questionsSlice = createSlice({
       );
       state.questions[index] = action.payload;
     },
+    archiveQuestion(state, action: PayloadAction<{ id: string }>) {
+      const question = state.questions.find((q) => q.id === action.payload.id)!;
+      question.active = false;
+    },
   },
 });
 
-export const { addQuestion, editQuestion } = questionsSlice.actions;
+export const { addQuestion, editQuestion, archiveQuestion } =
+  questionsSlice.actions;
 export default questionsSlice.reducer;

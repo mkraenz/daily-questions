@@ -5,19 +5,13 @@ import { Button, List } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store";
 import { QuestionsNavigationProp } from "./questions-nav";
+import { Question } from "./questions.slice";
 
-interface Props {
-  title: string;
-  id: string; // first 8 chars of a uuid v4
-  questionLong: string;
-  type: "points" | "fulltext";
-}
-
-const ListItem: FC<Props> = ({ title, questionLong, type, id }) => {
+const ListItem: FC<Question> = ({ title, questionLong, type, id, active }) => {
   const icon = type === "points" ? "numeric" : "format-color-text";
   const nav = useNavigation<QuestionsNavigationProp>();
   const gotoEditQuestion = () => {
-    nav.push("Edit Question", { questionLong, type, id, title });
+    nav.push("Edit Question", { questionLong, type, id, title, active });
   };
   return (
     <List.Item
@@ -25,7 +19,7 @@ const ListItem: FC<Props> = ({ title, questionLong, type, id }) => {
       title={title}
       description={questionLong}
       left={(props) => <List.Icon {...props} icon={icon} />}
-      right={(props) => <List.Icon {...props} icon="reorder-horizontal" />}
+      // right={(props) => <List.Icon {...props} icon={"reorder-horizontal"} />}
     />
   );
 };
@@ -37,6 +31,7 @@ const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const QuestionsListScreen: FC<PropsFromRedux> = ({ questions }) => {
+  const activeQuestions = questions.filter((q) => q.active); // TODO read selector docs https://redux.js.org/usage/deriving-data-selectors
   const nav = useNavigation<QuestionsNavigationProp>();
   const gotoNewQuestion = () => nav.push("Add new question");
 
@@ -46,7 +41,7 @@ const QuestionsListScreen: FC<PropsFromRedux> = ({ questions }) => {
         <Button onPress={gotoNewQuestion} mode="contained">
           Add new question
         </Button>
-        {questions.map((q) => (
+        {activeQuestions.map((q) => (
           <ListItem {...q} key={q.id} />
         ))}
       </View>

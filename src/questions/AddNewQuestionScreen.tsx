@@ -29,7 +29,7 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
 
   const addNewQuestion = () => {
     const id = v4().split("-")[0];
-    addQuestion({ title, questionLong: longQuestion, type, id });
+    addQuestion({ title, questionLong: longQuestion, type, id, active: true });
     nav.goBack();
   };
 
