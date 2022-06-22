@@ -12,7 +12,7 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import questionsReducer from "./customize-questions/questions.slice";
+import questionsReducer from "./questions/questions.slice";
 import historyReducer from "./history/history.slice";
 import settingsReducer from "./settings/settings.slice";
 

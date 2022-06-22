@@ -3,8 +3,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import React, { FC } from "react";
 import { StatusBar } from "react-native";
 import { useTheme } from "react-native-paper";
-import CustomizeQuestionsNavigation from "./customize-questions/CustomizeQuestionsNavigation";
-import CustomNavQuestionsApp from "./questions/QuestionsNavApp";
+import CustomizeQuestionsNavigation from "./questions/CustomizeQuestionsNavigation";
+import CustomNavQuestionsApp from "./dailies/QuestionsNavApp";
 import SettingsScreen from "./settings/SettingsScreen";
 import StatisticsScreen from "./statistics/StatisticsScreen";
 

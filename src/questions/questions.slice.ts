@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { defaultQuestions } from "../questions/default-questions";
+import { defaultQuestions } from "./default-questions";
 
 interface Question {
   title: string;

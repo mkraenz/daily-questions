@@ -1,6 +1,6 @@
 import React, { Reducer, useReducer } from "react";
 import { StyleSheet, View } from "react-native";
-import { defaultQuestions } from "./default-questions";
+import { defaultQuestions } from "../questions/default-questions";
 import FullTextQuestionScreen from "./FullTextQuestionScreen";
 import QuestionScreen from "./QuestionScreen";
 import SummaryScreen from "./SummaryScreen";

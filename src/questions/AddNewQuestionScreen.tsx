@@ -4,8 +4,8 @@ import { StyleSheet, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { v4 } from "uuid";
-import { defaultQuestions } from "../questions/default-questions";
-import { CustomizeQuestionsScreenNavigationProp } from "./customize-questions-nav";
+import { defaultQuestions } from "./default-questions";
+import { CustomizeQuestionsScreenNavigationProp } from "./questions-nav";
 import { addQuestion } from "./questions.slice";
 import TypeSelection from "./TypeSelection";
 

@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import AddNewQuestionScreen from "./AddNewQuestionScreen";
-import { CustomizeQuestionsStackParamList } from "./customize-questions-nav";
+import { CustomizeQuestionsStackParamList } from "./questions-nav";
 import CustomizeQuestionsScreen from "./CustomizeQuestionsScreen";
 
 const Stack = createStackNavigator<CustomizeQuestionsStackParamList>();

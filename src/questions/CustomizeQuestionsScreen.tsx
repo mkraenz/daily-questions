@@ -4,7 +4,7 @@ import { ScrollView, View } from "react-native";
 import { Button, List } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store";
-import { CustomizeQuestionsScreenNavigationProp } from "./customize-questions-nav";
+import { CustomizeQuestionsScreenNavigationProp } from "./questions-nav";
 
 interface Props {
   title: string;
