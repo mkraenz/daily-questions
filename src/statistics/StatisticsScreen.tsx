@@ -1,9 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Dimensions, ScrollView, View } from "react-native";
 import { Button, Text } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { clearHistory, mockHistory } from "../history/history.slice";
-import { defaultQuestions } from "../questions/default-questions";
+import { Question } from "../questions/questions.slice";
 import { RootState } from "../store";
 import Chart from "./Chart";
 import GraphSelection from "./GraphSelection";
@@ -31,14 +31,15 @@ export const chartColors = [
 const mapState = (state: RootState) => ({
   history: state.history.history,
   devMode: state.settings.devMode,
+  questions: state.questions.questions,
 });
 const mapDispatch = { clearHistory, mockHistory };
 const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const getAllQuestionsSelected = (questions: typeof defaultQuestions) => {
+const getAllQuestionsSelected = (questions: Question[]) => {
   return questions
-    .filter((q) => q.type === "points")
+    .filter((q) => q.type === "points" && q.active)
     .map((q, i) => ({
       id: q.id,
       title: q.title,
@@ -74,14 +75,19 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
   devMode,
   clearHistory,
   mockHistory,
+  questions,
 }) => {
   const [selectedQuestions, setSelectedQuestions] = useState(
-    getAllQuestionsSelected(defaultQuestions)
+    getAllQuestionsSelected(questions)
   );
+  // reload selectedQuestions every time questions change, e.g. from adding a new question
+  useEffect(() => {
+    setSelectedQuestions(getAllQuestionsSelected(questions));
+  }, [questions]);
   const [timeSpan, setTimeSpan] = useState<TimeSpan>("last 7 days");
 
   const selectAllQuestions = () =>
-    setSelectedQuestions(getAllQuestionsSelected(defaultQuestions));
+    setSelectedQuestions(getAllQuestionsSelected(questions));
 
   const historyInTimeSpan = history.filter((entry) =>
     isWithin(timeSpan, entry.date)
