@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const GraphSelection: FC<Props> = ({
+const ChartSelection: FC<Props> = ({
   selectedQuestions,
   setSelectedQuestions,
 }) => {
@@ -47,4 +47,4 @@ const GraphSelection: FC<Props> = ({
   );
 };
 
-export default GraphSelection;
+export default ChartSelection;

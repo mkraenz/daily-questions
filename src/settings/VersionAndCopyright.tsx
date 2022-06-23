@@ -17,7 +17,7 @@ const VersionAndCopyright = () => {
   const nbsp = "\u00a0";
   return (
     <View>
-      <Paragraph>v1.9.1</Paragraph>
+      <Paragraph>v1.9.2</Paragraph>
       <Paragraph>
         Copyright © 2022{" "}
         <Paragraph onPress={openCompanyWebsite} style={styles.link}>

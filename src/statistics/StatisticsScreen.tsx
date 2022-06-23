@@ -6,7 +6,7 @@ import { clearHistory, mockHistory } from "../history/history.slice";
 import { Question } from "../questions/questions.slice";
 import { RootState } from "../store";
 import Chart from "./Chart";
-import GraphSelection from "./GraphSelection";
+import ChartSelection from "./ChartSelection";
 import TimeSpanSelector, { TimeSpan } from "./TimeSpanSelector";
 import WarningBanner from "./WarningBanner";
 
@@ -127,7 +127,7 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
         />
       )}
       <TimeSpanSelector timeSpan={timeSpan} setTimeSpan={setTimeSpan} />
-      <GraphSelection
+      <ChartSelection
         selectedQuestions={selectedQuestions}
         setSelectedQuestions={setSelectedQuestions}
       />
