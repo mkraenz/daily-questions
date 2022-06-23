@@ -1,44 +1,44 @@
 import React, { FC } from "react";
 import { ScrollView, Share, StyleSheet, View } from "react-native";
-import { Button, Paragraph, Title, useTheme } from "react-native-paper";
+import {
+  Button,
+  Paragraph,
+  Title,
+  TouchableRipple,
+  useTheme,
+} from "react-native-paper";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { getDailiesDateOnly, submitDailies } from "../history/history.slice";
 import { RootState } from "../store";
 
-// TODO clean up the css
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    marginVertical: 32,
+    marginHorizontal: 24,
   },
   contentContainer: {
-    flex: 1,
-    justifyContent: "space-evenly",
     alignItems: "center",
   },
+  title: {
+    marginBottom: 24,
+  },
   pointsQuestionsContainer: {
-    flex: 1,
-    justifyContent: "space-between",
-    maxHeight: "50%",
-    minHeight: "50%",
+    marginBottom: 24,
   },
   pointsAnswerRow: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    marginBottom: 12,
   },
   answerTitle: {
     paddingRight: 16,
   },
   fulltextQuestionsContainer: {
-    flex: 1,
     width: "100%",
-    maxHeight: "10%",
+    marginBottom: 24,
   },
-  fulltextRow: {
-    flex: 1,
-    justifyContent: "flex-start",
-  },
+  fulltextRow: { marginBottom: 12 },
 });
 
 interface Props {
@@ -67,16 +67,14 @@ const PointsAnswer: FC<{
 }> = ({ title, answer, onClick }) => {
   const theme = useTheme();
   return (
-    <View style={styles.pointsAnswerRow} onTouchEnd={onClick}>
-      <Paragraph style={styles.answerTitle}>{title}</Paragraph>
-      <Button
-        mode="outlined"
-        color={theme.colors.text}
-        labelStyle={{ marginVertical: 0, paddingVertical: 9 }}
-      >
-        {answer}
-      </Button>
-    </View>
+    <TouchableRipple onPress={onClick}>
+      <View style={styles.pointsAnswerRow}>
+        <Paragraph style={styles.answerTitle}>{title}</Paragraph>
+        <Button mode="outlined" color={theme.colors.text}>
+          {answer}
+        </Button>
+      </View>
+    </TouchableRipple>
   );
 };
 
@@ -86,11 +84,13 @@ const FullTextAnswer: FC<{
   onClick: () => void;
 }> = ({ title, answer, onClick }) => {
   return (
-    <View style={styles.fulltextRow} onTouchEnd={onClick}>
-      <Paragraph>
-        {title}: {answer}
-      </Paragraph>
-    </View>
+    <TouchableRipple onPress={onClick}>
+      <View style={styles.fulltextRow}>
+        <Paragraph>
+          {title}: {answer}
+        </Paragraph>
+      </View>
+    </TouchableRipple>
   );
 };
 
@@ -151,10 +151,11 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      <Title>Your Dailies from {today}</Title>
+      <Title style={styles.title}>Your Dailies from {today}</Title>
       <View style={styles.pointsQuestionsContainer}>
         {questions
           .map((question, i) =>
+            // TODO wow this is ugly. refactor this. the complexity comes from answers being dependent on indices and not ids. Also see the other answer type
             question.type === "points" ? (
               <PointsAnswer
                 key={question.id}
@@ -169,14 +170,14 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
       <View style={styles.fulltextQuestionsContainer}>
         {questions
           .map((question, i) =>
-            question.type === "points" ? null : (
+            question.type === "fulltext" ? (
               <FullTextAnswer
                 key={question.id}
                 answer={answers[i]}
                 title={question.title}
                 onClick={() => nav(i)}
               />
-            )
+            ) : null
           )
           .filter(Boolean)}
       </View>
