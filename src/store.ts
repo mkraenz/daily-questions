@@ -6,15 +6,16 @@ import {
   FLUSH,
   PAUSE,
   PERSIST,
+  PersistConfig,
   persistReducer,
   persistStore,
   PURGE,
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import questionsReducer from "./questions/questions.slice";
-import historyReducer from "./history/history.slice";
-import settingsReducer from "./settings/settings.slice";
+import historyReducer, { HistoryState } from "./history/history.slice";
+import questionsReducer, { QuestionsState } from "./questions/questions.slice";
+import settingsReducer, { SettingsState } from "./settings/settings.slice";
 
 /**
  * Logs all actions and states after they are dispatched.
@@ -31,10 +32,15 @@ const logger =
     return result;
   };
 
-const persistConfig = {
+const persistConfig: PersistConfig<{
+  history: HistoryState;
+  settings: SettingsState;
+  questions: QuestionsState;
+}> = {
   key: "root",
   version: 1,
   storage: AsyncStorage,
+  whitelist: ["history", "settings", "questions"],
 };
 const rootReducer = combineReducers({
   history: historyReducer,
