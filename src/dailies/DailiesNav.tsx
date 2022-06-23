@@ -2,7 +2,6 @@ import React, { FC, Reducer, useEffect, useReducer, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store";
-import ForcedResetInfo from "./ForcedResetInfo";
 import FullTextQuestionScreen from "./FullTextQuestionScreen";
 import PointsQuestionScreen from "./PointsQuestionScreen";
 import SummaryScreen from "./SummaryScreen";
@@ -84,18 +83,14 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
   const [cachedQuestionsIds, setCachedQuestionsIds] = useState(
     questions.map((q) => q.id)
   );
-  const [forcedResetInfoShown, showForcedResetInfo] = React.useState(false);
   useEffect(() => {
     const noSeriousQuestionListChanges = questions.every(
       (q, i) => q.id === cachedQuestionsIds[i]
     );
     if (noSeriousQuestionListChanges) return; // i.e. no new questions, archived questions, or moved questions. Renames of existing questions might have occured. In this case, we can keep the current dailies state for the users comfort.
     setCachedQuestionsIds(questions.map((q) => q.id));
-    // showForcedResetInfo(true);
     dispatch({ type: "force reset" });
   }, [questions]);
-
-  const hideForcedResetInfo = () => showForcedResetInfo(false);
 
   if (state.finished) {
     return (
@@ -104,11 +99,6 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
           questions={questions}
           answers={state.answers}
           nav={(index) => dispatch({ type: "nav", index })}
-        />
-        {/* TODO currently never set to visible */}
-        <ForcedResetInfo
-          visible={forcedResetInfoShown}
-          onDismiss={hideForcedResetInfo}
         />
       </View>
     );
@@ -129,10 +119,6 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
             dispatch({ index: state.routeIndex, answer, type: "answer" })
           }
         />
-        <ForcedResetInfo
-          visible={forcedResetInfoShown}
-          onDismiss={hideForcedResetInfo}
-        />
       </View>
     );
   }
@@ -149,10 +135,6 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
           dispatch({ index: state.routeIndex, answer, type: "answer" })
         }
         visible={true}
-      />
-      <ForcedResetInfo
-        visible={forcedResetInfoShown}
-        onDismiss={hideForcedResetInfo}
       />
     </View>
   );
