@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import { ScrollView, Share, StyleSheet, View } from "react-native";
 import { Button, Paragraph, Title, useTheme } from "react-native-paper";
-import { useDispatch } from "react-redux";
-import { upsert } from "../history/history.slice";
+import { connect, ConnectedProps, useDispatch } from "react-redux";
+import { getDailiesDateOnly, submitDailies } from "../history/history.slice";
+import { RootState } from "../store";
 
 const toDateOnly = (date: Date) => date.toISOString().split("T")[0];
 
@@ -55,6 +56,12 @@ interface Props {
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+const mapState = (state: RootState) => ({
+  startOfNextDayTime: state.settings.belatedDailiesUntilNextDayAt,
+});
+const connector = connect(mapState);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
 const PointsAnswer: FC<{
   title: string;
   answer: string | number;
@@ -99,11 +106,24 @@ const ShareButton: FC<{
   );
 };
 
-const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
+const SummaryScreen: FC<Props & PropsFromRedux> = ({
+  questions,
+  answers,
+  nav,
+  startOfNextDayTime,
+}) => {
   const dispatch = useDispatch();
 
+  const startOfNextDay = new Date();
+  startOfNextDay.setHours(
+    startOfNextDayTime.hour,
+    startOfNextDayTime.minute,
+    0,
+    0
+  );
+
   const now = new Date();
-  const today = toDateOnly(now);
+  const today = getDailiesDateOnly(now, startOfNextDay);
   const formatExportMessage = () => {
     const body = questions
       .map((q, i) => {
@@ -117,9 +137,10 @@ const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
   };
   const handleSharePressed = async () => {
     dispatch(
-      upsert({
+      submitDailies({
         date: now.toISOString(),
         questions: answers.map((a, i) => ({ id: questions[i].id, answer: a })),
+        startOfNextDay: startOfNextDay.toISOString(),
       })
     );
     await Share.share({
@@ -166,4 +187,4 @@ const SummaryScreen: FC<Props> = ({ questions, answers, nav }) => {
   );
 };
 
-export default SummaryScreen;
+export default connector(SummaryScreen);

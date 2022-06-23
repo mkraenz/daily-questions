@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
+import BelatedDailiesTimePicker from "./BelatedDailiesTimePicker";
 import DarkModeSwitch from "./DarkModeSwitch";
 import DevModeDropDownMenu from "./DevModeDropdown";
 import VersionAndCopyright from "./VersionAndCopyright";
@@ -19,6 +20,7 @@ const SettingsScreen = () => {
       <VersionAndCopyright />
       <DevModeDropDownMenu />
       <DarkModeSwitch />
+      <BelatedDailiesTimePicker />
     </View>
   );
 };

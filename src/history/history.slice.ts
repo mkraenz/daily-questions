@@ -1,8 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { last } from "lodash";
+import moment, { Moment } from "moment";
 import { mockedHistoricData } from "./mock-data";
 
-const toDateOnly = (date: Date) => date.toISOString().split("T")[0];
+const toDateOnly = (date: Moment) => date.toISOString(true).split("T")[0];
+export const getDailiesDateOnly = (
+  date: string | Date,
+  startOfNextDay: string | Date
+) => {
+  const startOfNextDayMoment = moment(startOfNextDay);
+  const dateMoment = moment(date);
+  if (dateMoment.isAfter(startOfNextDayMoment)) {
+    return toDateOnly(dateMoment);
+  } else {
+    return toDateOnly(startOfNextDayMoment.add(-1, "day"));
+  }
+};
 
 interface HistoricEntry {
   date: string;
@@ -19,14 +32,18 @@ const historySlice = createSlice({
   name: "history",
   initialState,
   reducers: {
-    upsert(
+    submitDailies(
       state,
       action: PayloadAction<{
         date: string;
         questions: { answer: number | string; id: string }[];
+        startOfNextDay: string;
       }>
     ) {
-      const date = toDateOnly(new Date(action.payload.date));
+      const date = getDailiesDateOnly(
+        action.payload.date,
+        action.payload.startOfNextDay
+      );
       const newEntry: HistoricEntry = {
         date,
         qs: action.payload.questions.map((q) => ({
@@ -54,7 +71,7 @@ const historySlice = createSlice({
 });
 
 export const {
-  upsert,
+  submitDailies,
   clear: clearHistory,
   mockHistory,
 } = historySlice.actions;
