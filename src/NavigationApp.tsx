@@ -19,7 +19,7 @@ const NavigationApp: FC = () => {
     <NavigationContainer
       theme={{
         colors: {
-          card: theme.dark ? theme.colors.backdrop : theme.colors.background,
+          card: theme.colors.background,
           background: theme.colors.background,
           primary: theme.colors.primary,
           border: theme.colors.background,
