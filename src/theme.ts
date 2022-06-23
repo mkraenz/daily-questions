@@ -7,6 +7,7 @@ export enum Color {
   Grey = "#272727",
   LightGrey = "grey", // #808080
   White = "white", // #ffffff
+  Orange = "#A27A34",
 }
 
 export const lightTheme: FullTheme = {
@@ -14,9 +15,8 @@ export const lightTheme: FullTheme = {
   roundness: 12,
   colors: {
     ...DefaultTheme.colors,
-    onSurface: Color.Blue,
     primary: Color.Blue,
-    accent: Color.Blue,
+    accent: Color.Orange,
   },
 };
 
@@ -26,7 +26,6 @@ export const darkTheme: FullTheme = {
   colors: {
     ...DarkTheme.colors,
     primary: Color.Blue,
-    onSurface: Color.Blue,
-    accent: Color.Blue,
+    accent: Color.Orange,
   },
 };
