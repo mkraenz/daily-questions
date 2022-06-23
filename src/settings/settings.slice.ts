@@ -8,7 +8,6 @@ export interface SettingsState {
    * doing dailies at the next day before this hour creates an entry for the previous day. range: 0 - 23
    * @example
    * Doing and confirming dailies at 2022-06-21T03:00 will create a historic entry for 2022-06-20 if this variable is 3 or higher.
-   * Typed optionally because of legacy production data that gets loaded by redux-persist. TODO Remove once all production data is migrated.
    */
   belatedDailiesUntilNextDayAt: { hour: number; minute: number };
 }

@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Button } from "react-native-paper";
@@ -24,15 +24,6 @@ const BelatedDailiesTimePicker: FC<PropsFromRedux> = ({
   setBelatedDailiesUntilNextDayAtHour,
 }) => {
   const [isDatePickerVisible, showTimePicker] = useState(false);
-  useEffect(() => {
-    // handle legacy production data. TODO Remove once all production data is migrated.
-    if (!time) {
-      setBelatedDailiesUntilNextDayAtHour({
-        hour: 12,
-        minute: 0,
-      });
-    }
-  }, [time]);
 
   const handleConfirm = (date: Date) => {
     setBelatedDailiesUntilNextDayAtHour({
@@ -43,7 +34,7 @@ const BelatedDailiesTimePicker: FC<PropsFromRedux> = ({
   };
 
   const date = new Date();
-  date.setHours(time?.hour || 12, time?.minute || 0, 0, 0);
+  date.setHours(time.hour, time.minute, 0, 0);
   return (
     <View>
       <Button mode="outlined" onPress={() => showTimePicker(true)}>

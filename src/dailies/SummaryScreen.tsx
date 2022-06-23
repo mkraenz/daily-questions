@@ -5,8 +5,6 @@ import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { getDailiesDateOnly, submitDailies } from "../history/history.slice";
 import { RootState } from "../store";
 
-const toDateOnly = (date: Date) => date.toISOString().split("T")[0];
-
 // TODO clean up the css
 const styles = StyleSheet.create({
   container: {
