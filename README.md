@@ -20,6 +20,14 @@ java -jar bundletool.jar build-apks --bundle=daily-questions-signed.aab --output
 java -jar bundletool.jar install-apks --apks=daily-questions.apks
 ```
 
+### Local .apk build
+
+To speed up development, it is sometimes possible to build an apk without using the expo build services (Turtle). This may require some setup (like Android Studio and maybe more).
+
+```sh
+yarn build:local
+```
+
 ### Notes on future Expo EAS
 
 Currently EAS does not have a free tier for Over-the-air (OTA) updates. The service is called EAS Update but while it's in preview it costs a lot. Therefore, for now I'll stick with the "classic" build and "classic" OTA updates.

@@ -6,8 +6,8 @@
     "slug": "daily-questions",
     "description": "Marshall Goldsmith's Daily Engagement Questions as an inofficial app",
     "orientation": "default",
-    "version": "1.2.2",
-    "assetBundlePatterns": ["assets/**/*"],
+    "version": "1.2.3",
+    "assetBundlePatterns": ["**/*"],
     "privacy": "public",
     "android": {
       "package": "eu.kraenz.dailyquestions",
@@ -16,34 +16,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/dailies-logo.png"
       },
-      "icon": "./assets/dailies-logo_legacy.png",
-      "splash": {
-        "dark": {
-          "image": "./assets/dailies-splash-dark.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#000000"
-        },
-        "image": "./assets/dailies-splash.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#ffffff"
-      }
+      "icon": "./assets/dailies-logo_legacy.png"
     },
     "updates": {
       "fallbackToCacheTimeout": 10000
     },
     "icon": "./assets/dailies-logo.png",
+    "splash": {
+      "image": "./assets/dailies-splash-dark.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#141414"
+    },
     "ios": {
-      "bundleIdentifier": "eu.kraenz.dailyquestions",
-      "splash": {
-        "dark": {
-          "image": "./assets/dailies-splash-dark.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#000000"
-        },
-        "image": "./assets/dailies-splash.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#ffffff"
-      }
+      "bundleIdentifier": "eu.kraenz.dailyquestions"
     },
     "userInterfaceStyle": "automatic"
   }

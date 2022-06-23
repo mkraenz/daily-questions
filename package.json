@@ -14,8 +14,9 @@
     "deploy:ota": "expo publish",
     "deploy:ota:prod": "expo publish --release-channel prod",
     "build-and-publish:expo:android:app-bundle:prod": "NODE_ENV=prod expo build:android --type app-bundle --release-channel prod",
-    "build": "tsc",
-    "build:watch": "tsc -w",
+    "build:local": "ANDROID_SDK_ROOT=~/Android/Sdk expo run:android",
+    "compile": "tsc",
+    "compile:watch": "tsc -w",
     "test": "jest"
   },
   "dependencies": {
