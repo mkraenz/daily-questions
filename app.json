@@ -4,9 +4,10 @@
   "expo": {
     "name": "Daily Questions",
     "slug": "daily-questions",
+    "description": "Marshall Goldsmith's Daily Engagement Questions as an inofficial app",
     "orientation": "default",
-    "version": "1.2.1",
-    "assetBundlePatterns": ["assets/**//*"],
+    "version": "1.2.2",
+    "assetBundlePatterns": ["assets/**/*"],
     "privacy": "public",
     "android": {
       "package": "eu.kraenz.dailyquestions",
@@ -31,7 +32,6 @@
       "fallbackToCacheTimeout": 10000
     },
     "icon": "./assets/dailies-logo.png",
-    "description": "Marshall Goldsmith's Daily Engagement Questions as an inofficial app",
     "ios": {
       "bundleIdentifier": "eu.kraenz.dailyquestions",
       "splash": {
