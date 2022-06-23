@@ -1,7 +1,8 @@
-import React, { FC, Reducer, useReducer } from "react";
+import React, { FC, Reducer, useEffect, useReducer, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store";
+import ForcedResetInfo from "./ForcedResetInfo";
 import FullTextQuestionScreen from "./FullTextQuestionScreen";
 import PointsQuestionScreen from "./PointsQuestionScreen";
 import SummaryScreen from "./SummaryScreen";
@@ -17,9 +18,10 @@ const initialState = {
   answers: [] as (number | string)[],
   routeIndex: 0,
   finished: false,
+  todaysDailiesStarted: false,
 };
 
-type Action = AnswerAction | NavAction;
+type Action = AnswerAction | NavAction | ForceResetAction;
 type AnswerAction = {
   index: number;
   answer: number | string;
@@ -29,6 +31,9 @@ type NavAction = {
   type: "nav";
   index: number;
 };
+type ForceResetAction = {
+  type: "force reset";
+};
 
 const reducerFactory: (
   questionCount: number
@@ -37,7 +42,12 @@ const reducerFactory: (
     switch (action.type) {
       case "nav": {
         const finished = state.routeIndex === questionCount - 1;
-        return { ...state, routeIndex: action.index, finished };
+        return {
+          ...state,
+          routeIndex: action.index,
+          finished,
+          todaysDailiesStarted: true,
+        };
       }
       case "answer": {
         const copy = [...state.answers];
@@ -48,7 +58,11 @@ const reducerFactory: (
           answers: copy,
           routeIndex: state.routeIndex + 1,
           finished,
+          todaysDailiesStarted: true,
         };
+      }
+      case "force reset": {
+        return { ...initialState };
       }
     }
   };
@@ -60,11 +74,28 @@ const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
-  // TODO fix dailies nav when questions change during the dailies. Reproduction: do dailies up to summary screen. add a question. go back to summary screen. Observed: Cannot navigate to new question. Expected: Can navigate to new questions
   const [state, dispatch] = useReducer(
     reducerFactory(questions.length),
     initialState
   );
+
+  // handling of changes to the question list while dailies have already been started with an old questions list
+  // essentially: if a question was added, archived, or moved, reset everything. Otherwise, keep the state (but change the texts)
+  const [cachedQuestionsIds, setCachedQuestionsIds] = useState(
+    questions.map((q) => q.id)
+  );
+  const [forcedResetInfoShown, showForcedResetInfo] = React.useState(false);
+  useEffect(() => {
+    const noSeriousQuestionListChanges = questions.every(
+      (q, i) => q.id === cachedQuestionsIds[i]
+    );
+    if (noSeriousQuestionListChanges) return; // i.e. no new questions, archived questions, or moved questions. Renames of existing questions might have occured. In this case, we can keep the current dailies state for the users comfort.
+    setCachedQuestionsIds(questions.map((q) => q.id));
+    // showForcedResetInfo(true);
+    dispatch({ type: "force reset" });
+  }, [questions]);
+
+  const hideForcedResetInfo = () => showForcedResetInfo(false);
 
   if (state.finished) {
     return (
@@ -73,6 +104,11 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
           questions={questions}
           answers={state.answers}
           nav={(index) => dispatch({ type: "nav", index })}
+        />
+        {/* TODO currently never set to visible */}
+        <ForcedResetInfo
+          visible={forcedResetInfoShown}
+          onDismiss={hideForcedResetInfo}
         />
       </View>
     );
@@ -93,6 +129,10 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
             dispatch({ index: state.routeIndex, answer, type: "answer" })
           }
         />
+        <ForcedResetInfo
+          visible={forcedResetInfoShown}
+          onDismiss={hideForcedResetInfo}
+        />
       </View>
     );
   }
@@ -109,6 +149,10 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
           dispatch({ index: state.routeIndex, answer, type: "answer" })
         }
         visible={true}
+      />
+      <ForcedResetInfo
+        visible={forcedResetInfoShown}
+        onDismiss={hideForcedResetInfo}
       />
     </View>
   );
