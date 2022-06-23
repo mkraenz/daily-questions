@@ -92,7 +92,6 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
           onAnswer={(answer) =>
             dispatch({ index: state.routeIndex, answer, type: "answer" })
           }
-          visible={true}
         />
       </View>
     );

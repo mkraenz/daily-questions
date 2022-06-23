@@ -1,6 +1,11 @@
-import { inRange, isInteger, noop } from "lodash";
+import { inRange, isInteger } from "lodash";
 import React, { FC } from "react";
-import { StyleSheet, View } from "react-native";
+import {
+  NativeSyntheticEvent,
+  StyleSheet,
+  TextInputSubmitEditingEventData,
+  View,
+} from "react-native";
 import { Paragraph, TextInput, Title } from "react-native-paper";
 
 const styles = StyleSheet.create({
@@ -12,8 +17,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
   },
-  hidden: {
-    display: "none",
+  title: {
+    fontSize: 32,
+  },
+  input: {
+    width: "100%",
   },
 });
 
@@ -23,7 +31,6 @@ interface Props {
   index: number;
   onAnswer: (answer: number | string) => void;
   answers: (number | string)[];
-  visible: boolean;
 }
 
 const PointsQuestionScreen: FC<Props> = ({
@@ -32,7 +39,6 @@ const PointsQuestionScreen: FC<Props> = ({
   index,
   onAnswer,
   answers,
-  visible,
 }) => {
   const handleChangeText = (text: string | undefined): void => {
     if (!text) return;
@@ -41,16 +47,15 @@ const PointsQuestionScreen: FC<Props> = ({
     const points = parsedText === 0 ? 10 : parsedText;
     if (inRange(points, 1, 11)) onAnswer(points);
   };
+  const handleSubmitEditing = (
+    e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+  ): void => {
+    handleChangeText(answers[index]?.toString() ?? "");
+  };
+
   return (
-    <View style={visible ? styles.contentContainer : styles.hidden}>
-      {/* consider left right nav in ebook reader style */}
-      <Title
-        style={{
-          fontSize: 32,
-        }}
-      >
-        {title}
-      </Title>
+    <View style={styles.contentContainer}>
+      <Title style={styles.title}>{title}</Title>
       <Paragraph>{questionLong}</Paragraph>
       <TextInput
         label={title}
@@ -58,12 +63,9 @@ const PointsQuestionScreen: FC<Props> = ({
         onChangeText={handleChangeText}
         value={answers[index]?.toString() ?? ""}
         autoFocus={true}
-        style={{
-          width: "100%",
-        }}
+        style={styles.input}
         autoComplete="off"
-        onPressIn={noop}
-        onPressOut={noop}
+        onSubmitEditing={handleSubmitEditing}
       />
       {/* once Summary has been shown for the first time, this becomes a buttonish thing that jumps back to the Summary */}
       <Paragraph>{answers.filter(isInteger).join(" ")}</Paragraph>
