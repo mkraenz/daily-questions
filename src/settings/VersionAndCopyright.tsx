@@ -1,16 +1,15 @@
 import React from "react";
 import { Linking, StyleSheet, View } from "react-native";
-import { Paragraph } from "react-native-paper";
-import { lightTheme } from "../theme";
+import { Paragraph, TouchableRipple, useTheme } from "react-native-paper";
 
 const styles = StyleSheet.create({
   link: {
-    color: lightTheme.colors.accent,
     textDecorationLine: "underline",
   },
 });
 
 const VersionAndCopyright = () => {
+  const theme = useTheme();
   const openCompanyWebsite = () => {
     Linking.openURL("http://kraenz.eu");
   };
@@ -18,12 +17,14 @@ const VersionAndCopyright = () => {
   return (
     <View>
       <Paragraph>v1.9.2</Paragraph>
-      <Paragraph>
-        Copyright © 2022{" "}
-        <Paragraph onPress={openCompanyWebsite} style={styles.link}>
-          Kraenz{nbsp}Software{nbsp}Development
+      <TouchableRipple onPress={openCompanyWebsite}>
+        <Paragraph>
+          Copyright © 2022{" "}
+          <Paragraph style={[styles.link, { color: theme.colors.accent }]}>
+            Kraenz{nbsp}Software{nbsp}Development
+          </Paragraph>
         </Paragraph>
-      </Paragraph>
+      </TouchableRipple>
     </View>
   );
 };
