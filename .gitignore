@@ -114,8 +114,8 @@ dist/
 
 # @end expo-cli
 
-# custom expo
-android.back/
-ios.back/
+# custom for expo
+android/
+ios/
 # upload to playstore with expo
 google-service-account.private.key.json
