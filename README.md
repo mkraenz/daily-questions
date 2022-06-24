@@ -41,6 +41,8 @@ yarn eas whoami
 
 # build and deploy
 yarn eas build --platform android
+
+# DEBUG: https://github.com/expo/fyi/blob/main/eas-build-archive.md
 ```
 
 ## Development
