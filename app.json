@@ -12,7 +12,7 @@
     "android": {
       "package": "eu.kraenz.dailyquestions",
       "permissions": [],
-      "versionCode": 4,
+      "versionCode": 5,
       "adaptiveIcon": {
         "foregroundImage": "./assets/dailies-logo.png"
       },

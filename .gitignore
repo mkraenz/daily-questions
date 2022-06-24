@@ -113,3 +113,7 @@ web-build/
 dist/
 
 # @end expo-cli
+
+# custom expo
+android.back/
+ios.back/
