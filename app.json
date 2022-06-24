@@ -6,13 +6,13 @@
     "slug": "daily-questions",
     "description": "Marshall Goldsmith's Daily Engagement Questions as an inofficial app",
     "orientation": "default",
-    "version": "1.2.3",
+    "version": "1.9.2",
     "assetBundlePatterns": ["**/*"],
     "privacy": "public",
     "android": {
       "package": "eu.kraenz.dailyquestions",
       "permissions": [],
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/dailies-logo.png"
       },
