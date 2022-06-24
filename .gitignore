@@ -117,3 +117,5 @@ dist/
 # custom expo
 android.back/
 ios.back/
+# upload to playstore with expo
+google-service-account.private.key.json
