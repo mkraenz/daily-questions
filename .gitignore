@@ -119,3 +119,6 @@ android/
 ios/
 # upload to playstore with expo
 google-service-account.private.key.json
+
+privacy-policy.html
+terms-and-conditions.html
