@@ -81,8 +81,8 @@ const Chart: FC<Props> = ({ selectedQuestions, history, width, height }) => {
       verticalLabelRotation={45}
       bezier
       style={{
-        paddingVertical: 8,
         borderRadius: 16,
+        marginLeft: -8,
       }}
     />
   );

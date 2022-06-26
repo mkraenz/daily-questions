@@ -1,4 +1,7 @@
+import { DrawerHeaderProps } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
+import BackAppBar from "../BackAppBar";
+import BaseAppBar from "../BaseAppBar";
 import AddNewQuestionScreen from "./AddNewQuestionScreen";
 import EditQuestionScreen from "./EditQuestionScreen";
 import { QuestionsStackParamList } from "./questions-nav";
@@ -6,6 +9,9 @@ import QuestionsListScreen from "./QuestionsListScreen";
 
 const Stack = createStackNavigator<QuestionsStackParamList>();
 
+/**
+ * WARNING: We assume the StackNav is nested inside a DrawerNav
+ */
 const QuestionsNav = () => {
   return (
     <Stack.Navigator>
@@ -13,11 +19,24 @@ const QuestionsNav = () => {
         name="Customize Question"
         component={QuestionsListScreen}
         options={{
-          header: () => null,
+          // WARNING: We assume the StackNav is nested inside a DrawerNav
+          header: (props) => (
+            <BaseAppBar {...(props as unknown as DrawerHeaderProps)} />
+          ),
         }}
       />
-      <Stack.Screen name="Add new question" component={AddNewQuestionScreen} />
-      <Stack.Screen name="Edit Question" component={EditQuestionScreen} />
+      <Stack.Screen
+        name="Add new question"
+        component={AddNewQuestionScreen}
+        options={{
+          header: BackAppBar,
+        }}
+      />
+      <Stack.Screen
+        name="Edit Question"
+        component={EditQuestionScreen}
+        options={{ header: BackAppBar }}
+      />
     </Stack.Navigator>
   );
 };

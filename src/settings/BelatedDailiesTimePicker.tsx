@@ -36,7 +36,7 @@ const BelatedDailiesTimePicker: FC<PropsFromRedux> = ({
   const date = new Date();
   date.setHours(time.hour, time.minute, 0, 0);
   return (
-    <View>
+    <View style={{ marginBottom: 16 }}>
       <Button mode="outlined" onPress={() => showTimePicker(true)}>
         Start of next day: {toHHMM(date)}
       </Button>

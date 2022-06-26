@@ -4,6 +4,7 @@ import { Text } from "react-native-paper";
 import BelatedDailiesTimePicker from "./BelatedDailiesTimePicker";
 import DarkModeSwitch from "./DarkModeSwitch";
 import DevModeDropDownMenu from "./DevModeDropdown";
+import ShowAppbarSwitch from "./ShowAppbarSwitch";
 import VersionAndCopyright from "./VersionAndCopyright";
 
 const SettingsScreen = () => {
@@ -18,9 +19,10 @@ const SettingsScreen = () => {
     >
       <Text>Daily Questions App</Text>
       <VersionAndCopyright />
-      <DevModeDropDownMenu />
       <DarkModeSwitch />
+      <ShowAppbarSwitch />
       <BelatedDailiesTimePicker />
+      <DevModeDropDownMenu />
     </View>
   );
 };

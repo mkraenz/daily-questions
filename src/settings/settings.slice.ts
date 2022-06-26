@@ -10,7 +10,9 @@ export interface SettingsState {
    * Doing and confirming dailies at 2022-06-21T03:00 will create a historic entry for 2022-06-20 if this variable is 3 or higher.
    */
   belatedDailiesUntilNextDayAt: { hour: number; minute: number };
+  appbarShownInDailies: boolean;
 }
+
 const initialState: SettingsState = {
   devMode: false,
   darkMode: false,
@@ -18,6 +20,7 @@ const initialState: SettingsState = {
     hour: 12,
     minute: 0,
   },
+  appbarShownInDailies: true,
 };
 
 const settingsSlice = createSlice({
@@ -27,9 +30,11 @@ const settingsSlice = createSlice({
     setDevMode(state, action: PayloadAction<boolean>) {
       state.devMode = action.payload;
     },
+
     setDarkMode(state, action: PayloadAction<boolean>) {
       state.darkMode = action.payload;
     },
+
     setBelatedDailiesUntilNextDayAtHour(
       state,
       action: PayloadAction<{ hour: number; minute: number }>
@@ -39,9 +44,17 @@ const settingsSlice = createSlice({
         "minute",
       ]);
     },
+
+    showAppbarInDailies(state, action: PayloadAction<boolean>) {
+      state.appbarShownInDailies = action.payload;
+    },
   },
 });
 
-export const { setDevMode, setDarkMode, setBelatedDailiesUntilNextDayAtHour } =
-  settingsSlice.actions;
+export const {
+  setDevMode,
+  setDarkMode,
+  setBelatedDailiesUntilNextDayAtHour,
+  showAppbarInDailies,
+} = settingsSlice.actions;
 export default settingsSlice.reducer;

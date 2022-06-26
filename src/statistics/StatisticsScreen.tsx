@@ -112,7 +112,11 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
     selectedQuestions.filter((q) => q.checked).length === 0;
 
   return (
-    <ScrollView>
+    <ScrollView
+      style={{
+        marginVertical: 32,
+      }}
+    >
       {!noQuestionsSelected ? (
         <Chart
           history={historyInTimeSpan}
