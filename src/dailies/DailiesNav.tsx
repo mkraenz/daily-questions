@@ -17,7 +17,6 @@ const initialState = {
   answers: [] as (number | string)[],
   routeIndex: 0,
   finished: false,
-  todaysDailiesStarted: false,
 };
 
 type Action = AnswerAction | NavAction | ForceResetAction;
@@ -45,7 +44,6 @@ const reducerFactory: (
           ...state,
           routeIndex: action.index,
           finished,
-          todaysDailiesStarted: true,
         };
       }
       case "answer": {
@@ -57,7 +55,6 @@ const reducerFactory: (
           answers: copy,
           routeIndex: state.routeIndex + 1,
           finished,
-          todaysDailiesStarted: true,
         };
       }
       case "force reset": {
