@@ -99,6 +99,7 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
           questions={questions}
           answers={state.answers}
           nav={(index) => dispatch({ type: "nav", index })}
+          onReset={() => dispatch({ type: "force reset" })}
         />
       </View>
     );

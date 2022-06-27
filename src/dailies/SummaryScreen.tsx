@@ -10,6 +10,7 @@ import {
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { getDailiesDateOnly, submitDailies } from "../history/history.slice";
 import { RootState } from "../store";
+import ResetDailiesBar from "./ResetDailiesBar";
 
 const styles = StyleSheet.create({
   container: {
@@ -50,12 +51,14 @@ interface Props {
   }[];
   answers: (number | string)[];
   nav: (index: number) => void;
+  onReset: () => void;
 }
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const mapState = (state: RootState) => ({
   startOfNextDayTime: state.settings.belatedDailiesUntilNextDayAt,
+  appbarShown: state.settings.appbarShownInDailies,
 });
 const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -109,6 +112,8 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
   answers,
   nav,
   startOfNextDayTime,
+  onReset,
+  appbarShown,
 }) => {
   const dispatch = useDispatch();
 
@@ -151,6 +156,7 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
+      {!appbarShown && <ResetDailiesBar onReset={onReset} />}
       <Title style={styles.title}>Your Dailies from {today}</Title>
       <View style={styles.pointsQuestionsContainer}>
         {questions
