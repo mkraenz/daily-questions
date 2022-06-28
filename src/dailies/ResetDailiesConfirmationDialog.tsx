@@ -9,7 +9,7 @@ interface Props {
   onCancel: () => void;
 }
 
-const ResetDailiesCConfirmationDialog: FC<Props> = ({
+const ResetDailiesConfirmationDialog: FC<Props> = ({
   visible,
   onConfirm,
   onCancel,
@@ -37,4 +37,4 @@ const ResetDailiesCConfirmationDialog: FC<Props> = ({
   );
 };
 
-export default ResetDailiesCConfirmationDialog;
+export default ResetDailiesConfirmationDialog;

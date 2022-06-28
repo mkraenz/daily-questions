@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { StyleSheet, View } from "react-native";
 import { IconButton } from "react-native-paper";
-import ResetDailiesCConfirmationDialog from "./ResetDailiesConfirmationDialog";
+import ResetDailiesConfirmationDialog from "./ResetDailiesConfirmationDialog";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +15,7 @@ const ResetDailiesBar: FC<{ onReset: () => void }> = ({ onReset }) => {
   const [confirmationShown, showConfirmation] = React.useState(false);
   return (
     <View style={styles.container}>
-      <ResetDailiesCConfirmationDialog
+      <ResetDailiesConfirmationDialog
         visible={confirmationShown}
         onConfirm={onReset}
         onCancel={() => showConfirmation(false)}
