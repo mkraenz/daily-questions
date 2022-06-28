@@ -1,4 +1,3 @@
-import { isInteger, noop } from "lodash";
 import React, { FC, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Paragraph, TextInput, Title } from "react-native-paper";
@@ -29,25 +28,23 @@ const styles = StyleSheet.create({
 interface Props {
   title: string;
   questionLong: string;
-  index: number;
-  onAnswer: (value: string | number) => void;
-  answers: (number | string)[];
-  visible: boolean;
+  onAnswer: (answer: number | string) => void;
+  answer: number | string;
+  answers: string;
 }
 
-const FullTextQuestionScreen: FC<Props> = ({
+const FulltextQuestionScreen: FC<Props> = ({
   title,
   questionLong,
+  answer,
   onAnswer,
-  index,
   answers,
-  visible,
 }) => {
-  const [text, setText] = useState(answers[index]?.toString() ?? "");
+  const [text, setText] = useState(answer?.toString() ?? "");
   const onNext = () => onAnswer(text);
+
   return (
-    <View style={visible ? styles.contentContainer : styles.hidden}>
-      {/* consider left right nav in ebook reader style */}
+    <View style={styles.contentContainer}>
       <Title style={styles.title}>{title}</Title>
       <Paragraph>{questionLong}</Paragraph>
       <TextInput
@@ -57,16 +54,15 @@ const FullTextQuestionScreen: FC<Props> = ({
         value={text}
         autoFocus={true}
         style={styles.textInput}
-        onPressIn={noop}
-        onPressOut={noop}
         autoComplete="off"
       />
+
       <Button onPress={onNext} style={styles.button} mode="outlined">
         Next
       </Button>
-      <Paragraph>{answers.filter(isInteger).join(" ")}</Paragraph>
+      <Paragraph>{answers}</Paragraph>
     </View>
   );
 };
 
-export default FullTextQuestionScreen;
+export default FulltextQuestionScreen;

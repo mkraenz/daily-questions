@@ -10,6 +10,7 @@ import {
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { getDailiesDateOnly, submitDailies } from "../history/history.slice";
 import { RootState } from "../store";
+import { resetDailies, setCurrentQuestionId } from "./dailies.slice";
 import ResetDailiesBar from "./ResetDailiesBar";
 
 const styles = StyleSheet.create({
@@ -42,25 +43,35 @@ const styles = StyleSheet.create({
   fulltextRow: { marginBottom: 12 },
 });
 
-interface Props {
-  questions: {
-    title: string;
-    id: string;
-    questionLong: string;
-    type: "points" | "fulltext";
-  }[];
-  answers: (number | string)[];
-  nav: (index: number) => void;
-  onReset: () => void;
-}
+interface Props {}
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const mapState = (state: RootState) => ({
   startOfNextDayTime: state.settings.belatedDailiesUntilNextDayAt,
   appbarShown: state.settings.appbarShownInDailies,
+  answers: state.dailies.answers.map((a) => a.answer), // TODO consider union with questions
+  questions: state.questions.questions,
+  answeredQuestions: state.dailies.answers.map((answer) => {
+    const question = state.questions.questions.find(
+      (q) => q.id === answer.questionId
+    );
+    if (!question) {
+      throw new Error(
+        "This should never occur since answers are derived from questions. TODO verify this also does not happen when questions change"
+      );
+    }
+    return {
+      ...question,
+      answer: answer.answer,
+    };
+  }),
 });
-const connector = connect(mapState);
+const mapDispatch = {
+  resetDailies,
+  setCurrentQuestionId,
+};
+const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const PointsAnswer: FC<{
@@ -108,12 +119,11 @@ const ShareButton: FC<{
 };
 
 const SummaryScreen: FC<Props & PropsFromRedux> = ({
-  questions,
-  answers,
-  nav,
+  answeredQuestions,
   startOfNextDayTime,
-  onReset,
   appbarShown,
+  resetDailies, // TODO move into reset component
+  setCurrentQuestionId,
 }) => {
   const dispatch = useDispatch();
 
@@ -128,10 +138,10 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
   const now = new Date();
   const today = getDailiesDateOnly(now, startOfNextDay);
   const formatExportMessage = () => {
-    const body = questions
+    const body = answeredQuestions
       .map((q, i) => {
         const maybeNewLine = q.type === "fulltext" ? "\n" : "";
-        return `${maybeNewLine}${q.title}: ${answers[i]}`;
+        return `${maybeNewLine}${q.title}: ${q.answer}`;
       })
       .join("\n");
     const weekday = days[new Date().getDay()];
@@ -142,7 +152,10 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
     dispatch(
       submitDailies({
         date: now.toISOString(),
-        questions: answers.map((a, i) => ({ id: questions[i].id, answer: a })),
+        questions: answeredQuestions.map((q, i) => ({
+          id: q.id,
+          answer: q.answer,
+        })),
         startOfNextDay: startOfNextDay.toISOString(),
       })
     );
@@ -156,36 +169,41 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      {!appbarShown && <ResetDailiesBar onReset={onReset} />}
+      {!appbarShown && <ResetDailiesBar onReset={resetDailies} />}
       <Title style={styles.title}>Your Dailies from {today}</Title>
       <View style={styles.pointsQuestionsContainer}>
-        {questions
-          .map((question, i) =>
-            // TODO wow this is ugly. refactor this. the complexity comes from answers being dependent on indices and not ids. Also see the other answer type
-            question.type === "points" ? (
-              <PointsAnswer
-                key={question.id}
-                answer={answers[i]}
-                title={question.title}
-                onClick={() => nav(i)}
-              />
-            ) : null
-          )
-          .filter(Boolean)}
+        {answeredQuestions
+          .filter((q) => q.type === "points")
+          .map((question) => (
+            <PointsAnswer
+              key={question.id}
+              answer={question.answer}
+              title={question.title}
+              onClick={() =>
+                setCurrentQuestionId({
+                  id: question.id,
+                  resetAllQuestionsAnsweredFlag: true,
+                })
+              }
+            />
+          ))}
       </View>
       <View style={styles.fulltextQuestionsContainer}>
-        {questions
-          .map((question, i) =>
-            question.type === "fulltext" ? (
-              <FullTextAnswer
-                key={question.id}
-                answer={answers[i]}
-                title={question.title}
-                onClick={() => nav(i)}
-              />
-            ) : null
-          )
-          .filter(Boolean)}
+        {answeredQuestions
+          .filter((q) => q.type === "fulltext")
+          .map((question) => (
+            <FullTextAnswer
+              key={question.id}
+              answer={question.answer}
+              title={question.title}
+              onClick={() =>
+                setCurrentQuestionId({
+                  id: question.id,
+                  resetAllQuestionsAnsweredFlag: true,
+                })
+              }
+            />
+          ))}
       </View>
       <ShareButton handlePressed={handleSharePressed} />
     </ScrollView>
