@@ -26,10 +26,10 @@ const ResetDailiesConfirmationDialog: FC<Props> = ({
         </Dialog.Content>
         <View style={{ flexDirection: "row-reverse" }}>
           <Dialog.Actions>
-            <Button onPress={onConfirm}>Confirm</Button>
+            <Button onPress={() => onConfirm()}>Confirm</Button>
           </Dialog.Actions>
           <Dialog.Actions>
-            <Button onPress={onCancel}>Cancel</Button>
+            <Button onPress={() => onCancel()}>Cancel</Button>
           </Dialog.Actions>
         </View>
       </Dialog>
