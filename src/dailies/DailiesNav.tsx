@@ -1,8 +1,16 @@
-import React, { FC, Reducer, useEffect, useReducer, useState } from "react";
+import { isEmpty, isInteger } from "lodash";
+import React, { FC, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store";
-import FullTextQuestionScreen from "./FullTextQuestionScreen";
+import {
+  initAnswers,
+  resetDailies,
+  setAnswer,
+  setCurrentQuestionId,
+} from "./dailies.slice";
+import FullTextQuestionScreen from "./FulltextQuestionScreen";
+import LoadingScreen from "./LoadingScreen";
 import PointsQuestionScreen from "./PointsQuestionScreen";
 import SummaryScreen from "./SummaryScreen";
 
@@ -13,97 +21,83 @@ const styles = StyleSheet.create({
   },
 });
 
-const initialState = {
-  answers: [] as (number | string)[],
-  routeIndex: 0,
-  finished: false,
-};
-
-type Action = AnswerAction | NavAction | ForceResetAction;
-type AnswerAction = {
-  index: number;
-  answer: number | string;
-  type: "answer";
-};
-type NavAction = {
-  type: "nav";
-  index: number;
-};
-type ForceResetAction = {
-  type: "force reset";
-};
-
-const reducerFactory: (
-  questionCount: number
-) => Reducer<typeof initialState, Action> =
-  (questionCount) => (state, action) => {
-    switch (action.type) {
-      case "nav": {
-        const finished = state.routeIndex === questionCount - 1;
-        return {
-          ...state,
-          routeIndex: action.index,
-          finished,
-        };
-      }
-      case "answer": {
-        const copy = [...state.answers];
-        copy[action.index] = action.answer;
-        const finished = copy.length === questionCount;
-        return {
-          ...state,
-          answers: copy,
-          routeIndex: state.routeIndex + 1,
-          finished,
-        };
-      }
-      case "force reset": {
-        return { ...initialState };
-      }
-    }
-  };
-
 const mapState = (state: RootState) => ({
   questions: state.questions.questions.filter((q) => q.active),
+  answers: state.dailies.answers,
+  currentQuestionId: state.dailies.currentQuestionId,
+  finished: state.dailies.allQuestionsAnswered,
 });
-const connector = connect(mapState);
+const mapReducer = {
+  setAnswer,
+  resetDailies,
+  setCurrentQuestionId,
+  initAnswers,
+};
+const connector = connect(mapState, mapReducer);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
-  const [state, dispatch] = useReducer(
-    reducerFactory(questions.length),
-    initialState
-  );
+const getAnswerList = (answers: { answer: string | number }[]) =>
+  answers
+    .map((a) => a.answer)
+    .filter(isInteger)
+    .join(" ");
 
+const DailiesNav: FC<PropsFromRedux> = ({
+  answers,
+  currentQuestionId,
+  finished,
+  questions,
+  setAnswer,
+  resetDailies,
+  setCurrentQuestionId,
+  initAnswers,
+}) => {
   // handling of changes to the question list while dailies have already been started with an old questions list
   // essentially: if a question was added, archived, or moved, reset everything. Otherwise, keep the state (but change the texts)
-  const [cachedQuestionsIds, setCachedQuestionsIds] = useState(
+  const [cachedQuestionIds, setCachedQuestionIds] = useState(
     questions.map((q) => q.id)
   );
   useEffect(() => {
     const noSeriousQuestionListChanges = questions.every(
-      (q, i) => q.id === cachedQuestionsIds[i]
+      (q, i) => q.id === cachedQuestionIds[i]
     );
     if (noSeriousQuestionListChanges) return; // i.e. no new questions, archived questions, or moved questions. Renames of existing questions might have occured. In this case, we can keep the current dailies state for the users comfort.
-    setCachedQuestionsIds(questions.map((q) => q.id));
-    dispatch({ type: "force reset" });
+    setCachedQuestionIds(questions.map((q) => q.id));
+    resetDailies();
   }, [questions]);
 
-  if (state.finished) {
-    return (
-      <View style={styles.container}>
-        <SummaryScreen
-          questions={questions}
-          answers={state.answers}
-          nav={(index) => dispatch({ type: "nav", index })}
-          onReset={() => dispatch({ type: "force reset" })}
-        />
-      </View>
-    );
+  useEffect(() => {
+    if (isEmpty(answers)) {
+      initAnswers({ questions });
+    }
+  }, [answers, questions]);
+
+  if (finished) return <SummaryScreen />;
+
+  const preliminaryIndex = answers.findIndex(
+    (a) => a.questionId === currentQuestionId
+  );
+  const answerIndex = preliminaryIndex === -1 ? 0 : preliminaryIndex;
+  const answer = answers[answerIndex];
+
+  if (!answer) {
+    // needed since we initiate answers in useEffect, so on mount answers will be empty array and thus answer undefined
+    return <LoadingScreen />;
+  }
+  const answerList = getAnswerList(answers); // TODO move this into a selector and then into each question screen component
+  const question = questions.find((q) => q.id === answer.questionId);
+
+  if (!question) {
+    return <LoadingScreen />;
   }
 
-  const question = questions[state.routeIndex % questions.length];
-
+  const handleAnswer = (_answer: string | number) => {
+    setAnswer({ questionId: answer.questionId, answer: _answer });
+    const nextQuestionId = answers[answerIndex + 1]?.questionId;
+    if (nextQuestionId) {
+      setCurrentQuestionId({ id: nextQuestionId });
+    }
+  };
   if (question.type === "points") {
     return (
       <View style={styles.container}>
@@ -111,11 +105,9 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
           key={question.id}
           title={question.title}
           questionLong={question.questionLong}
-          index={state.routeIndex}
-          answers={state.answers}
-          onAnswer={(answer) =>
-            dispatch({ index: state.routeIndex, answer, type: "answer" })
-          }
+          answer={answer.answer}
+          answers={answerList}
+          onAnswer={handleAnswer}
         />
       </View>
     );
@@ -127,15 +119,12 @@ const DailiesCustomNav: FC<PropsFromRedux> = ({ questions }) => {
         key={question.id}
         title={question.title}
         questionLong={question.questionLong}
-        index={state.routeIndex}
-        answers={state.answers}
-        onAnswer={(answer) =>
-          dispatch({ index: state.routeIndex, answer, type: "answer" })
-        }
-        visible={true}
+        answer={answer.answer}
+        answers={answerList}
+        onAnswer={handleAnswer}
       />
     </View>
   );
 };
 
-export default connector(DailiesCustomNav);
+export default connector(DailiesNav);

@@ -13,6 +13,7 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
+import dailiesReducer, { DailiesState } from "./dailies/dailies.slice";
 import historyReducer, { HistoryState } from "./history/history.slice";
 import questionsReducer, { QuestionsState } from "./questions/questions.slice";
 import settingsReducer, { SettingsState } from "./settings/settings.slice";
@@ -36,6 +37,7 @@ const persistConfig: PersistConfig<{
   history: HistoryState;
   settings: SettingsState;
   questions: QuestionsState;
+  dailies: DailiesState;
 }> = {
   key: "root",
   version: 1,
@@ -46,6 +48,7 @@ const rootReducer = combineReducers({
   history: historyReducer,
   settings: settingsReducer,
   questions: questionsReducer,
+  dailies: dailiesReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

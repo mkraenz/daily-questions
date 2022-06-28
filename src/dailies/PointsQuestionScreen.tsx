@@ -1,4 +1,4 @@
-import { inRange, isInteger } from "lodash";
+import { inRange } from "lodash";
 import React, { FC } from "react";
 import {
   NativeSyntheticEvent,
@@ -28,15 +28,15 @@ const styles = StyleSheet.create({
 interface Props {
   title: string;
   questionLong: string;
-  index: number;
   onAnswer: (answer: number | string) => void;
-  answers: (number | string)[];
+  answer: number | string;
+  answers: string;
 }
 
 const PointsQuestionScreen: FC<Props> = ({
   title,
   questionLong,
-  index,
+  answer,
   onAnswer,
   answers,
 }) => {
@@ -50,7 +50,7 @@ const PointsQuestionScreen: FC<Props> = ({
   const handleSubmitEditing = (
     e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
   ): void => {
-    handleChangeText(answers[index]?.toString() ?? "");
+    handleChangeText(answer.toString() ?? "");
   };
 
   return (
@@ -61,14 +61,13 @@ const PointsQuestionScreen: FC<Props> = ({
         label={title}
         keyboardType="numeric"
         onChangeText={handleChangeText}
-        value={answers[index]?.toString() ?? ""}
+        value={answer?.toString() ?? ""}
         autoFocus={true}
         style={styles.input}
         autoComplete="off"
         onSubmitEditing={handleSubmitEditing}
       />
-      {/* once Summary has been shown for the first time, this becomes a buttonish thing that jumps back to the Summary */}
-      <Paragraph>{answers.filter(isInteger).join(" ")}</Paragraph>
+      <Paragraph>{answers}</Paragraph>
     </View>
   );
 };
