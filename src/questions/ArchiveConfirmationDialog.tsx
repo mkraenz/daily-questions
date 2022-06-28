@@ -20,7 +20,10 @@ const ArchiveConfirmationDialog: FC<Props> = ({
         <Dialog.Title>Confirm Archival</Dialog.Title>
         <Dialog.Content>
           {/* TODO explain how to revert archival */}
-          <Paragraph>Do you really want to archive this question?</Paragraph>
+          <Paragraph>
+            Do you really want to archive this question? If you started your
+            dailies for today without commiting, your dailies will be reset.
+          </Paragraph>
         </Dialog.Content>
         <View style={{ flexDirection: "row-reverse" }}>
           <Dialog.Actions>
