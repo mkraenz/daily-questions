@@ -2,13 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Answer {
   questionId: string;
-  answer: string | number; // TODO this is undefined in the beginning
+  answer: string | number;
 }
 
 export interface DailiesState {
   currentQuestionId: string | undefined;
   answers: Answer[];
-  allQuestionsAnswered: boolean; // TODO how to get to summary screen and navigate away from summary screen without this. Currently this flag changes navigation from a list topology (one question after another) to a star-topology (navigate from and to the summary screen)
+  /** controls when to go to the summary screen */
+  allQuestionsAnswered: boolean;
 }
 
 const initialState: DailiesState = {
