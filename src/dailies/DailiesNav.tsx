@@ -1,4 +1,4 @@
-import { isEmpty, isInteger } from "lodash";
+import { isEmpty } from "lodash";
 import React, { FC, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
@@ -35,12 +35,6 @@ const mapReducer = {
 };
 const connector = connect(mapState, mapReducer);
 type PropsFromRedux = ConnectedProps<typeof connector>;
-
-const getAnswerList = (answers: { answer: string | number }[]) =>
-  answers
-    .map((a) => a.answer)
-    .filter(isInteger)
-    .join(" ");
 
 const DailiesNav: FC<PropsFromRedux> = ({
   answers,
@@ -84,7 +78,6 @@ const DailiesNav: FC<PropsFromRedux> = ({
     // needed since we initiate answers in useEffect, so on mount answers will be empty array and thus answer undefined
     return <LoadingScreen />;
   }
-  const answerList = getAnswerList(answers); // TODO move this into a selector and then into each question screen component
   const question = questions.find((q) => q.id === answer.questionId);
 
   if (!question) {
@@ -106,7 +99,6 @@ const DailiesNav: FC<PropsFromRedux> = ({
           title={question.title}
           questionLong={question.questionLong}
           answer={answer.answer}
-          answers={answerList}
           onAnswer={handleAnswer}
         />
       </View>
@@ -120,7 +112,6 @@ const DailiesNav: FC<PropsFromRedux> = ({
         title={question.title}
         questionLong={question.questionLong}
         answer={answer.answer}
-        answers={answerList}
         onAnswer={handleAnswer}
       />
     </View>

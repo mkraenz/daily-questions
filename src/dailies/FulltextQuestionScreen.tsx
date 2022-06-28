@@ -1,6 +1,9 @@
 import React, { FC, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Paragraph, TextInput, Title } from "react-native-paper";
+import { connect, ConnectedProps } from "react-redux";
+import { RootState } from "../store";
+import { selectAnswerList } from "./dailies.selectors";
 
 const styles = StyleSheet.create({
   contentContainer: {
@@ -30,15 +33,20 @@ interface Props {
   questionLong: string;
   onAnswer: (answer: number | string) => void;
   answer: number | string;
-  answers: string;
 }
 
-const FulltextQuestionScreen: FC<Props> = ({
+const mapState = (state: RootState) => ({
+  answerList: selectAnswerList(state),
+});
+const connector = connect(mapState);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+const FulltextQuestionScreen: FC<Props & PropsFromRedux> = ({
   title,
   questionLong,
   answer,
   onAnswer,
-  answers,
+  answerList,
 }) => {
   const [text, setText] = useState(answer?.toString() ?? "");
   const onNext = () => onAnswer(text);
@@ -60,9 +68,9 @@ const FulltextQuestionScreen: FC<Props> = ({
       <Button onPress={onNext} style={styles.button} mode="outlined">
         Next
       </Button>
-      <Paragraph>{answers}</Paragraph>
+      <Paragraph>{answerList}</Paragraph>
     </View>
   );
 };
 
-export default FulltextQuestionScreen;
+export default connector(FulltextQuestionScreen);

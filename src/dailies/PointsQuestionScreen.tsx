@@ -7,6 +7,9 @@ import {
   View,
 } from "react-native";
 import { Paragraph, TextInput, Title } from "react-native-paper";
+import { connect, ConnectedProps } from "react-redux";
+import { RootState } from "../store";
+import { selectAnswerList } from "./dailies.selectors";
 
 const styles = StyleSheet.create({
   contentContainer: {
@@ -30,15 +33,20 @@ interface Props {
   questionLong: string;
   onAnswer: (answer: number | string) => void;
   answer: number | string;
-  answers: string;
 }
 
-const PointsQuestionScreen: FC<Props> = ({
+const mapState = (state: RootState) => ({
+  answerList: selectAnswerList(state),
+});
+const connector = connect(mapState);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
   title,
   questionLong,
   answer,
   onAnswer,
-  answers,
+  answerList,
 }) => {
   const handleChangeText = (text: string | undefined): void => {
     if (!text) return;
@@ -67,9 +75,9 @@ const PointsQuestionScreen: FC<Props> = ({
         autoComplete="off"
         onSubmitEditing={handleSubmitEditing}
       />
-      <Paragraph>{answers}</Paragraph>
+      <Paragraph>{answerList}</Paragraph>
     </View>
   );
 };
 
-export default PointsQuestionScreen;
+export default connector(PointsQuestionScreen);
