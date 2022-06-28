@@ -50,15 +50,13 @@ const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const mapState = (state: RootState) => ({
   startOfNextDayTime: state.settings.belatedDailiesUntilNextDayAt,
   appbarShown: state.settings.appbarShownInDailies,
-  answers: state.dailies.answers.map((a) => a.answer), // TODO consider union with questions
-  questions: state.questions.questions,
   answeredQuestions: state.dailies.answers.map((answer) => {
     const question = state.questions.questions.find(
       (q) => q.id === answer.questionId
     );
     if (!question) {
       throw new Error(
-        "This should never occur since answers are derived from questions. TODO verify this also does not happen when questions change"
+        "This should never occur since answers are derived from questions."
       );
     }
     return {
