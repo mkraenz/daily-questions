@@ -4,6 +4,7 @@ import React, { FC } from "react";
 import { useTheme } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import BaseAppBar from "./BaseAppBar";
+import DailiesAppBar from "./dailies/DailiesAppBar";
 import DailiesNav from "./dailies/DailiesNav";
 import QuestionsNav from "./questions/QuestionsNav";
 import SettingsScreen from "./settings/SettingsScreen";
@@ -46,7 +47,10 @@ const NavigationApp: FC<PropsFromRedux> = ({ appbarShownInDailies }) => {
         <Drawer.Screen
           name="Dailies"
           component={DailiesNav}
-          options={{ headerShown: appbarShownInDailies }}
+          options={{
+            headerShown: appbarShownInDailies,
+            header: (props) => <DailiesAppBar {...props} />,
+          }}
         />
         <Drawer.Screen name="Statistics" component={StatisticsScreen} />
         <Drawer.Screen

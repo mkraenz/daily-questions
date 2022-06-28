@@ -10,6 +10,7 @@ const BaseAppBar: FC<DrawerHeaderProps> = (props) => {
         onPress={() => props.navigation.openDrawer()}
       />
       <Appbar.Content title={props.route.name} />
+      {props.children}
     </Appbar.Header>
   );
 };
