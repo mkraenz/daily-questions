@@ -50,7 +50,7 @@ const dailiesSlice = createSlice({
       state.allQuestionsAnswered = answers;
     },
 
-    // NOTE: state = initialState does not work for reset! See https://stackoverflow.com/questions/59424523/reset-state-to-initial-with-redux-toolkit#comment110144078_59428191
+    // NOTE: state = initialState does not work for reset! Probably due to state currently being an immer object instead of a plain DailiesState. (Kudos to homeless207 🙏) See https://stackoverflow.com/questions/59424523/reset-state-to-initial-with-redux-toolkit#comment110144078_59428191
     resetDailies: () => initialState,
 
     initAnswers(state, action: PayloadAction<{ questions: { id: string }[] }>) {
