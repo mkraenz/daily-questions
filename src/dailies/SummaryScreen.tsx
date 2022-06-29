@@ -7,7 +7,7 @@ import {
   TouchableRipple,
   useTheme,
 } from "react-native-paper";
-import { connect, ConnectedProps, useDispatch } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { getDailiesDateOnly, submitDailies } from "../history/history.slice";
 import { RootState } from "../store";
 import { resetDailies, setCurrentQuestionId } from "./dailies.slice";
@@ -68,6 +68,7 @@ const mapState = (state: RootState) => ({
 const mapDispatch = {
   resetDailies,
   setCurrentQuestionId,
+  submitDailies,
 };
 const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -121,9 +122,8 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
   startOfNextDayTime,
   appbarShown,
   setCurrentQuestionId,
+  submitDailies,
 }) => {
-  const dispatch = useDispatch();
-
   const startOfNextDay = new Date();
   startOfNextDay.setHours(
     startOfNextDayTime.hour,
@@ -146,16 +146,14 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
     return `${header}${body}`;
   };
   const handleSharePressed = async () => {
-    dispatch(
-      submitDailies({
-        date: now.toISOString(),
-        questions: answeredQuestions.map((q, i) => ({
-          id: q.id,
-          answer: q.answer,
-        })),
-        startOfNextDay: startOfNextDay.toISOString(),
-      })
-    );
+    submitDailies({
+      date: now.toISOString(),
+      questions: answeredQuestions.map((q, i) => ({
+        id: q.id,
+        answer: q.answer,
+      })),
+      startOfNextDay: startOfNextDay.toISOString(),
+    });
     await Share.share({
       message: formatExportMessage(),
     });
