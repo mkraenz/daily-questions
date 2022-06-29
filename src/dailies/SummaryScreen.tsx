@@ -120,7 +120,6 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
   answeredQuestions,
   startOfNextDayTime,
   appbarShown,
-  resetDailies, // TODO move into reset component
   setCurrentQuestionId,
 }) => {
   const dispatch = useDispatch();
@@ -167,7 +166,7 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      {!appbarShown && <ResetDailiesBar onReset={resetDailies} />}
+      {!appbarShown && <ResetDailiesBar />}
       <Title style={styles.title}>Your Dailies from {today}</Title>
       <View style={styles.pointsQuestionsContainer}>
         {answeredQuestions
