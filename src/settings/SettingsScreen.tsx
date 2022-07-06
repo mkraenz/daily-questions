@@ -4,6 +4,7 @@ import { Text } from "react-native-paper";
 import BelatedDailiesTimePicker from "./BelatedDailiesTimePicker";
 import DarkModeSwitch from "./DarkModeSwitch";
 import DevModeDropDownMenu from "./DevModeDropdown";
+import ExportHistory from "./ExportHistory";
 import ShowAppbarSwitch from "./ShowAppbarSwitch";
 import VersionAndCopyright from "./VersionAndCopyright";
 
@@ -23,6 +24,7 @@ const SettingsScreen = () => {
       <ShowAppbarSwitch />
       <BelatedDailiesTimePicker />
       <DevModeDropDownMenu />
+      <ExportHistory />
     </View>
   );
 };
