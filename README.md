@@ -6,6 +6,25 @@ Check the [Readme of You are Awesome App! Daily Motivation Up!](https://github.c
 
 ## Deployment
 
+See also [EAS Build Guide](https://docs.expo.dev/build/setup/).
+
+```sh
+yarn eas login
+# verify you're logged in
+yarn eas whoami
+
+# build and deploy
+yarn eas build --platform android
+
+# submit to Google Playstore
+# configure via eas.json
+yarn eas submit --platform android
+
+# DEBUG: https://github.com/expo/fyi/blob/main/eas-build-archive.md
+```
+
+### Old workflow
+
 ```sh
 # complete rebuild
 yarn build-and-publish:expo:android:app-bundle:prod
@@ -26,23 +45,6 @@ To speed up development, it is sometimes possible to build an apk without using 
 
 ```sh
 yarn build:local
-```
-
-### Notes on future Expo EAS
-
-Currently EAS does not have a free tier for Over-the-air (OTA) updates. The service is called EAS Update but while it's in preview it costs a lot. Therefore, for now I'll stick with the "classic" build and "classic" OTA updates.
-
-See also [EAS Build Guide](https://docs.expo.dev/build/setup/).
-
-```sh
-yarn eas login
-# verify you're logged in
-yarn eas whoami
-
-# build and deploy
-yarn eas build --platform android
-
-# DEBUG: https://github.com/expo/fyi/blob/main/eas-build-archive.md
 ```
 
 ## Development
