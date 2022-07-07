@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { Dimensions, ScrollView, View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Button, Paragraph } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { clearHistory, mockHistory } from "../history/history.slice";
 import { Question } from "../questions/questions.slice";
@@ -96,13 +96,11 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <TimeSpanSelector timeSpan={timeSpan} setTimeSpan={setTimeSpan} />
-        <Text>
+        <Paragraph>
           You completed your dailies {historyInTimeSpan.length} times within the
-          selected time span.
-        </Text>
-        <Text>
-          Your statistics show up once you've completed at least 2 dailies.
-        </Text>
+          selected time span. Your statistics show up once you've completed at
+          least 2 dailies.
+        </Paragraph>
         {devMode && <Button onPress={() => mockHistory()}>Mock History</Button>}
       </View>
     );
