@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { FC } from "react";
 import { ScrollView, Share, StyleSheet, View } from "react-native";
 import {
@@ -141,7 +142,7 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
         return `${maybeNewLine}${q.title}: ${q.answer}`;
       })
       .join("\n");
-    const weekday = days[new Date().getDay()];
+    const weekday = days[moment(today, true).day()];
     const header = `${today} ${weekday}\n\n`;
     return `${header}${body}`;
   };
