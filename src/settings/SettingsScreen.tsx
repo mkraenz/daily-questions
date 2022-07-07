@@ -5,6 +5,7 @@ import BelatedDailiesTimePicker from "./BelatedDailiesTimePicker";
 import DarkModeSwitch from "./DarkModeSwitch";
 import DevModeDropDownMenu from "./DevModeDropdown";
 import ExportHistory from "./ExportHistory";
+import ImportHistory from "./ImportHistory";
 import ShowAppbarSwitch from "./ShowAppbarSwitch";
 import VersionAndCopyright from "./VersionAndCopyright";
 
@@ -25,6 +26,7 @@ const SettingsScreen = () => {
       <BelatedDailiesTimePicker />
       <DevModeDropDownMenu />
       <ExportHistory />
+      <ImportHistory />
     </View>
   );
 };

@@ -6,6 +6,7 @@
     "jsx": "react-native",
     "lib": ["dom", "esnext"],
     "allowSyntheticDefaultImports": true,
-    "allowJs": false
+    "allowJs": false,
+    "types": ["jest"]
   }
 }

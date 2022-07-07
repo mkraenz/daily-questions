@@ -17,7 +17,7 @@ export const getDailiesDateOnly = (
   }
 };
 
-interface HistoricEntry {
+export interface HistoricEntry {
   date: string;
   qs: { id: string; a: number | string }[]; // qs = questions, a = answer. shortening to save bytes since AsyncStorage is max 2MB
 }
@@ -59,6 +59,11 @@ const historySlice = createSlice({
         state.history.push(newEntry);
       }
     },
+
+    setHistory(state, action: PayloadAction<{ history: History }>) {
+      state.history = action.payload.history;
+    },
+
     clear(state) {
       console.log("clearing history");
       state.history = [];
@@ -74,5 +79,6 @@ export const {
   submitDailies,
   clear: clearHistory,
   mockHistory,
+  setHistory,
 } = historySlice.actions;
 export default historySlice.reducer;
