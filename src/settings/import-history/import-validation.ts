@@ -1,5 +1,5 @@
 import { inRange, isInteger, isNil, isPlainObject, negate } from "lodash";
-import { HistoricEntry } from "../history/history.slice";
+import { HistoricEntry } from "../../history/history.slice";
 
 const isStringOrNumber = (x: unknown): x is string | number =>
   ["string", "number"].includes(typeof x);

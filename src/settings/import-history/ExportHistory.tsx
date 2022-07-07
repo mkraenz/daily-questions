@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Share, StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
-import { RootState } from "../store";
+import { RootState } from "../../store";
 
 const mapState = (state: RootState) => ({
   history: state.history.history,

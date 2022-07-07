@@ -4,8 +4,8 @@ import { Paragraph } from "react-native-paper";
 import BelatedDailiesTimePicker from "./BelatedDailiesTimePicker";
 import DarkModeSwitch from "./DarkModeSwitch";
 import DevModeDropDownMenu from "./DevModeDropdown";
-import ExportHistory from "./ExportHistory";
-import ImportHistory from "./ImportHistory";
+import ExportHistory from "./import-history/ExportHistory";
+import ImportHistory from "./import-history/ImportHistory";
 import ShowAppbarSwitch from "./ShowAppbarSwitch";
 import VersionAndCopyright from "./VersionAndCopyright";
 
