@@ -6,6 +6,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { setHistory } from "../history/history.slice";
 import { RootState } from "../store";
 import { validateImportedHistoryString } from "./import-validation";
+import ImportHistoryConfirmationDialog from "./ImportHistoryConfirmationDialog";
 
 const mapState = (state: RootState) => ({
   history: state.history.history,
@@ -23,9 +24,10 @@ const styles = StyleSheet.create({
 });
 
 const ImportHistory: FC<PropsFromRedux> = ({ setHistory }) => {
+  const [confirmationShown, showConfirmation] = useState(false);
   const [errored, setErrored] = useState(false);
 
-  const handlePress = async () => {
+  const handleConfirm = async () => {
     const pastedText = await Clipboard.getStringAsync();
     const valid = validateImportedHistoryString(pastedText);
     if (valid) {
@@ -38,12 +40,17 @@ const ImportHistory: FC<PropsFromRedux> = ({ setHistory }) => {
       setErrored(true);
       // TODO error handling
     }
+    showConfirmation(false);
   };
 
   return (
     <View style={styles.container}>
-      {/* DIALOG for import (to avoid accidentally pressing the button ) */}
-      <Button onPress={handlePress} mode="outlined">
+      <ImportHistoryConfirmationDialog
+        visible={confirmationShown}
+        onCancel={() => showConfirmation(false)}
+        onConfirm={handleConfirm}
+      />
+      <Button onPress={() => showConfirmation(true)} mode="outlined">
         Import History from Clipboard
       </Button>
     </View>
