@@ -6,7 +6,7 @@
     "slug": "daily-questions",
     "description": "Marshall Goldsmith's Daily Engagement Questions as an inofficial app",
     "orientation": "default",
-    "version": "1.10.1",
+    "version": "1.11.0",
     "assetBundlePatterns": ["**/*"],
     "privacy": "public",
     "android": {

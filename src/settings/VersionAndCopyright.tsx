@@ -16,7 +16,7 @@ const VersionAndCopyright = () => {
   const nbsp = "\u00a0";
   return (
     <View>
-      <Paragraph>v1.10.1</Paragraph>
+      <Paragraph>v1.11.0</Paragraph>
       <TouchableRipple onPress={openCompanyWebsite}>
         <Paragraph>
           Copyright © 2022{" "}
