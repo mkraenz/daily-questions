@@ -22,7 +22,13 @@ const TypeSelection: FC<Props> = ({ type, setType, style }) => {
       visible={visible}
       onDismiss={closeMenu}
       anchor={
-        <Button mode="outlined" onPress={openMenu} style={style}>
+        <Button
+          mode="outlined"
+          onPress={openMenu}
+          style={style}
+          contentStyle={{ flexDirection: "row-reverse" }}
+          icon="menu-down"
+        >
           Type: {type}
         </Button>
       }

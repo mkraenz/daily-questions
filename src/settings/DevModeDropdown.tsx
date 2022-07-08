@@ -35,7 +35,13 @@ const DropDownMenu: FC<PropsFromRedux> = ({ devMode, setDevMode }) => {
       visible={visible}
       onDismiss={closeMenu}
       anchor={
-        <Button mode="outlined" onPress={openMenu} style={styles.container}>
+        <Button
+          mode="outlined"
+          onPress={openMenu}
+          style={styles.container}
+          contentStyle={{ flexDirection: "row-reverse" }}
+          icon="menu-down"
+        >
           Environment: {env}
         </Button>
       }
