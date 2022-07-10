@@ -7,6 +7,7 @@ import DevModeDropDownMenu from "./DevModeDropdown";
 import ExportHistory from "./import-history/ExportHistory";
 import ImportHistory from "./import-history/ImportHistory";
 import ShowAppbarSwitch from "./ShowAppbarSwitch";
+import UniteConfirmAndShareButtonsSwitch from "./UniteConfirmAndShareButtonsSwitch";
 import VersionAndCopyright from "./VersionAndCopyright";
 
 const SettingsScreen = () => {
@@ -23,6 +24,7 @@ const SettingsScreen = () => {
       <VersionAndCopyright />
       <DarkModeSwitch />
       <ShowAppbarSwitch />
+      <UniteConfirmAndShareButtonsSwitch />
       <BelatedDailiesTimePicker />
       <DevModeDropDownMenu />
       <ExportHistory />

@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { ScrollView, Share, StyleSheet, View } from "react-native";
 import {
   Button,
@@ -13,6 +13,8 @@ import { getDailiesDateOnly, submitDailies } from "../history/history.slice";
 import { RootState } from "../store";
 import { resetDailies, setCurrentQuestionId } from "./dailies.slice";
 import ResetDailiesBar from "./ResetDailiesBar";
+import SuccessMessage from "./SuccessMessage";
+import SeparateConfirmAndShareButtons from "./summary/SeparateConfirmAndShareButtons";
 
 const styles = StyleSheet.create({
   container: {
@@ -42,6 +44,10 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   fulltextRow: { marginBottom: 12 },
+  button: {
+    marginBottom: 12,
+    minWidth: "50%",
+  },
 });
 
 interface Props {}
@@ -51,6 +57,8 @@ const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const mapState = (state: RootState) => ({
   startOfNextDayTime: state.settings.belatedDailiesUntilNextDayAt,
   appbarShown: state.settings.appbarShownInDailies,
+  uniteConfirmAndShareButtons:
+    state.settings.uniteConfirmAndShareButtonsInDailies,
   answeredQuestions: state.dailies.answers.map((answer) => {
     const question = state.questions.questions.find(
       (q) => q.id === answer.questionId
@@ -108,7 +116,7 @@ const FullTextAnswer: FC<{
   );
 };
 
-const ShareButton: FC<{
+const ConfirmAndShareButton: FC<{
   handlePressed: () => void;
 }> = ({ handlePressed }) => {
   return (
@@ -124,7 +132,9 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
   appbarShown,
   setCurrentQuestionId,
   submitDailies,
+  uniteConfirmAndShareButtons,
 }) => {
+  const [successMessageShown, showSuccessMessage] = useState(false);
   const startOfNextDay = new Date();
   startOfNextDay.setHours(
     startOfNextDayTime.hour,
@@ -146,7 +156,7 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
     const header = `${today} ${weekday}\n\n`;
     return `${header}${body}`;
   };
-  const handleSharePressed = async () => {
+  const handleConfirmPressed = () => {
     submitDailies({
       date: now.toISOString(),
       questions: answeredQuestions.map((q, i) => ({
@@ -155,9 +165,16 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
       })),
       startOfNextDay: startOfNextDay.toISOString(),
     });
+    showSuccessMessage(true);
+  };
+  const handleSharePressed = async () => {
     await Share.share({
       message: formatExportMessage(),
     });
+  };
+  const handleConfirmAndSharePressed = async () => {
+    handleConfirmPressed();
+    await handleSharePressed();
   };
 
   return (
@@ -201,7 +218,19 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
             />
           ))}
       </View>
-      <ShareButton handlePressed={handleSharePressed} />
+      {uniteConfirmAndShareButtons ? (
+        <ConfirmAndShareButton handlePressed={handleConfirmAndSharePressed} />
+      ) : (
+        <SeparateConfirmAndShareButtons
+          handleConfirmPressed={handleConfirmPressed}
+          handleSharePressed={handleSharePressed}
+        />
+      )}
+      <SuccessMessage
+        visible={successMessageShown}
+        onDismiss={() => showSuccessMessage(false)}
+        text="Dailies added to history"
+      />
     </ScrollView>
   );
 };

@@ -11,6 +11,7 @@ export interface SettingsState {
    */
   belatedDailiesUntilNextDayAt: { hour: number; minute: number };
   appbarShownInDailies: boolean;
+  uniteConfirmAndShareButtonsInDailies: boolean;
 }
 
 const initialState: SettingsState = {
@@ -21,6 +22,7 @@ const initialState: SettingsState = {
     minute: 0,
   },
   appbarShownInDailies: true,
+  uniteConfirmAndShareButtonsInDailies: false,
 };
 
 const settingsSlice = createSlice({
@@ -48,6 +50,13 @@ const settingsSlice = createSlice({
     showAppbarInDailies(state, action: PayloadAction<boolean>) {
       state.appbarShownInDailies = action.payload;
     },
+
+    setUniteConfirmAndShareButtonsInDailies(
+      state,
+      action: PayloadAction<boolean>
+    ) {
+      state.uniteConfirmAndShareButtonsInDailies = action.payload;
+    },
   },
 });
 
@@ -56,5 +65,6 @@ export const {
   setDarkMode,
   setBelatedDailiesUntilNextDayAtHour,
   showAppbarInDailies,
+  setUniteConfirmAndShareButtonsInDailies,
 } = settingsSlice.actions;
 export default settingsSlice.reducer;
