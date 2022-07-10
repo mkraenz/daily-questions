@@ -48,6 +48,7 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
         placeholder={prefixed(defaultQuestions[0].title)}
         style={styles.marginBottom}
         error={titleChanged && hasErrors}
+        accessibilityLabel="Text input for the title of the question"
       />
       <TextInput
         label="Full Question"
@@ -57,6 +58,7 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
         autoComplete="off"
         placeholder={prefixed(defaultQuestions[0].questionLong)}
         style={styles.marginBottom}
+        accessibilityLabel="Text input for full question"
       />
       <TypeSelection
         type={type}
