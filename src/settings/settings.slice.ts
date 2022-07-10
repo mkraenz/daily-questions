@@ -3,7 +3,8 @@ import { pick } from "lodash";
 
 export interface SettingsState {
   devMode: boolean;
-  darkMode: boolean;
+  /** initially null to track first app open */
+  darkMode: boolean | null;
   /**
    * doing dailies at the next day before this hour creates an entry for the previous day. range: 0 - 23
    * @example
@@ -16,7 +17,7 @@ export interface SettingsState {
 
 const initialState: SettingsState = {
   devMode: false,
-  darkMode: false,
+  darkMode: null,
   belatedDailiesUntilNextDayAt: {
     hour: 12,
     minute: 0,
