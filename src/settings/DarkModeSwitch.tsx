@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { Checkbox } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store";
@@ -12,9 +13,10 @@ const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const DarkModeSwitch: FC<PropsFromRedux> = ({ dark, setDarkMode }) => {
+  const { t } = useTranslation();
   return (
     <Checkbox.Item
-      label="Dark Mode"
+      label={t("darkMode")}
       status={dark ? "checked" : "unchecked"}
       onPress={() => setDarkMode(!dark)}
     ></Checkbox.Item>

@@ -6,6 +6,7 @@ import DarkModeSwitch from "./DarkModeSwitch";
 import DevModeDropDownMenu from "./DevModeDropdown";
 import ExportHistory from "./import-history/ExportHistory";
 import ImportHistory from "./import-history/ImportHistory";
+import LanguageSelect from "./LanguageSelect";
 import ShowAppbarSwitch from "./ShowAppbarSwitch";
 import UniteConfirmAndShareButtonsSwitch from "./UniteConfirmAndShareButtonsSwitch";
 import VersionAndCopyright from "./VersionAndCopyright";
@@ -26,6 +27,7 @@ const SettingsScreen = () => {
       <ShowAppbarSwitch />
       <UniteConfirmAndShareButtonsSwitch />
       <BelatedDailiesTimePicker />
+      <LanguageSelect />
       <DevModeDropDownMenu />
       <ExportHistory />
       <ImportHistory />
