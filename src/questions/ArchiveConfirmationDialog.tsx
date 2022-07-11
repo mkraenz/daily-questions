@@ -2,6 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { View } from "react-native";
 import { Button, Dialog, Paragraph, Portal } from "react-native-paper";
+import { useTranslation } from "../localization/useTranslations";
 
 interface Props {
   visible: boolean;
@@ -14,23 +15,21 @@ const ArchiveConfirmationDialog: FC<Props> = ({
   onConfirm,
   onCancel,
 }) => {
+  const { t } = useTranslation();
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={onCancel}>
-        <Dialog.Title>Confirm Archival</Dialog.Title>
+        <Dialog.Title>{t("questions:confirmArchival")}</Dialog.Title>
         <Dialog.Content>
           {/* TODO explain how to revert archival */}
-          <Paragraph>
-            Do you really want to archive this question? If you started your
-            dailies for today without commiting, your dailies will be reset.
-          </Paragraph>
+          <Paragraph>{t("questions:archivalDialogDescription")}</Paragraph>
         </Dialog.Content>
         <View style={{ flexDirection: "row-reverse" }}>
           <Dialog.Actions>
-            <Button onPress={onConfirm}>Confirm</Button>
+            <Button onPress={onConfirm}>{t("general:confirm")}</Button>
           </Dialog.Actions>
           <Dialog.Actions>
-            <Button onPress={onCancel}>Cancel</Button>
+            <Button onPress={onCancel}>{t("general:cancel")}</Button>
           </Dialog.Actions>
         </View>
       </Dialog>

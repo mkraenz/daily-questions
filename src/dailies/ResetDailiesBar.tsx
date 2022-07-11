@@ -33,8 +33,8 @@ const ResetDailiesBar: FC<PropsFromRedux> = ({ resetDailies }) => {
       <IconButton
         icon="restart"
         onPress={() => showConfirmation(true)}
-        accessibilityLabel={t("dailies:restartButtonAllyLabel")}
-        accessibilityHint={t("dailies:restartButtonAllyHint")}
+        accessibilityLabel={t("dailies:resetButtonAllyLabel")}
+        accessibilityHint={t("dailies:resetButtonAllyHint")}
       ></IconButton>
     </View>
   );

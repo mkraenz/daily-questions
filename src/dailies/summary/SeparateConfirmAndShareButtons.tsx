@@ -23,7 +23,7 @@ const SeparateConfirmAndShareButtons: FC<{
         icon="check"
         style={styles.button}
       >
-        {t("dailies:confirm")}
+        {t("general:confirm")}
       </Button>
       <Button
         onPress={handleSharePressed}

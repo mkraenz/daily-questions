@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { StyleSheet } from "react-native";
 import { Button, Menu } from "react-native-paper";
 import { useTranslation } from "../localization/useTranslations";
 
@@ -15,6 +16,13 @@ interface Props {
   setTimeSpan: (timeSpan: TimeSpan) => void;
 }
 
+const styles = StyleSheet.create({
+  button: {
+    marginBottom: 12,
+    minWidth: "50%",
+  },
+});
+
 const TimeSpanSelector: FC<Props> = ({ timeSpan, setTimeSpan }) => {
   const [visible, setVisible] = React.useState(false);
   const { t } = useTranslation();
@@ -27,7 +35,7 @@ const TimeSpanSelector: FC<Props> = ({ timeSpan, setTimeSpan }) => {
       visible={visible}
       onDismiss={closeMenu}
       anchor={
-        <Button mode="outlined" onPress={openMenu}>
+        <Button mode="contained" onPress={openMenu} style={styles.button}>
           {t(`statistics:${timeSpan}`)}
         </Button>
       }

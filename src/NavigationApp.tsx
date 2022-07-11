@@ -7,6 +7,7 @@ import { connect, ConnectedProps } from "react-redux";
 import BaseAppBar from "./BaseAppBar";
 import DailiesAppBar from "./dailies/DailiesAppBar";
 import DailiesNav from "./dailies/DailiesNav";
+import { useTranslation } from "./localization/useTranslations";
 import QuestionsNav from "./questions/QuestionsNav";
 import SettingsScreen from "./settings/SettingsScreen";
 import StatisticsScreen from "./statistics/StatisticsScreen";
@@ -22,6 +23,7 @@ const Drawer = createDrawerNavigator();
 
 const NavigationApp: FC<PropsFromRedux> = ({ appbarShownInDailies }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const initialRoute = "Dailies";
 
@@ -53,15 +55,31 @@ const NavigationApp: FC<PropsFromRedux> = ({ appbarShownInDailies }) => {
           options={{
             headerShown: appbarShownInDailies,
             header: (props) => <DailiesAppBar {...props} />,
+            title: t("routes:dailies"),
           }}
         />
-        <Drawer.Screen name="Statistics" component={StatisticsScreen} />
+        <Drawer.Screen
+          name="Statistics"
+          component={StatisticsScreen}
+          options={{
+            title: t("routes:statistics"),
+          }}
+        />
         <Drawer.Screen
           name="Customize Questions"
           component={QuestionsNav}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            title: t("routes:customizeQuestions"),
+          }}
         />
-        <Drawer.Screen name="Settings" component={SettingsScreen} />
+        <Drawer.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            title: t("routes:settings"),
+          }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );

@@ -4,6 +4,7 @@ import React, { FC, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, TextInput, useTheme } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
 import ArchiveConfirmationDialog from "./ArchiveConfirmationDialog";
 import type {
   QuestionsNavigationProp,
@@ -35,6 +36,7 @@ const EditQuestionsScreen: FC<
     React.useState(false);
 
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const saveEdits = () => {
     editQuestion({
@@ -56,9 +58,14 @@ const EditQuestionsScreen: FC<
   const hasErrors = editedTitle === "";
 
   return (
-    <View style={[StyleSheet.absoluteFill, { justifyContent: "center" }]}>
+    <View
+      style={[
+        StyleSheet.absoluteFill,
+        { justifyContent: "center", paddingHorizontal: 12 },
+      ]}
+    >
       <TextInput
-        label="Title*"
+        label={t("questions:title")}
         onChangeText={setEditedTitle}
         value={editedTitle}
         autoFocus={true}
@@ -67,7 +74,7 @@ const EditQuestionsScreen: FC<
         error={hasErrors}
       />
       <TextInput
-        label="Full Question"
+        label={t("questions:longQuestion")}
         multiline={true}
         onChangeText={setEditedQuestionLong}
         value={editedQuestionLong}
@@ -85,14 +92,14 @@ const EditQuestionsScreen: FC<
         style={styles.marginBottom}
         disabled={hasErrors}
       >
-        Save Changes
+        {t("questions:save")}
       </Button>
       <Button
         mode="contained"
         color={theme.colors.error}
         onPress={() => showArchiveConfirmation(true)}
       >
-        Archive Question
+        {t("questions:archive")}
       </Button>
       <ArchiveConfirmationDialog
         visible={archiveConfirmationShown}

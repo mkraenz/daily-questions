@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { Dimensions, ScrollView, View } from "react-native";
-import { Button, Paragraph } from "react-native-paper";
+import { Button, Paragraph, useTheme } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { clearHistory, mockHistory } from "../history/history.slice";
 import { useTranslation } from "../localization/useTranslations";
@@ -71,6 +71,20 @@ const isWithin = (timeSpan: TimeSpan, dateOnly: string): boolean => {
   }
 };
 
+import { StyleSheet } from "react-native";
+const styles = StyleSheet.create({
+  insufficientDataContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 24,
+  },
+  container: {
+    marginVertical: 32,
+  },
+  innerContainer: { paddingHorizontal: 12 },
+});
+
 const StatisticsScreen: FC<PropsFromRedux> = ({
   history,
   devMode,
@@ -87,6 +101,7 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
   }, [questions]);
   const [timeSpan, setTimeSpan] = useState<TimeSpan>("last7days");
   const { t } = useTranslation();
+  const theme = useTheme();
 
   const selectAllQuestions = () =>
     setSelectedQuestions(getAllQuestionsSelected(questions));
@@ -96,14 +111,22 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
   );
   if (historyInTimeSpan.length === 0 || historyInTimeSpan.length === 1) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={styles.insufficientDataContainer}>
         <TimeSpanSelector timeSpan={timeSpan} setTimeSpan={setTimeSpan} />
         <Paragraph>
-          You completed your dailies {historyInTimeSpan.length} times within the
-          selected time span. Your statistics show up once you've completed at
-          least 2 dailies.
+          {t("statistics:insufficientDataInTimeSpan", {
+            numOfEntries: historyInTimeSpan.length,
+          })}
         </Paragraph>
-        {devMode && <Button onPress={() => mockHistory()}>Mock History</Button>}
+        {devMode && (
+          <Button
+            onPress={() => mockHistory()}
+            mode="contained"
+            style={{ backgroundColor: theme.colors.error }}
+          >
+            {t("statistics:mockHistory")}
+          </Button>
+        )}
       </View>
     );
   }
@@ -112,11 +135,7 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
     selectedQuestions.filter((q) => q.checked).length === 0;
 
   return (
-    <ScrollView
-      style={{
-        marginVertical: 32,
-      }}
-    >
+    <ScrollView style={styles.container}>
       {!noQuestionsSelected ? (
         <Chart
           history={historyInTimeSpan}
@@ -130,16 +149,22 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
           onPress={selectAllQuestions}
         />
       )}
-      <TimeSpanSelector timeSpan={timeSpan} setTimeSpan={setTimeSpan} />
-      <ChartSelection
-        selectedQuestions={selectedQuestions}
-        setSelectedQuestions={setSelectedQuestions}
-      />
-      {devMode && (
-        <Button mode="outlined" onPress={() => clearHistory()}>
-          {t("statistics:clearHistory")}
-        </Button>
-      )}
+      <View style={styles.innerContainer}>
+        <TimeSpanSelector timeSpan={timeSpan} setTimeSpan={setTimeSpan} />
+        <ChartSelection
+          selectedQuestions={selectedQuestions}
+          setSelectedQuestions={setSelectedQuestions}
+        />
+        {devMode && (
+          <Button
+            mode="contained"
+            onPress={() => clearHistory()}
+            style={{ backgroundColor: theme.colors.error }}
+          >
+            {t("statistics:clearHistory")}
+          </Button>
+        )}
+      </View>
     </ScrollView>
   );
 };

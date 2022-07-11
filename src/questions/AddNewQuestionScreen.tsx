@@ -38,7 +38,12 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
   };
 
   return (
-    <View style={[StyleSheet.absoluteFill, { justifyContent: "center" }]}>
+    <View
+      style={[
+        StyleSheet.absoluteFill,
+        { justifyContent: "center", paddingHorizontal: 12 },
+      ]}
+    >
       <TextInput
         label="Title*"
         onChangeText={handleTitleChanged}

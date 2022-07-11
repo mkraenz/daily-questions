@@ -1,7 +1,7 @@
-import { capitalize } from "lodash";
 import React, { FC } from "react";
 import { StyleProp } from "react-native";
 import { Button, Menu } from "react-native-paper";
+import { useTranslation } from "../localization/useTranslations";
 
 const allTypes = ["points", "fulltext"] as const;
 
@@ -13,6 +13,7 @@ interface Props {
 
 const TypeSelection: FC<Props> = ({ type, setType, style }) => {
   const [visible, setVisible] = React.useState(false);
+  const { t } = useTranslation();
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -29,16 +30,16 @@ const TypeSelection: FC<Props> = ({ type, setType, style }) => {
           contentStyle={{ flexDirection: "row-reverse" }}
           icon="menu-down"
         >
-          Type: {type}
+          {t("questions:type", { type: t(`questions:type${type}`) })}
         </Button>
       }
     >
-      {allTypes.map((t) => (
+      {allTypes.map((_type) => (
         <Menu.Item
-          key={t}
-          title={capitalize(t)}
+          key={_type}
+          title={t(`questions:type${_type}`)}
           onPress={() => {
-            setType(t);
+            setType(_type);
             closeMenu();
           }}
         />

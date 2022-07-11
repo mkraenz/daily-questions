@@ -8,14 +8,17 @@ import {
 } from "react-native-draggable-flatlist";
 import { Button, List } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { QuestionsNavigationProp } from "./questions-nav";
 import { moveQuestion, Question } from "./questions.slice";
 
 const ListItem: FC<RenderItemParams<Question>> = ({ item, drag, isActive }) => {
+  const nav = useNavigation<QuestionsNavigationProp>();
+  const { t } = useTranslation();
+
   const { title, questionLong, type, id, active } = item;
   const icon = type === "points" ? "numeric" : "format-color-text";
-  const nav = useNavigation<QuestionsNavigationProp>();
   const gotoEditQuestion = () => {
     nav.push("Edit Question", { questionLong, type, id, title, active });
   };
@@ -28,6 +31,7 @@ const ListItem: FC<RenderItemParams<Question>> = ({ item, drag, isActive }) => {
         left={(props) => <List.Icon {...props} icon={icon} />}
         onLongPress={drag}
         disabled={isActive}
+        accessibilityHint={t("questions:listItemA11yHint")}
       />
     </ScaleDecorator>
   );
@@ -46,18 +50,21 @@ const QuestionsListScreen: FC<PropsFromRedux> = ({
   questions,
   moveQuestion,
 }) => {
-  const activeQuestions = questions.filter((q) => q.active); // TODO read selector docs https://redux.js.org/usage/deriving-data-selectors
   const nav = useNavigation<QuestionsNavigationProp>();
+  const { t } = useTranslation();
   const gotoNewQuestion = () => nav.push("Add new question");
+  const activeQuestions = questions.filter((q) => q.active); // TODO read selector docs https://redux.js.org/usage/deriving-data-selectors
 
   return (
-    <NestableScrollContainer style={{ marginVertical: 20 }}>
+    <NestableScrollContainer
+      style={{ marginVertical: 20, paddingHorizontal: 12 }}
+    >
       <Button
         onPress={gotoNewQuestion}
         mode="contained"
         style={{ marginVertical: 20 }}
       >
-        Add new question
+        {t("questions:addNewQuestion")}
       </Button>
       <NestableDraggableFlatList
         data={activeQuestions}

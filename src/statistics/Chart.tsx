@@ -68,6 +68,7 @@ const Chart: FC<Props> = ({ selectedQuestions, history, width, height }) => {
         labelColor: (opacity = 1) => theme.colors.text,
         style: {
           borderRadius: 16,
+          marginLeft: -12,
         },
         propsForDots: {
           r: "6",
