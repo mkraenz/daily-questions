@@ -9,6 +9,7 @@ import {
   Portal,
   useTheme,
 } from "react-native-paper";
+import { useTranslation } from "../../localization/useTranslations";
 
 interface Props {
   visible: boolean;
@@ -26,24 +27,23 @@ const ImportHistoryConfirmationDialog: FC<Props> = ({
   onConfirm,
   onCancel,
 }) => {
+  const { t } = useTranslation();
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={onCancel}>
         <Dialog.Title>
-          <WarningIcon /> Confirm Import <WarningIcon />
+          <WarningIcon /> {t("settings:importHistoryDialogTitle")}{" "}
+          <WarningIcon />
         </Dialog.Title>
         <Dialog.Content style={{ flexDirection: "row" }}>
-          <Paragraph>
-            Warning! This will permanently overwrite your current history. Do
-            you really want to import the history from clipboard?
-          </Paragraph>
+          <Paragraph>{t("settings:importHistoryDialogDescription")}</Paragraph>
         </Dialog.Content>
         <View style={{ flexDirection: "row-reverse" }}>
           <Dialog.Actions>
-            <Button onPress={() => onConfirm()}>Confirm</Button>
+            <Button onPress={() => onConfirm()}>{t("general:confirm")}</Button>
           </Dialog.Actions>
           <Dialog.Actions>
-            <Button onPress={() => onCancel()}>Cancel</Button>
+            <Button onPress={() => onCancel()}>{t("general:cancel")}</Button>
           </Dialog.Actions>
         </View>
       </Dialog>

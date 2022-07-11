@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { setHistory } from "../../history/history.slice";
+import { useTranslation } from "../../localization/useTranslations";
 import { RootState } from "../../store";
 import { validateImportedHistoryString } from "./import-validation";
 import ImportHistoryConfirmationDialog from "./ImportHistoryConfirmationDialog";
@@ -29,6 +30,7 @@ const ImportHistory: FC<PropsFromRedux> = ({ setHistory }) => {
   const [confirmationShown, showConfirmation] = useState(false);
   const [errored, setErrored] = useState(false);
   const [success, setSuccess] = useState(false);
+  const { t } = useTranslation();
 
   const handleConfirm = async () => {
     const pastedText = await Clipboard.getStringAsync();
@@ -60,8 +62,12 @@ const ImportHistory: FC<PropsFromRedux> = ({ setHistory }) => {
         onCancel={() => showConfirmation(false)}
         onConfirm={handleConfirm}
       />
-      <Button onPress={() => showConfirmation(true)} mode="outlined">
-        Import History from Clipboard
+      <Button
+        onPress={() => showConfirmation(true)}
+        mode="outlined"
+        compact={false}
+      >
+        {t("settings:importHistory")}
       </Button>
     </View>
   );

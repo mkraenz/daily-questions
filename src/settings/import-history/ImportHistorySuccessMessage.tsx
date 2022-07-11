@@ -1,6 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import React, { FC } from "react";
 import { Portal, Snackbar, useTheme } from "react-native-paper";
+import { useTranslation } from "../../localization/useTranslations";
 
 interface Props {
   visible: boolean;
@@ -9,6 +10,7 @@ interface Props {
 
 const ImportHistorySuccessMessage: FC<Props> = ({ visible, onDismiss }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <Portal>
       {/* Snackbar wrapped in Portal to display absolutely positioned */}
@@ -18,7 +20,7 @@ const ImportHistorySuccessMessage: FC<Props> = ({ visible, onDismiss }) => {
           size={20}
           color={theme.colors.primary}
         />{" "}
-        History imported successfully
+        {t("settings:importHistorySuccessMessage")}
       </Snackbar>
     </Portal>
   );

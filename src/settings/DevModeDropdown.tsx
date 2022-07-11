@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 import { Button, Menu } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
 import { setDevMode } from "../settings/settings.slice";
 import { RootState } from "../store";
 
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
 });
 
 const DropDownMenu: FC<PropsFromRedux> = ({ devMode, setDevMode }) => {
+  const { t } = useTranslation();
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -29,7 +31,9 @@ const DropDownMenu: FC<PropsFromRedux> = ({ devMode, setDevMode }) => {
     closeMenu();
   };
 
-  const env = devMode ? "Experimental" : "Production";
+  const envTranslationKey = devMode
+    ? "settings:envExperimental"
+    : "settings:envProduction";
   return (
     <Menu
       visible={visible}
@@ -42,14 +46,17 @@ const DropDownMenu: FC<PropsFromRedux> = ({ devMode, setDevMode }) => {
           contentStyle={{ flexDirection: "row-reverse" }}
           icon="menu-down"
         >
-          Environment: {env}
+          {t(envTranslationKey)}
         </Button>
       }
     >
-      <Menu.Item onPress={deactivateDevMode} title="Production" />
+      <Menu.Item
+        onPress={deactivateDevMode}
+        title={t("settings:envProductionMenuItem")}
+      />
       <Menu.Item
         onPress={activateDevMode}
-        title="Experimental (use with caution)"
+        title={t("settings:envExperimentalMenuItem")}
       />
     </Menu>
   );

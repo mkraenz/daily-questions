@@ -9,6 +9,7 @@ import {
   Portal,
   useTheme,
 } from "react-native-paper";
+import { useTranslation } from "../../localization/useTranslations";
 
 interface Props {
   visible: boolean;
@@ -21,21 +22,22 @@ const WarningIcon: FC = () => {
 };
 
 const ImportHistoryErrorDialog: FC<Props> = ({ visible, onDismiss }) => {
+  const { t } = useTranslation();
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={onDismiss}>
         <Dialog.Title>
-          <WarningIcon /> Import Failed <WarningIcon />
+          <WarningIcon /> {t("settings:importHistoryErrorDialogTitle")}{" "}
+          <WarningIcon />
         </Dialog.Title>
         <Dialog.Content style={{ flexDirection: "row" }}>
           <Paragraph>
-            Importing history from clipboard failed. Please make sure you copied
-            history string is valid. Your existing history was NOT changed.
+            {t("settings:importHistoryErrorDialogDescription")}
           </Paragraph>
         </Dialog.Content>
         <View style={{ flexDirection: "row-reverse" }}>
           <Dialog.Actions>
-            <Button onPress={() => onDismiss()}>OK</Button>
+            <Button onPress={() => onDismiss()}>{t("general:ok")}</Button>
           </Dialog.Actions>
         </View>
       </Dialog>

@@ -11,6 +11,7 @@ const en = {
     navigateBackAllyHint: "Navigate back to previous screen",
     confirm: "Confirm",
     cancel: "Cancel",
+    ok: "OK",
     openDrawerA11yLabel: "Open drawer navigation menu",
   },
   weekdays: {
@@ -37,6 +38,21 @@ const en = {
     showAppbar: "Show App Bar in Dailies",
     darkMode: "Dark Mode",
     language: "Language: {{language}}",
+    uniteConfirmAndShare: "Unite Confirm and Share Buttons in Dailies' Summary",
+    startOfNextDay: "Start of Next Day: {{time}}",
+    envExperimental: "Environment: Experimental",
+    envProduction: "Environment: Production",
+    envExperimentalMenuItem: "Experimental (App may break!)",
+    envProductionMenuItem: "Production",
+    exportHistory: "Export history",
+    importHistory: "Import history",
+    importHistoryDialogTitle: "Confirm Import",
+    importHistoryDialogDescription:
+      "Warning! This will permanently overwrite your current history. Do you really want to import the history from clipboard?",
+    importHistoryErrorDialogTitle: "Import Failed",
+    importHistoryErrorDialogDescription:
+      "Importing history from clipboard failed. Please make sure you copied history string is valid. Your existing history was NOT changed.",
+    importHistorySuccessMessage: "History imported successfully",
   },
   dailies: {
     next: "Next",
@@ -102,6 +118,7 @@ export const translations: Translations = {
       navigateBackAllyHint: "Zurück zur vorherigen Ansicht",
       confirm: "Bestätigen",
       cancel: "Abbrechen",
+      ok: "OK",
       openDrawerA11yLabel: "Navigationsleiste öffnen",
     },
     weekdays: {
@@ -128,6 +145,22 @@ export const translations: Translations = {
       showAppbar: "App-Leiste in Dailies anzeigen",
       darkMode: "Nachtmodus",
       language: "Sprache: {{language}}",
+      uniteConfirmAndShare:
+        "Tasten für Bestätigen und Teilen in Zusammenfassung der Dailies vereinen",
+      startOfNextDay: "Start des nächsten Tages: {{time}}",
+      envExperimental: "Umgebung: Experimental",
+      envProduction: "Umgebung: Produktion",
+      envExperimentalMenuItem: "Experimental (App geht evtl. kaputt)",
+      envProductionMenuItem: "Produktion",
+      exportHistory: "Verlauf exportieren",
+      importHistory: "Verlauf importieren",
+      importHistoryDialogTitle: "Import bestätigen",
+      importHistoryDialogDescription:
+        "Achtung! Diese Aktion überschreibt deinen aktuellen Verlauf dauerhaft. Möchtest du wirklich mit dem Import eines neuen Verlaufs von der Zwischenablage fortfahren?",
+      importHistoryErrorDialogTitle: "Import fehlgeschlagen",
+      importHistoryErrorDialogDescription:
+        "Der Verlauf in deiner Zwischenablage konnte nicht importiert werden. Bitte stelle sicher, dass der kopierte Verlaufsstring gültig ist. Dein aktueller Verlauf wurde NICHT geändert.",
+      importHistorySuccessMessage: "Verlauf erfolgreich importiert",
     },
     dailies: {
       next: "Weiter",
@@ -173,6 +206,7 @@ export const translations: Translations = {
       confirm: "確認",
       cancel: "キャンセル",
       openDrawerA11yLabel: "ナビゲーションドロワーを開く",
+      ok: "OK",
     },
     weekdays: {
       Sun: "日曜日",
@@ -198,6 +232,22 @@ export const translations: Translations = {
       showAppbar: "アプリバーをDailiesで表紙する",
       darkMode: "ダークモード",
       language: "言葉: {{language}}",
+      uniteConfirmAndShare:
+        "Dailiesのまとめ画面に確認と共有を一つのボトンにする",
+      startOfNextDay: "次の日の開始時間: {{time}}",
+      envExperimental: "開発環境: 試験的",
+      envExperimentalMenuItem: "試験的（アプリが壊れやすくなる）",
+      envProduction: "開発環境: 正式版",
+      envProductionMenuItem: "正式版",
+      exportHistory: "履歴をエクスポート",
+      importHistory: "履歴をインポート",
+      importHistoryDialogTitle: "インポートの確認",
+      importHistoryDialogDescription:
+        "警告! この操作は現在の履歴を上書きします。本当にクリップボードからの履歴をインポートしますか?",
+      importHistoryErrorDialogTitle: "インポートエラー",
+      importHistoryErrorDialogDescription:
+        "クリップボードからの履歴をインポートできませんでした。コピーした履歴が有効であることを確認してください。現在の履歴は変更されていませんでした。",
+      importHistorySuccessMessage: "履歴は正常にインポートされました。",
     },
     dailies: {
       next: "次へ",

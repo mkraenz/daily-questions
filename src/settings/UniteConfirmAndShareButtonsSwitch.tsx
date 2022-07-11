@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Checkbox } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { setUniteConfirmAndShareButtonsInDailies } from "./settings.slice";
 
@@ -15,9 +16,10 @@ const UniteConfirmAndShareButtonsSwitch: FC<PropsFromRedux> = ({
   checked,
   setUniteConfirmAndShareButtonsInDailies,
 }) => {
+  const { t } = useTranslation();
   return (
     <Checkbox.Item
-      label="Unite Confirm and Share Buttons in Dailies' Summary"
+      label={t("settings:uniteConfirmAndShare")}
       status={checked ? "checked" : "unchecked"}
       onPress={() => setUniteConfirmAndShareButtonsInDailies(!checked)}
     ></Checkbox.Item>

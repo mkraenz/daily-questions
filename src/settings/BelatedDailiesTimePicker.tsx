@@ -4,6 +4,7 @@ import { View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { setBelatedDailiesUntilNextDayAtHour } from "./settings.slice";
 
@@ -24,6 +25,7 @@ const BelatedDailiesTimePicker: FC<PropsFromRedux> = ({
   setBelatedDailiesUntilNextDayAtHour,
 }) => {
   const [isDatePickerVisible, showTimePicker] = useState(false);
+  const { t } = useTranslation();
 
   const handleConfirm = (date: Date) => {
     setBelatedDailiesUntilNextDayAtHour({
@@ -38,7 +40,7 @@ const BelatedDailiesTimePicker: FC<PropsFromRedux> = ({
   return (
     <View style={{ marginBottom: 16 }}>
       <Button mode="outlined" onPress={() => showTimePicker(true)}>
-        Start of next day: {toHHMM(date)}
+        {t("settings:startOfNextDay", { time: toHHMM(date) })}
       </Button>
       <DateTimePickerModal
         isVisible={isDatePickerVisible}

@@ -1,6 +1,5 @@
 import React from "react";
 import { View } from "react-native";
-import { Paragraph } from "react-native-paper";
 import BelatedDailiesTimePicker from "./BelatedDailiesTimePicker";
 import DarkModeSwitch from "./DarkModeSwitch";
 import DevModeDropDownMenu from "./DevModeDropdown";
@@ -21,7 +20,6 @@ const SettingsScreen = () => {
         padding: 20,
       }}
     >
-      <Paragraph>Daily Questions App</Paragraph>
       <VersionAndCopyright />
       <DarkModeSwitch />
       <ShowAppbarSwitch />
