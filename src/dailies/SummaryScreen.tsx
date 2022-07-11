@@ -10,6 +10,7 @@ import {
 } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { getDailiesDateOnly, submitDailies } from "../history/history.slice";
+import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { resetDailies, setCurrentQuestionId } from "./dailies.slice";
 import ResetDailiesBar from "./ResetDailiesBar";
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
 
 interface Props {}
 
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
 
 const mapState = (state: RootState) => ({
   startOfNextDayTime: state.settings.belatedDailiesUntilNextDayAt,
@@ -119,9 +120,10 @@ const FullTextAnswer: FC<{
 const ConfirmAndShareButton: FC<{
   handlePressed: () => void;
 }> = ({ handlePressed }) => {
+  const { t } = useTranslation();
   return (
     <Button icon="share" mode="contained" onPress={handlePressed}>
-      Confirm and Share
+      {t("dailies:confirmAndShare")}
     </Button>
   );
 };
@@ -135,6 +137,8 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
   uniteConfirmAndShareButtons,
 }) => {
   const [successMessageShown, showSuccessMessage] = useState(false);
+  const { t } = useTranslation();
+
   const startOfNextDay = new Date();
   startOfNextDay.setHours(
     startOfNextDayTime.hour,
@@ -147,13 +151,13 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
   const today = getDailiesDateOnly(now, startOfNextDay);
   const formatExportMessage = () => {
     const body = answeredQuestions
-      .map((q, i) => {
+      .map((q) => {
         const maybeNewLine = q.type === "fulltext" ? "\n" : "";
         return `${maybeNewLine}${q.title}: ${q.answer}`;
       })
       .join("\n");
     const weekday = days[moment(today, true).day()];
-    const header = `${today} ${weekday}\n\n`;
+    const header = `${today} ${t(`weekdays:${weekday}`)}\n\n`;
     return `${header}${body}`;
   };
   const handleConfirmPressed = () => {
@@ -183,7 +187,9 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
       contentContainerStyle={styles.contentContainer}
     >
       {!appbarShown && <ResetDailiesBar />}
-      <Title style={styles.title}>Your Dailies from {today}</Title>
+      <Title style={styles.title}>
+        {t("dailies:summaryHeader", { today })}
+      </Title>
       <View style={styles.pointsQuestionsContainer}>
         {answeredQuestions
           .filter((q) => q.type === "points")
@@ -229,7 +235,8 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
       <SuccessMessage
         visible={successMessageShown}
         onDismiss={() => showSuccessMessage(false)}
-        text="Dailies added to history"
+        text={t("dailies:confirmedSuccessfully")}
+        dismissActionLabel={t("dailies:ok")}
       />
     </ScrollView>
   );

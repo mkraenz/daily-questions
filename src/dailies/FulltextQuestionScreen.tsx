@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Paragraph, TextInput, Title } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { selectAnswerList } from "./dailies.selectors";
 
@@ -48,6 +49,7 @@ const FulltextQuestionScreen: FC<Props & PropsFromRedux> = ({
   onAnswer,
   answerList,
 }) => {
+  const { t } = useTranslation();
   const [text, setText] = useState(answer?.toString() ?? "");
   const onNext = () => onAnswer(text);
 
@@ -64,9 +66,8 @@ const FulltextQuestionScreen: FC<Props & PropsFromRedux> = ({
         style={styles.textInput}
         autoComplete="off"
       />
-
       <Button onPress={onNext} style={styles.button} mode="outlined">
-        Next
+        {t("dailies:next")}
       </Button>
       <Paragraph>{answerList}</Paragraph>
     </View>

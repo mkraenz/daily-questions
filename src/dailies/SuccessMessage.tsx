@@ -6,9 +6,15 @@ interface Props {
   visible: boolean;
   onDismiss: () => void;
   text: string;
+  dismissActionLabel: string;
 }
 
-const SuccessMessage: FC<Props> = ({ visible, onDismiss, text }) => {
+const SuccessMessage: FC<Props> = ({
+  visible,
+  onDismiss,
+  text,
+  dismissActionLabel,
+}) => {
   const theme = useTheme();
   return (
     <Portal>
@@ -17,7 +23,7 @@ const SuccessMessage: FC<Props> = ({ visible, onDismiss, text }) => {
         visible={visible}
         onDismiss={onDismiss}
         action={{
-          label: "OK",
+          label: dismissActionLabel,
           onPress: onDismiss,
         }}
       >

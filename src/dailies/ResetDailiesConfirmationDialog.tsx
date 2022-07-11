@@ -2,6 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { View } from "react-native";
 import { Button, Dialog, Paragraph, Portal } from "react-native-paper";
+import { useTranslation } from "../localization/useTranslations";
 
 interface Props {
   visible: boolean;
@@ -14,22 +15,20 @@ const ResetDailiesConfirmationDialog: FC<Props> = ({
   onConfirm,
   onCancel,
 }) => {
+  const { t } = useTranslation();
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={onCancel}>
-        <Dialog.Title>Confirm Reset</Dialog.Title>
+        <Dialog.Title>{t("dailies:resetDialogHeader")}</Dialog.Title>
         <Dialog.Content>
-          <Paragraph>
-            Do you really want to reset today's dailies? Your history will be
-            preserved.
-          </Paragraph>
+          <Paragraph>{t("dailies:confirmResetDialogMessage")}</Paragraph>
         </Dialog.Content>
         <View style={{ flexDirection: "row-reverse" }}>
           <Dialog.Actions>
-            <Button onPress={() => onConfirm()}>Confirm</Button>
+            <Button onPress={() => onConfirm()}>{t("dailies:confirm")}</Button>
           </Dialog.Actions>
           <Dialog.Actions>
-            <Button onPress={() => onCancel()}>Cancel</Button>
+            <Button onPress={() => onCancel()}>{t("dailies:cancel")}</Button>
           </Dialog.Actions>
         </View>
       </Dialog>

@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Checkbox } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { showAppbarInDailies } from "./settings.slice";
 
@@ -15,9 +16,10 @@ const ShowAppBarSwitch: FC<PropsFromRedux> = ({
   appbarShown,
   showAppbarInDailies,
 }) => {
+  const { t } = useTranslation();
   return (
     <Checkbox.Item
-      label="Show App Bar in Dailies"
+      label={t("settings:showAppbar")}
       status={appbarShown ? "checked" : "unchecked"}
       onPress={() => showAppbarInDailies(!appbarShown)}
     ></Checkbox.Item>

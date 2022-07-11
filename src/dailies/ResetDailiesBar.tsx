@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { StyleSheet, View } from "react-native";
 import { IconButton } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
 import { resetDailies } from "./dailies.slice";
 import ResetDailiesConfirmationDialog from "./ResetDailiesConfirmationDialog";
 
@@ -21,6 +22,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const ResetDailiesBar: FC<PropsFromRedux> = ({ resetDailies }) => {
   const [confirmationShown, showConfirmation] = React.useState(false);
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <ResetDailiesConfirmationDialog
@@ -31,6 +33,8 @@ const ResetDailiesBar: FC<PropsFromRedux> = ({ resetDailies }) => {
       <IconButton
         icon="restart"
         onPress={() => showConfirmation(true)}
+        accessibilityLabel={t("dailies:restartButtonAllyLabel")}
+        accessibilityHint={t("dailies:restartButtonAllyHint")}
       ></IconButton>
     </View>
   );

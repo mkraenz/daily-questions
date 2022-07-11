@@ -40,7 +40,7 @@ const LanguageSelect: FC<Props> = (props) => {
           icon="menu-down"
           style={styles.button}
         >
-          {t("translation:language", {
+          {t("settings:language", {
             language:
               langCodeToLanguage[
                 i18n.language as keyof typeof langCodeToLanguage
