@@ -3,6 +3,7 @@ import { Dimensions, ScrollView, View } from "react-native";
 import { Button, Paragraph } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { clearHistory, mockHistory } from "../history/history.slice";
+import { useTranslation } from "../localization/useTranslations";
 import { Question } from "../questions/questions.slice";
 import { RootState } from "../store";
 import Chart from "./Chart";
@@ -58,11 +59,11 @@ const getNDaysAgo = (days: number, datetime = new Date()) => {
 const isWithin = (timeSpan: TimeSpan, dateOnly: string): boolean => {
   const date = new Date(`${dateOnly}T00:00:00.000Z`);
   switch (timeSpan) {
-    case "last 7 days":
+    case "last7days":
       return date >= getNDaysAgo(7);
-    case "last 30 days":
+    case "last30days":
       return date >= getNDaysAgo(30);
-    case "last 1 year":
+    case "last1year":
       return date >= getNDaysAgo(365);
     case "lifetime":
     default:
@@ -84,7 +85,8 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
   useEffect(() => {
     setSelectedQuestions(getAllQuestionsSelected(questions));
   }, [questions]);
-  const [timeSpan, setTimeSpan] = useState<TimeSpan>("last 7 days");
+  const [timeSpan, setTimeSpan] = useState<TimeSpan>("last7days");
+  const { t } = useTranslation();
 
   const selectAllQuestions = () =>
     setSelectedQuestions(getAllQuestionsSelected(questions));
@@ -135,7 +137,7 @@ const StatisticsScreen: FC<PropsFromRedux> = ({
       />
       {devMode && (
         <Button mode="outlined" onPress={() => clearHistory()}>
-          Clear history
+          {t("statistics:clearHistory")}
         </Button>
       )}
     </ScrollView>

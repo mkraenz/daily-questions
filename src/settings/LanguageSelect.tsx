@@ -1,8 +1,21 @@
 import React, { FC } from "react";
+import { StyleSheet } from "react-native";
 import { Button, Menu } from "react-native-paper";
 import { useTranslation } from "../localization/useTranslations";
 
 interface Props {}
+
+const styles = StyleSheet.create({
+  button: {
+    marginBottom: 12,
+  },
+});
+
+const langCodeToLanguage = {
+  en: "English",
+  de: "Deutsch",
+  ja: "日本語",
+};
 
 const LanguageSelect: FC<Props> = (props) => {
   const [visible, setVisible] = React.useState(false);
@@ -25,8 +38,14 @@ const LanguageSelect: FC<Props> = (props) => {
           onPress={openMenu}
           contentStyle={{ flexDirection: "row-reverse" }}
           icon="menu-down"
+          style={styles.button}
         >
-          {t("translation:language", { language: " TODO" })}
+          {t("translation:language", {
+            language:
+              langCodeToLanguage[
+                i18n.language as keyof typeof langCodeToLanguage
+              ],
+          })}
         </Button>
       }
     >

@@ -1,10 +1,11 @@
 import React, { FC } from "react";
 import { Button, Menu } from "react-native-paper";
+import { useTranslation } from "../localization/useTranslations";
 
 export const timeSpans = [
-  "last 7 days",
-  "last 30 days",
-  "last 1 year",
+  "last7days",
+  "last30days",
+  "last1year",
   "lifetime",
 ] as const;
 export type TimeSpan = typeof timeSpans[number];
@@ -16,6 +17,7 @@ interface Props {
 
 const TimeSpanSelector: FC<Props> = ({ timeSpan, setTimeSpan }) => {
   const [visible, setVisible] = React.useState(false);
+  const { t } = useTranslation();
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -26,14 +28,14 @@ const TimeSpanSelector: FC<Props> = ({ timeSpan, setTimeSpan }) => {
       onDismiss={closeMenu}
       anchor={
         <Button mode="outlined" onPress={openMenu}>
-          {timeSpan}
+          {t(`statistics:${timeSpan}`)}
         </Button>
       }
     >
       {timeSpans.map((timeSpan) => (
         <Menu.Item
           key={timeSpan}
-          title={timeSpan}
+          title={t(`statistics:${timeSpan}`)}
           onPress={() => {
             setTimeSpan(timeSpan);
             closeMenu();
