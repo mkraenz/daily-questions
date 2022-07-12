@@ -51,7 +51,17 @@ const FulltextQuestionScreen: FC<Props & PropsFromRedux> = ({
 }) => {
   const { t } = useTranslation();
   const [text, setText] = useState(answer?.toString() ?? "");
-  const onNext = () => onAnswer(text);
+  const [errored, setError] = useState(false);
+
+  const onNext = () => {
+    if (!text) setError(true);
+    return onAnswer(text);
+  };
+
+  const handleChangeText = (newText: string) => {
+    setError(false);
+    setText(newText);
+  };
 
   return (
     <View style={styles.contentContainer}>
@@ -60,11 +70,12 @@ const FulltextQuestionScreen: FC<Props & PropsFromRedux> = ({
       <TextInput
         label={title}
         multiline={true}
-        onChangeText={setText}
+        onChangeText={handleChangeText}
         value={text}
         autoFocus={true}
         style={styles.textInput}
         autoComplete="off"
+        error={errored}
       />
       <Button onPress={onNext} style={styles.button} mode="outlined">
         {t("dailies:next")}
