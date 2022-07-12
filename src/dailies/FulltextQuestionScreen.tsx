@@ -54,8 +54,11 @@ const FulltextQuestionScreen: FC<Props & PropsFromRedux> = ({
   const [errored, setError] = useState(false);
 
   const onNext = () => {
-    if (!text) setError(true);
-    return onAnswer(text);
+    if (!text) {
+      setError(true);
+      return;
+    }
+    onAnswer(text);
   };
 
   const handleChangeText = (newText: string) => {
