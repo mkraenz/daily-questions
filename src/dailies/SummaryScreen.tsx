@@ -11,6 +11,7 @@ import {
 import { connect, ConnectedProps } from "react-redux";
 import { getDailiesDateOnly, submitDailies } from "../history/history.slice";
 import { useTranslation } from "../localization/useTranslations";
+import { selectQuestions } from "../questions/questions.selectors";
 import { RootState } from "../store";
 import { resetDailies, setCurrentQuestionId } from "./dailies.slice";
 import ResetDailiesBar from "./ResetDailiesBar";
@@ -61,7 +62,7 @@ const mapState = (state: RootState) => ({
   uniteConfirmAndShareButtons:
     state.settings.uniteConfirmAndShareButtonsInDailies,
   answeredQuestions: state.dailies.answers.map((answer) => {
-    const question = state.questions.questions.find(
+    const question = selectQuestions(state).find(
       (q) => q.id === answer.questionId
     );
     if (!question) {

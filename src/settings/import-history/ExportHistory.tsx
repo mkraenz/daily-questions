@@ -4,11 +4,12 @@ import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { History } from "../../history/history.slice";
 import { useTranslation } from "../../localization/useTranslations";
+import { selectQuestions } from "../../questions/questions.selectors";
 import { Question } from "../../questions/questions.slice";
 import { RootState } from "../../store";
 
 const mapState = (state: RootState) => ({
-  questions: state.questions.questions,
+  questions: selectQuestions(state),
   history: state.history.history,
 });
 const connector = connect(mapState);

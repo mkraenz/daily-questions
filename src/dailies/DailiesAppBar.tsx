@@ -1,8 +1,9 @@
 import { DrawerHeaderProps } from "@react-navigation/drawer";
 import React, { FC } from "react";
 import { Appbar } from "react-native-paper";
-import { connect, ConnectedProps } from "react-redux";
+import { connect, ConnectedProps, useSelector } from "react-redux";
 import BaseAppBar from "../BaseAppBar";
+import { selectIsEmptyActiveQuestions } from "../questions/questions.selectors";
 import { resetDailies } from "./dailies.slice";
 import ResetDailiesConfirmationDialog from "./ResetDailiesConfirmationDialog";
 
@@ -14,6 +15,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const DailiesAppBar: FC<DrawerHeaderProps & PropsFromRedux> = (props) => {
   const [confirmationShown, showConfirmation] = React.useState(false);
+  const activeQuestionsEmpty = useSelector(selectIsEmptyActiveQuestions);
 
   return (
     <BaseAppBar {...props}>
@@ -25,7 +27,9 @@ const DailiesAppBar: FC<DrawerHeaderProps & PropsFromRedux> = (props) => {
         }}
         onCancel={() => showConfirmation(false)}
       />
-      <Appbar.Action icon="restart" onPress={() => showConfirmation(true)} />
+      {!activeQuestionsEmpty && (
+        <Appbar.Action icon="restart" onPress={() => showConfirmation(true)} />
+      )}
     </BaseAppBar>
   );
 };

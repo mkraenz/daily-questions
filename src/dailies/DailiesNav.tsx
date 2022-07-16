@@ -2,7 +2,12 @@ import { isEmpty } from "lodash";
 import React, { FC, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
+import {
+  selectActiveQuestions,
+  selectIsEmptyActiveQuestions,
+} from "../questions/questions.selectors";
 import { RootState } from "../store";
+import { selectAnswers } from "./dailies.selectors";
 import {
   initAnswers,
   resetDailies,
@@ -11,6 +16,7 @@ import {
 } from "./dailies.slice";
 import FullTextQuestionScreen from "./FulltextQuestionScreen";
 import LoadingScreen from "./LoadingScreen";
+import NoQuestionsScreen from "./NoQuestionsScreen";
 import PointsQuestionScreen from "./PointsQuestionScreen";
 import SummaryScreen from "./SummaryScreen";
 
@@ -22,8 +28,9 @@ const styles = StyleSheet.create({
 });
 
 const mapState = (state: RootState) => ({
-  questions: state.questions.questions.filter((q) => q.active),
-  answers: state.dailies.answers,
+  questions: selectActiveQuestions(state),
+  questionsEmpty: selectIsEmptyActiveQuestions(state),
+  answers: selectAnswers(state),
   currentQuestionId: state.dailies.currentQuestionId,
   finished: state.dailies.allQuestionsAnswered,
 });
@@ -41,6 +48,7 @@ const DailiesNav: FC<PropsFromRedux> = ({
   currentQuestionId,
   finished,
   questions,
+  questionsEmpty,
   setAnswer,
   resetDailies,
   setCurrentQuestionId,
@@ -61,10 +69,15 @@ const DailiesNav: FC<PropsFromRedux> = ({
   }, [questions]);
 
   useEffect(() => {
+    // app gets stuck without loading drawer menu if no questions are available
+    if (questionsEmpty) return;
+
     if (isEmpty(answers)) {
       initAnswers({ questions });
     }
-  }, [answers, questions]);
+  }, [answers, questions, questionsEmpty]);
+
+  if (questionsEmpty) return <NoQuestionsScreen />;
 
   if (finished) return <SummaryScreen />;
 

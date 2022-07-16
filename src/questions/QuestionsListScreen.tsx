@@ -11,6 +11,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { QuestionsNavigationProp } from "./questions-nav";
+import { selectQuestions } from "./questions.selectors";
 import { moveQuestion, Question } from "./questions.slice";
 
 const ListItem: FC<RenderItemParams<Question>> = ({ item, drag, isActive }) => {
@@ -38,7 +39,7 @@ const ListItem: FC<RenderItemParams<Question>> = ({ item, drag, isActive }) => {
 };
 
 const mapState = (state: RootState) => ({
-  questions: state.questions.questions,
+  questions: selectQuestions(state),
 });
 const mapDispatch = {
   moveQuestion,

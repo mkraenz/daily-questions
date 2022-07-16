@@ -32,7 +32,7 @@ export const chartColors = [
 const mapState = (state: RootState) => ({
   history: state.history.history,
   devMode: state.settings.devMode,
-  questions: state.questions.questions,
+  questions: selectQuestions(state),
 });
 const mapDispatch = { clearHistory, mockHistory };
 const connector = connect(mapState, mapDispatch);
@@ -72,6 +72,7 @@ const isWithin = (timeSpan: TimeSpan, dateOnly: string): boolean => {
 };
 
 import { StyleSheet } from "react-native";
+import { selectQuestions } from "../questions/questions.selectors";
 const styles = StyleSheet.create({
   insufficientDataContainer: {
     flex: 1,

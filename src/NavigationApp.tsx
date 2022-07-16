@@ -8,6 +8,7 @@ import BaseAppBar from "./BaseAppBar";
 import DailiesAppBar from "./dailies/DailiesAppBar";
 import DailiesNav from "./dailies/DailiesNav";
 import { useTranslation } from "./localization/useTranslations";
+import { GlobalDrawerParamList, Routes } from "./nav";
 import QuestionsNav from "./questions/QuestionsNav";
 import SettingsScreen from "./settings/SettingsScreen";
 import StatisticsScreen from "./statistics/StatisticsScreen";
@@ -19,13 +20,13 @@ const mapState = (state: RootState) => ({
 const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<GlobalDrawerParamList>();
 
 const NavigationApp: FC<PropsFromRedux> = ({ appbarShownInDailies }) => {
   const theme = useTheme();
   const { t } = useTranslation();
 
-  const initialRoute = "Dailies";
+  const initialRoute: Routes = "Dailies";
 
   return (
     <NavigationContainer

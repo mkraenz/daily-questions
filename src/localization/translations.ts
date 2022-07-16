@@ -66,6 +66,9 @@ const en = {
     confirmResetDialogMessage:
       "Do you really want to reset today's dailies? Your history will be preserved.",
     resetDialogHeader: "Reset Dailies",
+    noQuestions:
+      "No questions available. Please add at least one question to start your self-improvement journey.",
+    noQuestionsButton: "Add New Question",
   },
   questions: {
     addNewQuestion: "Add new question",
@@ -175,6 +178,9 @@ export const translations: Translations = {
       confirmResetDialogMessage:
         "Möchtest du wirklich deine heutigen Dailies zurücksetzen? Dein Verlauf wird beibehalten.",
       resetDialogHeader: "Dailies zurücksetzen",
+      noQuestions:
+        "Keine Fragen verfügbar. Bitte füge mindestens eine Frage hinzu um deine Reise zu persönlicher Weiterentwicklung zu starten.",
+      noQuestionsButton: "Neue Frage hinzufügen",
     },
     questions: {
       addNewQuestion: "Neue Frage hinzufügen",
@@ -262,6 +268,9 @@ export const translations: Translations = {
       confirmResetDialogMessage:
         "本当に今日のDailiesをリセットしますか?履歴は保存されます。",
       resetDialogHeader: "Dailiesをリセットする",
+      noQuestions:
+        "質問は存在しません。自己開発の旅をスタートするため質問を追加してください。",
+      noQuestionsButton: "質問を追加する",
     },
     questions: {
       addNewQuestion: "新しい質問を追加する",
