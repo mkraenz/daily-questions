@@ -1,4 +1,4 @@
-import { validateImportedHistoryString } from "./import-validation";
+import { validateImportedHistoryString } from "./import-history-validation";
 
 it("returns true for an empty array string", () => {
   const result = validateImportedHistoryString('{"history":[]}');

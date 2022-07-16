@@ -44,15 +44,15 @@ const en = {
     envProduction: "Environment: Production",
     envExperimentalMenuItem: "Experimental (App may break!)",
     envProductionMenuItem: "Production",
-    exportHistory: "Export history",
-    importHistory: "Import history",
+    exportHistory: "Export questions & history",
+    importHistory: "Import questions & history",
     importHistoryDialogTitle: "Confirm Import",
     importHistoryDialogDescription:
-      "Warning! This will permanently overwrite your current history. Do you really want to import the history from clipboard?",
+      "Warning! This will permanently overwrite your current history and questions. Do you really want to import history and questions from clipboard?",
     importHistoryErrorDialogTitle: "Import Failed",
     importHistoryErrorDialogDescription:
-      "Importing history from clipboard failed. Please make sure you copied history string is valid. Your existing history was NOT changed.",
-    importHistorySuccessMessage: "History imported successfully",
+      "Importing history and questions from clipboard failed. Please make sure your copied history string is valid. Your existing history and questions were NOT changed.",
+    importHistorySuccessMessage: "Import successful",
   },
   dailies: {
     next: "Next",
@@ -152,15 +152,15 @@ export const translations: Translations = {
       envProduction: "Umgebung: Produktion",
       envExperimentalMenuItem: "Experimental (App geht evtl. kaputt)",
       envProductionMenuItem: "Produktion",
-      exportHistory: "Verlauf exportieren",
-      importHistory: "Verlauf importieren",
+      exportHistory: "Verlauf & Fragen exportieren",
+      importHistory: "Verlauf & Fragen importieren",
       importHistoryDialogTitle: "Import bestätigen",
       importHistoryDialogDescription:
-        "Achtung! Diese Aktion überschreibt deinen aktuellen Verlauf dauerhaft. Möchtest du wirklich mit dem Import eines neuen Verlaufs von der Zwischenablage fortfahren?",
+        "Achtung! Diese Aktion überschreibt deinen aktuellen Verlauf und deine Fragen dauerhaft. Möchtest du wirklich mit dem Import eines neuen Verlaufs von der Zwischenablage fortfahren?",
       importHistoryErrorDialogTitle: "Import fehlgeschlagen",
       importHistoryErrorDialogDescription:
-        "Der Verlauf in deiner Zwischenablage konnte nicht importiert werden. Bitte stelle sicher, dass der kopierte Verlaufsstring gültig ist. Dein aktueller Verlauf wurde NICHT geändert.",
-      importHistorySuccessMessage: "Verlauf erfolgreich importiert",
+        "Der Verlauf und die Fragen in deiner Zwischenablage konnte nicht importiert werden. Bitte stelle sicher, dass der kopierte Verlaufsstring gültig ist. Dein aktueller Verlauf und deine Fragen wurde NICHT geändert.",
+      importHistorySuccessMessage: "Import erfolgreich",
     },
     dailies: {
       next: "Weiter",
@@ -239,15 +239,15 @@ export const translations: Translations = {
       envExperimentalMenuItem: "試験的（アプリが壊れやすくなる）",
       envProduction: "開発環境: 正式版",
       envProductionMenuItem: "正式版",
-      exportHistory: "履歴をエクスポート",
-      importHistory: "履歴をインポート",
+      exportHistory: "履歴と質問をエクスポート",
+      importHistory: "履歴と質問をインポート",
       importHistoryDialogTitle: "インポートの確認",
       importHistoryDialogDescription:
-        "警告! この操作は現在の履歴を上書きします。本当にクリップボードからの履歴をインポートしますか?",
+        "警告! この操作は現在の履歴と質問を上書きします。本当にクリップボードからの履歴をインポートしますか?",
       importHistoryErrorDialogTitle: "インポートエラー",
       importHistoryErrorDialogDescription:
-        "クリップボードからの履歴をインポートできませんでした。コピーした履歴が有効であることを確認してください。現在の履歴は変更されていませんでした。",
-      importHistorySuccessMessage: "履歴は正常にインポートされました。",
+        "クリップボードからの履歴と質問をインポートできませんでした。コピーした履歴ストリングが有効であることを確認してください。現在の履歴や質問は変更されていませんでした。",
+      importHistorySuccessMessage: "インポートは成功しました。",
     },
     dailies: {
       next: "次へ",

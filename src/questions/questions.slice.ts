@@ -75,9 +75,18 @@ const questionsSlice = createSlice({
       ];
       state.questions = questions;
     },
+
+    setQuestions(state, action: PayloadAction<{ questions: Question[] }>) {
+      state.questions = action.payload.questions;
+    },
   },
 });
 
-export const { addQuestion, editQuestion, archiveQuestion, moveQuestion } =
-  questionsSlice.actions;
+export const {
+  addQuestion,
+  editQuestion,
+  archiveQuestion,
+  moveQuestion,
+  setQuestions,
+} = questionsSlice.actions;
 export default questionsSlice.reducer;

@@ -4,7 +4,7 @@ import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { History } from "../../history/history.slice";
 import { useTranslation } from "../../localization/useTranslations";
-import { QuestionsState } from "../../questions/questions.slice";
+import { Question } from "../../questions/questions.slice";
 import { RootState } from "../../store";
 
 const mapState = (state: RootState) => ({
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 });
 
 export interface ExportedHistoryAndQuestions {
-  questions: QuestionsState["questions"];
+  questions: Question[];
   history: History;
 }
 
