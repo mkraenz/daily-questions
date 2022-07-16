@@ -1,5 +1,6 @@
 import { inRange, isInteger, isNil, isPlainObject, negate } from "lodash";
 import { HistoricEntry } from "../../history/history.slice";
+import { ExportedHistoryAndQuestions } from "./ExportHistory";
 
 const isStringOrNumber = (x: unknown): x is string | number =>
   ["string", "number"].includes(typeof x);
@@ -41,9 +42,14 @@ export const validateImportedHistoryString = (
   importedHistoryString: string
 ) => {
   try {
-    const imported = JSON.parse(importedHistoryString);
-    if (!Array.isArray(imported)) throw new Error("not an array");
-    return imported.every((item) => IsHistoricEntry(item));
+    // desired type, but needs to be validated!
+    const imported: Partial<ExportedHistoryAndQuestions> = JSON.parse(
+      importedHistoryString
+    );
+    if (!isPlainObject(imported)) throw new Error("Not a plain object");
+    if (!imported.history) throw new Error("No history property found");
+    if (!Array.isArray(imported.history)) throw new Error("not an array");
+    return imported.history.every(IsHistoricEntry);
   } catch (error) {
     return false;
   }

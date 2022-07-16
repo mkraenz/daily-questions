@@ -6,6 +6,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { setHistory } from "../../history/history.slice";
 import { useTranslation } from "../../localization/useTranslations";
 import { RootState } from "../../store";
+import { ExportedHistoryAndQuestions } from "./ExportHistory";
 import { validateImportedHistoryString } from "./import-validation";
 import ImportHistoryConfirmationDialog from "./ImportHistoryConfirmationDialog";
 import ImportHistoryErrorDialog from "./ImportHistoryErrorDialog";
@@ -36,9 +37,10 @@ const ImportHistory: FC<PropsFromRedux> = ({ setHistory }) => {
     const pastedText = await Clipboard.getStringAsync();
     const valid = validateImportedHistoryString(pastedText);
     if (valid) {
+      const imported: ExportedHistoryAndQuestions = JSON.parse(pastedText);
       setHistory({
         // save to parse because of validation
-        history: JSON.parse(pastedText),
+        history: imported.history,
       });
       setSuccess(true);
     } else {
