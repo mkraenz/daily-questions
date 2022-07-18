@@ -1,6 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { pick } from "lodash";
 
+export interface NotificationSettings {
+  enabled: boolean;
+  minute: number;
+  hour: number;
+}
+
 export interface SettingsState {
   devMode: boolean;
   /** initially null to track first app open */
@@ -13,6 +19,8 @@ export interface SettingsState {
   belatedDailiesUntilNextDayAt: { hour: number; minute: number };
   appbarShownInDailies: boolean;
   uniteConfirmAndShareButtonsInDailies: boolean;
+  /** optional only first app open */
+  notifications?: NotificationSettings;
 }
 
 const initialState: SettingsState = {
@@ -58,6 +66,10 @@ const settingsSlice = createSlice({
     ) {
       state.uniteConfirmAndShareButtonsInDailies = action.payload;
     },
+
+    setNotificationTime(state, action: PayloadAction<NotificationSettings>) {
+      state.notifications = action.payload;
+    },
   },
 });
 
@@ -67,5 +79,6 @@ export const {
   setBelatedDailiesUntilNextDayAtHour,
   showAppbarInDailies,
   setUniteConfirmAndShareButtonsInDailies,
+  setNotificationTime,
 } = settingsSlice.actions;
 export default settingsSlice.reducer;

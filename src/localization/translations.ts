@@ -53,6 +53,9 @@ const en = {
     importHistoryErrorDialogDescription:
       "Importing history and questions from clipboard failed. Please make sure your copied history string is valid. Your existing history and questions were NOT changed.",
     importHistorySuccessMessage: "Import successful",
+    notificationTitle: "It's time for your Dailies.",
+    notificationTime: "Daily notification at {{time}}",
+    notificationsEnabled: "Daily notifications enabled",
   },
   dailies: {
     next: "Next",
@@ -164,6 +167,9 @@ export const translations: Translations = {
       importHistoryErrorDialogDescription:
         "Der Verlauf und die Fragen in deiner Zwischenablage konnte nicht importiert werden. Bitte stelle sicher, dass der kopierte Verlaufsstring gültig ist. Dein aktueller Verlauf und deine Fragen wurde NICHT geändert.",
       importHistorySuccessMessage: "Import erfolgreich",
+      notificationTitle: "Zeit für deine Dailies.",
+      notificationTime: "Benachrichtungen um {{time}}",
+      notificationsEnabled: "Benachrichtigungen aktiviert",
     },
     dailies: {
       next: "Weiter",
@@ -254,6 +260,9 @@ export const translations: Translations = {
       importHistoryErrorDialogDescription:
         "クリップボードからの履歴と質問をインポートできませんでした。コピーした履歴ストリングが有効であることを確認してください。現在の履歴や質問は変更されていませんでした。",
       importHistorySuccessMessage: "インポートは成功しました。",
+      notificationTitle: "Dailiesの時間ですよ。",
+      notificationTime: "毎日{{time}}に通知を行います。",
+      notificationsEnabled: "毎日の通知が有効",
     },
     dailies: {
       next: "次へ",
