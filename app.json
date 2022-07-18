@@ -11,7 +11,7 @@
     "privacy": "public",
     "android": {
       "package": "eu.kraenz.dailyquestions",
-      "permissions": [],
+      "permissions": ["RECEIVE_BOOT_COMPLETED", "SCHEDULE_EXACT_ALARM"],
       "versionCode": 12,
       "adaptiveIcon": {
         "foregroundImage": "./assets/dailies-logo.png"
@@ -30,6 +30,14 @@
     "ios": {
       "bundleIdentifier": "eu.kraenz.dailyquestions"
     },
-    "userInterfaceStyle": "automatic"
+    "userInterfaceStyle": "automatic",
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png"
+        }
+      ]
+    ]
   }
 }

@@ -8,3 +8,5 @@ export const useTranslation = (
   const safeT = (key: TranslationKeys, obj?: {}) => t(key, obj);
   return { i18n, t: safeT };
 };
+
+export type TranslateFunction = ReturnType<typeof useTranslation>["t"];
