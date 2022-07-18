@@ -31,6 +31,9 @@
       "bundleIdentifier": "eu.kraenz.dailyquestions"
     },
     "userInterfaceStyle": "automatic",
+    "notification": {
+      "icon": "./assets/notification-icon.png"
+    },
     "plugins": [
       [
         "expo-notifications",
