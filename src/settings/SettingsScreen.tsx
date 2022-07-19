@@ -16,7 +16,6 @@ const SettingsScreen = () => {
   return (
     <View
       style={{
-        justifyContent: "center",
         display: "flex",
         height: "100%",
         padding: 20,
