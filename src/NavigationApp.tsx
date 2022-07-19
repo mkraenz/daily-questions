@@ -7,6 +7,7 @@ import { connect, ConnectedProps } from "react-redux";
 import BaseAppBar from "./BaseAppBar";
 import DailiesAppBar from "./dailies/DailiesAppBar";
 import DailiesNav from "./dailies/DailiesNav";
+import HistoryNav from "./history/HistoryNav";
 import { useTranslation } from "./localization/useTranslations";
 import { GlobalDrawerParamList, Routes } from "./nav";
 import QuestionsNav from "./questions/QuestionsNav";
@@ -64,6 +65,14 @@ const NavigationApp: FC<PropsFromRedux> = ({ appbarShownInDailies }) => {
           component={StatisticsScreen}
           options={{
             title: t("routes:statistics"),
+          }}
+        />
+        <Drawer.Screen
+          name="HistoryNav"
+          component={HistoryNav}
+          options={{
+            headerShown: false,
+            title: t("routes:history"),
           }}
         />
         <Drawer.Screen

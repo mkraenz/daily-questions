@@ -6,6 +6,8 @@ const en = {
     settings: "Settings",
     addNewQuestion: "Add New Question",
     editQuestion: "Edit Question",
+    history: "History",
+    historicEntry: "Historic Entry",
   },
   general: {
     navigateBackAllyHint: "Navigate back to previous screen",
@@ -23,7 +25,6 @@ const en = {
     Fri: "Fri",
     Sat: "Sat",
   },
-  translation: {},
   statistics: {
     clearHistory: "DANGER: Clear History",
     ["last7days"]: "last 7 days",
@@ -88,6 +89,9 @@ const en = {
     archivalDialogDescription:
       "Do you really want to archive this question? Unconfirmed progress of today's dailies will be reset.",
   },
+  history: {
+    questionNotFound: "Not found",
+  },
 };
 
 // Typescript magic to have more type-safety in custom useTranslation() hook
@@ -99,11 +103,11 @@ export type TranslationKeys =
   | TranslationKey<"routes">
   | TranslationKey<"general">
   | TranslationKey<"weekdays">
-  | TranslationKey<"translation">
   | TranslationKey<"statistics">
   | TranslationKey<"settings">
   | TranslationKey<"dailies">
-  | TranslationKey<"questions">;
+  | TranslationKey<"questions">
+  | TranslationKey<"history">;
 
 type Translations = {
   [key: string]: typeof en;
@@ -119,6 +123,8 @@ export const translations: Translations = {
       settings: "Einstellungen",
       addNewQuestion: "Neue Frage hinzufügen",
       editQuestion: "Frage bearbeiten",
+      history: "Verlauf",
+      historicEntry: "Verlaufseintrag",
     },
     general: {
       navigateBackAllyHint: "Zurück zur vorherigen Ansicht",
@@ -136,7 +142,6 @@ export const translations: Translations = {
       Fri: "Fr.",
       Sat: "Sa.",
     },
-    translation: {},
     statistics: {
       clearHistory: "GEFAHR: Verlauf löschen",
       ["last7days"]: "letzte 7 Tage",
@@ -203,6 +208,9 @@ export const translations: Translations = {
       archivalDialogDescription:
         "Möchtest du diese Frage wirklich archivieren? Unbestätigter Fortschritt in den heutigen Dailies wird zurückgesetzt.",
     },
+    history: {
+      questionNotFound: "Nicht gefunden",
+    },
   },
   ja: {
     routes: {
@@ -212,6 +220,8 @@ export const translations: Translations = {
       settings: "設定",
       addNewQuestion: "新しい質問を追加",
       editQuestion: "質問を編集",
+      history: "履歴",
+      historicEntry: "履歴エントリ",
     },
     general: {
       navigateBackAllyHint: "前のスクリーンに戻る",
@@ -295,6 +305,9 @@ export const translations: Translations = {
       confirmArchival: "アーカイブの確認",
       archivalDialogDescription:
         "本当にこの質問をアーカイブしますか?未確認のk今日のDailiesはリセットされます。",
+    },
+    history: {
+      questionNotFound: "見つかりません",
     },
   },
 };

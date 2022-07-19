@@ -34,6 +34,24 @@ export const mockedHistoricData = [
     ],
   },
   {
+    date: "2022-04-02",
+    qs: [
+      { id: "a5e36d31", a: 1 },
+      { id: "063c6ce1", a: 10 },
+      { id: "aa73eb84", a: 10 },
+      { id: "e881e50e", a: 1 },
+      { id: "ec57f75e", a: 1 },
+      { id: "nonexistent", a: 1 },
+      { id: "b1667166", a: 8 },
+      { id: "c5c844e6", a: 10 },
+      { id: "b875a18e", a: "Improving the daily questions app" },
+      {
+        id: "c706f049",
+        a: "Go Shopping since tomorrow's a holiday",
+      },
+    ],
+  },
+  {
     date: "2022-06-01",
     qs: [
       { id: "a5e36d31", a: 4 },
