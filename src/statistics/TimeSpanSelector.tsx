@@ -35,7 +35,13 @@ const TimeSpanSelector: FC<Props> = ({ timeSpan, setTimeSpan }) => {
       visible={visible}
       onDismiss={closeMenu}
       anchor={
-        <Button mode="contained" onPress={openMenu} style={styles.button}>
+        <Button
+          mode="contained"
+          onPress={openMenu}
+          style={styles.button}
+          contentStyle={{ flexDirection: "row-reverse" }}
+          icon="menu-down"
+        >
           {t(`statistics:${timeSpan}`)}
         </Button>
       }
