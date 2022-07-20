@@ -159,10 +159,6 @@ export const translations: Translations = {
       uniteConfirmAndShare:
         "Tasten für Bestätigen und Teilen in Zusammenfassung der Dailies vereinen",
       startOfNextDay: "Start des nächsten Tages: {{time}}",
-      envExperimental: "Umgebung: Experimental",
-      envProduction: "Umgebung: Produktion",
-      envExperimentalMenuItem: "Experimental (App geht evtl. kaputt)",
-      envProductionMenuItem: "Produktion",
       enableDevMode: "Entwicklermodus aktivieren",
       devModeDialogTitle: "Entwicklermodus aktivieren?",
       devModeDialogDescription:
@@ -260,10 +256,6 @@ export const translations: Translations = {
       uniteConfirmAndShare:
         "Dailiesのまとめ画面に確認と共有を一つのボトンにする",
       startOfNextDay: "次の日の開始時間: {{time}}",
-      envExperimental: "開発環境: 試験的",
-      envExperimentalMenuItem: "試験的（アプリが壊れやすくなる）",
-      envProduction: "開発環境: 正式版",
-      envProductionMenuItem: "正式版",
       enableDevMode: "開発モード",
       devModeDialogTitle: "開発モードを有効にする？",
       devModeDialogDescription:
