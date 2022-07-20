@@ -9,6 +9,7 @@
     "web": "expo start --web",
     "start": "expo start --dev-client",
     "eas:build": "tsc --noEmit && eas build --platform android",
+    "eas:submit": "eas submit --platform android",
     "dev": "expo start",
     "dev:clear-cache": "expo start --clear",
     "deploy": "expo build:android",
