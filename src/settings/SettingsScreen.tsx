@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import BelatedDailiesTimePicker from "./BelatedDailiesTimePicker";
 import DarkModeSwitch from "./DarkModeSwitch";
-import DevModeDropDownMenu from "./DevModeDropdown";
+import DevModeSwitch from "./DevModeSwitch";
 import ExportHistory from "./import-history/ExportHistory";
 import ImportHistory from "./import-history/ImportHistory";
 import LanguageSelect from "./LanguageSelect";
@@ -25,11 +25,11 @@ const SettingsScreen = () => {
       <DarkModeSwitch />
       <ShowAppbarSwitch />
       <UniteConfirmAndShareButtonsSwitch />
+      <DevModeSwitch />
       <NotificationSwitch />
       <NotificationTimePicker />
       <BelatedDailiesTimePicker />
       <LanguageSelect />
-      <DevModeDropDownMenu />
       <ExportHistory />
       <ImportHistory />
     </View>

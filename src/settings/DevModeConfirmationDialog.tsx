@@ -1,7 +1,14 @@
+import { FontAwesome } from "@expo/vector-icons";
 import * as React from "react";
 import { FC } from "react";
 import { View } from "react-native";
-import { Button, Dialog, Paragraph, Portal } from "react-native-paper";
+import {
+  Button,
+  Dialog,
+  Paragraph,
+  Portal,
+  useTheme,
+} from "react-native-paper";
 import { useTranslation } from "../localization/useTranslations";
 
 interface Props {
@@ -10,7 +17,12 @@ interface Props {
   onCancel: () => void;
 }
 
-const ResetDailiesConfirmationDialog: FC<Props> = ({
+const WarningIcon: FC = () => {
+  const theme = useTheme();
+  return <FontAwesome name={"warning"} size={24} color={theme.colors.error} />;
+};
+
+const DevModeConfirmationDialog: FC<Props> = ({
   visible,
   onConfirm,
   onCancel,
@@ -20,10 +32,10 @@ const ResetDailiesConfirmationDialog: FC<Props> = ({
     <Portal>
       <Dialog visible={visible} onDismiss={onCancel}>
         <Dialog.Title accessibilityRole="header">
-          {t("dailies:resetDialogHeader")}
+          <WarningIcon /> {t("settings:devModeDialogTitle")}
         </Dialog.Title>
-        <Dialog.Content>
-          <Paragraph>{t("dailies:confirmResetDialogMessage")}</Paragraph>
+        <Dialog.Content style={{ flexDirection: "row" }}>
+          <Paragraph>{t("settings:devModeDialogDescription")}</Paragraph>
         </Dialog.Content>
         <View style={{ flexDirection: "row-reverse" }}>
           <Dialog.Actions>
@@ -38,4 +50,4 @@ const ResetDailiesConfirmationDialog: FC<Props> = ({
   );
 };
 
-export default ResetDailiesConfirmationDialog;
+export default DevModeConfirmationDialog;

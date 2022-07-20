@@ -19,7 +19,9 @@ const ArchiveConfirmationDialog: FC<Props> = ({
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={onCancel}>
-        <Dialog.Title>{t("questions:confirmArchival")}</Dialog.Title>
+        <Dialog.Title accessibilityRole="header">
+          {t("questions:confirmArchival")}
+        </Dialog.Title>
         <Dialog.Content>
           {/* TODO explain how to revert archival */}
           <Paragraph>{t("questions:archivalDialogDescription")}</Paragraph>

@@ -31,7 +31,7 @@ const ImportHistoryConfirmationDialog: FC<Props> = ({
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={onCancel}>
-        <Dialog.Title>
+        <Dialog.Title accessibilityRole="header">
           <WarningIcon /> {t("settings:importHistoryDialogTitle")}{" "}
           <WarningIcon />
         </Dialog.Title>
