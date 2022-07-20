@@ -17,13 +17,17 @@ import { RootState } from "./store";
 
 const mapState = (state: RootState) => ({
   appbarShownInDailies: state.settings.appbarShownInDailies,
+  devMode: state.settings.devMode,
 });
 const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const Drawer = createDrawerNavigator<GlobalDrawerParamList>();
 
-const NavigationApp: FC<PropsFromRedux> = ({ appbarShownInDailies }) => {
+const NavigationApp: FC<PropsFromRedux> = ({
+  appbarShownInDailies,
+  devMode,
+}) => {
   const theme = useTheme();
   const { t } = useTranslation();
 
@@ -67,14 +71,16 @@ const NavigationApp: FC<PropsFromRedux> = ({ appbarShownInDailies }) => {
             title: t("routes:statistics"),
           }}
         />
-        <Drawer.Screen
-          name="HistoryNav"
-          component={HistoryNav}
-          options={{
-            headerShown: false,
-            title: t("routes:history"),
-          }}
-        />
+        {devMode && (
+          <Drawer.Screen
+            name="HistoryNav"
+            component={HistoryNav}
+            options={{
+              headerShown: false,
+              title: t("routes:history"),
+            }}
+          />
+        )}
         <Drawer.Screen
           name="Customize Questions"
           component={QuestionsNav}
