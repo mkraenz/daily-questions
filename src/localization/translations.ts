@@ -89,6 +89,25 @@ const en = {
     archivalDialogDescription:
       "Do you really want to archive this question? Unconfirmed progress of today's dailies will be reset.",
   },
+  defaultQuestions: {
+    Goals: "Goals",
+    Progress: "Progress",
+    Meaning: "Meaning",
+    Happiness: "Happiness",
+    Social: "Social",
+    Engagement: "Engagement",
+    Highlight: "Highlight",
+    questionLongGoals: "Did I do my best to set clear goals today?",
+    questionLongProgress:
+      "Did I do my best to make progress towards my goals today?",
+    questionLongMeaning:
+      "Did I do my best to find meaning in what I am doing today?",
+    questionLongHappiness: "Did I do my best to be happy today?",
+    questionLongSocial:
+      "Did I do my best to build positive relationships today?",
+    questionLongEngagement: "Did I do my best to be fully engaged today?",
+    questionLongHighlight: "What was my personal highlight today and why?",
+  },
   history: {
     questionNotFound: "Not found",
   },
@@ -107,6 +126,7 @@ export type TranslationKeys =
   | TranslationKey<"settings">
   | TranslationKey<"dailies">
   | TranslationKey<"questions">
+  | TranslationKey<"defaultQuestions">
   | TranslationKey<"history">;
 
 type Translations = {
@@ -208,6 +228,29 @@ export const translations: Translations = {
       archivalDialogDescription:
         "Möchtest du diese Frage wirklich archivieren? Unbestätigter Fortschritt in den heutigen Dailies wird zurückgesetzt.",
     },
+    defaultQuestions: {
+      Goals: "Ziele",
+      Progress: "Fortschritt",
+      Meaning: "Bedeutung",
+      Happiness: "Glückseligkeit",
+      Social: "Beziehungen",
+      Engagement: "Engagement",
+      Highlight: "Höhepunkt",
+      questionLongGoals:
+        "Habe ich mein Bestes gegeben, um mir klare Ziele zu setzen?",
+      questionLongProgress:
+        "Habe ich mein Bestes gegeben, um Fortschritt entgegen meiner Ziele zu machen?",
+      questionLongMeaning:
+        "Habe ich mein Bestes gegeben, um Bedeutung zu finden, in dem was ich tue?",
+      questionLongHappiness:
+        "Habe ich mein Bestes gegeben, um glücklich zu sein?",
+      questionLongSocial:
+        "Habe ich mein Bestes gegeben. um positive soziale Beziehungen aufzubauen?",
+      questionLongEngagement:
+        "Habe ich mein Bestes gegeben, um engagiert zu sein?",
+      questionLongHighlight:
+        "Was war mein persönlicher Höhepunkt des Tages und warum?",
+    },
     history: {
       questionNotFound: "Nicht gefunden",
     },
@@ -252,7 +295,7 @@ export const translations: Translations = {
     settings: {
       showAppbar: "アプリバーをDailiesで表紙する",
       darkMode: "ダークモード",
-      language: "言葉: {{language}}",
+      language: "言語: {{language}}",
       uniteConfirmAndShare:
         "Dailiesのまとめ画面に確認と共有を一つのボトンにする",
       startOfNextDay: "次の日の開始時間: {{time}}",
@@ -304,6 +347,23 @@ export const translations: Translations = {
       confirmArchival: "アーカイブの確認",
       archivalDialogDescription:
         "本当にこの質問をアーカイブしますか?未確認のk今日のDailiesはリセットされます。",
+    },
+    defaultQuestions: {
+      Goals: "目標",
+      Progress: "上達",
+      Meaning: "意味",
+      Happiness: "幸せ",
+      Social: "人間関係",
+      Engagement: "頑張り",
+      Highlight: "ハイライト",
+      questionLongGoals: "具体的な目標を立つためにできるだけ頑張りましたか？",
+      questionLongProgress: "目標に上達ためにできるだけ頑張りましたか？",
+      questionLongMeaning: "活躍に意味を感じるためにできるだけ頑張りましたか？",
+      questionLongHappiness: "幸せでいるためにできるだけ頑張りましたか？",
+      questionLongSocial:
+        "良好な人間関係を築くためにできるだけ頑張りましたか？",
+      questionLongEngagement: "頑張るためにできるだけ頑張りましたか？",
+      questionLongHighlight: "今日の圧巻は何でしたか？なぜそれが圧巻でしたか？",
     },
     history: {
       questionNotFound: "見つかりません",

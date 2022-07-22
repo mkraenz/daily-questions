@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { partition } from "lodash";
 import { v4 } from "uuid";
-import { defaultQuestions } from "./default-questions";
 
 export interface Question {
   title: string;
@@ -14,7 +13,7 @@ export interface Question {
 export interface QuestionsState {
   questions: Question[];
 }
-const initialState: QuestionsState = { questions: defaultQuestions };
+const initialState: QuestionsState = { questions: [] };
 
 const getUniqueId = (questionsIds: string[]): string => {
   const id = v4().split("-")[0];

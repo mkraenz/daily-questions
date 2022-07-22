@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 16,
     paddingRight: 16,
-    display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
   },
   title: {
     fontSize: 32,
+    paddingVertical: 4, // quickfix: title gets clipped at top without padding
   },
   input: {
     width: "100%",
@@ -63,7 +63,9 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
 
   return (
     <View style={styles.contentContainer}>
-      <Title style={styles.title}>{title}</Title>
+      <Title style={styles.title} accessibilityRole="header">
+        {title}
+      </Title>
       <Paragraph>{questionLong}</Paragraph>
       <TextInput
         label={title}

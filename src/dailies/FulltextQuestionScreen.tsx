@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+    paddingVertical: 4, // quickfix: title gets clipped at top without padding
   },
   textInput: {
     width: "100%",

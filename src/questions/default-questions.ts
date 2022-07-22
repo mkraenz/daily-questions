@@ -1,5 +1,12 @@
 export const defaultQuestions: {
-  title: string;
+  title:
+    | "Goals"
+    | "Progress"
+    | "Meaning"
+    | "Happiness"
+    | "Social"
+    | "Engagement"
+    | "Highlight";
   id: string; // first 8 chars of a uuid v4
   questionLong: string;
   type: "points" | "fulltext";

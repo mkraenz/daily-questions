@@ -2,10 +2,13 @@ import { isEmpty } from "lodash";
 import React, { FC, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
+import { defaultQuestions } from "../questions/default-questions";
 import {
   selectActiveQuestions,
   selectIsEmptyActiveQuestions,
 } from "../questions/questions.selectors";
+import { setQuestions } from "../questions/questions.slice";
 import { RootState } from "../store";
 import { selectAnswers } from "./dailies.selectors";
 import {
@@ -34,13 +37,14 @@ const mapState = (state: RootState) => ({
   currentQuestionId: state.dailies.currentQuestionId,
   finished: state.dailies.allQuestionsAnswered,
 });
-const mapReducer = {
+const mapDispatch = {
   setAnswer,
   resetDailies,
   setCurrentQuestionId,
   initAnswers,
+  setQuestions,
 };
-const connector = connect(mapState, mapReducer);
+const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const DailiesNav: FC<PropsFromRedux> = ({
@@ -53,9 +57,11 @@ const DailiesNav: FC<PropsFromRedux> = ({
   resetDailies,
   setCurrentQuestionId,
   initAnswers,
+  setQuestions,
 }) => {
   // handling of changes to the question list while dailies have already been started with an old questions list
   // essentially: if a question was added, archived, or moved, reset everything. Otherwise, keep the state (but change the texts)
+  const { t } = useTranslation();
   const [cachedQuestionIds, setCachedQuestionIds] = useState(
     questions.map((q) => q.id)
   );
@@ -70,7 +76,16 @@ const DailiesNav: FC<PropsFromRedux> = ({
 
   useEffect(() => {
     // app gets stuck without loading drawer menu if no questions are available
-    if (questionsEmpty) return;
+    if (questionsEmpty) {
+      const localizedDefaultQuestions = defaultQuestions.map((q) => ({
+        ...q,
+        title: t(`defaultQuestions:${q.title}`),
+        questionLong: t(`defaultQuestions:questionLong${q.title}`),
+      }));
+
+      setQuestions({ questions: localizedDefaultQuestions });
+      return;
+    }
 
     if (isEmpty(answers)) {
       initAnswers({ questions });
