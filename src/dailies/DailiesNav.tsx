@@ -60,17 +60,16 @@ const DailiesNav: FC<PropsFromRedux> = ({
   setQuestions,
 }) => {
   // handling of changes to the question list while dailies have already been started with an old questions list
-  // essentially: if a question was added, archived, or moved, reset everything. Otherwise, keep the state (but change the texts)
+  // essentially: if a question was added, archived, moved, or its type changed, then reset everything. Otherwise, keep the state (but change the texts)
   const { t } = useTranslation();
-  const [cachedQuestionIds, setCachedQuestionIds] = useState(
-    questions.map((q) => q.id)
-  );
+  const [cachedQuestions, setCachedQuestions] = useState(questions);
   useEffect(() => {
     const noSeriousQuestionListChanges = questions.every(
-      (q, i) => q.id === cachedQuestionIds[i]
+      (q, i) =>
+        q.id === cachedQuestions[i].id && q.type === cachedQuestions[i].type
     );
     if (noSeriousQuestionListChanges) return; // i.e. no new questions, archived questions, or moved questions. Renames of existing questions might have occured. In this case, we can keep the current dailies state for the users comfort.
-    setCachedQuestionIds(questions.map((q) => q.id));
+    setCachedQuestions(questions);
     resetDailies();
   }, [questions]);
 
