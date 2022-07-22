@@ -38,7 +38,6 @@ function mapHistory(history: History, questions: Question[]) {
 const HistoryItem: FC<{ item: HistoricEntryParams }> = ({ item }) => {
   const nav = useNavigation<HistoryNavigationProp>();
   const answerNumbers = item.questions
-    .filter((q) => q.type === "points")
     .map((question) => question.answer)
     .join(" ");
   return (

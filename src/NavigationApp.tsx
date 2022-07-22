@@ -71,16 +71,14 @@ const NavigationApp: FC<PropsFromRedux> = ({
             title: t("routes:statistics"),
           }}
         />
-        {devMode && (
-          <Drawer.Screen
-            name="HistoryNav"
-            component={HistoryNav}
-            options={{
-              headerShown: false,
-              title: t("routes:history"),
-            }}
-          />
-        )}
+        <Drawer.Screen
+          name="HistoryNav"
+          component={HistoryNav}
+          options={{
+            headerShown: false,
+            title: t("routes:history"),
+          }}
+        />
         <Drawer.Screen
           name="Customize Questions"
           component={QuestionsNav}
