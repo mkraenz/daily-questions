@@ -51,10 +51,10 @@ const HistoryItem: FC<{ item: HistoricEntryParams }> = ({ item }) => {
 };
 
 const HistoryScreen: FC<PropsFromRedux> = ({ history, questions }) => {
-  const mappedHistory = mapHistory(history, questions);
+  const mappedHistoryNewestFirst = mapHistory(history, questions).reverse();
   return (
     <FlatList
-      data={mappedHistory}
+      data={mappedHistoryNewestFirst}
       renderItem={(item) => <HistoryItem {...item} />}
       keyExtractor={(item) => item.date}
       ItemSeparatorComponent={Divider}
