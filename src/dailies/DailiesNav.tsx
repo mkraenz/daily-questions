@@ -66,7 +66,7 @@ const DailiesNav: FC<PropsFromRedux> = ({
   useEffect(() => {
     const noSeriousQuestionListChanges = questions.every(
       (q, i) =>
-        q.id === cachedQuestions[i].id && q.type === cachedQuestions[i].type
+        q.id === cachedQuestions[i]?.id && q.type === cachedQuestions[i]?.type
     );
     if (noSeriousQuestionListChanges) return; // i.e. no new questions, archived questions, or moved questions. Renames of existing questions might have occured. In this case, we can keep the current dailies state for the users comfort.
     setCachedQuestions(questions);
