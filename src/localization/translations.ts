@@ -34,6 +34,7 @@ const en = {
     insufficientDataInTimeSpan:
       "You completed your dailies {{numOfEntries}} times in the selected time span. Your statistics show up once you've completed at least 2 dailies.",
     mockHistory: "DANGER: replace history by test data",
+    timeSpanSelectMenuA11yLabel: "Close time span selection menu",
   },
   settings: {
     showAppbar: "Show App Bar in Dailies",
@@ -60,6 +61,9 @@ const en = {
   },
   dailies: {
     next: "Next",
+    nextA11yHint: "Navigate to next question or to summary",
+    shortAnswerListA11yLabel:
+      "Provided answers to questions with points: {{ answers }}",
     share: "Share",
     confirmAndShare: "Confirm and Share",
     confirmedSuccessfully: "Dailies added to history",
@@ -70,24 +74,43 @@ const en = {
     confirmResetDialogMessage:
       "Do you really want to reset today's dailies? Your history will be preserved.",
     resetDialogHeader: "Reset Dailies",
+    confirmResetDialogConfirmButtonA11yHint:
+      "Resets answers of today's dailies and navigates to the first question",
     noQuestions:
       "No questions available. Please add at least one question to start your self-improvement journey.",
     noQuestionsButton: "Add New Question",
+    goto: 'Go back to question "{{questionTitle}}"',
+    answerRowA11yLabel: "{{ questionTitle }}: {{ answer }}",
+    pointsQuestionInputA11yLabel: "{{ questionTitle }}, {{ questionLong }}",
+    pointsQuestionInputA11yHint:
+      "Enter your answer from 1 to 10 points, enter 0 for 10 points. After input, the app automatically navigates to next question or to summary.",
   },
   questions: {
     addNewQuestion: "Add new question",
-    listItemA11yHint:
-      "Tap to edit the question. To change the questions position during your dailies, long tap, then drag and drop to your preferred position.",
+    addNewQuestionA11yHint: 'Navigate to "Add New Question"',
+    listItemA11yHint: "Go to Edit question", // long press does not work with Android TalkBack
     title: "Title*",
+    titleInputA11yLabel: "Title of the question, required input.",
+    placeHolderExample: "Example: {{ example }}",
     longQuestion: "Full Question",
+    longQuestionInputA11yLabel:
+      "Full Question of the question, optional input.",
     save: "Save Changes",
+    saveA11yHint: "Saves changes to question and return to questions list",
     archive: "Archive Question",
+    archiveA11yHint: "Opens a dialog to confirm archival",
     type: "Answer type: {{type}}",
     typepoints: "Points",
     typefulltext: "Fulltext",
+    typeSelectMenuBackOverlayA11yLabel: "Close answer type selection menu",
+    typeSelectMenuButtonA11yHint: "Opens answer type selection menu",
     confirmArchival: "Confirm Archival",
     archivalDialogDescription:
       "Do you really want to archive this question? Unconfirmed progress of today's dailies will be reset.",
+    archivalDialogConfirmA11yHint:
+      "Archive question and return to questions list",
+    create: "Create",
+    createButtonA11yHint: "Create question and go back to questions list.",
   },
   defaultQuestions: {
     Goals: "Goals",
@@ -171,6 +194,7 @@ export const translations: Translations = {
       insufficientDataInTimeSpan:
         "Du hast deine Dailies {{numOfEntries}} mal im ausgewählten Zeitraum abgeschlossen. Deine Statistiken werden hier angezeigt, sobald du mindestens 2 Dailies abgeschlossen hast.",
       mockHistory: "GEFAHR: Verlauf durch Testdaten ersetzen",
+      timeSpanSelectMenuA11yLabel: "Zeitraumauswahlmenü schließen",
     },
     settings: {
       showAppbar: "App-Leiste in Dailies anzeigen",
@@ -198,6 +222,9 @@ export const translations: Translations = {
     },
     dailies: {
       next: "Weiter",
+      nextA11yHint: "Zur nächsten Frage oder Zusammenfassung navigieren",
+      shortAnswerListA11yLabel:
+        "Gegebene Antworten zu Punktefragen: {{ answers }}",
       share: "Teilen",
       confirmAndShare: "Bestätigen und Teilen",
       confirmedSuccessfully: "Dailies zum Verlauf hinzugefügt",
@@ -209,24 +236,44 @@ export const translations: Translations = {
       confirmResetDialogMessage:
         "Möchtest du wirklich deine heutigen Dailies zurücksetzen? Dein Verlauf wird beibehalten.",
       resetDialogHeader: "Dailies zurücksetzen",
+      confirmResetDialogConfirmButtonA11yHint:
+        "Setzt Antworten zu heutigen Dailies zurück und navigiert zur ersten Frage",
       noQuestions:
         "Keine Fragen verfügbar. Bitte füge mindestens eine Frage hinzu um deine Reise zu persönlicher Weiterentwicklung zu starten.",
       noQuestionsButton: "Neue Frage hinzufügen",
+      goto: 'Zurücknavigieren zur Frage „{{ questionTitle }}"',
+      answerRowA11yLabel: "{{ questionTitle }}: {{ answer }}",
+      pointsQuestionInputA11yLabel: "{{ questionTitle }}, {{ questionLong }}",
+      pointsQuestionInputA11yHint:
+        "Antwort von 1 bis 10 Punkten eingeben. Nach der Eingabe, navigiert die App zur nächsten unbeantworteten Frage oder zur Zusammenfassung.",
     },
     questions: {
       addNewQuestion: "Neue Frage hinzufügen",
-      listItemA11yHint:
-        "Zum Bearbeiten der Frage tippen. Um die Position der Frage in der Liste zu ändern, lange tippen, dann Drag & Drop an die gewünschte Position.",
+      addNewQuestionA11yHint: 'Navigiere zu "Neue Frage hinzufügen"',
+      listItemA11yHint: "Zu Frage Bearbeiten navigieren.",
       title: "Titel*",
+      titleInputA11yLabel: "Titel der Frage. Eingabe erfordert.",
+      placeHolderExample: "Beispiel: {{ example }}",
       longQuestion: "Vollständige Frage",
+      longQuestionInputA11yLabel: "Vollständiger Fragetext. Optional.",
       save: "Änderungen speichern",
+      saveA11yHint: "Änderungen speichern und zur Fragenliste zurücknavigieren",
       archive: "Frage archivieren",
+      archiveA11yHint:
+        "Bestätigungsdialogfeld zum Archivieren der Frage öffnen",
       type: "Antworttyp: {{type}}",
       typepoints: "Punkte",
       typefulltext: "Volltext",
+      typeSelectMenuBackOverlayA11yLabel: "Antworttyp-Auswahlmenü schließen",
+      typeSelectMenuButtonA11yHint: "Antworttyp-Auswahlmenü öffnen",
       confirmArchival: "Archivierung bestätigen",
       archivalDialogDescription:
         "Möchtest du diese Frage wirklich archivieren? Unbestätigter Fortschritt in den heutigen Dailies wird zurückgesetzt.",
+      archivalDialogConfirmA11yHint:
+        "Frage archivieren und zur Fragenliste zurücknavigieren",
+      create: "Erstellen",
+      createButtonA11yHint:
+        "Frage erstellen und zurücknavigieren zur Fragenliste.",
     },
     defaultQuestions: {
       Goals: "Ziele",
@@ -291,6 +338,7 @@ export const translations: Translations = {
       insufficientDataInTimeSpan:
         "選択した期間内には {{numOfEntries}} 回Dailiesを完了しています。Dailiesを2回完了した後にはの統計情報が表示されます。",
       mockHistory: "危険: 履歴をテストデータで置き換える",
+      timeSpanSelectMenuA11yLabel: "期間選択メニューを閉まる",
     },
     settings: {
       showAppbar: "アプリバーをDailiesで表紙する",
@@ -318,6 +366,8 @@ export const translations: Translations = {
     },
     dailies: {
       next: "次へ",
+      nextA11yHint: "次の質問またはまとめ画面に移動します",
+      shortAnswerListA11yLabel: "点で答えた質問の答え一覧：{{ answers }}",
       share: "共有",
       confirmAndShare: "確認して共有する",
       confirmedSuccessfully: "Dailiesを履歴に追加しました",
@@ -329,24 +379,41 @@ export const translations: Translations = {
       confirmResetDialogMessage:
         "本当に今日のDailiesをリセットしますか?履歴は保存されます。",
       resetDialogHeader: "Dailiesをリセットする",
+      confirmResetDialogConfirmButtonA11yHint:
+        "今日のDailiesをリセットして最初の質問に移動する",
       noQuestions:
         "質問は存在しません。自己開発の旅をスタートするため質問を追加してください。",
       noQuestionsButton: "質問を追加する",
+      goto: '"{{questionTitle}}"質問に移動する',
+      answerRowA11yLabel: "{{ questionTitle }}：{{ answer }}",
+      pointsQuestionInputA11yLabel: "{{ questionTitle }}, {{ questionLong }}",
+      pointsQuestionInputA11yHint:
+        "答えは１点から１０点までを入力してください。１０点を入れるために０を入力してください。入力後アプリは次の答えていない質問またはまとめ画面に移動します。",
     },
     questions: {
       addNewQuestion: "新しい質問を追加する",
-      listItemA11yHint:
-        "質問を編集するためにタップしてください。質問の位置を変えるために長くタップしてドラッグ・アンド・ドロップください。",
+      addNewQuestionA11yHint: "「新しい質問を追加する」に移動する",
+      listItemA11yHint: "質問を編集するためにタップしてください。",
       title: "タイトル*",
+      titleInputA11yLabel: "質問のタイトル。入力が必要。",
+      placeHolderExample: "例文：{{ example }}",
       longQuestion: "質問の全体",
+      longQuestionInputA11yLabel: "質問の全体。オプション。",
       save: "変更を保存する",
+      saveA11yHint: "変更を保存して質問一覧に戻る",
       archive: "質問をアーカイブする",
+      archiveA11yHint: "質問をアーカイブの確認ダイアログ ボックスを開く",
       type: "答えのタイプ: {{type}}",
       typepoints: "ポイント",
       typefulltext: "全文",
+      typeSelectMenuBackOverlayA11yLabel: "答えのタイプのß選択メンユーをしまる",
+      typeSelectMenuButtonA11yHint: "答えのタイプのß選択メンユーを開く",
       confirmArchival: "アーカイブの確認",
       archivalDialogDescription:
         "本当にこの質問をアーカイブしますか?未確認のk今日のDailiesはリセットされます。",
+      archivalDialogConfirmA11yHint: "質問をアーカイブして質問一覧に戻る",
+      create: "質問を作成する",
+      createButtonA11yHint: "質問を作成して質問一覧に戻る",
     },
     defaultQuestions: {
       Goals: "目標",

@@ -27,7 +27,15 @@ const ResetDailiesConfirmationDialog: FC<Props> = ({
         </Dialog.Content>
         <View style={{ flexDirection: "row-reverse" }}>
           <Dialog.Actions>
-            <Button onPress={() => onConfirm()}>{t("general:confirm")}</Button>
+            <Button
+              accessibilityLabel={t("general:confirm")}
+              accessibilityHint={t(
+                "dailies:confirmResetDialogConfirmButtonA11yHint"
+              )}
+              onPress={() => onConfirm()}
+            >
+              {t("general:confirm")}
+            </Button>
           </Dialog.Actions>
           <Dialog.Actions>
             <Button onPress={() => onCancel()}>{t("general:cancel")}</Button>

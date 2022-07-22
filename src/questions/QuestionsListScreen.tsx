@@ -32,6 +32,8 @@ const ListItem: FC<RenderItemParams<Question>> = ({ item, drag, isActive }) => {
         left={(props) => <List.Icon {...props} icon={icon} />}
         onLongPress={drag}
         disabled={isActive}
+        accessibilityLabel={title}
+        accessibilityRole="button"
         accessibilityHint={t("questions:listItemA11yHint")}
       />
     </ScaleDecorator>
@@ -64,6 +66,8 @@ const QuestionsListScreen: FC<PropsFromRedux> = ({
         onPress={gotoNewQuestion}
         mode="contained"
         style={{ marginVertical: 20 }}
+        accessibilityLabel={t("questions:addNewQuestion")}
+        accessibilityHint={t("questions:addNewQuestionA11yHint")}
       >
         {t("questions:addNewQuestion")}
       </Button>
@@ -74,6 +78,7 @@ const QuestionsListScreen: FC<PropsFromRedux> = ({
         onDragEnd={({ to, data }) => {
           moveQuestion({ to, id: data[to].id });
         }}
+        accessibilityRole="list"
       />
     </NestableScrollContainer>
   );

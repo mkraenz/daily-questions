@@ -22,6 +22,9 @@ const TypeSelection: FC<Props> = ({ type, setType, style }) => {
     <Menu
       visible={visible}
       onDismiss={closeMenu}
+      overlayAccessibilityLabel={t(
+        "questions:typeSelectMenuBackOverlayA11yLabel"
+      )}
       anchor={
         <Button
           mode="outlined"
@@ -29,6 +32,10 @@ const TypeSelection: FC<Props> = ({ type, setType, style }) => {
           style={style}
           contentStyle={{ flexDirection: "row-reverse" }}
           icon="menu-down"
+          accessibilityLabel={t("questions:type", {
+            type: t(`questions:type${type}`),
+          })}
+          accessibilityHint={t("questions:typeSelectMenuButtonA11yHint")}
         >
           {t("questions:type", { type: t(`questions:type${type}`) })}
         </Button>

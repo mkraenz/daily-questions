@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Paragraph, TextInput, Title } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { selectAnswerList } from "./dailies.selectors";
 
@@ -48,6 +49,7 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
   onAnswer,
   answerList,
 }) => {
+  const { t } = useTranslation();
   const handleChangeText = (text: string | undefined): void => {
     if (!text) return;
     const newText = text[text.length - 1];
@@ -76,8 +78,19 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
         style={styles.input}
         autoComplete="off"
         onSubmitEditing={handleSubmitEditing}
+        accessibilityLabel={t("dailies:pointsQuestionInputA11yLabel", {
+          questionTitle: title,
+          questionLong,
+        })}
+        accessibilityHint={t("dailies:pointsQuestionInputA11yHint")}
       />
-      <Paragraph>{answerList}</Paragraph>
+      <Paragraph
+        accessibilityLabel={t("dailies:shortAnswerListA11yLabel", {
+          answers: answerList,
+        })}
+      >
+        {answerList}
+      </Paragraph>
     </View>
   );
 };

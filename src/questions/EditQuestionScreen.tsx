@@ -91,6 +91,8 @@ const EditQuestionsScreen: FC<
         onPress={saveEdits}
         style={styles.marginBottom}
         disabled={hasErrors}
+        accessibilityLabel={t("questions:save")}
+        accessibilityHint={t("questions:saveA11yHint")}
       >
         {t("questions:save")}
       </Button>
@@ -98,6 +100,8 @@ const EditQuestionsScreen: FC<
         mode="contained"
         color={theme.colors.error}
         onPress={() => showArchiveConfirmation(true)}
+        accessibilityHint={t("questions:archiveA11yHint")}
+        accessibilityLabel={t("questions:archive")}
       >
         {t("questions:archive")}
       </Button>

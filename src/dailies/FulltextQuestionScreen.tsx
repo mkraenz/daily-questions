@@ -81,10 +81,23 @@ const FulltextQuestionScreen: FC<Props & PropsFromRedux> = ({
         autoComplete="off"
         error={errored}
       />
-      <Button onPress={onNext} style={styles.button} mode="outlined">
+      <Button
+        onPress={onNext}
+        style={styles.button}
+        mode="outlined"
+        accessibilityLabel={t("dailies:next")}
+        accessibilityHint={t("dailies:nextA11yHint")}
+        disabled={!text}
+      >
         {t("dailies:next")}
       </Button>
-      <Paragraph>{answerList}</Paragraph>
+      <Paragraph
+        accessibilityLabel={t("dailies:shortAnswerListA11yLabel", {
+          answers: answerList,
+        })}
+      >
+        {answerList}
+      </Paragraph>
     </View>
   );
 };

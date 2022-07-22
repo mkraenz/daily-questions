@@ -28,7 +28,13 @@ const ArchiveConfirmationDialog: FC<Props> = ({
         </Dialog.Content>
         <View style={{ flexDirection: "row-reverse" }}>
           <Dialog.Actions>
-            <Button onPress={onConfirm}>{t("general:confirm")}</Button>
+            <Button
+              onPress={onConfirm}
+              accessibilityLabel={t("general:confirm")}
+              accessibilityHint={t("questions:archivalDialogConfirmA11yHint")}
+            >
+              {t("general:confirm")}
+            </Button>
           </Dialog.Actions>
           <Dialog.Actions>
             <Button onPress={onCancel}>{t("general:cancel")}</Button>

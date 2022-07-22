@@ -3,7 +3,7 @@ import React, { FC, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
-import { defaultQuestions } from "./default-questions";
+import { useTranslation } from "../localization/useTranslations";
 import { QuestionsNavigationProp } from "./questions-nav";
 import { addQuestion } from "./questions.slice";
 import TypeSelection from "./TypeSelection";
@@ -18,10 +18,9 @@ const mapDispatch = { addQuestion };
 const connector = connect(null, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const prefixed = (str: string) => `Example: ${str}`;
-
 const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
   const nav = useNavigation<QuestionsNavigationProp>();
+  const { t } = useTranslation();
   const [title, setTitle] = useState("");
   const [titleChanged, setTitleChanged] = useState(false);
   const [longQuestion, setLongQuestion] = useState("");
@@ -45,33 +44,43 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
       ]}
     >
       <TextInput
-        label="Title*"
+        label={t("questions:title")}
         onChangeText={handleTitleChanged}
         value={title}
         autoFocus={true}
         autoComplete="off"
-        placeholder={prefixed(defaultQuestions[0].title)}
+        placeholder={t("questions:placeHolderExample", {
+          example: t("defaultQuestions:Goals"),
+        })}
         style={styles.marginBottom}
         error={titleChanged && hasErrors}
-        accessibilityLabel="Text input for the title of the question"
+        accessibilityLabel={t("questions:titleInputA11yLabel")}
       />
       <TextInput
-        label="Full Question"
+        label={t("questions:longQuestion")}
         multiline={true}
         onChangeText={setLongQuestion}
         value={longQuestion}
         autoComplete="off"
-        placeholder={prefixed(defaultQuestions[0].questionLong)}
+        placeholder={t("questions:placeHolderExample", {
+          example: t("defaultQuestions:questionLongGoals"),
+        })}
         style={styles.marginBottom}
-        accessibilityLabel="Text input for full question"
+        accessibilityLabel={t("questions:longQuestionInputA11yLabel")}
       />
       <TypeSelection
         type={type}
         setType={setType}
         style={styles.marginBottom}
       />
-      <Button mode="contained" onPress={addNewQuestion} disabled={hasErrors}>
-        Create
+      <Button
+        mode="contained"
+        onPress={addNewQuestion}
+        disabled={hasErrors}
+        accessibilityLabel={t("questions:create")}
+        accessibilityHint={t("questions:createButtonA11yHint")}
+      >
+        {t("questions:create")}
       </Button>
     </View>
   );

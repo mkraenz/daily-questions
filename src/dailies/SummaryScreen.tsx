@@ -90,11 +90,20 @@ const PointsAnswer: FC<{
   onClick: () => void;
 }> = ({ title, answer, onClick }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
-    <TouchableRipple onPress={onClick}>
+    <TouchableRipple
+      onPress={onClick}
+      accessibilityRole="button"
+      accessibilityLabel={t("dailies:answerRowA11yLabel", {
+        questionTitle: title,
+        answer,
+      })}
+      accessibilityHint={t("dailies:goto", { questionTitle: title })}
+    >
       <View style={styles.pointsAnswerRow}>
         <Paragraph style={styles.answerTitle}>{title}</Paragraph>
-        <Button mode="outlined" color={theme.colors.text}>
+        <Button mode="outlined" color={theme.colors.text} accessible={false}>
           {answer}
         </Button>
       </View>
@@ -107,8 +116,17 @@ const FullTextAnswer: FC<{
   answer: string | number;
   onClick: () => void;
 }> = ({ title, answer, onClick }) => {
+  const { t } = useTranslation();
   return (
-    <TouchableRipple onPress={onClick}>
+    <TouchableRipple
+      onPress={onClick}
+      accessibilityRole="button"
+      accessibilityLabel={t("dailies:answerRowA11yLabel", {
+        questionTitle: title,
+        answer,
+      })}
+      accessibilityHint={t("dailies:goto", { questionTitle: title })}
+    >
       <View style={styles.fulltextRow}>
         <Paragraph>
           {title}: {answer}
