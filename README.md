@@ -86,3 +86,8 @@ where `clearHistory` is an action creator injected using react-redux' `connect` 
 ## Licence
 
 Code is licensed under MIT. Files under `/assets/` are **NOT** licensed under MIT. You may clone or forge the repository with the assets included but please do not distribute your app using the same images and logos. Thank you :)
+
+## Links and Resources
+
+- [Mobile Screen Reader Testing](https://scottvinkle.me/blogs/work/mobile-screen-reader-testing)
+- [React Native Accessibility](https://www.shopify.com/partners/blog/react-native-accessibility)
