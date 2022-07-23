@@ -22,6 +22,8 @@ const SeparateConfirmAndShareButtons: FC<{
         mode="contained"
         icon="check"
         style={styles.button}
+        accessibilityLabel={t("general:confirm")}
+        accessibilityHint={t("dailies:confirmDailiesA11yHint")}
       >
         {t("general:confirm")}
       </Button>
@@ -30,6 +32,8 @@ const SeparateConfirmAndShareButtons: FC<{
         mode="contained"
         icon="share"
         style={styles.button}
+        accessibilityLabel={t("dailies:share")}
+        accessibilityHint={t("dailies:shareA11yHint")}
       >
         {t("dailies:share")}
       </Button>

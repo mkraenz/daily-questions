@@ -64,18 +64,26 @@ const en = {
     nextA11yHint: "Navigate to next question or to summary",
     shortAnswerListA11yLabel:
       "Provided answers to questions with points: {{ answers }}",
+    confirmDailiesA11yHint:
+      "Confirms today's answers and adds them to the history.",
+    shareA11yHint:
+      "Opens dialog to share with another app for today's answers with a formatted summary",
     share: "Share",
     confirmAndShare: "Confirm and Share",
-    confirmedSuccessfully: "Dailies added to history",
+    confirmAndShareA11yHint:
+      "Confirms today's answers and adds them to the history. Then, Opens dialog to share with another app for today's answers with a formatted summary",
+    confirmedSuccessfully: "Answers added to history",
+    confirmedSuccessfullySnackbarDismissActionA11yHint:
+      "Closes the success toast notification. This occurs automatically after a few seconds.",
     ok: "OK",
-    summaryHeader: "Your Dailies from {{today}}",
-    resetButtonAllyLabel: "Reset today's dailies",
-    resetButtonAllyHint: "Opens a dialog to confirm resetting today's dailies",
+    summaryHeader: "Your answers from {{today}}",
+    resetButtonAllyLabel: "Reset today's answers",
+    resetButtonAllyHint: "Opens a dialog to confirm resetting today's answers",
     confirmResetDialogMessage:
-      "Do you really want to reset today's dailies? Your history will be preserved.",
-    resetDialogHeader: "Reset Dailies",
+      "Do you really want to reset today's answers? Your history will be preserved.",
+    resetDialogHeader: "Reset Answers",
     confirmResetDialogConfirmButtonA11yHint:
-      "Resets answers of today's dailies and navigates to the first question",
+      "Resets today's answers and navigates to the first question",
     noQuestions:
       "No questions available. Please add at least one question to start your self-improvement journey.",
     noQuestionsButton: "Add New Question",
@@ -106,7 +114,7 @@ const en = {
     typeSelectMenuButtonA11yHint: "Opens answer type selection menu",
     confirmArchival: "Confirm Archival",
     archivalDialogDescription:
-      "Do you really want to archive this question? Unconfirmed progress of today's dailies will be reset.",
+      "Do you really want to archive this question? Unconfirmed progress of today's answers will be reset.",
     archivalDialogConfirmA11yHint:
       "Archive question and return to questions list",
     create: "Create",
@@ -225,19 +233,27 @@ export const translations: Translations = {
       nextA11yHint: "Zur nächsten Frage oder Zusammenfassung navigieren",
       shortAnswerListA11yLabel:
         "Gegebene Antworten zu Punktefragen: {{ answers }}",
+      confirmDailiesA11yHint:
+        "Bestätigt die heutigen Antworten und fügt einen Eintrag zum Verlauf hinzu",
+      shareA11yHint:
+        "Öffnet Dialogfeld zum Teilen mit anderer App für die heutigen Antworten mit einer formatierten Zusammenfassung",
       share: "Teilen",
       confirmAndShare: "Bestätigen und Teilen",
-      confirmedSuccessfully: "Dailies zum Verlauf hinzugefügt",
+      confirmAndShareA11yHint:
+        "Bestätigt die heutigen Antworten und fügt einen Eintrag zum Verlauf hinzu. Außerdem öffnet es ein Dialogfeld zum Teilen mit anderer App für die heutigen Antworten mit einer formatierten Zusammenfassung",
+      confirmedSuccessfully: "Antworten zum Verlauf hinzugefügt",
+      confirmedSuccessfullySnackbarDismissActionA11yHint:
+        "Schließt die Erfolgs-Popup-Benachrichtigung. Dies geschieht automatisch nach einigen Sekunden.",
       ok: "OK",
-      summaryHeader: "Deine Dailies vom {{today}}",
-      resetButtonAllyLabel: "Heutige Dailies zurücksetzen",
+      summaryHeader: "Deine Antworten vom {{today}}",
+      resetButtonAllyLabel: "Heutige Antworten zurücksetzen",
       resetButtonAllyHint:
-        "Öffnet einen Dialog zum Bestätigen des Zurücksetzens der heutigen Dailies",
+        "Öffnet einen Dialog zum Bestätigen des Zurücksetzens der heutigen Antworten",
       confirmResetDialogMessage:
-        "Möchtest du wirklich deine heutigen Dailies zurücksetzen? Dein Verlauf wird beibehalten.",
-      resetDialogHeader: "Dailies zurücksetzen",
+        "Möchtest du wirklich deine heutigen Antworten zurücksetzen? Dein Verlauf wird beibehalten.",
+      resetDialogHeader: "Antworten zurücksetzen",
       confirmResetDialogConfirmButtonA11yHint:
-        "Setzt Antworten zu heutigen Dailies zurück und navigiert zur ersten Frage",
+        "Setzt deine heutigen Antworten zurück und navigiert zur ersten Frage",
       noQuestions:
         "Keine Fragen verfügbar. Bitte füge mindestens eine Frage hinzu um deine Reise zu persönlicher Weiterentwicklung zu starten.",
       noQuestionsButton: "Neue Frage hinzufügen",
@@ -245,7 +261,7 @@ export const translations: Translations = {
       answerRowA11yLabel: "{{ questionTitle }}: {{ answer }}",
       pointsQuestionInputA11yLabel: "{{ questionTitle }}, {{ questionLong }}",
       pointsQuestionInputA11yHint:
-        "Antwort von 1 bis 10 Punkten eingeben. Nach der Eingabe, navigiert die App zur nächsten unbeantworteten Frage oder zur Zusammenfassung.",
+        "Antwort von 1 bis 10 Punkten eingeben. Für 10 Punkte Null-Taste drücken. Nach der Eingabe, navigiert die App zur nächsten unbeantworteten Frage oder zur Zusammenfassung.",
     },
     questions: {
       addNewQuestion: "Neue Frage hinzufügen",
@@ -268,7 +284,7 @@ export const translations: Translations = {
       typeSelectMenuButtonA11yHint: "Antworttyp-Auswahlmenü öffnen",
       confirmArchival: "Archivierung bestätigen",
       archivalDialogDescription:
-        "Möchtest du diese Frage wirklich archivieren? Unbestätigter Fortschritt in den heutigen Dailies wird zurückgesetzt.",
+        "Möchtest du diese Frage wirklich archivieren? Unbestätigter Fortschritt in den heutigen Antworten wird zurückgesetzt.",
       archivalDialogConfirmA11yHint:
         "Frage archivieren und zur Fragenliste zurücknavigieren",
       create: "Erstellen",
@@ -344,8 +360,7 @@ export const translations: Translations = {
       showAppbar: "アプリバーをDailiesで表紙する",
       darkMode: "ダークモード",
       language: "言語: {{language}}",
-      uniteConfirmAndShare:
-        "Dailiesのまとめ画面に確認と共有を一つのボトンにする",
+      uniteConfirmAndShare: "答えのまとめ画面に確認と共有を一つのボトンにする",
       startOfNextDay: "次の日の開始時間: {{time}}",
       enableDevMode: "開発モード",
       devModeDialogTitle: "開発モードを有効にする？",
@@ -368,19 +383,26 @@ export const translations: Translations = {
       next: "次へ",
       nextA11yHint: "次の質問またはまとめ画面に移動します",
       shortAnswerListA11yLabel: "点で答えた質問の答え一覧：{{ answers }}",
+      confirmDailiesA11yHint: "今日の答えを確認して歴史に追加する",
       share: "共有",
+      shareA11yHint:
+        "他のアプリーと共有するためのダイアログ・ボックスを開く。共有される文章は今日の答えのまとめ。",
       confirmAndShare: "確認して共有する",
-      confirmedSuccessfully: "Dailiesを履歴に追加しました",
+      confirmAndShareA11yHint:
+        "今日の答えを確認して歴史に追加する。その後他のアプリーと共有するためのダイアログ・ボックスを開く。共有される文章は今日の答えのまとめ。",
+      confirmedSuccessfully: "答えを履歴に追加しました",
+      confirmedSuccessfullySnackbarDismissActionA11yHint:
+        "成功のトースト通知を閉まる。数秒してから自動的にトースト通知が閉まる",
       ok: "OK",
-      summaryHeader: "{{today}}のDailies",
-      resetButtonAllyLabel: "今日のDailiesをリセットする",
+      summaryHeader: "{{today}}の答え",
+      resetButtonAllyLabel: "今日の答えをリセットする",
       resetButtonAllyHint:
-        "ダイアログを開いて今日のDailiesのリセットを確認してください",
+        "ダイアログ・ボックスを開いて今日の答えのリセットを確認してください",
       confirmResetDialogMessage:
-        "本当に今日のDailiesをリセットしますか?履歴は保存されます。",
-      resetDialogHeader: "Dailiesをリセットする",
+        "本当に今日の答えをリセットしますか?履歴は保存されます。",
+      resetDialogHeader: "答えをリセットする",
       confirmResetDialogConfirmButtonA11yHint:
-        "今日のDailiesをリセットして最初の質問に移動する",
+        "今日の答えをリセットして最初の質問に移動する",
       noQuestions:
         "質問は存在しません。自己開発の旅をスタートするため質問を追加してください。",
       noQuestionsButton: "質問を追加する",
@@ -402,7 +424,7 @@ export const translations: Translations = {
       save: "変更を保存する",
       saveA11yHint: "変更を保存して質問一覧に戻る",
       archive: "質問をアーカイブする",
-      archiveA11yHint: "質問をアーカイブの確認ダイアログ ボックスを開く",
+      archiveA11yHint: "質問をアーカイブの確認ダイアログ・ボックスを開く",
       type: "答えのタイプ: {{type}}",
       typepoints: "ポイント",
       typefulltext: "全文",
@@ -410,7 +432,7 @@ export const translations: Translations = {
       typeSelectMenuButtonA11yHint: "答えのタイプのß選択メンユーを開く",
       confirmArchival: "アーカイブの確認",
       archivalDialogDescription:
-        "本当にこの質問をアーカイブしますか?未確認のk今日のDailiesはリセットされます。",
+        "本当にこの質問をアーカイブしますか?未確認の今日の答えはリセットされます。",
       archivalDialogConfirmA11yHint: "質問をアーカイブして質問一覧に戻る",
       create: "質問を作成する",
       createButtonA11yHint: "質問を作成して質問一覧に戻る",

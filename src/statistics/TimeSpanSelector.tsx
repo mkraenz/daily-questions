@@ -34,6 +34,7 @@ const TimeSpanSelector: FC<Props> = ({ timeSpan, setTimeSpan }) => {
     <Menu
       visible={visible}
       onDismiss={closeMenu}
+      overlayAccessibilityLabel={t("statistics:timeSpanSelectMenuA11yLabel")}
       anchor={
         <Button
           mode="contained"
@@ -41,6 +42,12 @@ const TimeSpanSelector: FC<Props> = ({ timeSpan, setTimeSpan }) => {
           style={styles.button}
           contentStyle={{ flexDirection: "row-reverse" }}
           icon="menu-down"
+          // TODO translations
+          // accessibilityLabel={`Currently selected time span of statistic charts: ${t(
+          //   `statistics:${timeSpan}`
+          // )}`}
+          // TODO translations
+          // accessibilityHint={"Open time span selection menu"}
         >
           {t(`statistics:${timeSpan}`)}
         </Button>

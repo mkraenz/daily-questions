@@ -7,6 +7,7 @@ interface Props {
   onDismiss: () => void;
   text: string;
   dismissActionLabel: string;
+  dismissActionA11yHint: string;
 }
 
 const SuccessMessage: FC<Props> = ({
@@ -14,6 +15,7 @@ const SuccessMessage: FC<Props> = ({
   onDismiss,
   text,
   dismissActionLabel,
+  dismissActionA11yHint,
 }) => {
   const theme = useTheme();
   return (
@@ -25,6 +27,8 @@ const SuccessMessage: FC<Props> = ({
         action={{
           label: dismissActionLabel,
           onPress: onDismiss,
+          accessibilityLabel: dismissActionLabel,
+          accessibilityHint: dismissActionA11yHint,
         }}
       >
         <FontAwesome

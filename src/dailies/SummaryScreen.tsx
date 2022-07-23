@@ -141,7 +141,13 @@ const ConfirmAndShareButton: FC<{
 }> = ({ handlePressed }) => {
   const { t } = useTranslation();
   return (
-    <Button icon="share" mode="contained" onPress={handlePressed}>
+    <Button
+      icon="share"
+      mode="contained"
+      onPress={handlePressed}
+      accessibilityLabel={t("dailies:confirmAndShare")}
+      accessibilityHint={t("dailies:confirmAndShareA11yHint")}
+    >
       {t("dailies:confirmAndShare")}
     </Button>
   );
@@ -256,6 +262,9 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
         onDismiss={() => showSuccessMessage(false)}
         text={t("dailies:confirmedSuccessfully")}
         dismissActionLabel={t("dailies:ok")}
+        dismissActionA11yHint={t(
+          "dailies:confirmedSuccessfullySnackbarDismissActionA11yHint"
+        )}
       />
     </ScrollView>
   );
