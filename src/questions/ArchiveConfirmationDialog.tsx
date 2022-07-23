@@ -23,7 +23,6 @@ const ArchiveConfirmationDialog: FC<Props> = ({
           {t("questions:confirmArchival")}
         </Dialog.Title>
         <Dialog.Content>
-          {/* TODO explain how to revert archival */}
           <Paragraph>{t("questions:archivalDialogDescription")}</Paragraph>
         </Dialog.Content>
         <View style={{ flexDirection: "row-reverse" }}>
