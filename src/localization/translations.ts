@@ -11,10 +11,11 @@ const en = {
   },
   general: {
     navigateBackAllyHint: "Navigate back to previous screen",
+    appbarHeaderAllyLabel: "{{ title }} screen",
     confirm: "Confirm",
     cancel: "Cancel",
     ok: "OK",
-    openDrawerA11yLabel: "Open drawer navigation menu",
+    openDrawerA11yLabel: "Open drawer navigation menu at the left",
   },
   weekdays: {
     Sun: "Sun",
@@ -179,10 +180,11 @@ export const translations: Translations = {
     },
     general: {
       navigateBackAllyHint: "Zurück zur vorherigen Ansicht",
+      appbarHeaderAllyLabel: "{{ title }}-Ansicht",
       confirm: "Bestätigen",
       cancel: "Abbrechen",
       ok: "OK",
-      openDrawerA11yLabel: "Navigationsleiste öffnen",
+      openDrawerA11yLabel: "Navigationsleiste auf der linken Seite öffnen",
     },
     weekdays: {
       Sun: "So.",
@@ -331,9 +333,10 @@ export const translations: Translations = {
     },
     general: {
       navigateBackAllyHint: "前のスクリーンに戻る",
+      appbarHeaderAllyLabel: "{{ title }}・スクリーン",
       confirm: "確認",
       cancel: "キャンセル",
-      openDrawerA11yLabel: "ナビゲーションドロワーを開く",
+      openDrawerA11yLabel: "ナビゲーションドロワーを左側に開く",
       ok: "OK",
     },
     weekdays: {

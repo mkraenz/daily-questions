@@ -12,13 +12,19 @@ interface Props {
 
 const BackAppBar: FC<Props> = (props) => {
   const { t } = useTranslation();
+  const title = props.options.title ?? props.route.name;
   return (
     <Appbar.Header>
       <Appbar.BackAction
         onPress={() => props.navigation.goBack()}
+        accessibilityRole="button"
         accessibilityHint={t("general:navigateBackAllyHint")}
       />
-      <Appbar.Content title={props.options.title ?? props.route.name} />
+      <Appbar.Content
+        title={title}
+        accessibilityRole="header"
+        accessibilityLabel={t("general:appbarHeaderAllyLabel", { title })}
+      />
     </Appbar.Header>
   );
 };

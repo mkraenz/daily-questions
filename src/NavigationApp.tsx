@@ -52,7 +52,8 @@ const NavigationApp: FC<PropsFromRedux> = ({
       <Drawer.Navigator
         initialRouteName={initialRoute}
         screenOptions={{
-          header: BaseAppBar,
+          // Workaround: using a render function to avoid 'Error: Rendered more hooks than during the previous render.' when using useTranslation() in the BaseAppBar component
+          header: (props) => <BaseAppBar {...props} />,
         }}
       >
         <Drawer.Screen
