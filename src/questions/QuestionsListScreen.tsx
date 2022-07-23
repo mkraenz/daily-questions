@@ -11,7 +11,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { QuestionsNavigationProp } from "./questions-nav";
-import { selectQuestions } from "./questions.selectors";
+import { selectActiveQuestions } from "./questions.selectors";
 import { moveQuestion, Question } from "./questions.slice";
 
 const ListItem: FC<RenderItemParams<Question>> = ({ item, drag, isActive }) => {
@@ -41,7 +41,7 @@ const ListItem: FC<RenderItemParams<Question>> = ({ item, drag, isActive }) => {
 };
 
 const mapState = (state: RootState) => ({
-  questions: selectQuestions(state),
+  activeQuestions: selectActiveQuestions(state),
 });
 const mapDispatch = {
   moveQuestion,
@@ -50,13 +50,12 @@ const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const QuestionsListScreen: FC<PropsFromRedux> = ({
-  questions,
+  activeQuestions,
   moveQuestion,
 }) => {
   const nav = useNavigation<QuestionsNavigationProp>();
   const { t } = useTranslation();
   const gotoNewQuestion = () => nav.push("Add new question");
-  const activeQuestions = questions.filter((q) => q.active); // TODO read selector docs https://redux.js.org/usage/deriving-data-selectors
 
   return (
     <NestableScrollContainer
