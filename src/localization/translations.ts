@@ -142,6 +142,10 @@ const en = {
   },
   history: {
     questionNotFound: "Not found",
+    emptyHistoryDescription:
+      "Nothing here yet. Once you've finished answering the dailies for the first time, your history will show here.",
+    emptyHistoryButton: "Go to Dailies",
+    emptyHistoryButtonA11yHint: "Navigates to Dailies screen",
   },
 };
 
@@ -318,6 +322,10 @@ export const translations: Translations = {
     },
     history: {
       questionNotFound: "Nicht gefunden",
+      emptyHistoryDescription:
+        "Es wurden keine Verlaufseinträge gefunden. Nachdem du deine Dailies zum ersten Mal beantwortet hast, wird dein Verlauf hier angezeigt.",
+      emptyHistoryButton: "Zu den Dailies",
+      emptyHistoryButtonA11yHint: 'Navigiert zur Ansicht "Dailies"',
     },
   },
   ja: {
@@ -459,6 +467,10 @@ export const translations: Translations = {
     },
     history: {
       questionNotFound: "見つかりません",
+      emptyHistoryDescription:
+        "表示するアイテムがありません。最初の応えをし終わってから歴史は表示します。",
+      emptyHistoryButton: "Dailiesに戻る",
+      emptyHistoryButtonA11yHint: "Dailies画面を開く",
     },
   },
 };

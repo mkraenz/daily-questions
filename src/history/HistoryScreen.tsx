@@ -1,10 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
+import { isEmpty } from "lodash";
 import React, { FC } from "react";
 import { FlatList } from "react-native";
 import { Divider, List } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { Question } from "../questions/questions.slice";
 import { RootState } from "../store";
+import EmptyHistoryList from "./EmptyHistoryList";
 import { HistoricEntryParams, HistoryNavigationProp } from "./history-nav";
 import { History } from "./history.slice";
 
@@ -51,6 +53,9 @@ const HistoryItem: FC<{ item: HistoricEntryParams }> = ({ item }) => {
 
 const HistoryScreen: FC<PropsFromRedux> = ({ history, questions }) => {
   const mappedHistoryNewestFirst = mapHistory(history, questions).reverse();
+  if (isEmpty(mappedHistoryNewestFirst)) {
+    return <EmptyHistoryList />;
+  }
   return (
     <FlatList
       data={mappedHistoryNewestFirst}
