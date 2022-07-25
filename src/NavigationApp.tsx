@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { FC } from "react";
 import { useTheme } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import AboutScreen from "./about/AboutScreen";
 import BaseAppBar from "./BaseAppBar";
 import DailiesAppBar from "./dailies/DailiesAppBar";
 import DailiesNav from "./dailies/DailiesNav";
@@ -93,6 +94,13 @@ const NavigationApp: FC<PropsFromRedux> = ({
           component={SettingsScreen}
           options={{
             title: t("routes:settings"),
+          }}
+        />
+        <Drawer.Screen
+          name="About"
+          component={AboutScreen}
+          options={{
+            title: t("routes:about"),
           }}
         />
       </Drawer.Navigator>

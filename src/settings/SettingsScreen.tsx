@@ -11,7 +11,6 @@ import NotificationTimePicker from "./NotificationTimePicker";
 import ShowAppbarSwitch from "./ShowAppbarSwitch";
 import ShowPointsQuestionInputPlaceholderSwitch from "./ShowPointsQuestionInputPlaceholderSwitch";
 import UniteConfirmAndShareButtonsSwitch from "./UniteConfirmAndShareButtonsSwitch";
-import VersionAndCopyright from "./VersionAndCopyright";
 
 const SettingsScreen = () => {
   return (
@@ -22,7 +21,6 @@ const SettingsScreen = () => {
         padding: 20,
       }}
     >
-      <VersionAndCopyright />
       <DarkModeSwitch />
       <ShowAppbarSwitch />
       <ShowPointsQuestionInputPlaceholderSwitch />

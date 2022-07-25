@@ -8,6 +8,7 @@ const en = {
     editQuestion: "Edit Question",
     history: "History",
     historicEntry: "Historic Entry",
+    about: "About",
   },
   general: {
     navigateBackAllyHint: "Navigate back to previous screen",
@@ -61,6 +62,11 @@ const en = {
     notificationTitle: "It's time for your Dailies.",
     notificationTime: "Daily notification at {{time}}",
     notificationsEnabled: "Daily notifications enabled",
+  },
+  about: {
+    githubDescription:
+      "MIT Open-Source Software. Collaborators wanted. Check our ",
+    githubLinkText: "GitHub repository.",
   },
   dailies: {
     next: "Next",
@@ -164,6 +170,7 @@ export type TranslationKeys =
   | TranslationKey<"weekdays">
   | TranslationKey<"statistics">
   | TranslationKey<"settings">
+  | TranslationKey<"about">
   | TranslationKey<"dailies">
   | TranslationKey<"questions">
   | TranslationKey<"defaultQuestions">
@@ -185,6 +192,7 @@ export const translations: Translations = {
       editQuestion: "Frage bearbeiten",
       history: "Verlauf",
       historicEntry: "Verlaufseintrag",
+      about: "Über",
     },
     general: {
       navigateBackAllyHint: "Zurück zur vorherigen Ansicht",
@@ -239,6 +247,11 @@ export const translations: Translations = {
       notificationTitle: "Zeit für deine Dailies.",
       notificationTime: "Benachrichtungen um {{time}}",
       notificationsEnabled: "Benachrichtigungen aktiviert",
+    },
+    about: {
+      githubDescription:
+        "MIT Open-Source Software. Mitwirkende gesucht (Englisch notwendig). Hier findest du unser ",
+      githubLinkText: "Github Repository.",
     },
     dailies: {
       next: "Weiter",
@@ -346,6 +359,7 @@ export const translations: Translations = {
       editQuestion: "質問を編集",
       history: "履歴",
       historicEntry: "履歴エントリ",
+      about: "詳細情報", // double check
     },
     general: {
       navigateBackAllyHint: "前のスクリーンに戻る",
@@ -399,6 +413,11 @@ export const translations: Translations = {
       notificationTitle: "Dailiesの時間ですよ。",
       notificationTime: "毎日{{time}}に通知を行います。",
       notificationsEnabled: "毎日の通知が有効",
+    },
+    about: {
+      githubDescription:
+        "MIT Open-Source Software.コラボレーター募集中（英語必然）。プロジェクトはこちら：",
+      githubLinkText: "Githubリポジトリ",
     },
     dailies: {
       next: "次へ",

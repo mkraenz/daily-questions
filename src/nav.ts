@@ -6,6 +6,7 @@ export type GlobalDrawerParamList = {
   ["Customize Questions"]: undefined;
   Settings: undefined;
   HistoryNav: undefined;
+  About: undefined;
 };
 
 export type Routes = keyof GlobalDrawerParamList;

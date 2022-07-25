@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
   link: {
     textDecorationLine: "underline",
   },
+  container: {
+    marginVertical: 24,
+  },
 });
 
 const VersionAndCopyright = () => {
@@ -15,7 +18,7 @@ const VersionAndCopyright = () => {
   };
   const nbsp = "\u00a0";
   return (
-    <View>
+    <View style={styles.container}>
       <Paragraph>Daily Questions v1.16.0</Paragraph>
       <TouchableRipple onPress={openCompanyWebsite}>
         <Paragraph>
