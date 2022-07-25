@@ -20,7 +20,9 @@
     "compile": "tsc",
     "compile:watch": "tsc -w",
     "test": "jest",
-    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "pregenerate:used-licenses": "mkdir -p ./src/generated",
+    "generate:used-licenses": "license-report --output=json --config license-report.config.json --only=prod > ./src/generated/prod-licenses.json"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -76,6 +78,7 @@
     "expo-cli": "^5.5.1",
     "jest": "^26.6.3",
     "jest-expo": "^45.0.1",
+    "license-report": "^6.0.0",
     "typescript": "^4.7.3"
   },
   "jest": {
