@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
   link: {
     textDecorationLine: "underline",
   },
+  container: {
+    marginBottom: 24,
+  },
 });
 
 const GithubNote: FC = () => {
@@ -16,7 +19,7 @@ const GithubNote: FC = () => {
     Linking.openURL("https://github.com/proSingularity/daily-questions");
   };
   return (
-    <TouchableRipple onPress={openGithub}>
+    <TouchableRipple onPress={openGithub} style={styles.container}>
       <Paragraph>
         {t("about:githubDescription")}
         <Paragraph style={[styles.link, { color: theme.colors.accent }]}>

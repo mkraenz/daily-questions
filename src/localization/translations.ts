@@ -9,6 +9,8 @@ const en = {
     history: "History",
     historicEntry: "Historic Entry",
     about: "About",
+    licenseList: "Licenses",
+    licenseInfo: "License Details",
   },
   general: {
     navigateBackAllyHint: "Navigate back to previous screen",
@@ -67,6 +69,11 @@ const en = {
     githubDescription:
       "MIT Open-Source Software. Collaborators wanted. Check our ",
     githubLinkText: "GitHub repository.",
+    gotoLicenseList: "Go to licenses",
+    licenseInfoLicense: "Licensed under: {{ license }}",
+    licenseInfoAuthor: "Author: {{ author }}",
+    licenseInfoVersion: "Installed version: {{ version }}",
+    licenseInfoLink: "Link: {{ link }}",
   },
   dailies: {
     next: "Next",
@@ -193,6 +200,8 @@ export const translations: Translations = {
       history: "Verlauf",
       historicEntry: "Verlaufseintrag",
       about: "Über",
+      licenseList: "Lizenzen",
+      licenseInfo: "Lizenzdetails",
     },
     general: {
       navigateBackAllyHint: "Zurück zur vorherigen Ansicht",
@@ -252,6 +261,11 @@ export const translations: Translations = {
       githubDescription:
         "MIT Open-Source Software. Mitwirkende gesucht (Englisch notwendig). Hier findest du unser ",
       githubLinkText: "Github Repository.",
+      gotoLicenseList: "Zu den Lizenzen",
+      licenseInfoLicense: "Lizensiert unter: {{ license }}",
+      licenseInfoAuthor: "Author: {{ author }}",
+      licenseInfoVersion: "Installierte Version: {{ version }}",
+      licenseInfoLink: "Link: {{ link }}",
     },
     dailies: {
       next: "Weiter",
@@ -360,6 +374,8 @@ export const translations: Translations = {
       history: "履歴",
       historicEntry: "履歴エントリ",
       about: "詳細情報", // double check
+      licenseList: "ライセンス",
+      licenseInfo: "ライセンスの詳細",
     },
     general: {
       navigateBackAllyHint: "前のスクリーンに戻る",
@@ -418,6 +434,11 @@ export const translations: Translations = {
       githubDescription:
         "MIT Open-Source Software.コラボレーター募集中（英語必然）。プロジェクトはこちら：",
       githubLinkText: "Githubリポジトリ",
+      gotoLicenseList: "ライセンス一覧へ移動する",
+      licenseInfoLicense: "ライセンス：　{{ license }}",
+      licenseInfoAuthor: "作成者：　{{ author }}",
+      licenseInfoVersion: "インストールされているバージョン：　{{ version }}",
+      licenseInfoLink: "リンク：　{{ link }}",
     },
     dailies: {
       next: "次へ",

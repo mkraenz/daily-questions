@@ -32,7 +32,6 @@ const DevModeSwitch: FC<PropsFromRedux> = ({ devMode, setDevMode }) => {
         onCancel={() => showConfirmation(false)}
         onConfirm={handleConfirm}
       />
-      {/* TODO add confirmation dialog */}
       <Checkbox.Item
         label={t("settings:enableDevMode")}
         status={devMode ? "checked" : "unchecked"}
