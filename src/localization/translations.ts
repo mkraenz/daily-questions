@@ -42,6 +42,8 @@ const en = {
     darkMode: "Dark Mode",
     language: "Language: {{language}}",
     uniteConfirmAndShare: "Unite Confirm and Share Buttons in Dailies' Summary",
+    showPointsQuestionInputPlaceHolder:
+      "Show How-to-answer in input fields in Dailies",
     startOfNextDay: "Start of Next Day: {{time}}",
     enableDevMode: "Development Mode",
     devModeDialogTitle: "Enable Development Mode?",
@@ -90,6 +92,8 @@ const en = {
     noQuestionsButton: "Add New Question",
     goto: 'Go back to question "{{questionTitle}}"',
     answerRowA11yLabel: "{{ questionTitle }}: {{ answer }}",
+    pointsQuestionPlaceholder:
+      "Insert answer from 1 to 10 points. Tap 0 for 10 points.",
     pointsQuestionInputA11yLabel: "{{ questionTitle }}, {{ questionLong }}",
     pointsQuestionInputA11yHint:
       "Enter your answer from 1 to 10 points, enter 0 for 10 points. After input, the app automatically navigates to next question or to summary.",
@@ -216,6 +220,8 @@ export const translations: Translations = {
       language: "Sprache: {{language}}",
       uniteConfirmAndShare:
         "Tasten für Bestätigen und Teilen in Zusammenfassung der Dailies vereinen",
+      showPointsQuestionInputPlaceHolder:
+        "Antworthinweis bei Punkteingabe in Dailies anzeigen",
       startOfNextDay: "Start des nächsten Tages: {{time}}",
       enableDevMode: "Entwicklermodus aktivieren",
       devModeDialogTitle: "Entwicklermodus aktivieren?",
@@ -265,6 +271,8 @@ export const translations: Translations = {
       noQuestionsButton: "Neue Frage hinzufügen",
       goto: 'Zurücknavigieren zur Frage „{{ questionTitle }}"',
       answerRowA11yLabel: "{{ questionTitle }}: {{ answer }}",
+      pointsQuestionPlaceholder:
+        "Antwort von 1 bis 10 Punkten eingeben. Tippe 0 für 10 Punkte.",
       pointsQuestionInputA11yLabel: "{{ questionTitle }}, {{ questionLong }}",
       pointsQuestionInputA11yHint:
         "Antwort von 1 bis 10 Punkten eingeben. Für 10 Punkte Null-Taste drücken. Nach der Eingabe, navigiert die App zur nächsten unbeantworteten Frage oder zur Zusammenfassung.",
@@ -372,6 +380,8 @@ export const translations: Translations = {
       darkMode: "ダークモード",
       language: "言語: {{language}}",
       uniteConfirmAndShare: "答えのまとめ画面に確認と共有を一つのボトンにする",
+      showPointsQuestionInputPlaceHolder:
+        "使い方の説明を答え入力フィールドで表示する",
       startOfNextDay: "次の日の開始時間: {{time}}",
       enableDevMode: "開発モード",
       devModeDialogTitle: "開発モードを有効にする？",
@@ -419,6 +429,7 @@ export const translations: Translations = {
       noQuestionsButton: "質問を追加する",
       goto: '"{{questionTitle}}"質問に移動する',
       answerRowA11yLabel: "{{ questionTitle }}：{{ answer }}",
+      pointsQuestionPlaceholder: "答えは１〜１０点。０タップ＝１０点",
       pointsQuestionInputA11yLabel: "{{ questionTitle }}, {{ questionLong }}",
       pointsQuestionInputA11yHint:
         "答えは１点から１０点までを入力してください。１０点を入れるために０を入力してください。入力後アプリは次の答えていない質問またはまとめ画面に移動します。",

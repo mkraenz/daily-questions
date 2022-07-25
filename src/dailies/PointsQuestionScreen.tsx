@@ -38,6 +38,8 @@ interface Props {
 
 const mapState = (state: RootState) => ({
   answerList: selectAnswerList(state),
+  howToPlaceholderVisible:
+    state.settings.pointQuestionsInputPlaceholderShownInDailies,
 });
 const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -48,6 +50,7 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
   answer,
   onAnswer,
   answerList,
+  howToPlaceholderVisible,
 }) => {
   const { t } = useTranslation();
   const handleChangeText = (text: string | undefined): void => {
@@ -74,6 +77,11 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
         keyboardType="numeric"
         onChangeText={handleChangeText}
         value={answer?.toString() ?? ""}
+        placeholder={
+          howToPlaceholderVisible
+            ? t("dailies:pointsQuestionPlaceholder")
+            : undefined
+        }
         autoFocus={true}
         style={styles.input}
         autoComplete="off"

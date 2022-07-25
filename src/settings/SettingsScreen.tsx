@@ -9,6 +9,7 @@ import LanguageSelect from "./LanguageSelect";
 import NotificationSwitch from "./NotificationSwitch";
 import NotificationTimePicker from "./NotificationTimePicker";
 import ShowAppbarSwitch from "./ShowAppbarSwitch";
+import ShowPointsQuestionInputPlaceholderSwitch from "./ShowPointsQuestionInputPlaceholderSwitch";
 import UniteConfirmAndShareButtonsSwitch from "./UniteConfirmAndShareButtonsSwitch";
 import VersionAndCopyright from "./VersionAndCopyright";
 
@@ -24,6 +25,7 @@ const SettingsScreen = () => {
       <VersionAndCopyright />
       <DarkModeSwitch />
       <ShowAppbarSwitch />
+      <ShowPointsQuestionInputPlaceholderSwitch />
       <UniteConfirmAndShareButtonsSwitch />
       <DevModeSwitch />
       <NotificationSwitch />

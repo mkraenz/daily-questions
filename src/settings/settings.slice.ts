@@ -18,6 +18,7 @@ export interface SettingsState {
    */
   belatedDailiesUntilNextDayAt: { hour: number; minute: number };
   appbarShownInDailies: boolean;
+  pointQuestionsInputPlaceholderShownInDailies: boolean;
   uniteConfirmAndShareButtonsInDailies: boolean;
   /** optional only first app open */
   notifications?: NotificationSettings;
@@ -31,6 +32,7 @@ const initialState: SettingsState = {
     minute: 0,
   },
   appbarShownInDailies: true,
+  pointQuestionsInputPlaceholderShownInDailies: true,
   uniteConfirmAndShareButtonsInDailies: false,
 };
 
@@ -60,6 +62,13 @@ const settingsSlice = createSlice({
       state.appbarShownInDailies = action.payload;
     },
 
+    showPointQuestionsInputPlaceholderInDailies(
+      state,
+      action: PayloadAction<boolean>
+    ) {
+      state.pointQuestionsInputPlaceholderShownInDailies = action.payload;
+    },
+
     setUniteConfirmAndShareButtonsInDailies(
       state,
       action: PayloadAction<boolean>
@@ -80,5 +89,6 @@ export const {
   showAppbarInDailies,
   setUniteConfirmAndShareButtonsInDailies,
   setNotificationTime,
+  showPointQuestionsInputPlaceholderInDailies,
 } = settingsSlice.actions;
 export default settingsSlice.reducer;
