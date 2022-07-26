@@ -37,7 +37,6 @@ const LicenseItem: FC<LibraryInfo> = (props) => {
       onPress={() => nav.navigate("LicenseInfo", { ...props })}
       accessibilityLabel={`${title}, ${description}`}
       accessibilityHint={t("about:licenseItemAccessibilityHint")}
-      // TODO check answer of https://stackoverflow.com/questions/73119202/when-to-use-accessibilityrole-link-in-reactnative
       accessibilityRole="button"
     />
   );

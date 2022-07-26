@@ -70,7 +70,8 @@ const CustomDrawer: FC<DrawerContentComponentProps> = (props) => {
               accessibilityHint={t("general:drawerLabelA11yHint", {
                 title,
               })}
-              accessibilityRole="link"
+              // using role button over link. @see https://stackoverflow.com/questions/73119202/when-to-use-accessibilityrole-link-in-reactnative
+              accessibilityRole="button"
             ></List.Item>
           </View>
         );
