@@ -66,14 +66,23 @@ const en = {
     notificationsEnabled: "Daily notifications enabled",
   },
   about: {
+    companyWebsiteA11yLabel: "Copyright © 2022 Kraenz Software Development",
+    companyWebsiteA11yHint:
+      "Opens website of Kraenz Software Development in the web browser",
     githubDescription:
       "MIT Open-Source Software. Collaborators wanted. Check our ",
     githubLinkText: "GitHub repository.",
+    githubA11yLabel:
+      "MIT Open-Source Software. Collaborators wanted. Check our Github repository.",
+    githubA11yHint: "Opens GitHub repository website in the web browser",
     gotoLicenseList: "Go to licenses",
     licenseInfoLicense: "Licensed under: {{ license }}",
     licenseInfoAuthor: "Author: {{ author }}",
     licenseInfoVersion: "Installed version: {{ version }}",
     licenseInfoLink: "Link: {{ link }}",
+    licenseItemTitle: "{{ name }} v{{ version}}",
+    licenseItemDescription: "{{ author }}, licensed under {{ license }}",
+    licenseItemAccessibilityHint: "Go to details",
   },
   dailies: {
     next: "Next",
@@ -258,14 +267,23 @@ export const translations: Translations = {
       notificationsEnabled: "Benachrichtigungen aktiviert",
     },
     about: {
+      companyWebsiteA11yLabel: "Copyright © 2022 Kraenz Software Development",
+      companyWebsiteA11yHint:
+        "Öffnet die Website von Kraenz Software Development im Webbrowser",
       githubDescription:
         "MIT Open-Source Software. Mitwirkende gesucht (Englisch notwendig). Hier findest du unser ",
       githubLinkText: "Github Repository.",
+      githubA11yLabel:
+        "MIT Open-Source Software. Mitwirkende gesucht (Englisch notwendig). Hier findest du unser GitHub Repository",
+      githubA11yHint: "Öffnet GitHub Repository Website im Webbrowser",
       gotoLicenseList: "Zu den Lizenzen",
       licenseInfoLicense: "Lizensiert unter: {{ license }}",
       licenseInfoAuthor: "Author: {{ author }}",
       licenseInfoVersion: "Installierte Version: {{ version }}",
       licenseInfoLink: "Link: {{ link }}",
+      licenseItemTitle: "{{ name }} v{{ version}}",
+      licenseItemDescription: "{{ author }}, lizensiert unter {{ license }}",
+      licenseItemAccessibilityHint: "Navigiere zu Details",
     },
     dailies: {
       next: "Weiter",
@@ -431,14 +449,24 @@ export const translations: Translations = {
       notificationsEnabled: "毎日の通知が有効",
     },
     about: {
+      companyWebsiteA11yLabel: "Copyright © 2022 Kraenz Software Development",
+      companyWebsiteA11yHint:
+        "Kraenz Software DevelopmentのWeb サイトを Web ブラウザーで開く",
       githubDescription:
         "MIT Open-Source Software.コラボレーター募集中（英語必然）。プロジェクトはこちら：",
       githubLinkText: "Githubリポジトリ",
+      githubA11yLabel:
+        "MIT Open-Source Software.コラボレーター募集中（英語必然）。プロジェクトのGithubリポジトリはこちら。",
+      githubA11yHint: "GitHubリポジトリのWeb サイトを Web ブラウザーで開く",
       gotoLicenseList: "ライセンス一覧へ移動する",
       licenseInfoLicense: "ライセンス：　{{ license }}",
       licenseInfoAuthor: "作成者：　{{ author }}",
       licenseInfoVersion: "インストールされているバージョン：　{{ version }}",
       licenseInfoLink: "リンク：　{{ link }}",
+      licenseItemTitle: "{{ name }} v{{ version}}",
+      licenseItemDescription:
+        "{{ author }}、{{ license }}によりライセンスされています",
+      licenseItemAccessibilityHint: "詳細に移動する",
     },
     dailies: {
       next: "次へ",

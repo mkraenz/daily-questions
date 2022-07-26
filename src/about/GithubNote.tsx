@@ -19,7 +19,13 @@ const GithubNote: FC = () => {
     Linking.openURL("https://github.com/proSingularity/daily-questions");
   };
   return (
-    <TouchableRipple onPress={openGithub} style={styles.container}>
+    <TouchableRipple
+      onPress={openGithub}
+      style={styles.container}
+      accessibilityRole="link"
+      accessibilityLabel={t("about:githubA11yLabel")}
+      accessibilityHint={t("about:githubA11yHint")}
+    >
       <Paragraph>
         {t("about:githubDescription")}
         <Paragraph style={[styles.link, { color: theme.colors.accent }]}>

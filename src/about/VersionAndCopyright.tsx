@@ -1,6 +1,7 @@
 import React from "react";
 import { Linking, StyleSheet, View } from "react-native";
 import { Paragraph, TouchableRipple, useTheme } from "react-native-paper";
+import { useTranslation } from "../localization/useTranslations";
 
 const styles = StyleSheet.create({
   link: {
@@ -13,6 +14,7 @@ const styles = StyleSheet.create({
 
 const VersionAndCopyright = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const openCompanyWebsite = () => {
     Linking.openURL("http://kraenz.eu");
   };
@@ -20,7 +22,12 @@ const VersionAndCopyright = () => {
   return (
     <View style={styles.container}>
       <Paragraph>Daily Questions v1.18.0</Paragraph>
-      <TouchableRipple onPress={openCompanyWebsite}>
+      <TouchableRipple
+        onPress={openCompanyWebsite}
+        accessibilityRole="link"
+        accessibilityLabel={t("about:companyWebsiteA11yLabel")}
+        accessibilityHint={t("about:companyWebsiteA11yHint")}
+      >
         <Paragraph>
           Copyright © 2022{" "}
           <Paragraph style={[styles.link, { color: theme.colors.accent }]}>
