@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
@@ -55,6 +56,9 @@ const NavigationApp: FC<PropsFromRedux> = ({
         screenOptions={{
           // Workaround: using a render function to avoid 'Error: Rendered more hooks than during the previous render.' when using useTranslation() in the BaseAppBar component
           header: (props) => <BaseAppBar {...props} />,
+          drawerLabelStyle: {
+            fontSize: 15,
+          },
         }}
       >
         <Drawer.Screen
@@ -64,6 +68,9 @@ const NavigationApp: FC<PropsFromRedux> = ({
             headerShown: appbarShownInDailies,
             header: (props) => <DailiesAppBar {...props} />,
             title: t("routes:dailies"),
+            drawerIcon: (props) => (
+              <MaterialCommunityIcons name="chat-question" {...props} />
+            ),
           }}
         />
         <Drawer.Screen
@@ -71,6 +78,9 @@ const NavigationApp: FC<PropsFromRedux> = ({
           component={StatisticsScreen}
           options={{
             title: t("routes:statistics"),
+            drawerIcon: (props) => (
+              <MaterialCommunityIcons name="chart-line" {...props} />
+            ),
           }}
         />
         <Drawer.Screen
@@ -79,6 +89,9 @@ const NavigationApp: FC<PropsFromRedux> = ({
           options={{
             headerShown: false,
             title: t("routes:history"),
+            drawerIcon: (props) => (
+              <MaterialCommunityIcons name="history" {...props} />
+            ),
           }}
         />
         <Drawer.Screen
@@ -87,6 +100,9 @@ const NavigationApp: FC<PropsFromRedux> = ({
           options={{
             headerShown: false,
             title: t("routes:customizeQuestions"),
+            drawerIcon: (props) => (
+              <MaterialCommunityIcons name="pencil" {...props} />
+            ),
           }}
         />
         <Drawer.Screen
@@ -94,6 +110,9 @@ const NavigationApp: FC<PropsFromRedux> = ({
           component={SettingsScreen}
           options={{
             title: t("routes:settings"),
+            drawerIcon: (props) => (
+              <MaterialCommunityIcons name="cog" {...props} />
+            ),
           }}
         />
         <Drawer.Screen
@@ -102,6 +121,9 @@ const NavigationApp: FC<PropsFromRedux> = ({
           options={{
             title: t("routes:about"),
             headerShown: false,
+            drawerIcon: (props) => (
+              <MaterialCommunityIcons name="information-outline" {...props} />
+            ),
           }}
         />
       </Drawer.Navigator>
