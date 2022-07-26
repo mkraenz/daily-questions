@@ -1,9 +1,13 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  createDrawerNavigator,
+  DrawerContentComponentProps,
+  DrawerContentScrollView,
+} from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React, { FC } from "react";
-import { useTheme } from "react-native-paper";
+import { View } from "react-native";
+import { List, useTheme } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import AboutNav from "./about/AboutNav";
 import BaseAppBar from "./BaseAppBar";
@@ -25,6 +29,55 @@ const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const Drawer = createDrawerNavigator<GlobalDrawerParamList>();
+
+const CustomDrawer: FC<DrawerContentComponentProps> = (props) => {
+  const theme = useTheme();
+  const { t } = useTranslation();
+  return (
+    <DrawerContentScrollView {...props}>
+      {Object.values(props.descriptors).map((route) => {
+        const title = route.options.title ?? route.route.name;
+        const DrawerIcon = route.options.drawerIcon
+          ? route.options.drawerIcon
+          : () => null;
+        return (
+          <View key={route.route.key}>
+            <List.Item
+              key={route.route.key}
+              onPress={() => {
+                route.navigation.navigate(route.route.name);
+                route.navigation.closeDrawer();
+              }}
+              title={title}
+              style={{ padding: 0 }}
+              titleStyle={{
+                fontSize: 18,
+                color: route.navigation.isFocused()
+                  ? theme.colors.primary
+                  : theme.colors.text,
+              }}
+              left={() => (
+                // @ts-expect-error
+                <DrawerIcon
+                  color={
+                    route.navigation.isFocused()
+                      ? theme.colors.primary
+                      : theme.colors.text
+                  }
+                />
+              )}
+              accessibilityLabel={title}
+              accessibilityHint={t("general:drawerLabelA11yHint", {
+                title,
+              })}
+              accessibilityRole="link"
+            ></List.Item>
+          </View>
+        );
+      })}
+    </DrawerContentScrollView>
+  );
+};
 
 const NavigationApp: FC<PropsFromRedux> = ({
   appbarShownInDailies,
@@ -56,10 +109,8 @@ const NavigationApp: FC<PropsFromRedux> = ({
         screenOptions={{
           // Workaround: using a render function to avoid 'Error: Rendered more hooks than during the previous render.' when using useTranslation() in the BaseAppBar component
           header: (props) => <BaseAppBar {...props} />,
-          drawerLabelStyle: {
-            fontSize: 15,
-          },
         }}
+        drawerContent={(props) => <CustomDrawer {...props} />}
       >
         <Drawer.Screen
           name="Dailies"
@@ -69,7 +120,7 @@ const NavigationApp: FC<PropsFromRedux> = ({
             header: (props) => <DailiesAppBar {...props} />,
             title: t("routes:dailies"),
             drawerIcon: (props) => (
-              <MaterialCommunityIcons name="chat-question" {...props} />
+              <List.Icon icon="chat-question" {...props} />
             ),
           }}
         />
@@ -78,9 +129,7 @@ const NavigationApp: FC<PropsFromRedux> = ({
           component={StatisticsScreen}
           options={{
             title: t("routes:statistics"),
-            drawerIcon: (props) => (
-              <MaterialCommunityIcons name="chart-line" {...props} />
-            ),
+            drawerIcon: (props) => <List.Icon icon="chart-line" {...props} />,
           }}
         />
         <Drawer.Screen
@@ -89,9 +138,7 @@ const NavigationApp: FC<PropsFromRedux> = ({
           options={{
             headerShown: false,
             title: t("routes:history"),
-            drawerIcon: (props) => (
-              <MaterialCommunityIcons name="history" {...props} />
-            ),
+            drawerIcon: (props) => <List.Icon icon="history" {...props} />,
           }}
         />
         <Drawer.Screen
@@ -100,9 +147,7 @@ const NavigationApp: FC<PropsFromRedux> = ({
           options={{
             headerShown: false,
             title: t("routes:customizeQuestions"),
-            drawerIcon: (props) => (
-              <MaterialCommunityIcons name="pencil" {...props} />
-            ),
+            drawerIcon: (props) => <List.Icon icon="pencil" {...props} />,
           }}
         />
         <Drawer.Screen
@@ -110,9 +155,7 @@ const NavigationApp: FC<PropsFromRedux> = ({
           component={SettingsScreen}
           options={{
             title: t("routes:settings"),
-            drawerIcon: (props) => (
-              <MaterialCommunityIcons name="cog" {...props} />
-            ),
+            drawerIcon: (props) => <List.Icon icon="cog" {...props} />,
           }}
         />
         <Drawer.Screen
@@ -122,7 +165,7 @@ const NavigationApp: FC<PropsFromRedux> = ({
             title: t("routes:about"),
             headerShown: false,
             drawerIcon: (props) => (
-              <MaterialCommunityIcons name="information-outline" {...props} />
+              <List.Icon icon="information-outline" {...props} style={{}} />
             ),
           }}
         />

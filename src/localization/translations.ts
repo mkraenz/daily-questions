@@ -19,6 +19,7 @@ const en = {
     cancel: "Cancel",
     ok: "OK",
     openDrawerA11yLabel: "Open drawer navigation menu at the left",
+    drawerLabelA11yHint: "Navigates to {{ title }}",
   },
   weekdays: {
     Sun: "Sun",
@@ -222,6 +223,7 @@ export const translations: Translations = {
       cancel: "Abbrechen",
       ok: "OK",
       openDrawerA11yLabel: "Navigationsleiste auf der linken Seite öffnen",
+      drawerLabelA11yHint: "Navigiert zur {{ title }}-Ansicht",
     },
     weekdays: {
       Sun: "So.",
@@ -407,6 +409,7 @@ export const translations: Translations = {
       confirm: "確認",
       cancel: "キャンセル",
       openDrawerA11yLabel: "ナビゲーションドロワーを左側に開く",
+      drawerLabelA11yHint: "{{ title }}画面に移動する",
       ok: "OK",
     },
     weekdays: {
