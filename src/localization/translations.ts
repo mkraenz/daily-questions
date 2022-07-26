@@ -38,7 +38,10 @@ const en = {
     insufficientDataInTimeSpan:
       "You completed your dailies {{numOfEntries}} times in the selected time span. Your statistics show up once you've completed at least 2 dailies.",
     mockHistory: "DANGER: replace history by test data",
-    timeSpanSelectMenuA11yLabel: "Close time span selection menu",
+    timeSpanSelectMenuA11yLabel: "Closes time span selection menu",
+    timeSpanSelectButtonA11yLabel:
+      "Currently selected time span of statistic charts: {{ timeSpan }}",
+    timeSpanSelectButtonA11yHint: "Opens time span selection menu",
   },
   settings: {
     showAppbar: "Show App Bar in Dailies",
@@ -239,6 +242,9 @@ export const translations: Translations = {
         "Du hast deine Dailies {{numOfEntries}} mal im ausgewählten Zeitraum abgeschlossen. Deine Statistiken werden hier angezeigt, sobald du mindestens 2 Dailies abgeschlossen hast.",
       mockHistory: "GEFAHR: Verlauf durch Testdaten ersetzen",
       timeSpanSelectMenuA11yLabel: "Zeitraumauswahlmenü schließen",
+      timeSpanSelectButtonA11yLabel:
+        "Ausgewählter Zeitraum für Statistiken: {{ timeSpan }}",
+      timeSpanSelectButtonA11yHint: "Zeitraumauswahlmenü öffnen",
     },
     settings: {
       showAppbar: "App-Leiste in Dailies anzeigen",
@@ -422,6 +428,8 @@ export const translations: Translations = {
         "選択した期間内には {{numOfEntries}} 回Dailiesを完了しています。Dailiesを2回完了した後にはの統計情報が表示されます。",
       mockHistory: "危険: 履歴をテストデータで置き換える",
       timeSpanSelectMenuA11yLabel: "期間選択メニューを閉まる",
+      timeSpanSelectButtonA11yLabel: "選択された系統期間: {{ timeSpan }}",
+      timeSpanSelectButtonA11yHint: "期間選択メニューを開く",
     },
     settings: {
       showAppbar: "アプリバーをDailiesで表紙する",

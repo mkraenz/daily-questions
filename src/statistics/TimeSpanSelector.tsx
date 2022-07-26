@@ -42,12 +42,10 @@ const TimeSpanSelector: FC<Props> = ({ timeSpan, setTimeSpan }) => {
           style={styles.button}
           contentStyle={{ flexDirection: "row-reverse" }}
           icon="menu-down"
-          // TODO translations
-          // accessibilityLabel={`Currently selected time span of statistic charts: ${t(
-          //   `statistics:${timeSpan}`
-          // )}`}
-          // TODO translations
-          // accessibilityHint={"Open time span selection menu"}
+          accessibilityLabel={t("statistics:timeSpanSelectButtonA11yLabel", {
+            timeSpan: t(`statistics:${timeSpan}`),
+          })}
+          accessibilityHint={t("statistics:timeSpanSelectButtonA11yHint")}
         >
           {t(`statistics:${timeSpan}`)}
         </Button>
