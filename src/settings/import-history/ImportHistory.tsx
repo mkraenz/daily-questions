@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { toggleDialogOpen } from "../../accessibility/accessibility.slice";
 import { setHistory } from "../../history/history.slice";
 import { useTranslation } from "../../localization/useTranslations";
 import { setQuestions } from "../../questions/questions.slice";
@@ -20,6 +21,7 @@ const mapState = (state: RootState) => ({
 const mapDispatch = {
   setHistory,
   setQuestions,
+  toggleDialogOpen,
 };
 const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -30,9 +32,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const ImportHistory: FC<PropsFromRedux> = ({ setHistory, setQuestions }) => {
+const ImportHistory: FC<PropsFromRedux> = ({
+  setHistory,
+  setQuestions,
+  toggleDialogOpen,
+}) => {
   const [confirmationShown, showConfirmation] = useState(false);
-  const [errored, setErrored] = useState(false);
+  const [errorDialogShown, showErrorDialog] = useState(false);
   const [success, setSuccess] = useState(false);
   const { t } = useTranslation();
 
@@ -47,8 +53,10 @@ const ImportHistory: FC<PropsFromRedux> = ({ setHistory, setQuestions }) => {
       setQuestions({ questions: imported.questions });
       setSuccess(true);
     } else {
-      setErrored(true);
+      toggleDialogOpen();
+      showErrorDialog(true);
     }
+    toggleDialogOpen();
     showConfirmation(false);
   };
 
@@ -59,16 +67,25 @@ const ImportHistory: FC<PropsFromRedux> = ({ setHistory, setQuestions }) => {
         visible={success}
       />
       <ImportHistoryErrorDialog
-        visible={errored}
-        onDismiss={() => setErrored(false)}
+        visible={errorDialogShown}
+        onDismiss={() => {
+          toggleDialogOpen();
+          showErrorDialog(false);
+        }}
       />
       <ImportHistoryConfirmationDialog
         visible={confirmationShown}
-        onCancel={() => showConfirmation(false)}
+        onCancel={() => {
+          toggleDialogOpen();
+          showConfirmation(false);
+        }}
         onConfirm={handleConfirm}
       />
       <Button
-        onPress={() => showConfirmation(true)}
+        onPress={() => {
+          toggleDialogOpen();
+          showConfirmation(true);
+        }}
         mode="outlined"
         compact={false}
       >

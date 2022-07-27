@@ -4,6 +4,7 @@ import React, { FC, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, TextInput, useTheme } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { toggleDialogOpen } from "../accessibility/accessibility.slice";
 import { useTranslation } from "../localization/useTranslations";
 import ArchiveConfirmationDialog from "./ArchiveConfirmationDialog";
 import type {
@@ -19,13 +20,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapDispatch = { editQuestion, archiveQuestion };
+const mapDispatch = { editQuestion, archiveQuestion, toggleDialogOpen };
 const connector = connect(null, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const EditQuestionsScreen: FC<
   PropsFromRedux & StackScreenProps<QuestionsStackParamList, "Edit Question">
-> = ({ editQuestion, archiveQuestion, route }) => {
+> = ({ editQuestion, archiveQuestion, route, toggleDialogOpen }) => {
   const { title, id, questionLong, type, active } = route.params;
   const nav = useNavigation<QuestionsNavigationProp>();
   const [editedTitle, setEditedTitle] = useState(title);
@@ -51,6 +52,7 @@ const EditQuestionsScreen: FC<
 
   const archiveThisQuestion = () => {
     archiveQuestion({ id });
+    toggleDialogOpen();
     showArchiveConfirmation(false);
     nav.goBack();
   };
@@ -99,7 +101,10 @@ const EditQuestionsScreen: FC<
       <Button
         mode="contained"
         color={theme.colors.error}
-        onPress={() => showArchiveConfirmation(true)}
+        onPress={() => {
+          toggleDialogOpen();
+          showArchiveConfirmation(true);
+        }}
         accessibilityHint={t("questions:archiveA11yHint")}
         accessibilityLabel={t("questions:archive")}
       >
@@ -107,7 +112,10 @@ const EditQuestionsScreen: FC<
       </Button>
       <ArchiveConfirmationDialog
         visible={archiveConfirmationShown}
-        onCancel={() => showArchiveConfirmation(false)}
+        onCancel={() => {
+          toggleDialogOpen();
+          showArchiveConfirmation(false);
+        }}
         onConfirm={archiveThisQuestion}
       />
     </View>
