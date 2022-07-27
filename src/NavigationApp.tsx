@@ -6,7 +6,6 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React, { FC } from "react";
-import { View } from "react-native";
 import { List, useTheme } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import AboutNav from "./about/AboutNav";
@@ -41,39 +40,37 @@ const CustomDrawer: FC<DrawerContentComponentProps> = (props) => {
           ? route.options.drawerIcon
           : () => null;
         return (
-          <View key={route.route.key}>
-            <List.Item
-              key={route.route.key}
-              onPress={() => {
-                route.navigation.navigate(route.route.name);
-                route.navigation.closeDrawer();
-              }}
-              title={title}
-              style={{ padding: 0 }}
-              titleStyle={{
-                fontSize: 18,
-                color: route.navigation.isFocused()
-                  ? theme.colors.primary
-                  : theme.colors.text,
-              }}
-              left={() => (
-                // @ts-expect-error
-                <DrawerIcon
-                  color={
-                    route.navigation.isFocused()
-                      ? theme.colors.primary
-                      : theme.colors.text
-                  }
-                />
-              )}
-              accessibilityLabel={title}
-              accessibilityHint={t("general:drawerLabelA11yHint", {
-                title,
-              })}
-              // using role button over link. @see https://stackoverflow.com/questions/73119202/when-to-use-accessibilityrole-link-in-reactnative
-              accessibilityRole="button"
-            ></List.Item>
-          </View>
+          <List.Item
+            key={route.route.key}
+            onPress={() => {
+              route.navigation.navigate(route.route.name);
+              route.navigation.closeDrawer();
+            }}
+            title={title}
+            style={{ padding: 0 }}
+            titleStyle={{
+              fontSize: 18,
+              color: route.navigation.isFocused()
+                ? theme.colors.primary
+                : theme.colors.text,
+            }}
+            left={() => (
+              // @ts-expect-error
+              <DrawerIcon
+                color={
+                  route.navigation.isFocused()
+                    ? theme.colors.primary
+                    : theme.colors.text
+                }
+              />
+            )}
+            accessibilityLabel={title}
+            accessibilityHint={t("general:drawerLabelA11yHint", {
+              title,
+            })}
+            // using role button over link. @see https://stackoverflow.com/questions/73119202/when-to-use-accessibilityrole-link-in-reactnative
+            accessibilityRole="button"
+          />
         );
       })}
     </DrawerContentScrollView>
