@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import * as React from "react";
 import { FC } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import {
   Button,
   Dialog,
@@ -30,22 +30,33 @@ const DevModeConfirmationDialog: FC<Props> = ({
   const { t } = useTranslation();
   return (
     <Portal>
-      <Dialog visible={visible} onDismiss={onCancel}>
-        <Dialog.Title accessibilityRole="header">
-          <WarningIcon /> {t("settings:devModeDialogTitle")}
-        </Dialog.Title>
-        <Dialog.Content style={{ flexDirection: "row" }}>
-          <Paragraph>{t("settings:devModeDialogDescription")}</Paragraph>
-        </Dialog.Content>
-        <View style={{ flexDirection: "row-reverse" }}>
-          <Dialog.Actions>
-            <Button onPress={() => onConfirm()}>{t("general:confirm")}</Button>
-          </Dialog.Actions>
-          <Dialog.Actions>
-            <Button onPress={() => onCancel()}>{t("general:cancel")}</Button>
-          </Dialog.Actions>
-        </View>
-      </Dialog>
+      <View
+        // importantForAccessibility="yes"
+        // accessibilityElementsHidden={false}
+        style={[
+          StyleSheet.absoluteFill,
+          { display: visible ? "flex" : "none" },
+        ]}
+      >
+        <Dialog visible={visible} onDismiss={onCancel}>
+          <Dialog.Title accessibilityRole="header">
+            <WarningIcon /> {t("settings:devModeDialogTitle")}
+          </Dialog.Title>
+          <Dialog.Content style={{ flexDirection: "row" }}>
+            <Paragraph>{t("settings:devModeDialogDescription")}</Paragraph>
+          </Dialog.Content>
+          <View style={{ flexDirection: "row-reverse" }}>
+            <Dialog.Actions>
+              <Button onPress={() => onConfirm()}>
+                {t("general:confirm")}
+              </Button>
+            </Dialog.Actions>
+            <Dialog.Actions>
+              <Button onPress={() => onCancel()}>{t("general:cancel")}</Button>
+            </Dialog.Actions>
+          </View>
+        </Dialog>
+      </View>
     </Portal>
   );
 };
