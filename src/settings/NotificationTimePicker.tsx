@@ -1,8 +1,6 @@
 import moment from "moment";
 import React, { FC, useState } from "react";
-import { View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import {
@@ -11,6 +9,7 @@ import {
 } from "../LocalNotifications";
 import { RootState } from "../store";
 import { setNotificationTime } from "./settings.slice";
+import SettingsButtonRow from "./SettingsButtonRow";
 
 const mapState = (state: RootState) => ({
   notificationSettings: state.settings.notifications,
@@ -48,14 +47,15 @@ const NotificationTimePicker: FC<PropsFromRedux> = ({
     0
   );
   return (
-    <View style={{ marginBottom: 16 }}>
-      <Button
-        mode="outlined"
-        onPress={() => showTimePicker(true)}
+    <>
+      <SettingsButtonRow
+        value={toHHMM(date)}
+        title={t("settings:notificationTime")}
+        accessibilityLabel={t("settings:notificationTime")}
+        accessibilityHint={t("settings:notificationTimeA11yHint")}
         disabled={!notificationSettings?.enabled}
-      >
-        {t("settings:notificationTime", { time: toHHMM(date) })}
-      </Button>
+        onPress={() => showTimePicker(true)}
+      />
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="time"
@@ -63,7 +63,7 @@ const NotificationTimePicker: FC<PropsFromRedux> = ({
         onCancel={() => showTimePicker(false)}
         date={date}
       />
-    </View>
+    </>
   );
 };
 

@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { Checkbox } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { showPointQuestionsInputPlaceholderInDailies } from "./settings.slice";
+import SettingsSwitchRow from "./SettingsSwitchRow";
 
 const mapState = (state: RootState) => ({
   checked: state.settings.pointQuestionsInputPlaceholderShownInDailies,
@@ -18,11 +18,15 @@ const ShowPointsQuestionInputPlaceholderSwitch: FC<PropsFromRedux> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Checkbox.Item
-      label={t("settings:showPointsQuestionInputPlaceHolder")}
-      status={checked ? "checked" : "unchecked"}
+    <SettingsSwitchRow
+      title={t("settings:showPointsQuestionInputPlaceHolder")}
+      value={checked}
       onPress={() => showPointQuestionsInputPlaceholderInDailies(!checked)}
-    ></Checkbox.Item>
+      accessibilityLabel={t("settings:showPointsQuestionInputPlaceHolder")}
+      accessibilityHint={t(
+        "settings:showPointsQuestionInputPlaceHolderA11yHint"
+      )}
+    />
   );
 };
 

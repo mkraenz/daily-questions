@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import { Share, StyleSheet, View } from "react-native";
-import { Button } from "react-native-paper";
+import { Share, StyleSheet } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
 import { History } from "../../history/history.slice";
 import { useTranslation } from "../../localization/useTranslations";
 import { selectQuestions } from "../../questions/questions.selectors";
 import { Question } from "../../questions/questions.slice";
 import { RootState } from "../../store";
+import SettingsButtonRow from "../SettingsButtonRow";
 
 const mapState = (state: RootState) => ({
   questions: selectQuestions(state),
@@ -34,12 +34,12 @@ const ExportHistory: FC<PropsFromRedux> = ({ history, questions }) => {
     });
   };
 
+  // TODO accessibility
   return (
-    <View style={styles.container}>
-      <Button onPress={handlePress} mode="outlined">
-        {t("settings:exportHistory")}
-      </Button>
-    </View>
+    <SettingsButtonRow
+      title={t("settings:exportHistory")}
+      onPress={handlePress}
+    />
   );
 };
 

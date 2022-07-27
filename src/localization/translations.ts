@@ -17,6 +17,8 @@ const en = {
     appbarHeaderAllyLabel: "{{ title }} screen",
     confirm: "Confirm",
     cancel: "Cancel",
+    cancelDialogA11yHint:
+      "Closes the dialog and returns to the previous screen",
     ok: "OK",
     openDrawerA11yLabel: "Open drawer navigation menu at the left",
     drawerLabelA11yHint: "Navigates to {{ title }}",
@@ -45,14 +47,32 @@ const en = {
     timeSpanSelectButtonA11yHint: "Opens time span selection menu",
   },
   settings: {
+    sectionGeneral: "General",
+    sectionCustomization: "Customization",
+    sectionAdvanced: "Advanced",
     showAppbar: "Show App Bar in Dailies",
+    showAppbarA11yHint:
+      "This setting is always enabled when using a screen reader.",
     darkMode: "Dark Mode",
-    language: "Language: {{language}}",
+    darkModeA11yHint: "Activates or deactiviates dark mode",
+    language: "Language",
+    languageA11yLabel: "Selected language: {{language}}",
+    languageA11yHint:
+      "Opens the language selection menu. Attention: Changes of the app language do not change the language of your screen reader",
     uniteConfirmAndShare: "Unite Confirm and Share Buttons in Dailies' Summary",
+    uniteConfirmAndShareA11yHint:
+      "Unites the separated buttons for confirming and for sharing in your answer summary into a single button for both simultaneously, or deactivates this behavior.",
     showPointsQuestionInputPlaceHolder:
       "Show How-to-answer in input fields in Dailies",
-    startOfNextDay: "Start of Next Day: {{time}}",
+    showPointsQuestionInputPlaceHolderA11yHint:
+      "Activates or deactivates the how-to-answer input field placeholder when answering your daily questions.",
+    startOfNextDay: "Start of next day",
+    startOfNextDayA11yHint:
+      "Opens the time selection dialog for setting the start of the next day. If you happen to forget answering your daily questions on one day, you can still answer them on the next day until this time. The answer will count towards your previous day.",
     enableDevMode: "Development Mode",
+    enableDevModeA11yLabel: "Enable development mode",
+    enableDevModeA11yHint:
+      "Opens a confirmation dialog to enable the development mode. If the development mode is already enabled, it will instead be immediately deactivated.",
     devModeDialogTitle: "Enable Development Mode?",
     devModeDialogDescription:
       "This will enable experimental features. This may result in permanent (!) damage your app data. Do you really want to enable development mode?",
@@ -66,8 +86,13 @@ const en = {
       "Importing history and questions from clipboard failed. Please make sure your copied history string is valid. Your existing history and questions were NOT changed.",
     importHistorySuccessMessage: "Import successful",
     notificationTitle: "It's time for your Dailies.",
-    notificationTime: "Daily notification at {{time}}",
-    notificationsEnabled: "Daily notifications enabled",
+    notificationTime: "Daily reminder time",
+    notificationTimeA11yHint:
+      "Opens the time selection dialog for setting your daily reminder notification time.",
+    notificationsEnabled: "Daily reminder",
+    notificationsEnabledA11yLabel: "Enable daily reminder notifications",
+    notificationsEnabledA11yHint:
+      "Activates or deactivates daily reminder notifications for answering your daily questions. You can set the notification time in the subsequent settings item",
   },
   about: {
     companyWebsiteA11yLabel: "Copyright © 2022 Kraenz Software Development",
@@ -221,6 +246,8 @@ export const translations: Translations = {
       appbarHeaderAllyLabel: "{{ title }}-Ansicht",
       confirm: "Bestätigen",
       cancel: "Abbrechen",
+      cancelDialogA11yHint:
+        "Schließt das Dialogfeld und kehrt zur vorigen Ansicht zurück",
       ok: "OK",
       openDrawerA11yLabel: "Navigationsleiste auf der linken Seite öffnen",
       drawerLabelA11yHint: "Navigiert zur {{ title }}-Ansicht",
@@ -249,15 +276,33 @@ export const translations: Translations = {
       timeSpanSelectButtonA11yHint: "Zeitraumauswahlmenü öffnen",
     },
     settings: {
+      sectionGeneral: "Allgemein",
+      sectionCustomization: "Anpassung",
+      sectionAdvanced: "Erweiterte Einstellung",
       showAppbar: "App-Leiste in Dailies anzeigen",
+      showAppbarA11yHint:
+        "Diese Einstellung ist immer aktiviert, wenn die Bildschirmsprachausgabe genutzt wird.",
       darkMode: "Nachtmodus",
-      language: "Sprache: {{language}}",
+      darkModeA11yHint: "Aktiviert oder deaktiviert den Nachtmodus",
+      language: "Sprache",
+      languageA11yLabel: "Ausgewählte Sprache {{language}}",
+      languageA11yHint:
+        "Öffnet das Sprachauswahlmenü. Achtung: Dies ändert die Sprache der Texte der App, aber nicht die Bildschirmsprachausgabe",
       uniteConfirmAndShare:
-        "Tasten für Bestätigen und Teilen in Zusammenfassung der Dailies vereinen",
+        "Knopf für Bestätigen und Teilen in Zusammenfassung der Dailies vereinen",
+      uniteConfirmAndShareA11yHint:
+        "Vereinigt die separaten Schaltflächen für Bestätigen und für Teilen in der Antwort-Zusammenfassungsansicht zu einer einzigen Schaltfläche, bzw. deaktiviert dieses Verhalten.",
       showPointsQuestionInputPlaceHolder:
         "Antworthinweis bei Punkteingabe in Dailies anzeigen",
-      startOfNextDay: "Start des nächsten Tages: {{time}}",
-      enableDevMode: "Entwicklermodus aktivieren",
+      showPointsQuestionInputPlaceHolderA11yHint:
+        "Aktiviert bzw deaktiviert den Hinweis in Eingabefeldern beim Beantworten deiner täglichen Fragen",
+      startOfNextDay: "Beginn des nächsten Tages",
+      startOfNextDayA11yHint:
+        "Öffnet das Zeit-Auswahl-Dialogfeld zum Setzen des Beginn des nächsten Tages. Solltest du an einem Tag vergessen deine täglichen Fragen zu beantworten, kannst du bis zu dieser Zeit die Antworten des Vortags nachholen.",
+      enableDevMode: "Entwicklermodus",
+      enableDevModeA11yLabel: "Entwicklermodus aktivieren",
+      enableDevModeA11yHint:
+        "Öffnet ein Dialogfeld zum Bestätigen der Aktivierung des Entwicklermodus. Falls der Entwicklermodus bereits aktiviert ist, wird dieser bei Anklicken der Schaltfläche sofort deaktiviert",
       devModeDialogTitle: "Entwicklermodus aktivieren?",
       devModeDialogDescription:
         "Der Entwicklermodus aktiviert experimentelle Funktionen. Dies kann deine App und darin enthaltene Daten dauerhaft (!) kaputt machen. Bist du dir sicher, dass du den Entwicklermodus aktivieren möchtest?",
@@ -271,8 +316,13 @@ export const translations: Translations = {
         "Der Verlauf und die Fragen in deiner Zwischenablage konnte nicht importiert werden. Bitte stelle sicher, dass der kopierte Verlaufsstring gültig ist. Dein aktueller Verlauf und deine Fragen wurde NICHT geändert.",
       importHistorySuccessMessage: "Import erfolgreich",
       notificationTitle: "Zeit für deine Dailies.",
-      notificationTime: "Benachrichtungen um {{time}}",
-      notificationsEnabled: "Benachrichtigungen aktiviert",
+      notificationTime: "Erinnerungszeit",
+      notificationTimeA11yHint:
+        "Öffnet das Zeit-Auswahl-Dialogfeld zum Setzen der täglichen Benachrichtigungszeit",
+      notificationsEnabled: "Erinnerungen",
+      notificationsEnabledA11yLabel: "Erinnerungen aktivieren",
+      notificationsEnabledA11yHint:
+        "Aktiviert oder deaktiviert tägliche Erinnerungsbenachrichtigungen an die Beantwortung der täglichen Fragen. Die Benachrichtungszeit kann in der nachfolgenden Einstellung geändert werden.",
     },
     about: {
       companyWebsiteA11yLabel: "Copyright © 2022 Kraenz Software Development",
@@ -408,6 +458,7 @@ export const translations: Translations = {
       appbarHeaderAllyLabel: "{{ title }}・スクリーン",
       confirm: "確認",
       cancel: "キャンセル",
+      cancelDialogA11yHint: "ダイアログ・ボックスを閉めて前の画面に戻る",
       openDrawerA11yLabel: "ナビゲーションドロワーを左側に開く",
       drawerLabelA11yHint: "{{ title }}画面に移動する",
       ok: "OK",
@@ -435,14 +486,31 @@ export const translations: Translations = {
       timeSpanSelectButtonA11yHint: "期間選択メニューを開く",
     },
     settings: {
+      sectionGeneral: "全般設定",
+      sectionCustomization: "カスタマイズ",
+      sectionAdvanced: "詳細設定",
       showAppbar: "アプリバーをDailiesで表紙する",
+      showAppbarA11yHint: "この設定はスクリーンリーダーを使いときに常に有効",
       darkMode: "ダークモード",
-      language: "言語: {{language}}",
+      darkModeA11yHint: "ダークモードを有効化または無効化する",
+      language: "言語",
+      languageA11yLabel: "選択した言語：　{{language}}",
+      languageA11yHint:
+        "言語選択メニューを開く。ご注意：この設定はアプリ内の文章の言語を変える。スクリーン リーダーの言語はそのままです。",
       uniteConfirmAndShare: "答えのまとめ画面に確認と共有を一つのボトンにする",
+      uniteConfirmAndShareA11yHint:
+        "答えまとめ画面に２つのボトンに分かれている確認ボトンと共有ボトンを一つにする。またはその機能をオフにする",
       showPointsQuestionInputPlaceHolder:
         "使い方の説明を答え入力フィールドで表示する",
-      startOfNextDay: "次の日の開始時間: {{time}}",
+      showPointsQuestionInputPlaceHolderA11yHint:
+        "使い方の説明を答え入力フィールドで表紙するのを有効化または無効化する",
+      startOfNextDay: "次の日の開始時間",
+      startOfNextDayA11yHint:
+        "時間選択のダイアログボックスを開く。毎日の質問をし忘れた場合、次の日のこの時間までに答えたら前の日の答えになります。",
       enableDevMode: "開発モード",
+      enableDevModeA11yLabel: "開発モードを有効化または無効化する",
+      enableDevModeA11yHint:
+        "開発モードを有効化するための確認ダイアログボックスを表紙する。開発モードは有効している場合、直接に開発モードを無効化する",
       devModeDialogTitle: "開発モードを有効にする？",
       devModeDialogDescription:
         "開発モードを有効にすると、アプリが壊れやすくなります。データは壊れる場合もあります。本当に開発モードを有効しますか？",
@@ -456,8 +524,14 @@ export const translations: Translations = {
         "クリップボードからの履歴と質問をインポートできませんでした。コピーした履歴ストリングが有効であることを確認してください。現在の履歴や質問は変更されていませんでした。",
       importHistorySuccessMessage: "インポートは成功しました。",
       notificationTitle: "Dailiesの時間ですよ。",
-      notificationTime: "毎日{{time}}に通知を行います。",
-      notificationsEnabled: "毎日の通知が有効",
+      notificationTime: "毎日のリマインダー通知時間",
+      notificationTimeA11yHint:
+        "毎日のリマインダー通知時間の時間選択のダイアログボックスを開く",
+      notificationsEnabled: "毎日のリマインダー通知",
+      notificationsEnabledA11yLabel:
+        "毎日のリマインダー通知を有効化または無効化する",
+      notificationsEnabledA11yHint:
+        "毎日のリマインダー通知時間は次の設定で設定できます",
     },
     about: {
       companyWebsiteA11yLabel: "Copyright © 2022 Kraenz Software Development",

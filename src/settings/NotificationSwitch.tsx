@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { Checkbox } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import {
@@ -8,6 +7,7 @@ import {
 } from "../LocalNotifications";
 import { RootState } from "../store";
 import { setNotificationTime } from "./settings.slice";
+import SettingsSwitchRow from "./SettingsSwitchRow";
 
 const mapState = (state: RootState) => ({
   notificationSettings: state.settings.notifications,
@@ -22,9 +22,11 @@ const NotificationSwitch: FC<PropsFromRedux> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Checkbox.Item
-      label={t("settings:notificationsEnabled")}
-      status={notificationSettings?.enabled ? "checked" : "unchecked"}
+    <SettingsSwitchRow
+      title={t("settings:notificationsEnabled")}
+      accessibilityLabel={t("settings:notificationsEnabledA11yLabel")}
+      accessibilityHint={t("settings:notificationsEnabledA11yHint")}
+      value={!!notificationSettings?.enabled}
       onPress={() =>
         setNotificationTime({
           enabled: !notificationSettings?.enabled,
@@ -32,7 +34,7 @@ const NotificationSwitch: FC<PropsFromRedux> = ({
           minute: notificationSettings?.minute || DEFAULT_NOTIFICATION_MINUTE,
         })
       }
-    ></Checkbox.Item>
+    />
   );
 };
 

@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { Checkbox } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { setDarkMode } from "./settings.slice";
+import SettingsSwitchRow from "./SettingsSwitchRow";
 
 const mapState = (state: RootState) => ({
   dark: state.settings.darkMode,
@@ -15,11 +15,13 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 const DarkModeSwitch: FC<PropsFromRedux> = ({ dark, setDarkMode }) => {
   const { t } = useTranslation();
   return (
-    <Checkbox.Item
-      label={t("settings:darkMode")}
-      status={dark ? "checked" : "unchecked"}
+    <SettingsSwitchRow
+      title={t("settings:darkMode")}
+      accessibilityLabel={t("settings:darkMode")}
+      accessibilityHint={t("settings:darkModeA11yHint")}
       onPress={() => setDarkMode(!dark)}
-    ></Checkbox.Item>
+      value={!!dark}
+    />
   );
 };
 

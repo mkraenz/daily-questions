@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { Checkbox } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { setUniteConfirmAndShareButtonsInDailies } from "./settings.slice";
+import SettingsSwitchRow from "./SettingsSwitchRow";
 
 const mapState = (state: RootState) => ({
   checked: state.settings.uniteConfirmAndShareButtonsInDailies,
@@ -18,11 +18,13 @@ const UniteConfirmAndShareButtonsSwitch: FC<PropsFromRedux> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Checkbox.Item
-      label={t("settings:uniteConfirmAndShare")}
-      status={checked ? "checked" : "unchecked"}
+    <SettingsSwitchRow
+      title={t("settings:uniteConfirmAndShare")}
+      value={checked}
+      accessibilityLabel={t("settings:uniteConfirmAndShare")}
+      accessibilityHint={t("settings:uniteConfirmAndShareA11yHint")}
       onPress={() => setUniteConfirmAndShareButtonsInDailies(!checked)}
-    ></Checkbox.Item>
+    />
   );
 };
 

@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
-import { Button, Menu } from "react-native-paper";
+import { Menu } from "react-native-paper";
 import { useTranslation } from "../localization/useTranslations";
+import SettingsButtonRow from "./SettingsButtonRow";
 
 interface Props {}
 
@@ -28,25 +29,22 @@ const LanguageSelect: FC<Props> = (props) => {
     closeMenu();
   };
 
+  const selectedLanguage =
+    langCodeToLanguage[i18n.language as keyof typeof langCodeToLanguage];
   return (
     <Menu
       visible={visible}
       onDismiss={closeMenu}
       anchor={
-        <Button
-          mode="outlined"
-          onPress={openMenu}
-          contentStyle={{ flexDirection: "row-reverse" }}
-          icon="menu-down"
-          style={styles.button}
-        >
-          {t("settings:language", {
-            language:
-              langCodeToLanguage[
-                i18n.language as keyof typeof langCodeToLanguage
-              ],
+        <SettingsButtonRow
+          title={t("settings:language")}
+          value={selectedLanguage}
+          accessibilityLabel={t("settings:languageA11yLabel", {
+            language: selectedLanguage,
           })}
-        </Button>
+          accessibilityHint={t("settings:languageA11yHint")}
+          onPress={openMenu}
+        />
       }
     >
       <Menu.Item title={"English"} onPress={() => changeLanguage("en")} />

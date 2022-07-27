@@ -1,13 +1,12 @@
 import * as Clipboard from "expo-clipboard";
 import React, { FC, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { toggleDialogOpen } from "../../accessibility/accessibility.slice";
 import { setHistory } from "../../history/history.slice";
 import { useTranslation } from "../../localization/useTranslations";
 import { setQuestions } from "../../questions/questions.slice";
 import { RootState } from "../../store";
+import SettingsButtonRow from "../SettingsButtonRow";
 import { ExportedHistoryAndQuestions } from "./ExportHistory";
 import { validateImportedHistoryString } from "./import-history-validation";
 import { validateImportedQuestionsString } from "./import-questions-validation";
@@ -25,12 +24,6 @@ const mapDispatch = {
 };
 const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 16,
-  },
-});
 
 const ImportHistory: FC<PropsFromRedux> = ({
   setHistory,
@@ -61,7 +54,7 @@ const ImportHistory: FC<PropsFromRedux> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <>
       <ImportHistorySuccessMessage
         onDismiss={() => setSuccess(false)}
         visible={success}
@@ -81,17 +74,15 @@ const ImportHistory: FC<PropsFromRedux> = ({
         }}
         onConfirm={handleConfirm}
       />
-      <Button
+      {/* TODO accessibility */}
+      <SettingsButtonRow
+        title={t("settings:importHistory")}
         onPress={() => {
           toggleDialogOpen();
           showConfirmation(true);
         }}
-        mode="outlined"
-        compact={false}
-      >
-        {t("settings:importHistory")}
-      </Button>
-    </View>
+      />
+    </>
   );
 };
 

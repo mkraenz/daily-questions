@@ -1,12 +1,11 @@
 import moment from "moment";
 import React, { FC, useState } from "react";
-import { View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Button } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { setBelatedDailiesUntilNextDayAtHour } from "./settings.slice";
+import SettingsButtonRow from "./SettingsButtonRow";
 
 const mapState = (state: RootState) => ({
   time: state.settings.belatedDailiesUntilNextDayAt,
@@ -38,10 +37,14 @@ const BelatedDailiesTimePicker: FC<PropsFromRedux> = ({
   const date = new Date();
   date.setHours(time.hour, time.minute, 0, 0);
   return (
-    <View style={{ marginBottom: 16 }}>
-      <Button mode="outlined" onPress={() => showTimePicker(true)}>
-        {t("settings:startOfNextDay", { time: toHHMM(date) })}
-      </Button>
+    <>
+      <SettingsButtonRow
+        value={toHHMM(date)}
+        title={t("settings:startOfNextDay")}
+        accessibilityLabel={t("settings:startOfNextDay")}
+        accessibilityHint={t("settings:startOfNextDayA11yHint")}
+        onPress={() => showTimePicker(true)}
+      />
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="time"
@@ -49,7 +52,7 @@ const BelatedDailiesTimePicker: FC<PropsFromRedux> = ({
         onCancel={() => showTimePicker(false)}
         date={date}
       />
-    </View>
+    </>
   );
 };
 

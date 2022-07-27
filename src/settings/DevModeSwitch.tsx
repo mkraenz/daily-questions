@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
-import { Checkbox } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { toggleDialogOpen } from "../accessibility/accessibility.slice";
 import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import DevModeConfirmationDialog from "./DevModeConfirmationDialog";
 import { setDevMode } from "./settings.slice";
+import SettingsSwitchRow from "./SettingsSwitchRow";
 
 const mapState = (state: RootState) => ({
   devMode: state.settings.devMode,
@@ -44,10 +44,13 @@ const DevModeSwitch: FC<PropsFromRedux> = ({
         }}
         onConfirm={handleConfirm}
       />
-      <Checkbox.Item
-        label={t("settings:enableDevMode")}
-        status={devMode ? "checked" : "unchecked"}
+      <SettingsSwitchRow
+        title={t("settings:enableDevMode")}
+        accessibilityLabel={t("settings:enableDevModeA11yLabel")}
+        accessibilityHint={t("settings:enableDevModeA11yHint")}
+        accessibilityRole="button"
         onPress={handlePress}
+        value={devMode}
       />
     </>
   );

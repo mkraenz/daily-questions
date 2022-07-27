@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { Checkbox } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { showAppbarInDailies } from "./settings.slice";
+import SettingsSwitchRow from "./SettingsSwitchRow";
 
 const mapState = (state: RootState) => ({
   appbarShown: state.settings.appbarShownInDailies,
@@ -20,12 +20,14 @@ const ShowAppBarSwitch: FC<PropsFromRedux> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Checkbox.Item
+    <SettingsSwitchRow
       disabled={screenReaderEnabled}
-      label={t("settings:showAppbar")}
-      status={appbarShown ? "checked" : "unchecked"}
+      title={t("settings:showAppbar")}
+      accessibilityLabel={t("settings:showAppbar")}
+      accessibilityHint={t("settings:showAppbarA11yHint")}
+      value={appbarShown}
       onPress={() => showAppbarInDailies(!appbarShown)}
-    ></Checkbox.Item>
+    />
   );
 };
 
