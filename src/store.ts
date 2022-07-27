@@ -16,6 +16,9 @@ import {
 import dailiesReducer, { DailiesState } from "./dailies/dailies.slice";
 import historyReducer, { HistoryState } from "./history/history.slice";
 import questionsReducer, { QuestionsState } from "./questions/questions.slice";
+import accessibilityReducer, {
+  AccessibilityState,
+} from "./settings/accessibility.slice";
 import settingsReducer, { SettingsState } from "./settings/settings.slice";
 
 /**
@@ -38,6 +41,7 @@ const persistConfig: PersistConfig<{
   settings: SettingsState;
   questions: QuestionsState;
   dailies: DailiesState;
+  accessibility: AccessibilityState;
 }> = {
   key: "root",
   version: 1,
@@ -49,6 +53,7 @@ const rootReducer = combineReducers({
   settings: settingsReducer,
   questions: questionsReducer,
   dailies: dailiesReducer,
+  accessibility: accessibilityReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
