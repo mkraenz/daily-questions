@@ -20,7 +20,6 @@ const mapDispatch = {
 const connector = connect(null, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-// Note: no need to handle state.accessibility.dialogOpen here because SummaryScreen is taking care of it
 const ResetDailiesBar: FC<PropsFromRedux> = ({ resetDailies }) => {
   const [confirmationShown, showConfirmation] = React.useState(false);
   const { t } = useTranslation();

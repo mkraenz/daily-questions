@@ -4,6 +4,7 @@ import "react-native-gesture-handler";
 import "react-native-get-random-values";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import AccessibleByScreenReaderContainer from "./accessibility/AccessibleByScreenReaderContainer";
 import DetectAccessibilityServices from "./accessibility/DetectAccessibilityServices";
 import { myi18n } from "./localization/myi18n";
 import LocalNotifications from "./LocalNotifications";
@@ -19,7 +20,9 @@ export default function App() {
           <I18nextProvider i18n={myi18n}>
             <LocalNotifications />
             <DetectAccessibilityServices />
-            <NavigationApp />
+            <AccessibleByScreenReaderContainer>
+              <NavigationApp />
+            </AccessibleByScreenReaderContainer>
           </I18nextProvider>
         </ThemedApp>
       </PersistGate>

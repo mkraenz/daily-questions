@@ -49,10 +49,6 @@ const DailiesAppBar: FC<DrawerHeaderProps & PropsFromRedux> = (props) => {
           accessibilityRole="button"
           accessibilityLabel={t("dailies:resetButtonAllyLabel")}
           accessibilityHint={t("dailies:resetButtonAllyHint")}
-          accessibilityElementsHidden={props.dialogOpen}
-          importantForAccessibility={
-            props.dialogOpen ? "no-hide-descendants" : "auto"
-          }
         />
       )}
     </BaseAppBar>
