@@ -2,6 +2,7 @@ import { isEmpty } from "lodash";
 import React, { FC, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
+import { getAccessibilityHiddenProps } from "../accessibility/getAccessibilityHiddenProps";
 import { useTranslation } from "../localization/useTranslations";
 import { defaultQuestions } from "../questions/default-questions";
 import {
@@ -25,8 +26,7 @@ import SummaryScreen from "./SummaryScreen";
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "100%",
+    ...StyleSheet.absoluteFillObject,
   },
 });
 
@@ -36,6 +36,7 @@ const mapState = (state: RootState) => ({
   answers: selectAnswers(state),
   currentQuestionId: state.dailies.currentQuestionId,
   finished: state.dailies.allQuestionsAnswered,
+  accessibilityHidden: state.accessibility.dialogOpen,
 });
 const mapDispatch = {
   setAnswer,
@@ -58,6 +59,7 @@ const DailiesNav: FC<PropsFromRedux> = ({
   setCurrentQuestionId,
   initAnswers,
   setQuestions,
+  accessibilityHidden,
 }) => {
   // handling of changes to the question list while dailies have already been started with an old questions list
   // essentially: if a question was added, archived, moved, or its type changed, then reset everything. Otherwise, keep the state (but change the texts)
@@ -91,9 +93,23 @@ const DailiesNav: FC<PropsFromRedux> = ({
     }
   }, [answers, questions, questionsEmpty]);
 
-  if (questionsEmpty) return <NoQuestionsScreen />;
+  // if a dialog is open, then the appbar and content should be hidden from screen readers
+  const accessibilityHiddenObj =
+    getAccessibilityHiddenProps(accessibilityHidden);
 
-  if (finished) return <SummaryScreen />;
+  if (questionsEmpty)
+    return (
+      <View {...accessibilityHiddenObj}>
+        <NoQuestionsScreen />
+      </View>
+    );
+
+  if (finished)
+    return (
+      <View {...accessibilityHiddenObj}>
+        <SummaryScreen />
+      </View>
+    );
 
   const preliminaryIndex = answers.findIndex(
     (a) => a.questionId === currentQuestionId
@@ -120,7 +136,7 @@ const DailiesNav: FC<PropsFromRedux> = ({
   };
   if (question.type === "points") {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} {...accessibilityHiddenObj}>
         <PointsQuestionScreen
           key={question.id}
           title={question.title}
@@ -133,7 +149,7 @@ const DailiesNav: FC<PropsFromRedux> = ({
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} {...accessibilityHiddenObj}>
       <FullTextQuestionScreen
         key={question.id}
         title={question.title}

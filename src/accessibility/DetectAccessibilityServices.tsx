@@ -4,8 +4,8 @@ import {
   AccessibilityInfo,
 } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
+import { showAppbarInDailies } from "../settings/settings.slice";
 import { setScreenReaderEnabled } from "./accessibility.slice";
-import { showAppbarInDailies } from "./settings.slice";
 
 const mapDispatch = { setScreenReaderEnabled, showAppbarInDailies };
 const connector = connect(null, mapDispatch);
@@ -17,7 +17,6 @@ const DetectAccessabilityServices: FC<PropsFromRedux> = ({
   showAppbarInDailies,
 }) => {
   useEffect(() => {
-    console.log("DetectAccessabilityServices useEffect");
     const screenReaderChangedListener = AccessibilityInfo.addEventListener(
       "screenReaderChanged",
       handleScreenReaderToggled
@@ -35,8 +34,6 @@ const DetectAccessabilityServices: FC<PropsFromRedux> = ({
   const handleScreenReaderToggled: AccessibilityChangeEventHandler = (
     enabled
   ) => {
-    console.log("handleScreenReaderToggled", enabled);
-
     setScreenReaderEnabled(enabled);
     if (enabled) showAppbarInDailies(true); // only set to true for screen reader users
   };

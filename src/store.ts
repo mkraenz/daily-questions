@@ -13,12 +13,12 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
+import accessibilityReducer, {
+  AccessibilityState,
+} from "./accessibility/accessibility.slice";
 import dailiesReducer, { DailiesState } from "./dailies/dailies.slice";
 import historyReducer, { HistoryState } from "./history/history.slice";
 import questionsReducer, { QuestionsState } from "./questions/questions.slice";
-import accessibilityReducer, {
-  AccessibilityState,
-} from "./settings/accessibility.slice";
 import settingsReducer, { SettingsState } from "./settings/settings.slice";
 
 /**

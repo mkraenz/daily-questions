@@ -4,10 +4,10 @@ import "react-native-gesture-handler";
 import "react-native-get-random-values";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import DetectAccessibilityServices from "./accessibility/DetectAccessibilityServices";
 import { myi18n } from "./localization/myi18n";
 import LocalNotifications from "./LocalNotifications";
 import NavigationApp from "./NavigationApp";
-import DetectAccessibilityServices from "./settings/DetectAccessibilityServices";
 import { persistor, store } from "./store";
 import ThemedApp from "./ThemedApp";
 
