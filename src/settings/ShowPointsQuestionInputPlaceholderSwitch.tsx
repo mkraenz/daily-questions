@@ -20,9 +20,12 @@ const ShowPointsQuestionInputPlaceholderSwitch: FC<PropsFromRedux> = ({
   return (
     <SettingsSwitchRow
       title={t("settings:showPointsQuestionInputPlaceHolder")}
+      description={t("settings:showPointsQuestionInputPlaceHolderDescription")}
       value={checked}
       onPress={() => showPointQuestionsInputPlaceholderInDailies(!checked)}
-      accessibilityLabel={t("settings:showPointsQuestionInputPlaceHolder")}
+      accessibilityLabel={t(
+        "settings:showPointsQuestionInputPlaceHolderDescription"
+      )}
       accessibilityHint={t(
         "settings:showPointsQuestionInputPlaceHolderA11yHint"
       )}

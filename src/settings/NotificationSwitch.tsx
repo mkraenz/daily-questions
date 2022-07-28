@@ -24,6 +24,7 @@ const NotificationSwitch: FC<PropsFromRedux> = ({
   return (
     <SettingsSwitchRow
       title={t("settings:notificationsEnabled")}
+      description={t("settings:notificationsEnabledDescription")}
       accessibilityLabel={t("settings:notificationsEnabledA11yLabel")}
       accessibilityHint={t("settings:notificationsEnabledA11yHint")}
       value={!!notificationSettings?.enabled}

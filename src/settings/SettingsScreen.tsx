@@ -17,7 +17,6 @@ import UniteConfirmAndShareButtonsSwitch from "./UniteConfirmAndShareButtonsSwit
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    paddingHorizontal: 12,
   },
 });
 

@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import { AccessibilityRole } from "react-native";
+import { AccessibilityRole, StyleSheet } from "react-native";
 import { List, Text, useTheme } from "react-native-paper";
 
 interface Props {
   title: string;
+  description?: string;
   onPress: () => void;
   value?: string;
   accessibilityLabel?: string;
@@ -13,8 +14,15 @@ interface Props {
   accessibilityRole?: AccessibilityRole;
 }
 
+const styles = StyleSheet.create({
+  paddingLeft: {
+    paddingLeft: 12,
+  },
+});
+
 const SettingsButtonRow: FC<Props> = ({
   title,
+  description,
   onPress,
   value,
   accessibilityLabel,
@@ -26,7 +34,9 @@ const SettingsButtonRow: FC<Props> = ({
   return (
     <List.Item
       title={title}
-      titleStyle={{ color: theme.colors.text, paddingLeft: 16 }}
+      titleStyle={[styles.paddingLeft, { color: theme.colors.text }]}
+      description={description}
+      descriptionStyle={styles.paddingLeft}
       right={
         value !== undefined
           ? () => (
@@ -37,7 +47,7 @@ const SettingsButtonRow: FC<Props> = ({
       }
       onPress={onPress}
       accessibilityRole={accessibilityRole}
-      //   double check accessibility (needs to say the current value!)
+      // TODO double check accessibility (needs to say the current value!)
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
       disabled={disabled}

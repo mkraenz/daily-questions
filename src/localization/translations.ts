@@ -1,6 +1,6 @@
 const en = {
   routes: {
-    dailies: "Dailies",
+    dailies: "Daily Questions",
     statistics: "Statistics",
     customizeQuestions: "Customize Questions",
     settings: "Settings",
@@ -20,7 +20,7 @@ const en = {
     cancelDialogA11yHint:
       "Closes the dialog and returns to the previous screen",
     ok: "OK",
-    openDrawerA11yLabel: "Open drawer navigation menu at the left",
+    openDrawerA11yLabel: "Open drawer navigation menu on the left",
     drawerLabelA11yHint: "Navigates to {{ title }}",
   },
   weekdays: {
@@ -39,7 +39,7 @@ const en = {
     ["last1year"]: "last 1 year",
     lifetime: "lifetime",
     insufficientDataInTimeSpan:
-      "You completed your dailies {{numOfEntries}} times in the selected time span. Your statistics show up once you've completed at least 2 dailies.",
+      "You completed your daily questions {{numOfEntries}} times in the selected time span. Your statistics show up once you've completed them at least 2 times.",
     mockHistory: "DANGER: replace history by test data",
     timeSpanSelectMenuA11yLabel: "Closes time span selection menu",
     timeSpanSelectButtonA11yLabel:
@@ -50,26 +50,29 @@ const en = {
     sectionGeneral: "General",
     sectionCustomization: "Customization",
     sectionAdvanced: "Advanced",
-    showAppbar: "Show App Bar in Dailies",
+    showAppbar: "Show app bar under Daily Questions",
     showAppbarA11yHint:
       "This setting is always enabled when using a screen reader.",
-    darkMode: "Dark Mode",
+    darkMode: "Dark mode",
     darkModeA11yHint: "Activates or deactiviates dark mode",
     language: "Language",
     languageA11yLabel: "Selected language: {{language}}",
     languageA11yHint:
-      "Opens the language selection menu. Attention: Changes of the app language do not change the language of your screen reader",
-    uniteConfirmAndShare: "Unite Confirm and Share Buttons in Dailies' Summary",
+      "Opens the language selection menu. Attention: Changes of the in-app language do not change the language of your screen reader",
+    uniteConfirmAndShare: "Unite Confirm and Share buttons",
+    uniteConfirmAndShareDescription:
+      "Unites the Confirm and Share buttons in the summary screen",
     uniteConfirmAndShareA11yHint:
       "Unites the separated buttons for confirming and for sharing in your answer summary into a single button for both simultaneously, or deactivates this behavior.",
-    showPointsQuestionInputPlaceHolder:
-      "Show How-to-answer in input fields in Dailies",
+    showPointsQuestionInputPlaceHolder: "How-to-answer placeholder",
+    showPointsQuestionInputPlaceHolderDescription:
+      "Show How-to-answer in input fields under Daily Questions",
     showPointsQuestionInputPlaceHolderA11yHint:
       "Activates or deactivates the how-to-answer input field placeholder when answering your daily questions.",
     startOfNextDay: "Start of next day",
     startOfNextDayA11yHint:
-      "Opens the time selection dialog for setting the start of the next day. If you happen to forget answering your daily questions on one day, you can still answer them on the next day until this time. The answer will count towards your previous day.",
-    enableDevMode: "Development Mode",
+      "Opens the time selection dialog for setting the start of the next day. If you happen to forget answering your daily questions on one day, you can still answer them on the next day until this time. The answers will count towards your previous day.",
+    enableDevMode: "Development mode",
     enableDevModeA11yLabel: "Enable development mode",
     enableDevModeA11yHint:
       "Opens a confirmation dialog to enable the development mode. If the development mode is already enabled, it will instead be immediately deactivated.",
@@ -85,11 +88,12 @@ const en = {
     importHistoryErrorDialogDescription:
       "Importing history and questions from clipboard failed. Please make sure your copied history string is valid. Your existing history and questions were NOT changed.",
     importHistorySuccessMessage: "Import successful",
-    notificationTitle: "It's time for your Dailies.",
+    notificationTitle: "It's time for your Daily Questions.",
     notificationTime: "Daily reminder time",
     notificationTimeA11yHint:
       "Opens the time selection dialog for setting your daily reminder notification time.",
     notificationsEnabled: "Daily reminder",
+    notificationsEnabledDescription: "Enables reminder notifications",
     notificationsEnabledA11yLabel: "Enable daily reminder notifications",
     notificationsEnabledA11yHint:
       "Activates or deactivates daily reminder notifications for answering your daily questions. You can set the notification time in the subsequent settings item",
@@ -99,10 +103,10 @@ const en = {
     companyWebsiteA11yHint:
       "Opens website of Kraenz Software Development in the web browser",
     githubDescription:
-      "MIT Open-Source Software. Collaborators wanted. Check our ",
+      "MIT Open-Source Software. Collaborators and translators wanted. Check our ",
     githubLinkText: "GitHub repository.",
     githubA11yLabel:
-      "MIT Open-Source Software. Collaborators wanted. Check our Github repository.",
+      "MIT Open-Source Software. Collaborators and translators wanted. Check our Github repository.",
     githubA11yHint: "Opens GitHub repository website in the web browser",
     gotoLicenseList: "Go to licenses",
     licenseInfoLicense: "Licensed under: {{ license }}",
@@ -198,9 +202,9 @@ const en = {
   history: {
     questionNotFound: "Not found",
     emptyHistoryDescription:
-      "Nothing here yet. Once you've finished answering the dailies for the first time, your history will show here.",
-    emptyHistoryButton: "Go to Dailies",
-    emptyHistoryButtonA11yHint: "Navigates to Dailies screen",
+      "Nothing here yet. Once you've finished answering the daily questions for the first time, your history will show here.",
+    emptyHistoryButton: "Go to Daily Questions",
+    emptyHistoryButtonA11yHint: "Navigates to Daily Questions screen",
   },
 };
 
@@ -229,7 +233,7 @@ export const translations: Translations = {
   en,
   de: {
     routes: {
-      dailies: "Dailies",
+      dailies: "Tägliche Fragen",
       statistics: "Statistiken",
       customizeQuestions: "Fragen bearbeiten",
       settings: "Einstellungen",
@@ -247,7 +251,7 @@ export const translations: Translations = {
       confirm: "Bestätigen",
       cancel: "Abbrechen",
       cancelDialogA11yHint:
-        "Schließt das Dialogfeld und kehrt zur vorigen Ansicht zurück",
+        "Schließt das Dialogfeld und kehrt zur vorherigen Ansicht zurück",
       ok: "OK",
       openDrawerA11yLabel: "Navigationsleiste auf der linken Seite öffnen",
       drawerLabelA11yHint: "Navigiert zur {{ title }}-Ansicht",
@@ -268,7 +272,7 @@ export const translations: Translations = {
       ["last1year"]: "Letztes 1 Jahr",
       lifetime: "Lebensdauer",
       insufficientDataInTimeSpan:
-        "Du hast deine Dailies {{numOfEntries}} mal im ausgewählten Zeitraum abgeschlossen. Deine Statistiken werden hier angezeigt, sobald du mindestens 2 Dailies abgeschlossen hast.",
+        "Du hast deine Täglichen Fragen {{numOfEntries}} mal im ausgewählten Zeitraum abgeschlossen. Deine Statistiken werden hier angezeigt, sobald du sie mindestens 2 mal abgeschlossen hast.",
       mockHistory: "GEFAHR: Verlauf durch Testdaten ersetzen",
       timeSpanSelectMenuA11yLabel: "Zeitraumauswahlmenü schließen",
       timeSpanSelectButtonA11yLabel:
@@ -279,7 +283,7 @@ export const translations: Translations = {
       sectionGeneral: "Allgemein",
       sectionCustomization: "Anpassung",
       sectionAdvanced: "Erweiterte Einstellung",
-      showAppbar: "App-Leiste in Dailies anzeigen",
+      showAppbar: "App-Leiste anzeigen in Tägliche Fragen",
       showAppbarA11yHint:
         "Diese Einstellung ist immer aktiviert, wenn die Bildschirmsprachausgabe genutzt wird.",
       darkMode: "Nachtmodus",
@@ -288,12 +292,14 @@ export const translations: Translations = {
       languageA11yLabel: "Ausgewählte Sprache {{language}}",
       languageA11yHint:
         "Öffnet das Sprachauswahlmenü. Achtung: Dies ändert die Sprache der Texte der App, aber nicht die Bildschirmsprachausgabe",
-      uniteConfirmAndShare:
-        "Knopf für Bestätigen und Teilen in Zusammenfassung der Dailies vereinen",
+      uniteConfirmAndShare: "Bestätigen und Teilen vereinen",
+      uniteConfirmAndShareDescription:
+        "Vereint Knöpfe für Bestätigen und Teilen in Zusammenfassung der Täglichen Fragen",
       uniteConfirmAndShareA11yHint:
         "Vereinigt die separaten Schaltflächen für Bestätigen und für Teilen in der Antwort-Zusammenfassungsansicht zu einer einzigen Schaltfläche, bzw. deaktiviert dieses Verhalten.",
-      showPointsQuestionInputPlaceHolder:
-        "Antworthinweis bei Punkteingabe in Dailies anzeigen",
+      showPointsQuestionInputPlaceHolder: "Antworthinweis in Eingabefeldern",
+      showPointsQuestionInputPlaceHolderDescription:
+        "Zeigt Hinweise zur Bedienung in Antworteingabefeldern",
       showPointsQuestionInputPlaceHolderA11yHint:
         "Aktiviert bzw deaktiviert den Hinweis in Eingabefeldern beim Beantworten deiner täglichen Fragen",
       startOfNextDay: "Beginn des nächsten Tages",
@@ -315,11 +321,12 @@ export const translations: Translations = {
       importHistoryErrorDialogDescription:
         "Der Verlauf und die Fragen in deiner Zwischenablage konnte nicht importiert werden. Bitte stelle sicher, dass der kopierte Verlaufsstring gültig ist. Dein aktueller Verlauf und deine Fragen wurde NICHT geändert.",
       importHistorySuccessMessage: "Import erfolgreich",
-      notificationTitle: "Zeit für deine Dailies.",
+      notificationTitle: "Zeit für deine Täglichen Fragen.",
       notificationTime: "Erinnerungszeit",
       notificationTimeA11yHint:
         "Öffnet das Zeit-Auswahl-Dialogfeld zum Setzen der täglichen Benachrichtigungszeit",
       notificationsEnabled: "Erinnerungen",
+      notificationsEnabledDescription: "Aktiviert Benachrichtigungen",
       notificationsEnabledA11yLabel: "Erinnerungen aktivieren",
       notificationsEnabledA11yHint:
         "Aktiviert oder deaktiviert tägliche Erinnerungsbenachrichtigungen an die Beantwortung der täglichen Fragen. Die Benachrichtungszeit kann in der nachfolgenden Einstellung geändert werden.",
@@ -329,10 +336,10 @@ export const translations: Translations = {
       companyWebsiteA11yHint:
         "Öffnet die Website von Kraenz Software Development im Webbrowser",
       githubDescription:
-        "MIT Open-Source Software. Mitwirkende gesucht (Englisch notwendig). Hier findest du unser ",
+        "MIT Open-Source Software. Mitwirkende und Übersetzer gesucht (Englisch notwendig). Hier findest du unser ",
       githubLinkText: "Github Repository.",
       githubA11yLabel:
-        "MIT Open-Source Software. Mitwirkende gesucht (Englisch notwendig). Hier findest du unser GitHub Repository",
+        "MIT Open-Source Software. Mitwirkende und Übersetzer gesucht (Englisch notwendig). Hier findest du unser GitHub Repository",
       githubA11yHint: "Öffnet GitHub Repository Website im Webbrowser",
       gotoLicenseList: "Zu den Lizenzen",
       licenseInfoLicense: "Lizensiert unter: {{ license }}",
@@ -401,7 +408,7 @@ export const translations: Translations = {
       typeSelectMenuButtonA11yHint: "Antworttyp-Auswahlmenü öffnen",
       confirmArchival: "Archivierung bestätigen",
       archivalDialogDescription:
-        "Möchtest du diese Frage wirklich archivieren? Unbestätigter Fortschritt in den heutigen Antworten wird zurückgesetzt.",
+        "Möchtest du diese Frage wirklich archivieren? Unbestätigter Fortschritt in den heutigen Antworten unter Tägliche Fragen wird zurückgesetzt.",
       archivalDialogConfirmA11yHint:
         "Frage archivieren und zur Fragenliste zurücknavigieren",
       create: "Erstellen",
@@ -434,14 +441,14 @@ export const translations: Translations = {
     history: {
       questionNotFound: "Nicht gefunden",
       emptyHistoryDescription:
-        "Es wurden keine Verlaufseinträge gefunden. Nachdem du deine Dailies zum ersten Mal beantwortet hast, wird dein Verlauf hier angezeigt.",
-      emptyHistoryButton: "Zu den Dailies",
-      emptyHistoryButtonA11yHint: 'Navigiert zur Ansicht "Dailies"',
+        "Es wurden keine Verlaufseinträge gefunden. Nachdem du deine Täglichen Fragen zum ersten Mal beantwortet hast, wird dein Verlauf hier angezeigt.",
+      emptyHistoryButton: "Zu den Täglichen Fragen",
+      emptyHistoryButtonA11yHint: 'Navigiert zur Ansicht "Tägliche Fragen"',
     },
   },
   ja: {
     routes: {
-      dailies: "Dailies",
+      dailies: "毎日の質問",
       statistics: "系統情報",
       customizeQuestions: "質問をカスタマイズ",
       settings: "設定",
@@ -449,7 +456,7 @@ export const translations: Translations = {
       editQuestion: "質問を編集",
       history: "履歴",
       historicEntry: "履歴エントリ",
-      about: "詳細情報", // double check
+      about: "詳細情報",
       licenseList: "ライセンス",
       licenseInfo: "ライセンスの詳細",
     },
@@ -479,7 +486,7 @@ export const translations: Translations = {
       ["last1year"]: "過去 1 年間",
       lifetime: "有効期間",
       insufficientDataInTimeSpan:
-        "選択した期間内には {{numOfEntries}} 回Dailiesを完了しています。Dailiesを2回完了した後にはの統計情報が表示されます。",
+        "選択した期間内には {{numOfEntries}} 回「毎日の質問」答えました。2回答えた後にはの統計情報が表示されます。",
       mockHistory: "危険: 履歴をテストデータで置き換える",
       timeSpanSelectMenuA11yLabel: "期間選択メニューを閉まる",
       timeSpanSelectButtonA11yLabel: "選択された系統期間: {{ timeSpan }}",
@@ -489,19 +496,22 @@ export const translations: Translations = {
       sectionGeneral: "全般設定",
       sectionCustomization: "カスタマイズ",
       sectionAdvanced: "詳細設定",
-      showAppbar: "アプリバーをDailiesで表紙する",
-      showAppbarA11yHint: "この設定はスクリーンリーダーを使いときに常に有効",
+      showAppbar: "アプリバーを毎日の質問で表示する",
+      showAppbarA11yHint: "この設定はスクリーンリーダーを使うときに常に有効",
       darkMode: "ダークモード",
       darkModeA11yHint: "ダークモードを有効化または無効化する",
       language: "言語",
       languageA11yLabel: "選択した言語：　{{language}}",
       languageA11yHint:
         "言語選択メニューを開く。ご注意：この設定はアプリ内の文章の言語を変える。スクリーン リーダーの言語はそのままです。",
-      uniteConfirmAndShare: "答えのまとめ画面に確認と共有を一つのボトンにする",
+      uniteConfirmAndShare: "確認と共有ボトンを合同",
+      uniteConfirmAndShareDescription:
+        "答えのまとめ画面に確認と共有を一つのボトンにする",
       uniteConfirmAndShareA11yHint:
         "答えまとめ画面に２つのボトンに分かれている確認ボトンと共有ボトンを一つにする。またはその機能をオフにする",
-      showPointsQuestionInputPlaceHolder:
-        "使い方の説明を答え入力フィールドで表示する",
+      showPointsQuestionInputPlaceHolder: "使い方の説明を表示する",
+      showPointsQuestionInputPlaceHolderDescription:
+        "毎日の質問画面に答え入力フィールドに使い方の説明を表示する",
       showPointsQuestionInputPlaceHolderA11yHint:
         "使い方の説明を答え入力フィールドで表紙するのを有効化または無効化する",
       startOfNextDay: "次の日の開始時間",
@@ -523,11 +533,13 @@ export const translations: Translations = {
       importHistoryErrorDialogDescription:
         "クリップボードからの履歴と質問をインポートできませんでした。コピーした履歴ストリングが有効であることを確認してください。現在の履歴や質問は変更されていませんでした。",
       importHistorySuccessMessage: "インポートは成功しました。",
-      notificationTitle: "Dailiesの時間ですよ。",
+      notificationTitle: "毎日の質問の時間ですよ。",
       notificationTime: "毎日のリマインダー通知時間",
       notificationTimeA11yHint:
         "毎日のリマインダー通知時間の時間選択のダイアログボックスを開く",
       notificationsEnabled: "毎日のリマインダー通知",
+      notificationsEnabledDescription:
+        "リマインダー通知を有効化または無効化する",
       notificationsEnabledA11yLabel:
         "毎日のリマインダー通知を有効化または無効化する",
       notificationsEnabledA11yHint:
@@ -538,10 +550,10 @@ export const translations: Translations = {
       companyWebsiteA11yHint:
         "Kraenz Software DevelopmentのWeb サイトを Web ブラウザーで開く",
       githubDescription:
-        "MIT Open-Source Software.コラボレーター募集中（英語必然）。プロジェクトはこちら：",
+        "MIT Open-Source Software.コラボレーターや翻訳者募集中（英語必然）。プロジェクトはこちら：",
       githubLinkText: "Githubリポジトリ",
       githubA11yLabel:
-        "MIT Open-Source Software.コラボレーター募集中（英語必然）。プロジェクトのGithubリポジトリはこちら。",
+        "MIT Open-Source Software.コラボレーターや翻訳者募集中（英語必然）。プロジェクトのGithubリポジトリはこちら。",
       githubA11yHint: "GitHubリポジトリのWeb サイトを Web ブラウザーで開く",
       gotoLicenseList: "ライセンス一覧へ移動する",
       licenseInfoLicense: "ライセンス：　{{ license }}",
@@ -555,15 +567,15 @@ export const translations: Translations = {
     },
     dailies: {
       next: "次へ",
-      nextA11yHint: "次の質問またはまとめ画面に移動します",
+      nextA11yHint: "次の質問またはまとめ画面に移動する",
       shortAnswerListA11yLabel: "点で答えた質問の答え一覧：{{ answers }}",
       confirmDailiesA11yHint: "今日の答えを確認して歴史に追加する",
       share: "共有",
       shareA11yHint:
-        "他のアプリーと共有するためのダイアログ・ボックスを開く。共有される文章は今日の答えのまとめ。",
+        "他のアプリと共有するためのダイアログ・ボックスを開く。共有される文章は今日の答えのまとめ。",
       confirmAndShare: "確認して共有する",
       confirmAndShareA11yHint:
-        "今日の答えを確認して歴史に追加する。その後他のアプリーと共有するためのダイアログ・ボックスを開く。共有される文章は今日の答えのまとめ。",
+        "今日の答えを確認して歴史に追加する。その後他のアプリと共有するためのダイアログ・ボックスを開く。共有される文章は今日の答えのまとめ。",
       confirmedSuccessfully: "答えを履歴に追加しました",
       confirmedSuccessfullySnackbarDismissActionA11yHint:
         "成功のトースト通知を閉まる。数秒してから自動的にトースト通知が閉まる",
@@ -578,7 +590,7 @@ export const translations: Translations = {
       confirmResetDialogConfirmButtonA11yHint:
         "今日の答えをリセットして最初の質問に移動する",
       noQuestions:
-        "質問は存在しません。自己開発の旅をスタートするため質問を追加してください。",
+        "質問はありません。自己開発の旅をスタートするため質問を追加してください。",
       noQuestionsButton: "質問を追加する",
       goto: '"{{questionTitle}}"質問に移動する',
       answerRowA11yLabel: "{{ questionTitle }}：{{ answer }}",
@@ -633,8 +645,8 @@ export const translations: Translations = {
       questionNotFound: "見つかりません",
       emptyHistoryDescription:
         "表示するアイテムがありません。最初の応えをし終わってから歴史は表示します。",
-      emptyHistoryButton: "Dailiesに戻る",
-      emptyHistoryButtonA11yHint: "Dailies画面を開く",
+      emptyHistoryButton: "毎日の質問に戻る",
+      emptyHistoryButtonA11yHint: "毎日の質問画面を開く",
     },
   },
 };
