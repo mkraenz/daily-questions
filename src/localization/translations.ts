@@ -116,6 +116,8 @@ const en = {
     licenseItemTitle: "{{ name }} v{{ version}}",
     licenseItemDescription: "{{ author }}, licensed under {{ license }}",
     licenseItemAccessibilityHint: "Go to details",
+    privacyPolicy: "Privacy Policy",
+    privacyPolicyA11yHint: "Opens the privacy policy in the web browser",
   },
   dailies: {
     next: "Next",
@@ -349,6 +351,9 @@ export const translations: Translations = {
       licenseItemTitle: "{{ name }} v{{ version}}",
       licenseItemDescription: "{{ author }}, lizensiert unter {{ license }}",
       licenseItemAccessibilityHint: "Navigiere zu Details",
+      privacyPolicy: "Datenschutzrichtlinien",
+      privacyPolicyA11yHint:
+        "Öffnet die Datenschutzrichtlinien im Webbrowser. Dokument nur auf Englisch verfügbar.",
     },
     dailies: {
       next: "Weiter",
@@ -564,6 +569,9 @@ export const translations: Translations = {
       licenseItemDescription:
         "{{ author }}、{{ license }}によりライセンスされています",
       licenseItemAccessibilityHint: "詳細に移動する",
+      privacyPolicy: "プライバシー・ポリシー（英語のみ）",
+      privacyPolicyA11yHint:
+        "プライバシー・ポリシー（英語のみ）を Web ブラウザーで開く。",
     },
     dailies: {
       next: "次へ",
