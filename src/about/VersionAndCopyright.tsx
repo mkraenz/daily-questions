@@ -21,7 +21,7 @@ const VersionAndCopyright = () => {
   const nbsp = "\u00a0";
   return (
     <View style={styles.container}>
-      <Paragraph>Daily Questions v1.20.0</Paragraph>
+      <Paragraph>Daily Questions v1.20.1</Paragraph>
       <TouchableRipple
         onPress={openCompanyWebsite}
         accessibilityRole="link"
