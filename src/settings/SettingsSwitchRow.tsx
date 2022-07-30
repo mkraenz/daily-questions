@@ -28,13 +28,17 @@ const SettingsSwitchRow: FC<Props> = ({
   accessibilityLabel,
   accessibilityHint,
   disabled,
+  // TODO change to button
   accessibilityRole = "switch",
 }) => {
   const theme = useTheme();
   return (
     <List.Item
       title={title}
-      titleStyle={{ paddingLeft: 12, color: theme.colors.text }}
+      titleStyle={{
+        paddingLeft: 12,
+        color: disabled ? theme.colors.disabled : theme.colors.text,
+      }}
       description={description}
       descriptionNumberOfLines={2}
       descriptionStyle={{ paddingLeft: 12 }}

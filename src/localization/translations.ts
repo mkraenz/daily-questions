@@ -68,7 +68,7 @@ const en = {
     showPointsQuestionInputPlaceHolderDescription:
       "Show How-to-answer in input fields under Daily Questions",
     showPointsQuestionInputPlaceHolderA11yHint:
-      "Activates or deactivates the how-to-answer input field placeholder when answering your daily questions.",
+      "This setting is always disabled when using a screen reader.",
     startOfNextDay: "Start of next day",
     startOfNextDayA11yHint:
       "Opens the time selection dialog for setting the start of the next day. If you happen to forget answering your daily questions on one day, you can still answer them on the next day until this time. The answers will count towards your previous day.",
@@ -303,7 +303,7 @@ export const translations: Translations = {
       showPointsQuestionInputPlaceHolderDescription:
         "Zeigt Hinweise zur Bedienung in Antworteingabefeldern",
       showPointsQuestionInputPlaceHolderA11yHint:
-        "Aktiviert bzw deaktiviert den Hinweis in Eingabefeldern beim Beantworten deiner täglichen Fragen",
+        "Diese Einstellung ist immer deaktiviert, wenn die Bildschirmsprachausgabe genutzt wird.",
       startOfNextDay: "Beginn des nächsten Tages",
       startOfNextDayA11yHint:
         "Öffnet das Zeit-Auswahl-Dialogfeld zum Setzen des Beginn des nächsten Tages. Solltest du an einem Tag vergessen deine täglichen Fragen zu beantworten, kannst du bis zu dieser Zeit die Antworten des Vortags nachholen.",
@@ -518,7 +518,7 @@ export const translations: Translations = {
       showPointsQuestionInputPlaceHolderDescription:
         "毎日の質問画面に答え入力フィールドに使い方の説明を表示する",
       showPointsQuestionInputPlaceHolderA11yHint:
-        "使い方の説明を答え入力フィールドで表紙するのを有効化または無効化する",
+        "この設定はスクリーンリーダーを使うときに常に無効",
       startOfNextDay: "次の日の開始時間",
       startOfNextDayA11yHint:
         "時間選択のダイアログボックスを開く。毎日の質問をし忘れた場合、次の日のこの時間までに答えたら前の日の答えになります。",
