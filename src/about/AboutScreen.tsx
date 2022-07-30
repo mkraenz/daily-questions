@@ -14,7 +14,12 @@ const GoToLicensesButton = () => {
   const { t } = useTranslation();
 
   return (
-    <Button onPress={() => nav.navigate("LicenseList")} style={styles.mgBottom}>
+    <Button
+      onPress={() => nav.navigate("LicenseList")}
+      style={styles.mgBottom}
+      accessibilityLabel={t("about:gotoLicenseList")}
+      accessibilityHint={t("about:gotoLicenseListA11yHint")}
+    >
       {t("about:gotoLicenseList")}
     </Button>
   );

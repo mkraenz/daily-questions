@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import { AccessibilityRole, StyleSheet } from "react-native";
+import { AccessibilityRole } from "react-native";
 import { List, Switch, useTheme } from "react-native-paper";
+import { useTranslation } from "../localization/useTranslations";
 
 interface Props {
   title: string;
@@ -9,16 +10,10 @@ interface Props {
   value: boolean;
   accessibilityLabel?: string;
   accessibilityHint?: string;
-  disabled?: boolean;
   /** @default switch */
   accessibilityRole?: AccessibilityRole;
+  disabled?: boolean;
 }
-
-const styles = StyleSheet.create({
-  paddingLeft: {
-    paddingLeft: 12,
-  },
-});
 
 const SettingsSwitchRow: FC<Props> = ({
   title,
@@ -27,11 +22,11 @@ const SettingsSwitchRow: FC<Props> = ({
   value,
   accessibilityLabel,
   accessibilityHint,
+  accessibilityRole = "button", // not using switch as it is not working properly with accessibility
   disabled,
-  // TODO change to button
-  accessibilityRole = "switch",
 }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <List.Item
       title={title}
@@ -42,21 +37,23 @@ const SettingsSwitchRow: FC<Props> = ({
       description={description}
       descriptionNumberOfLines={2}
       descriptionStyle={{ paddingLeft: 12 }}
+      accessible
       right={() => (
-        // TODO double check whether accessible false works the way we expect
         <Switch
           onChange={onPress}
           value={value}
-          accessible={false}
+          // workaround: accessible={false} did not work
+          accessibilityElementsHidden
+          importantForAccessibility="no"
           disabled={disabled}
         />
       )}
       onPress={onPress}
       accessibilityRole={accessibilityRole}
-      // TODO double check accessibility (needs to say the current value!)
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
       disabled={disabled}
+      accessibilityValue={{ text: value ? t("general:on") : t("general:off") }}
     />
   );
 };

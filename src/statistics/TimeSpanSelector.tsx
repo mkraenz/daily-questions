@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 import { Button, Menu } from "react-native-paper";
+import { connect, ConnectedProps } from "react-redux";
+import { toggleDialogOpen } from "../accessibility/accessibility.slice";
 import { useTranslation } from "../localization/useTranslations";
 
 export const timeSpans = [
@@ -10,6 +12,10 @@ export const timeSpans = [
   "lifetime",
 ] as const;
 export type TimeSpan = typeof timeSpans[number];
+
+const mapDispatch = { toggleDialogOpen };
+const connector = connect(null, mapDispatch);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 interface Props {
   timeSpan: TimeSpan;
@@ -23,12 +29,22 @@ const styles = StyleSheet.create({
   },
 });
 
-const TimeSpanSelector: FC<Props> = ({ timeSpan, setTimeSpan }) => {
+const TimeSpanSelector: FC<Props & PropsFromRedux> = ({
+  timeSpan,
+  setTimeSpan,
+  toggleDialogOpen,
+}) => {
   const [visible, setVisible] = React.useState(false);
   const { t } = useTranslation();
 
-  const openMenu = () => setVisible(true);
-  const closeMenu = () => setVisible(false);
+  const openMenu = () => {
+    toggleDialogOpen();
+    setVisible(true);
+  };
+  const closeMenu = () => {
+    toggleDialogOpen();
+    setVisible(false);
+  };
 
   return (
     <Menu
@@ -65,4 +81,4 @@ const TimeSpanSelector: FC<Props> = ({ timeSpan, setTimeSpan }) => {
   );
 };
 
-export default TimeSpanSelector;
+export default connector(TimeSpanSelector);

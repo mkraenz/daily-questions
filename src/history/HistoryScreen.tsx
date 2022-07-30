@@ -4,6 +4,7 @@ import React, { FC } from "react";
 import { FlatList } from "react-native";
 import { Divider, List } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
+import { useTranslation } from "../localization/useTranslations";
 import { Question } from "../questions/questions.slice";
 import { RootState } from "../store";
 import EmptyHistoryList from "./EmptyHistoryList";
@@ -39,13 +40,18 @@ function mapHistory(history: History, questions: Question[]) {
 
 const HistoryItem: FC<{ item: HistoricEntryParams }> = ({ item }) => {
   const nav = useNavigation<HistoryNavigationProp>();
-  const answerNumbers = item.questions
-    .map((question) => question.answer)
-    .join(" ");
+  const answers = item.questions.map((question) => question.answer).join(" ");
+  const { t } = useTranslation();
+  const date = item.date;
   return (
     <List.Item
-      title={item.date}
-      description={answerNumbers}
+      title={date}
+      description={answers}
+      accessibilityLabel={t("history:listItemA11yLabel", {
+        date,
+        answers,
+      })}
+      accessibilityHint={t("history:listItemA11yHint", { date })}
       onPress={() => nav.navigate("HistoricEntry", item)}
     />
   );

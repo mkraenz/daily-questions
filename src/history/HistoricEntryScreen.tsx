@@ -42,7 +42,14 @@ const PointsAnswer: FC<{
   const theme = useTheme();
   const { t } = useTranslation();
   return (
-    <View style={styles.pointsAnswerRow}>
+    <View
+      style={styles.pointsAnswerRow}
+      accessibilityRole="text"
+      accessibilityLabel={t("dailies:answerRowA11yLabel", {
+        questionTitle: title,
+        answer,
+      })}
+    >
       <Paragraph style={styles.answerTitle}>
         {title ?? t("history:questionNotFound")}
       </Paragraph>
@@ -72,6 +79,7 @@ const FullTextAnswer: FC<{
   );
 };
 
+// TODO accessibility
 const HistoricEntryScreen: FC<{ route: { params: HistoricEntryParams } }> = (
   props
 ) => {

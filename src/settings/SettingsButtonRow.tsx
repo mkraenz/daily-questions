@@ -31,17 +31,20 @@ const SettingsButtonRow: FC<Props> = ({
   accessibilityRole = "button",
 }) => {
   const theme = useTheme();
+  const textColor = disabled ? theme.colors.disabled : theme.colors.text;
   return (
     <List.Item
       title={title}
-      titleStyle={[styles.paddingLeft, { color: theme.colors.text }]}
+      titleStyle={[styles.paddingLeft, { color: textColor }]}
       description={description}
       descriptionStyle={styles.paddingLeft}
       right={
         value !== undefined
           ? () => (
               // TODO double check whether accessible false works the way we expect
-              <Text style={{ textAlignVertical: "center" }}>{value}</Text>
+              <Text style={{ textAlignVertical: "center", color: textColor }}>
+                {value}
+              </Text>
             )
           : undefined
       }
@@ -51,6 +54,7 @@ const SettingsButtonRow: FC<Props> = ({
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
       disabled={disabled}
+      accessibilityValue={{ text: value }}
     />
   );
 };

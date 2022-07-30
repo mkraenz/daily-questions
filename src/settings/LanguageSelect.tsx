@@ -1,16 +1,11 @@
 import React, { FC } from "react";
-import { StyleSheet } from "react-native";
 import { Menu } from "react-native-paper";
+import { connect, ConnectedProps } from "react-redux";
+import { toggleDialogOpen } from "../accessibility/accessibility.slice";
 import { useTranslation } from "../localization/useTranslations";
 import SettingsButtonRow from "./SettingsButtonRow";
 
 interface Props {}
-
-const styles = StyleSheet.create({
-  button: {
-    marginBottom: 12,
-  },
-});
 
 const langCodeToLanguage = {
   en: "English",
@@ -18,12 +13,23 @@ const langCodeToLanguage = {
   ja: "日本語",
 };
 
-const LanguageSelect: FC<Props> = (props) => {
+const mapDispatch = { toggleDialogOpen };
+const connector = connect(null, mapDispatch);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+// remember to wrap your component in connector!
+
+const LanguageSelect: FC<PropsFromRedux> = ({ toggleDialogOpen }) => {
   const [visible, setVisible] = React.useState(false);
   const { i18n, t } = useTranslation();
 
-  const openMenu = () => setVisible(true);
-  const closeMenu = () => setVisible(false);
+  const openMenu = () => {
+    toggleDialogOpen();
+    setVisible(true);
+  };
+  const closeMenu = () => {
+    toggleDialogOpen();
+    setVisible(false);
+  };
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
     closeMenu();
@@ -35,13 +41,12 @@ const LanguageSelect: FC<Props> = (props) => {
     <Menu
       visible={visible}
       onDismiss={closeMenu}
+      overlayAccessibilityLabel={t("general:cancelDialogA11yHint")}
       anchor={
         <SettingsButtonRow
           title={t("settings:language")}
           value={selectedLanguage}
-          accessibilityLabel={t("settings:languageA11yLabel", {
-            language: selectedLanguage,
-          })}
+          accessibilityLabel={t("settings:languageA11yLabel")}
           accessibilityHint={t("settings:languageA11yHint")}
           onPress={openMenu}
         />
@@ -54,4 +59,4 @@ const LanguageSelect: FC<Props> = (props) => {
   );
 };
 
-export default LanguageSelect;
+export default connector(LanguageSelect);

@@ -26,9 +26,7 @@ const ShowPointsQuestionInputPlaceholderSwitch: FC<PropsFromRedux> = ({
       value={checked}
       disabled={screenReaderEnabled}
       onPress={() => showPointQuestionsInputPlaceholderInDailies(!checked)}
-      accessibilityLabel={t(
-        "settings:showPointsQuestionInputPlaceHolderDescription"
-      )}
+      accessibilityLabel={t("settings:showPointsQuestionInputPlaceHolder")}
       accessibilityHint={t(
         "settings:showPointsQuestionInputPlaceHolderA11yHint"
       )}

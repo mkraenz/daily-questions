@@ -74,9 +74,10 @@ const ImportHistory: FC<PropsFromRedux> = ({
         }}
         onConfirm={handleConfirm}
       />
-      {/* TODO accessibility */}
       <SettingsButtonRow
         title={t("settings:importHistory")}
+        accessibilityLabel={t("settings:importHistory")}
+        accessibilityHint={t("settings:importHistoryHint")}
         onPress={() => {
           toggleDialogOpen();
           showConfirmation(true);

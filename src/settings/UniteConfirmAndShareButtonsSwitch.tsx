@@ -22,7 +22,7 @@ const UniteConfirmAndShareButtonsSwitch: FC<PropsFromRedux> = ({
       title={t("settings:uniteConfirmAndShare")}
       value={checked}
       description={t("settings:uniteConfirmAndShareDescription")}
-      accessibilityLabel={t("settings:uniteConfirmAndShareDescription")}
+      accessibilityLabel={t("settings:uniteConfirmAndShare")}
       accessibilityHint={t("settings:uniteConfirmAndShareA11yHint")}
       onPress={() => setUniteConfirmAndShareButtonsInDailies(!checked)}
     />

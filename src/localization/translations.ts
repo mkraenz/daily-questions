@@ -19,9 +19,11 @@ const en = {
     cancel: "Cancel",
     cancelDialogA11yHint:
       "Closes the dialog and returns to the previous screen",
-    ok: "OK",
     openDrawerA11yLabel: "Open drawer navigation menu on the left",
     drawerLabelA11yHint: "Navigates to {{ title }}",
+    ok: "OK",
+    on: "on",
+    off: "off",
   },
   weekdays: {
     Sun: "Sun",
@@ -56,9 +58,8 @@ const en = {
     darkMode: "Dark mode",
     darkModeA11yHint: "Activates or deactiviates dark mode",
     language: "Language",
-    languageA11yLabel: "Selected language: {{language}}",
-    languageA11yHint:
-      "Opens the language selection menu. Attention: Changes of the in-app language do not change the language of your screen reader",
+    languageA11yLabel: "Selected language",
+    languageA11yHint: "Opens the language selection menu",
     uniteConfirmAndShare: "Unite Confirm and Share buttons",
     uniteConfirmAndShareDescription:
       "Unites the Confirm and Share buttons in the summary screen",
@@ -80,7 +81,10 @@ const en = {
     devModeDialogDescription:
       "This will enable experimental features. This may result in permanent (!) damage your app data. Do you really want to enable development mode?",
     exportHistory: "Export questions & history",
+    exportHistoryHint: "Open a share dialog for exporting",
     importHistory: "Import questions & history",
+    importHistoryHint:
+      "Opens a dialog to confirm importing history and questions from clipboard",
     importHistoryDialogTitle: "Confirm Import",
     importHistoryDialogDescription:
       "Warning! This will permanently overwrite your current history and questions. Do you really want to import history and questions from clipboard?",
@@ -109,6 +113,7 @@ const en = {
       "MIT Open-Source Software. Collaborators and translators wanted. Check our Github repository.",
     githubA11yHint: "Opens GitHub repository website in the web browser",
     gotoLicenseList: "Go to licenses",
+    gotoLicenseListA11yHint: "", // intentionally left blank
     licenseInfoLicense: "Licensed under: {{ license }}",
     licenseInfoAuthor: "Author: {{ author }}",
     licenseInfoVersion: "Installed version: {{ version }}",
@@ -202,6 +207,8 @@ const en = {
     questionLongHighlight: "What was my personal highlight today and why?",
   },
   history: {
+    listItemA11yLabel: "Answers of {{ date }}: {{ answers }}",
+    listItemA11yHint: "Go to details view of {{ date }}",
     questionNotFound: "Not found",
     emptyHistoryDescription:
       "Nothing here yet. Once you've finished answering the daily questions for the first time, your history will show here.",
@@ -254,9 +261,11 @@ export const translations: Translations = {
       cancel: "Abbrechen",
       cancelDialogA11yHint:
         "Schließt das Dialogfeld und kehrt zur vorherigen Ansicht zurück",
-      ok: "OK",
       openDrawerA11yLabel: "Navigationsleiste auf der linken Seite öffnen",
       drawerLabelA11yHint: "Navigiert zur {{ title }}-Ansicht",
+      ok: "OK",
+      on: "an",
+      off: "aus",
     },
     weekdays: {
       Sun: "So.",
@@ -291,9 +300,8 @@ export const translations: Translations = {
       darkMode: "Nachtmodus",
       darkModeA11yHint: "Aktiviert oder deaktiviert den Nachtmodus",
       language: "Sprache",
-      languageA11yLabel: "Ausgewählte Sprache {{language}}",
-      languageA11yHint:
-        "Öffnet das Sprachauswahlmenü. Achtung: Dies ändert die Sprache der Texte der App, aber nicht die Bildschirmsprachausgabe",
+      languageA11yLabel: "Ausgewählte Sprache",
+      languageA11yHint: "Öffnet das Sprachauswahlmenü",
       uniteConfirmAndShare: "Bestätigen und Teilen vereinen",
       uniteConfirmAndShareDescription:
         "Vereint Knöpfe für Bestätigen und Teilen in Zusammenfassung der Täglichen Fragen",
@@ -315,7 +323,11 @@ export const translations: Translations = {
       devModeDialogDescription:
         "Der Entwicklermodus aktiviert experimentelle Funktionen. Dies kann deine App und darin enthaltene Daten dauerhaft (!) kaputt machen. Bist du dir sicher, dass du den Entwicklermodus aktivieren möchtest?",
       exportHistory: "Verlauf & Fragen exportieren",
+      exportHistoryHint:
+        "Öffnet ein Dialogfeld zum Teilen mit anderer App für das Exportieren",
       importHistory: "Verlauf & Fragen importieren",
+      importHistoryHint:
+        "Öffnet ein Dialogfeld zum Bestätigen des Imports von Verlauf und Fragen von der Zwischenablage",
       importHistoryDialogTitle: "Import bestätigen",
       importHistoryDialogDescription:
         "Achtung! Diese Aktion überschreibt deinen aktuellen Verlauf und deine Fragen dauerhaft. Möchtest du wirklich mit dem Import eines neuen Verlaufs von der Zwischenablage fortfahren?",
@@ -331,7 +343,7 @@ export const translations: Translations = {
       notificationsEnabledDescription: "Aktiviert Benachrichtigungen",
       notificationsEnabledA11yLabel: "Erinnerungen aktivieren",
       notificationsEnabledA11yHint:
-        "Aktiviert oder deaktiviert tägliche Erinnerungsbenachrichtigungen an die Beantwortung der täglichen Fragen. Die Benachrichtungszeit kann in der nachfolgenden Einstellung geändert werden.",
+        "Aktiviert oder deaktiviert tägliche Erinnerungsbenachrichtigungen an die Beantwortung der täglichen Fragen. Die Benachrichtigungszeit kann in der nachfolgenden Einstellung geändert werden.",
     },
     about: {
       companyWebsiteA11yLabel: "Copyright © 2022 Kraenz Software Development",
@@ -344,8 +356,9 @@ export const translations: Translations = {
         "MIT Open-Source Software. Mitwirkende und Übersetzer gesucht (Englisch notwendig). Hier findest du unser GitHub Repository",
       githubA11yHint: "Öffnet GitHub Repository Website im Webbrowser",
       gotoLicenseList: "Zu den Lizenzen",
+      gotoLicenseListA11yHint: "Navigiere zu den Lizenzen",
       licenseInfoLicense: "Lizensiert unter: {{ license }}",
-      licenseInfoAuthor: "Author: {{ author }}",
+      licenseInfoAuthor: "Autor: {{ author }}",
       licenseInfoVersion: "Installierte Version: {{ version }}",
       licenseInfoLink: "Link: {{ link }}",
       licenseItemTitle: "{{ name }} v{{ version}}",
@@ -363,7 +376,7 @@ export const translations: Translations = {
       confirmDailiesA11yHint:
         "Bestätigt die heutigen Antworten und fügt einen Eintrag zum Verlauf hinzu",
       shareA11yHint:
-        "Öffnet Dialogfeld zum Teilen mit anderer App für die heutigen Antworten mit einer formatierten Zusammenfassung",
+        "Öffnet ein Dialogfeld zum Teilen mit anderer App für die heutigen Antworten mit einer formatierten Zusammenfassung",
       share: "Teilen",
       confirmAndShare: "Bestätigen und Teilen",
       confirmAndShareA11yHint:
@@ -444,6 +457,8 @@ export const translations: Translations = {
         "Was war mein persönlicher Höhepunkt des Tages und warum?",
     },
     history: {
+      listItemA11yLabel: "Deine Antworten vom {{ date }} waren {{ answers }}",
+      listItemA11yHint: "Navigiere zur Detailansicht vom {{ date }}",
       questionNotFound: "Nicht gefunden",
       emptyHistoryDescription:
         "Es wurden keine Verlaufseinträge gefunden. Nachdem du deine Täglichen Fragen zum ersten Mal beantwortet hast, wird dein Verlauf hier angezeigt.",
@@ -467,13 +482,15 @@ export const translations: Translations = {
     },
     general: {
       navigateBackAllyHint: "前のスクリーンに戻る",
-      appbarHeaderAllyLabel: "{{ title }}・スクリーン",
+      appbarHeaderAllyLabel: "{{ title }}画面",
       confirm: "確認",
       cancel: "キャンセル",
       cancelDialogA11yHint: "ダイアログ・ボックスを閉めて前の画面に戻る",
       openDrawerA11yLabel: "ナビゲーションドロワーを左側に開く",
       drawerLabelA11yHint: "{{ title }}画面に移動する",
       ok: "OK",
+      on: "ON",
+      off: "OFF",
     },
     weekdays: {
       Sun: "日曜日",
@@ -506,9 +523,8 @@ export const translations: Translations = {
       darkMode: "ダークモード",
       darkModeA11yHint: "ダークモードを有効化または無効化する",
       language: "言語",
-      languageA11yLabel: "選択した言語：　{{language}}",
-      languageA11yHint:
-        "言語選択メニューを開く。ご注意：この設定はアプリ内の文章の言語を変える。スクリーン リーダーの言語はそのままです。",
+      languageA11yLabel: "選択した言語",
+      languageA11yHint: "言語選択メニューを開く",
       uniteConfirmAndShare: "確認と共有ボトンを合同",
       uniteConfirmAndShareDescription:
         "答えのまとめ画面に確認と共有を一つのボトンにする",
@@ -530,7 +546,11 @@ export const translations: Translations = {
       devModeDialogDescription:
         "開発モードを有効にすると、アプリが壊れやすくなります。データは壊れる場合もあります。本当に開発モードを有効しますか？",
       exportHistory: "履歴と質問をエクスポート",
+      exportHistoryHint:
+        "履歴と質問をエクスポートするための共有ダイアログ・ボックスを開く",
       importHistory: "履歴と質問をインポート",
+      importHistoryHint:
+        "歴史と質問をクリップボードからインポートするための確認ダイアログボックスを開く",
       importHistoryDialogTitle: "インポートの確認",
       importHistoryDialogDescription:
         "警告! この操作は現在の履歴と質問を上書きします。本当にクリップボードからの履歴をインポートしますか?",
@@ -561,6 +581,7 @@ export const translations: Translations = {
         "MIT Open-Source Software.コラボレーターや翻訳者募集中（英語必然）。プロジェクトのGithubリポジトリはこちら。",
       githubA11yHint: "GitHubリポジトリのWeb サイトを Web ブラウザーで開く",
       gotoLicenseList: "ライセンス一覧へ移動する",
+      gotoLicenseListA11yHint: "", // intentionally left blank
       licenseInfoLicense: "ライセンス：　{{ license }}",
       licenseInfoAuthor: "作成者：　{{ author }}",
       licenseInfoVersion: "インストールされているバージョン：　{{ version }}",
@@ -650,6 +671,8 @@ export const translations: Translations = {
       questionLongHighlight: "今日の圧巻は何でしたか？なぜそれが圧巻でしたか？",
     },
     history: {
+      listItemA11yLabel: "{{ date }}の答えは{{ answers }}",
+      listItemA11yHint: "{{ date }}に詳細画面に移動する",
       questionNotFound: "見つかりません",
       emptyHistoryDescription:
         "表示するアイテムがありません。最初の応えをし終わってから歴史は表示します。",

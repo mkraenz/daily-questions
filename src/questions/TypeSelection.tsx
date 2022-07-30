@@ -1,9 +1,14 @@
 import React, { FC } from "react";
 import { StyleProp } from "react-native";
 import { Button, Menu } from "react-native-paper";
+import { connect, ConnectedProps } from "react-redux";
+import { toggleDialogOpen } from "../accessibility/accessibility.slice";
 import { useTranslation } from "../localization/useTranslations";
 
 const allTypes = ["points", "fulltext"] as const;
+const mapDispatch = { toggleDialogOpen };
+const connector = connect(null, mapDispatch);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 interface Props {
   type: "points" | "fulltext";
@@ -11,12 +16,23 @@ interface Props {
   style: StyleProp<{}>;
 }
 
-const TypeSelection: FC<Props> = ({ type, setType, style }) => {
+const TypeSelection: FC<Props & PropsFromRedux> = ({
+  type,
+  setType,
+  style,
+  toggleDialogOpen,
+}) => {
   const [visible, setVisible] = React.useState(false);
   const { t } = useTranslation();
 
-  const openMenu = () => setVisible(true);
-  const closeMenu = () => setVisible(false);
+  const openMenu = () => {
+    toggleDialogOpen();
+    setVisible(true);
+  };
+  const closeMenu = () => {
+    toggleDialogOpen();
+    setVisible(false);
+  };
 
   return (
     <Menu
@@ -55,4 +71,4 @@ const TypeSelection: FC<Props> = ({ type, setType, style }) => {
   );
 };
 
-export default TypeSelection;
+export default connector(TypeSelection);

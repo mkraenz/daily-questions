@@ -34,10 +34,11 @@ const ExportHistory: FC<PropsFromRedux> = ({ history, questions }) => {
     });
   };
 
-  // TODO accessibility
   return (
     <SettingsButtonRow
       title={t("settings:exportHistory")}
+      accessibilityLabel={t("settings:exportHistory")}
+      accessibilityHint={t("settings:exportHistoryHint")}
       onPress={handlePress}
     />
   );
