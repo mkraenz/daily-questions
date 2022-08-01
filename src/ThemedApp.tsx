@@ -4,16 +4,28 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { setDarkMode } from "./settings/settings.slice";
 import { RootState } from "./store";
-import { darkTheme, lightTheme } from "./theme";
+import { darkTheme, highContrastLightTheme, lightTheme } from "./theme";
 
 const mapState = (state: RootState) => ({
   dark: state.settings.darkMode,
+  highContrast: state.accessibility.highContrast,
 });
 const mapDispatch = { setDarkMode };
 const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const ThemedApp: FC<PropsFromRedux> = ({ children, dark, setDarkMode }) => {
+const getTheme = (dark: boolean | null, highContrast: boolean) => {
+  if (dark) return darkTheme;
+  if (!dark && highContrast) return highContrastLightTheme;
+  return lightTheme;
+};
+
+const ThemedApp: FC<PropsFromRedux> = ({
+  children,
+  dark,
+  setDarkMode,
+  highContrast,
+}) => {
   const colorScheme = useColorScheme();
   useEffect(() => {
     if (dark === null) {
@@ -21,11 +33,9 @@ const ThemedApp: FC<PropsFromRedux> = ({ children, dark, setDarkMode }) => {
     }
   });
 
-  return (
-    <PaperProvider theme={dark ? darkTheme : lightTheme}>
-      {children}
-    </PaperProvider>
-  );
+  const theme = getTheme(dark, highContrast);
+
+  return <PaperProvider theme={theme}>{children}</PaperProvider>;
 };
 
 export default connector(ThemedApp);

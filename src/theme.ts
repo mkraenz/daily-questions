@@ -3,11 +3,16 @@ import { DarkTheme, DefaultTheme } from "react-native-paper";
 export type FullTheme = typeof DefaultTheme;
 
 export enum Color {
-  Blue = "#1084ff",
+  LightBlue = "#00C0FA",
+  Blue = "#0097e6",
+  DarkCorporateBlue = "#004794",
+  CorporateBlue = "#005EC3",
   Grey = "#272727",
   LightGrey = "grey", // #808080
   White = "white", // #ffffff
-  Orange = "#A27A34",
+  DarkerOrange = "#992F00", // somewhat brown
+  Orange = "#AD5A00",
+  LightOrange = "#E8AF4B",
 }
 
 export const lightTheme: FullTheme = {
@@ -15,8 +20,20 @@ export const lightTheme: FullTheme = {
   roundness: 12,
   colors: {
     ...DefaultTheme.colors,
-    primary: Color.Blue,
+    primary: Color.CorporateBlue,
     accent: Color.Orange,
+  },
+};
+
+/** on white #F6F6F6 background, primary and accent colors have at least 7:1 contrast,
+ * thus passing WCAG AAA
+ */
+export const highContrastLightTheme: FullTheme = {
+  ...lightTheme,
+  colors: {
+    ...lightTheme.colors,
+    primary: Color.DarkCorporateBlue,
+    accent: Color.DarkerOrange,
   },
 };
 
@@ -25,7 +42,7 @@ export const darkTheme: FullTheme = {
   roundness: 12,
   colors: {
     ...DarkTheme.colors,
-    primary: Color.Blue,
-    accent: Color.Orange,
+    primary: Color.LightBlue,
+    accent: Color.LightOrange,
   },
 };

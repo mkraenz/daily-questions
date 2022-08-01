@@ -40,7 +40,7 @@ const SettingsSwitchRow: FC<Props> = ({
       accessible
       right={() => (
         <Switch
-          onChange={onPress}
+          onChange={() => onPress()}
           value={value}
           // workaround: accessible={false} did not work
           accessibilityElementsHidden
@@ -48,7 +48,7 @@ const SettingsSwitchRow: FC<Props> = ({
           disabled={disabled}
         />
       )}
-      onPress={onPress}
+      onPress={() => onPress()}
       accessibilityRole={accessibilityRole}
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
