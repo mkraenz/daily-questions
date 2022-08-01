@@ -79,7 +79,6 @@ const FullTextAnswer: FC<{
   );
 };
 
-// TODO accessibility
 const HistoricEntryScreen: FC<{ route: { params: HistoricEntryParams } }> = (
   props
 ) => {

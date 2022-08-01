@@ -41,7 +41,6 @@ const SettingsButtonRow: FC<Props> = ({
       right={
         value !== undefined
           ? () => (
-              // TODO double check whether accessible false works the way we expect
               <Text style={{ textAlignVertical: "center", color: textColor }}>
                 {value}
               </Text>
@@ -50,7 +49,6 @@ const SettingsButtonRow: FC<Props> = ({
       }
       onPress={onPress}
       accessibilityRole={accessibilityRole}
-      // TODO double check accessibility (needs to say the current value!)
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
       disabled={disabled}
