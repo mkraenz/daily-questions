@@ -47,7 +47,7 @@ const SettingsButtonRow: FC<Props> = ({
             )
           : undefined
       }
-      onPress={onPress}
+      onPress={() => onPress()}
       accessibilityRole={accessibilityRole}
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}

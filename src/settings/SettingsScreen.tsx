@@ -5,6 +5,7 @@ import { useTranslation } from "../localization/useTranslations";
 import BelatedDailiesTimePicker from "./BelatedDailiesTimePicker";
 import DarkModeSwitch from "./DarkModeSwitch";
 import DevModeSwitch from "./DevModeSwitch";
+import HighContrastModeSwitch from "./HighContrastModeSwitch";
 import ExportHistory from "./import-history/ExportHistory";
 import ImportHistory from "./import-history/ImportHistory";
 import LanguageSelect from "./LanguageSelect";
@@ -38,6 +39,7 @@ const SettingsScreen = () => {
         <List.Subheader accessibilityRole="header">
           {t("settings:sectionCustomization")}
         </List.Subheader>
+        <HighContrastModeSwitch />
         <UniteConfirmAndShareButtonsSwitch />
         <ShowPointsQuestionInputPlaceholderSwitch />
         <ShowAppbarSwitch />

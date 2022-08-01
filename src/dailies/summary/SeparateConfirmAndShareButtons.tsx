@@ -29,7 +29,7 @@ const SeparateConfirmAndShareButtons: FC<{
       </Button>
       <Button
         onPress={handleSharePressed}
-        mode="contained"
+        mode="outlined"
         icon="share"
         style={styles.button}
         accessibilityLabel={t("dailies:share")}
