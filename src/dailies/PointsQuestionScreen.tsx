@@ -1,12 +1,7 @@
 import { inRange } from "lodash";
-import React, { FC } from "react";
-import {
-  NativeSyntheticEvent,
-  StyleSheet,
-  TextInputSubmitEditingEventData,
-  View,
-} from "react-native";
-import { Paragraph, TextInput, Title } from "react-native-paper";
+import React, { FC, useState } from "react";
+import { ScrollView, StyleSheet } from "react-native";
+import { Button, Paragraph, TextInput, Title } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
@@ -24,6 +19,9 @@ const styles = StyleSheet.create({
     fontSize: 32,
     paddingVertical: 4, // quickfix: title gets clipped at top without padding
   },
+  button: {
+    width: "75%",
+  },
   input: {
     width: "100%",
   },
@@ -34,15 +32,23 @@ interface Props {
   questionLong: string;
   onAnswer: (answer: number | string) => void;
   answer: number | string;
+  autoNavigateToNextScreen?: boolean;
 }
 
 const mapState = (state: RootState) => ({
   answerList: selectAnswerList(state),
   howToPlaceholderVisible:
     state.settings.pointQuestionsInputPlaceholderShownInDailies,
+  autoNavigateToNextScreen: !state.accessibility.disableAutoNavigationOnAnswer,
 });
 const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
+
+const parsePoints = (input: string) => {
+  const newText = input[input.length - 1] ?? "";
+  const parsedText = parseInt(newText.replace(/[^0-9]/g, ""), 10);
+  return parsedText === 0 ? 10 : parsedText;
+};
 
 const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
   title,
@@ -51,23 +57,27 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
   onAnswer,
   answerList,
   howToPlaceholderVisible,
+  autoNavigateToNextScreen,
 }) => {
   const { t } = useTranslation();
+  const [answerInput, setAnswerInput] = useState(answer?.toString() ?? "");
+
   const handleChangeText = (text: string | undefined): void => {
     if (!text) return;
-    const newText = text[text.length - 1];
-    const parsedText = parseInt(newText.replace(/[^0-9]/g, ""), 10);
-    const points = parsedText === 0 ? 10 : parsedText;
+    const points = parsePoints(text);
+    if (inRange(points, 1, 11)) {
+      setAnswerInput(points.toString());
+      if (autoNavigateToNextScreen) onAnswer(points);
+    }
+  };
+  const handleNext = () => {
+    const points = parsePoints(answerInput);
     if (inRange(points, 1, 11)) onAnswer(points);
   };
-  const handleSubmitEditing = (
-    e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
-  ): void => {
-    handleChangeText(answer.toString() ?? "");
-  };
+  const nextButtonDisabled = !inRange(parsePoints(answerInput), 1, 11);
 
   return (
-    <View style={styles.contentContainer}>
+    <ScrollView contentContainerStyle={styles.contentContainer}>
       <Title style={styles.title} accessibilityRole="header">
         {title}
       </Title>
@@ -76,7 +86,7 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
         label={title}
         keyboardType="numeric"
         onChangeText={handleChangeText}
-        value={answer?.toString() ?? ""}
+        value={answerInput}
         placeholder={
           howToPlaceholderVisible
             ? t("dailies:pointsQuestionPlaceholder")
@@ -85,13 +95,18 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
         autoFocus={true}
         style={styles.input}
         autoComplete="off"
-        onSubmitEditing={handleSubmitEditing}
+        onSubmitEditing={handleNext}
         accessibilityLabel={t("dailies:pointsQuestionInputA11yLabel", {
           questionTitle: title,
           questionLong,
         })}
-        accessibilityHint={t("dailies:pointsQuestionInputA11yHint")}
+        accessibilityHint={
+          autoNavigateToNextScreen
+            ? t("dailies:pointsQuestionInputWithAutoNavigateA11yHint")
+            : t("dailies:pointsQuestionInputWithoutAutoNavigateA11yHint")
+        }
       />
+
       <Paragraph
         accessibilityLabel={t("dailies:shortAnswerListA11yLabel", {
           answers: answerList,
@@ -99,7 +114,20 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
       >
         {answerList}
       </Paragraph>
-    </View>
+
+      {!autoNavigateToNextScreen && (
+        <Button
+          onPress={handleNext}
+          style={styles.button}
+          mode="outlined"
+          accessibilityLabel={t("dailies:next")}
+          accessibilityHint={t("dailies:nextA11yHint")}
+          disabled={nextButtonDisabled}
+        >
+          {t("dailies:next")}
+        </Button>
+      )}
+    </ScrollView>
   );
 };
 

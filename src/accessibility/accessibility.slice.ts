@@ -5,12 +5,14 @@ export interface AccessibilityState {
   /** workaround until https://github.com/callstack/react-native-paper/pull/2893 is merged */
   dialogOpen: boolean;
   highContrast: boolean;
+  disableAutoNavigationOnAnswer: boolean;
 }
 
 const initialState: AccessibilityState = {
   screenReaderEnabled: false,
   dialogOpen: false, // used to hide items to screen readers that are not part of the dialog
   highContrast: false,
+  disableAutoNavigationOnAnswer: false,
 };
 
 const accessibilitySlice = createSlice({
@@ -28,9 +30,18 @@ const accessibilitySlice = createSlice({
     toggleHighContrast(state) {
       state.highContrast = !state.highContrast;
     },
+
+    toggleDisableAutoNavigationOnAnswer(state) {
+      state.disableAutoNavigationOnAnswer =
+        !state.disableAutoNavigationOnAnswer;
+    },
   },
 });
 
-export const { setScreenReaderEnabled, toggleDialogOpen, toggleHighContrast } =
-  accessibilitySlice.actions;
+export const {
+  setScreenReaderEnabled,
+  toggleDialogOpen,
+  toggleHighContrast,
+  toggleDisableAutoNavigationOnAnswer,
+} = accessibilitySlice.actions;
 export default accessibilitySlice.reducer;

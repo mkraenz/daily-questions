@@ -64,6 +64,12 @@ const en = {
     highContrastDescription: "High contrast colors (only light mode)",
     highContrastA11yLabel: "High contrast colors (only light mode)",
     highContrastA11yHint: "Activates or deactiviates high contrast",
+    autoNavigate: "Automatic navigation",
+    autoNavigateDescription:
+      "Automatically go to next question on answer input. Disable to show Next button.",
+    autoNavigateA11yLabel:
+      "Automatic navigation. Automatically goes to next question on answer input under Daily Questions. Disabling this will show a Next button for all questions. Disabling is suggested for screenreader users",
+    autoNavigateA11yHint: "Enables or disables automatic navigation",
     uniteConfirmAndShare: "Unite Confirm and Share buttons",
     uniteConfirmAndShareDescription:
       "Unites the Confirm and Share buttons in the summary screen",
@@ -161,8 +167,10 @@ const en = {
     pointsQuestionPlaceholder:
       "Insert answer from 1 to 10 points. Tap 0 for 10 points.",
     pointsQuestionInputA11yLabel: "{{ questionTitle }}, {{ questionLong }}",
-    pointsQuestionInputA11yHint:
+    pointsQuestionInputWithAutoNavigateA11yHint:
       "Enter your answer from 1 to 10 points, enter 0 for 10 points. After input, the app automatically navigates to next question or to summary.",
+    pointsQuestionInputWithoutAutoNavigateA11yHint:
+      "Enter your answer from 1 to 10 points, enter 0 for 10 points.",
   },
   questions: {
     addNewQuestion: "Add new question",
@@ -307,6 +315,13 @@ export const translations: Translations = {
       highContrastDescription: "Hoher Kontrast für Farben (nur heller Modus).",
       highContrastA11yLabel: "Hoher Kontrast im hellen Modus",
       highContrastA11yHint: "Aktiviert oder deaktiviert hohen Kontrast",
+      autoNavigate: "Automatische Navigation",
+      autoNavigateDescription:
+        "Navigiert automatisch zur nächsten Frage bei Antworteingabe. Deaktiviere für Weiter-Knopf.",
+      autoNavigateA11yLabel:
+        "Automatische Navigation. Navigiert automatisch zur nächsten Frage bei Antworteingabe in den Täglichen Fragen. Bei Deaktivierung wird ein Weiter-Knopf für alle Fragen angezeigt. Die Deaktivierung ist empfohlen für Benutzer der Bildschirmausgabe.",
+      autoNavigateA11yHint:
+        "Aktiviert oder deaktiviert automatische Navigation.",
       language: "Sprache",
       languageA11yLabel: "Ausgewählte Sprache",
       languageA11yHint: "Öffnet das Sprachauswahlmenü",
@@ -410,8 +425,10 @@ export const translations: Translations = {
       pointsQuestionPlaceholder:
         "Antwort von 1 bis 10 Punkten eingeben. Tippe 0 für 10 Punkte.",
       pointsQuestionInputA11yLabel: "{{ questionTitle }}, {{ questionLong }}",
-      pointsQuestionInputA11yHint:
+      pointsQuestionInputWithAutoNavigateA11yHint:
         "Antwort von 1 bis 10 Punkten eingeben. Für 10 Punkte Null-Taste drücken. Nach der Eingabe, navigiert die App zur nächsten unbeantworteten Frage oder zur Zusammenfassung.",
+      pointsQuestionInputWithoutAutoNavigateA11yHint:
+        "Antwort von 1 bis 10 Punkten eingeben. Für 10 Punkte Null-Taste drücken.",
     },
     questions: {
       addNewQuestion: "Neue Frage hinzufügen",
@@ -534,6 +551,12 @@ export const translations: Translations = {
       highContrastDescription: "ハイ コントラストの色 (ライト モードのみ)",
       highContrastA11yLabel: "ハイ コントラストの色 (ライト モードのみ)",
       highContrastA11yHint: "ハイ コントラストの色を有効化または無効化する",
+      autoNavigate: "自動的なナビゲーション",
+      autoNavigateDescription:
+        "答えの入力のとき自動的に次の質問に移動。無効の場合は「次」ボトンを表示。",
+      autoNavigateA11yLabel:
+        "自動的なナビゲーション。毎日の質問画面では答えの入力のときに自動的に次の質問に移動する。無効にすると「次」ボトンを表示する。無効化はスクリーンリーダーにおすすめです。",
+      autoNavigateA11yHint: "自動的なナビゲーションを有効化または無効化する",
       language: "言語",
       languageA11yLabel: "選択した言語",
       languageA11yHint: "言語選択メニューを開く",
@@ -637,8 +660,10 @@ export const translations: Translations = {
       answerRowA11yLabel: "{{ questionTitle }}：{{ answer }}",
       pointsQuestionPlaceholder: "答えは１〜１０点。０タップ＝１０点",
       pointsQuestionInputA11yLabel: "{{ questionTitle }}, {{ questionLong }}",
-      pointsQuestionInputA11yHint:
+      pointsQuestionInputWithAutoNavigateA11yHint:
         "答えは１点から１０点までを入力してください。１０点を入れるために０を入力してください。入力後アプリは次の答えていない質問またはまとめ画面に移動します。",
+      pointsQuestionInputWithoutAutoNavigateA11yHint:
+        "答えは１点から１０点までを入力してください。１０点を入れるために０を入力してください。",
     },
     questions: {
       addNewQuestion: "新しい質問を追加する",

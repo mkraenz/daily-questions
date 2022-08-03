@@ -46,7 +46,7 @@ const persistConfig: PersistConfig<{
   key: "root",
   version: 1,
   storage: AsyncStorage,
-  whitelist: ["history", "settings", "questions"],
+  whitelist: ["history", "settings", "questions", 'accessibility'],
 };
 const rootReducer = combineReducers({
   history: historyReducer,

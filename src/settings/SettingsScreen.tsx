@@ -2,6 +2,7 @@ import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { List } from "react-native-paper";
 import { useTranslation } from "../localization/useTranslations";
+import AutoNavigateOnAnswerSwitch from "./AutoNavigateOnAnswerSwitch";
 import BelatedDailiesTimePicker from "./BelatedDailiesTimePicker";
 import DarkModeSwitch from "./DarkModeSwitch";
 import DevModeSwitch from "./DevModeSwitch";
@@ -40,6 +41,7 @@ const SettingsScreen = () => {
           {t("settings:sectionCustomization")}
         </List.Subheader>
         <HighContrastModeSwitch />
+        <AutoNavigateOnAnswerSwitch />
         <UniteConfirmAndShareButtonsSwitch />
         <ShowPointsQuestionInputPlaceholderSwitch />
         <ShowAppbarSwitch />
