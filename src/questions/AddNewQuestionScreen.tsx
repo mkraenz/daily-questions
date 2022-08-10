@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
+import { RootState } from "../store";
 import { QuestionsNavigationProp } from "./questions-nav";
 import { addQuestion } from "./questions.slice";
 import TypeSelection from "./TypeSelection";
@@ -14,11 +15,17 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapState = (state: RootState) => ({
+  autofocusEnabled: !state.accessibility.autofocusDisabled,
+});
 const mapDispatch = { addQuestion };
-const connector = connect(null, mapDispatch);
+const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
+const AddNewQuestionScreen: FC<PropsFromRedux> = ({
+  autofocusEnabled,
+  addQuestion,
+}) => {
   const nav = useNavigation<QuestionsNavigationProp>();
   const { t } = useTranslation();
   const [title, setTitle] = useState("");
@@ -47,7 +54,7 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({ addQuestion }) => {
         label={t("questions:title")}
         onChangeText={handleTitleChanged}
         value={title}
-        autoFocus={true}
+        autoFocus={autofocusEnabled}
         autoComplete="off"
         placeholder={t("questions:placeHolderExample", {
           example: t("defaultQuestions:Goals"),

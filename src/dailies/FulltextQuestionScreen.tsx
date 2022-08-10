@@ -39,6 +39,7 @@ interface Props {
 
 const mapState = (state: RootState) => ({
   answerList: selectAnswerList(state),
+  autofocusEnabled: !state.accessibility.autofocusDisabled,
 });
 const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -49,6 +50,7 @@ const FulltextQuestionScreen: FC<Props & PropsFromRedux> = ({
   answer,
   onAnswer,
   answerList,
+  autofocusEnabled,
 }) => {
   const { t } = useTranslation();
   const [text, setText] = useState(answer?.toString() ?? "");
@@ -76,7 +78,7 @@ const FulltextQuestionScreen: FC<Props & PropsFromRedux> = ({
         multiline={true}
         onChangeText={handleChangeText}
         value={text}
-        autoFocus={true}
+        autoFocus={autofocusEnabled}
         style={styles.textInput}
         autoComplete="off"
         error={errored}

@@ -40,6 +40,7 @@ const mapState = (state: RootState) => ({
   howToPlaceholderVisible:
     state.settings.pointQuestionsInputPlaceholderShownInDailies,
   autoNavigateToNextScreen: !state.accessibility.disableAutoNavigationOnAnswer,
+  autofocusEnabled: !state.accessibility.autofocusDisabled,
 });
 const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -58,6 +59,7 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
   answerList,
   howToPlaceholderVisible,
   autoNavigateToNextScreen,
+  autofocusEnabled,
 }) => {
   const { t } = useTranslation();
   const [answerInput, setAnswerInput] = useState(answer?.toString() ?? "");
@@ -92,7 +94,7 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
             ? t("dailies:pointsQuestionPlaceholder")
             : undefined
         }
-        autoFocus={true}
+        autoFocus={autofocusEnabled}
         style={styles.input}
         autoComplete="off"
         onSubmitEditing={handleNext}

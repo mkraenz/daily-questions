@@ -6,6 +6,7 @@ export interface AccessibilityState {
   dialogOpen: boolean;
   highContrast: boolean;
   disableAutoNavigationOnAnswer: boolean;
+  autofocusDisabled: boolean;
 }
 
 const initialState: AccessibilityState = {
@@ -13,6 +14,7 @@ const initialState: AccessibilityState = {
   dialogOpen: false, // used to hide items to screen readers that are not part of the dialog
   highContrast: false,
   disableAutoNavigationOnAnswer: false,
+  autofocusDisabled: false,
 };
 
 const accessibilitySlice = createSlice({
@@ -35,6 +37,10 @@ const accessibilitySlice = createSlice({
       state.disableAutoNavigationOnAnswer =
         !state.disableAutoNavigationOnAnswer;
     },
+
+    toggleAutofocusDisabled(state) {
+      state.autofocusDisabled = !state.autofocusDisabled;
+    },
   },
 });
 
@@ -43,5 +49,6 @@ export const {
   toggleDialogOpen,
   toggleHighContrast,
   toggleDisableAutoNavigationOnAnswer,
+  toggleAutofocusDisabled,
 } = accessibilitySlice.actions;
 export default accessibilitySlice.reducer;

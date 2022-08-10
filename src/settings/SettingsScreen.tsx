@@ -2,6 +2,7 @@ import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { List } from "react-native-paper";
 import { useTranslation } from "../localization/useTranslations";
+import AutofocusSwitch from "./AutofocusSwitch";
 import AutoNavigateOnAnswerSwitch from "./AutoNavigateOnAnswerSwitch";
 import BelatedDailiesTimePicker from "./BelatedDailiesTimePicker";
 import DarkModeSwitch from "./DarkModeSwitch";
@@ -38,10 +39,16 @@ const SettingsScreen = () => {
       </List.Section>
       <List.Section>
         <List.Subheader accessibilityRole="header">
-          {t("settings:sectionCustomization")}
+          {t("settings:sectionAccessibility")}
         </List.Subheader>
         <HighContrastModeSwitch />
         <AutoNavigateOnAnswerSwitch />
+        <AutofocusSwitch />
+      </List.Section>
+      <List.Section>
+        <List.Subheader accessibilityRole="header">
+          {t("settings:sectionCustomization")}
+        </List.Subheader>
         <UniteConfirmAndShareButtonsSwitch />
         <ShowPointsQuestionInputPlaceholderSwitch />
         <ShowAppbarSwitch />

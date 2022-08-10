@@ -52,6 +52,7 @@ const en = {
     sectionGeneral: "General",
     sectionCustomization: "Customization",
     sectionAdvanced: "Advanced",
+    sectionAccessibility: "Accessibility",
     showAppbar: "Show app bar under Daily Questions",
     showAppbarA11yHint:
       "This setting is always enabled when using a screen reader.",
@@ -70,6 +71,10 @@ const en = {
     autoNavigateA11yLabel:
       "Automatic navigation. Automatically goes to next question on answer input under Daily Questions. Disabling this will show a Next button for all questions. Disabling is suggested for screenreader users",
     autoNavigateA11yHint: "Enables or disables automatic navigation",
+    autofocus: "Autofocus",
+    autofocusDescription: "Automatically focus input fields",
+    autofocusA11yLabel: "Autofocus. Automatically focus input fields",
+    autofocusA11yHint: "Enables or disables automatic focus",
     uniteConfirmAndShare: "Unite Confirm and Share buttons",
     uniteConfirmAndShareDescription:
       "Unites the Confirm and Share buttons in the summary screen",
@@ -306,6 +311,7 @@ export const translations: Translations = {
       sectionGeneral: "Allgemein",
       sectionCustomization: "Anpassung",
       sectionAdvanced: "Erweiterte Einstellung",
+      sectionAccessibility: "Bedienungshilfen",
       showAppbar: "App-Leiste anzeigen in Tägliche Fragen",
       showAppbarA11yHint:
         "Diese Einstellung ist immer aktiviert, wenn die Bildschirmsprachausgabe genutzt wird.",
@@ -322,6 +328,11 @@ export const translations: Translations = {
         "Automatische Navigation. Navigiert automatisch zur nächsten Frage bei Antworteingabe in den Täglichen Fragen. Bei Deaktivierung wird ein Weiter-Knopf für alle Fragen angezeigt. Die Deaktivierung ist empfohlen für Benutzer der Bildschirmausgabe.",
       autoNavigateA11yHint:
         "Aktiviert oder deaktiviert automatische Navigation.",
+      autofocus: "Autofokus",
+      autofocusDescription: "Automatisch den Fokus in Eingabefelder setzen",
+      autofocusA11yLabel:
+        "Autofokus. Automatisch den Fokus in Eingabefelder setzen",
+      autofocusA11yHint: "Aktiviert oder deaktiviert automatischen Fokus",
       language: "Sprache",
       languageA11yLabel: "Ausgewählte Sprache",
       languageA11yHint: "Öffnet das Sprachauswahlmenü",
@@ -543,6 +554,7 @@ export const translations: Translations = {
       sectionGeneral: "全般設定",
       sectionCustomization: "カスタマイズ",
       sectionAdvanced: "詳細設定",
+      sectionAccessibility: "ユーザー補助",
       showAppbar: "アプリバーを毎日の質問で表示する",
       showAppbarA11yHint: "この設定はスクリーンリーダーを使うときに常に有効",
       darkMode: "ダークモード",
@@ -557,6 +569,11 @@ export const translations: Translations = {
       autoNavigateA11yLabel:
         "自動的なナビゲーション。毎日の質問画面では答えの入力のときに自動的に次の質問に移動する。無効にすると「次」ボトンを表示する。無効化はスクリーンリーダーにおすすめです。",
       autoNavigateA11yHint: "自動的なナビゲーションを有効化または無効化する",
+      autofocus: "自動的にフォーカス",
+      autofocusDescription: "自動的にフォーカスを入力フィールドに当てる。",
+      autofocusA11yLabel:
+        "自動的にフォーカス。自動的にフォーカスを入力フィールドに当てる。",
+      autofocusA11yHint: "自動的にフォーカスを有効化または無効化する",
       language: "言語",
       languageA11yLabel: "選択した言語",
       languageA11yHint: "言語選択メニューを開く",

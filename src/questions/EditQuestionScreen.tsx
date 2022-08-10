@@ -6,6 +6,7 @@ import { Button, TextInput, useTheme } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { toggleDialogOpen } from "../accessibility/accessibility.slice";
 import { useTranslation } from "../localization/useTranslations";
+import { RootState } from "../store";
 import ArchiveConfirmationDialog from "./ArchiveConfirmationDialog";
 import type {
   QuestionsNavigationProp,
@@ -20,13 +21,22 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapState = (state: RootState) => ({
+  autofocusEnabled: !state.accessibility.autofocusDisabled,
+});
 const mapDispatch = { editQuestion, archiveQuestion, toggleDialogOpen };
-const connector = connect(null, mapDispatch);
+const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const EditQuestionsScreen: FC<
   PropsFromRedux & StackScreenProps<QuestionsStackParamList, "Edit Question">
-> = ({ editQuestion, archiveQuestion, route, toggleDialogOpen }) => {
+> = ({
+  autofocusEnabled,
+  editQuestion,
+  archiveQuestion,
+  route,
+  toggleDialogOpen,
+}) => {
   const { title, id, questionLong, type, active } = route.params;
   const nav = useNavigation<QuestionsNavigationProp>();
   const [editedTitle, setEditedTitle] = useState(title);
@@ -70,7 +80,7 @@ const EditQuestionsScreen: FC<
         label={t("questions:title")}
         onChangeText={setEditedTitle}
         value={editedTitle}
-        autoFocus={true}
+        autoFocus={autofocusEnabled}
         autoComplete="off"
         style={styles.marginBottom}
         error={hasErrors}
