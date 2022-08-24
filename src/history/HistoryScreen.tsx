@@ -74,6 +74,8 @@ const HistoryScreen: FC<PropsFromRedux> = ({
 
   const fuse = new Fuse(mappedHistoryNewestFirst, {
     keys: ["date", "searchableString"],
+    // ensure long answers also get matched
+    ignoreLocation: true,
   });
 
   const searchResults = fuse.search(searchQuery);
