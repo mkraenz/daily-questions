@@ -18,6 +18,9 @@ import accessibilityReducer, {
 } from "./accessibility/accessibility.slice";
 import dailiesReducer, { DailiesState } from "./dailies/dailies.slice";
 import historyReducer, { HistoryState } from "./history/history.slice";
+import unpersistedHistoryReducer, {
+  UnpersistedHistoryState,
+} from "./history/unpersisted-history.slice";
 import questionsReducer, { QuestionsState } from "./questions/questions.slice";
 import settingsReducer, { SettingsState } from "./settings/settings.slice";
 
@@ -42,11 +45,12 @@ const persistConfig: PersistConfig<{
   questions: QuestionsState;
   dailies: DailiesState;
   accessibility: AccessibilityState;
+  unpersistedHistory: UnpersistedHistoryState;
 }> = {
   key: "root",
   version: 1,
   storage: AsyncStorage,
-  whitelist: ["history", "settings", "questions", 'accessibility'],
+  whitelist: ["history", "settings", "questions", "accessibility"],
 };
 const rootReducer = combineReducers({
   history: historyReducer,
@@ -54,6 +58,7 @@ const rootReducer = combineReducers({
   questions: questionsReducer,
   dailies: dailiesReducer,
   accessibility: accessibilityReducer,
+  unpersistedHistory: unpersistedHistoryReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

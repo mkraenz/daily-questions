@@ -1,10 +1,10 @@
 import { DrawerHeaderProps } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import BackAppBar from "../BackAppBar";
-import BaseAppBar from "../BaseAppBar";
 import { useTranslation } from "../localization/useTranslations";
 import HistoricEntryScreen from "./HistoricEntryScreen";
 import { HistoryStackParamList } from "./history-nav";
+import HistoryAppBar from "./HistoryAppBar";
 import HistoryScreen from "./HistoryScreen";
 
 const Stack = createStackNavigator<HistoryStackParamList>();
@@ -22,7 +22,7 @@ const HistoryNav = () => {
         options={{
           // WARNING: We assume the StackNav is nested inside a DrawerNav
           header: (props) => (
-            <BaseAppBar {...(props as unknown as DrawerHeaderProps)} />
+            <HistoryAppBar {...(props as unknown as DrawerHeaderProps)} />
           ),
           title: t("routes:history"),
         }}

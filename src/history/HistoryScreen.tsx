@@ -3,7 +3,7 @@ import Fuse from "fuse.js";
 import { isEmpty } from "lodash";
 import React, { FC } from "react";
 import { FlatList } from "react-native";
-import { Divider, List, Searchbar } from "react-native-paper";
+import { Divider, List } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import { Question } from "../questions/questions.slice";
@@ -15,6 +15,7 @@ import { History } from "./history.slice";
 const mapState = (state: RootState) => ({
   history: state.history.history,
   questions: state.questions.questions,
+  searchQuery: state.unpersistedHistory.searchQuery,
 });
 const connector = connect(mapState);
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -59,10 +60,12 @@ const HistoryItem: FC<{ item: HistoricEntryParams }> = ({ item }) => {
   );
 };
 
-const HistoryScreen: FC<PropsFromRedux> = ({ history, questions }) => {
+const HistoryScreen: FC<PropsFromRedux> = ({
+  history,
+  questions,
+  searchQuery,
+}) => {
   const { t } = useTranslation();
-  const [searchQuery, setSearchQuery] = React.useState("");
-  const onChangeSearch = (query: string) => setSearchQuery(query);
 
   const mappedHistoryNewestFirst = mapHistory(history, questions).reverse();
   if (isEmpty(mappedHistoryNewestFirst)) {
@@ -81,12 +84,6 @@ const HistoryScreen: FC<PropsFromRedux> = ({ history, questions }) => {
     : mappedSearchResults;
   return (
     <>
-      <Searchbar
-        style={{ marginTop: 8 }}
-        placeholder={t("history:search")}
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-      />
       <FlatList
         data={data}
         renderItem={(item) => <HistoryItem {...item} />}

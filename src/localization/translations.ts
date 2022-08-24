@@ -232,6 +232,10 @@ const en = {
     emptyHistoryButton: "Go to Daily Questions",
     emptyHistoryButtonA11yHint: "Navigates to Daily Questions screen",
     search: "Search",
+    showSearchA11yLabel: "Displays or hides the search input field",
+    clearSearchA11yLabel: "Clears the current search input",
+    searchA11yLabel: "Search history input",
+    searchA11yHint: "Searches within the history for dates and answers",
   },
 };
 
@@ -502,6 +506,11 @@ export const translations: Translations = {
       emptyHistoryButton: "Zu den Täglichen Fragen",
       emptyHistoryButtonA11yHint: 'Navigiert zur Ansicht "Tägliche Fragen"',
       search: "Suche",
+      // TODO translate
+      showSearchA11yLabel: "Displays or hides the search input field",
+      clearSearchA11yLabel: "Clears the current search input",
+      searchA11yLabel: "Search history input",
+      searchA11yHint: "Searches within the history for dates and answers",
     },
   },
   ja: {
@@ -735,6 +744,11 @@ export const translations: Translations = {
       emptyHistoryButton: "毎日の質問に戻る",
       emptyHistoryButtonA11yHint: "毎日の質問画面を開く",
       search: "検索",
+      // TODO translate
+      showSearchA11yLabel: "Displays or hides the search input field",
+      clearSearchA11yLabel: "Clears the current search input",
+      searchA11yLabel: "Search history input",
+      searchA11yHint: "Searches within the history for dates and answers",
     },
   },
 };
