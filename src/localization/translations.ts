@@ -231,6 +231,7 @@ const en = {
       "Nothing here yet. Once you've finished answering the daily questions for the first time, your history will show here.",
     emptyHistoryButton: "Go to Daily Questions",
     emptyHistoryButtonA11yHint: "Navigates to Daily Questions screen",
+    search: "Search",
   },
 };
 
@@ -500,6 +501,7 @@ export const translations: Translations = {
         "Es wurden keine Verlaufseinträge gefunden. Nachdem du deine Täglichen Fragen zum ersten Mal beantwortet hast, wird dein Verlauf hier angezeigt.",
       emptyHistoryButton: "Zu den Täglichen Fragen",
       emptyHistoryButtonA11yHint: 'Navigiert zur Ansicht "Tägliche Fragen"',
+      search: "Suche",
     },
   },
   ja: {
@@ -732,6 +734,7 @@ export const translations: Translations = {
         "表示するアイテムがありません。最初の応えをし終わってから歴史は表示します。",
       emptyHistoryButton: "毎日の質問に戻る",
       emptyHistoryButtonA11yHint: "毎日の質問画面を開く",
+      search: "検索",
     },
   },
 };

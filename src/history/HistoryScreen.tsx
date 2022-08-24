@@ -1,8 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
+import Fuse from "fuse.js";
 import { isEmpty } from "lodash";
 import React, { FC } from "react";
 import { FlatList } from "react-native";
-import { Divider, List } from "react-native-paper";
+import { Divider, List, Searchbar } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "../localization/useTranslations";
 import { Question } from "../questions/questions.slice";
@@ -34,6 +35,7 @@ function mapHistory(history: History, questions: Question[]) {
           type: matchingTemplate?.type,
         };
       }),
+      searchableString: entry.qs.map((q) => q.a).join(" "),
     };
   });
 }
@@ -58,17 +60,40 @@ const HistoryItem: FC<{ item: HistoricEntryParams }> = ({ item }) => {
 };
 
 const HistoryScreen: FC<PropsFromRedux> = ({ history, questions }) => {
+  const { t } = useTranslation();
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const onChangeSearch = (query: string) => setSearchQuery(query);
+
   const mappedHistoryNewestFirst = mapHistory(history, questions).reverse();
   if (isEmpty(mappedHistoryNewestFirst)) {
     return <EmptyHistoryList />;
   }
+
+  const fuse = new Fuse(mappedHistoryNewestFirst, {
+    keys: ["date", "searchableString"],
+  });
+
+  const searchResults = fuse.search(searchQuery);
+  const mappedSearchResults = searchResults.map((result) => result.item);
+
+  const data = isEmpty(searchQuery)
+    ? mappedHistoryNewestFirst
+    : mappedSearchResults;
   return (
-    <FlatList
-      data={mappedHistoryNewestFirst}
-      renderItem={(item) => <HistoryItem {...item} />}
-      keyExtractor={(item) => item.date}
-      ItemSeparatorComponent={Divider}
-    ></FlatList>
+    <>
+      <Searchbar
+        style={{ marginTop: 8 }}
+        placeholder={t("history:search")}
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+      />
+      <FlatList
+        data={data}
+        renderItem={(item) => <HistoryItem {...item} />}
+        keyExtractor={(item) => item.date}
+        ItemSeparatorComponent={Divider}
+      ></FlatList>
+    </>
   );
 };
 
