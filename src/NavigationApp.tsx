@@ -84,7 +84,7 @@ const NavigationApp: FC<PropsFromRedux> = ({
   const theme = useTheme();
   const { t } = useTranslation();
 
-  const initialRoute: Routes = "HistoryNav";
+  const initialRoute: Routes = "Dailies";
 
   return (
     <NavigationContainer
