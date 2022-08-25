@@ -76,7 +76,7 @@
     "@types/redux-persist": "^4.3.1",
     "@types/uuid": "^8.3.4",
     "babel-preset-expo": "~9.1.0",
-    "eas-cli": "^0.55.1",
+    "eas-cli": "^0.60.0",
     "expo-cli": "^5.5.1",
     "jest": "^26.6.3",
     "jest-expo": "^45.0.1",
