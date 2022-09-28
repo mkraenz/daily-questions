@@ -29,7 +29,8 @@ const HistoryNav = () => {
       />
       <Stack.Screen
         name="HistoricEntry"
-        component={HistoricEntryScreen}
+        // TODO wait for https://github.com/react-navigation/react-navigation/issues/10802 to be resolved
+        component={HistoricEntryScreen as unknown as React.ComponentType}
         options={{ header: BackAppBar, title: t("routes:historicEntry") }}
       />
     </Stack.Navigator>
