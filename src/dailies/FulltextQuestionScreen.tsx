@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
+    minHeight: 280,
   },
   title: {
     fontSize: 32,
