@@ -35,7 +35,8 @@ const AboutNav = () => {
       />
       <Stack.Screen
         name="LicenseInfo"
-        component={LicenseInfoScreen}
+        // TODO wait for https://github.com/react-navigation/react-navigation/issues/10802 to be resolved
+        component={LicenseInfoScreen as unknown as React.ComponentType}
         options={{ header: BackAppBar, title: t("routes:licenseInfo") }}
       />
     </Stack.Navigator>
