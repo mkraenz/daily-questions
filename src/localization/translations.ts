@@ -94,7 +94,7 @@ const en = {
       "Opens a confirmation dialog to enable the development mode. If the development mode is already enabled, it will instead be immediately deactivated.",
     devModeDialogTitle: "Enable Development Mode?",
     devModeDialogDescription:
-      "This will enable experimental features. This may result in permanent (!) damage your app data. Do you really want to enable development mode?",
+      "This will enable experimental features. This may result in permanent (!) damage to your app data. Do you really want to enable development mode?",
     exportHistory: "Export questions & history",
     exportHistoryHint: "Open a share dialog for exporting",
     importHistory: "Import questions & history",
