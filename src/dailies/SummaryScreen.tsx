@@ -1,5 +1,5 @@
-import moment from "moment";
 import * as Notifications from "expo-notifications";
+import moment from "moment";
 import React, { FC, useState } from "react";
 import { ScrollView, Share, StyleSheet, View } from "react-native";
 import {
@@ -197,7 +197,7 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
     });
     showSuccessMessage(true);
     // intentionally not awaited to not block the UI
-    Notifications.dismissAllNotificationsAsync()
+    Notifications.dismissAllNotificationsAsync();
   };
   const handleSharePressed = async () => {
     await Share.share({
