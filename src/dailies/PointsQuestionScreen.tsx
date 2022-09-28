@@ -95,7 +95,12 @@ const PointsQuestionScreen: FC<Props & PropsFromRedux> = ({
             : undefined
         }
         autoFocus={autofocusEnabled}
-        style={styles.input}
+        style={[
+          styles.input,
+          {
+            height: 72,
+          },
+        ]}
         autoComplete="off"
         onSubmitEditing={handleNext}
         accessibilityLabel={t("dailies:pointsQuestionInputA11yLabel", {
