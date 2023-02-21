@@ -14,11 +14,11 @@ yarn eas login
 yarn eas whoami
 
 # build and deploy
-yarn eas build --platform android
+yarn eas:build
 
 # submit to Google Playstore
 # configure via eas.json
-yarn eas submit --platform android
+yarn eas:submit
 
 # DEBUG: https://github.com/expo/fyi/blob/main/eas-build-archive.md
 ```
