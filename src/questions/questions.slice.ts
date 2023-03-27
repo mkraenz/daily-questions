@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { randomUUID } from "expo-crypto";
 import { partition } from "lodash";
-import { v4 } from "uuid";
 
 export interface Question {
   title: string;
@@ -16,7 +16,7 @@ export interface QuestionsState {
 const initialState: QuestionsState = { questions: [] };
 
 const getUniqueId = (questionsIds: string[]): string => {
-  const id = v4().split("-")[0];
+  const id = randomUUID().split("-")[0];
   const idAlreadyExists = questionsIds.find((qId) => qId === id);
   if (idAlreadyExists) {
     return getUniqueId(questionsIds);
