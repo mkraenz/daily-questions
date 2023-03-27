@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { StyleSheet, View } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../store";
@@ -15,7 +15,9 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
  * except components within a Portal, e.g. Dialogs.
  * Dialogs should use toggleDialogOpen to enable and disable this behavior.
  */
-const AccessibleByScreenReaderContainer: FC<PropsFromRedux> = (props) => {
+const AccessibleByScreenReaderContainer: FC<
+  PropsFromRedux & PropsWithChildren
+> = (props) => {
   return (
     <View
       {...getAccessibilityHiddenProps(props.accessibilityHidden)}

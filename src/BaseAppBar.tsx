@@ -1,9 +1,9 @@
 import { DrawerHeaderProps } from "@react-navigation/drawer";
-import React, { FC } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { Appbar } from "react-native-paper";
 import { useTranslation } from "./localization/useTranslations";
 
-const BaseAppBar: FC<DrawerHeaderProps> = (props) => {
+const BaseAppBar: FC<DrawerHeaderProps & PropsWithChildren> = (props) => {
   const { t } = useTranslation();
   const title = props.options.title ?? props.route.name;
   return (

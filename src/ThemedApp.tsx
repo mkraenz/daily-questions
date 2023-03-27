@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, PropsWithChildren, useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
@@ -20,7 +20,7 @@ const getTheme = (dark: boolean | null, highContrast: boolean) => {
   return lightTheme;
 };
 
-const ThemedApp: FC<PropsFromRedux> = ({
+const ThemedApp: FC<PropsFromRedux & PropsWithChildren> = ({
   children,
   dark,
   setDarkMode,

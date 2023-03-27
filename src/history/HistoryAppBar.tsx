@@ -30,7 +30,6 @@ const HistoryAppbar: FC<DrawerHeaderProps & PropsFromRedux> = (props) => {
   const onChangeSearch = (query: string) =>
     setSearchQuery({ searchQuery: query });
 
-  console.log();
   return (
     <BaseAppBar {...props}>
       {!searchShown && (
