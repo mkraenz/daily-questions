@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@types/jest": "26",
+    "@types/jest": "^29.5.0",
     "@types/lodash": "^4.14.185",
     "@types/react": "~18.0.27",
     "@types/redux-persist": "^4.3.1",
