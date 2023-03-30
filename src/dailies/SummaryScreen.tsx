@@ -1,4 +1,5 @@
 import * as Notifications from "expo-notifications";
+import { debounce } from "lodash";
 import moment from "moment";
 import React, { FC, useState } from "react";
 import { ScrollView, Share, StyleSheet, View } from "react-native";
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
 interface Props {}
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
+const SHARE_TIMEOUT_IN_MS = 400;
 
 const mapState = (state: RootState) => ({
   startOfNextDayTime: state.settings.belatedDailiesUntilNextDayAt,
@@ -145,7 +147,10 @@ const ConfirmAndShareButton: FC<{
     <Button
       icon="share"
       mode="contained"
-      onPress={handlePressed}
+      onPress={debounce(handlePressed, 3000, {
+        leading: true,
+        trailing: false,
+      })}
       accessibilityLabel={t("dailies:confirmAndShare")}
       accessibilityHint={t("dailies:confirmAndShareA11yHint")}
     >
@@ -163,6 +168,7 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
   uniteConfirmAndShareButtons,
 }) => {
   const [successMessageShown, showSuccessMessage] = useState(false);
+  const [lastShareTimeInMs, setLastShareTimeInMs] = useState(0);
   const { t } = useTranslation();
 
   const startOfNextDay = new Date();
@@ -200,13 +206,21 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
     Notifications.dismissAllNotificationsAsync();
   };
   const handleSharePressed = async () => {
-    await Share.share({
-      message: formatExportMessage(),
-    });
+    // manual debouncing because lodash.debounce does not work when we immediately
+    // the state in handleConfirmAndSharePressed to show 'written to storage' success message,
+    // thereby causing a rerender and a new debounce instance
+    const wasClickSpammed =
+      lastShareTimeInMs + SHARE_TIMEOUT_IN_MS > Date.now();
+    if (!wasClickSpammed) {
+      await Share.share({
+        message: formatExportMessage(),
+      });
+      setLastShareTimeInMs(Date.now());
+    }
   };
   const handleConfirmAndSharePressed = async () => {
-    handleConfirmPressed();
     await handleSharePressed();
+    handleConfirmPressed();
   };
 
   return (
