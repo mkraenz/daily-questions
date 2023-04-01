@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 interface Props {}
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
-const SHARE_TIMEOUT_IN_MS = 400;
+const SHARE_TIMEOUT_IN_MS = 2000; // found by trial and error
 
 const mapState = (state: RootState) => ({
   startOfNextDayTime: state.settings.belatedDailiesUntilNextDayAt,
