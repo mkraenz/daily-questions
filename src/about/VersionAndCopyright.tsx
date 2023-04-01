@@ -1,3 +1,4 @@
+import Constants from "expo-constants";
 import React from "react";
 import { Linking, StyleSheet, View } from "react-native";
 import { Paragraph, TouchableRipple, useTheme } from "react-native-paper";
@@ -21,7 +22,9 @@ const VersionAndCopyright = () => {
   const nbsp = "\u00a0";
   return (
     <View style={styles.container}>
-      <Paragraph>Daily Questions v1.27.0</Paragraph>
+      <Paragraph>
+        Daily Questions v{Constants.expoConfig?.version || "N/A"}
+      </Paragraph>
       <TouchableRipple
         onPress={openCompanyWebsite}
         accessibilityRole="link"
