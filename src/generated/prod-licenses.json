@@ -10,105 +10,119 @@
     "name": "@react-native-async-storage/async-storage",
     "licenseType": "MIT",
     "link": "git+https://github.com/react-native-async-storage/async-storage.git",
-    "installedVersion": "1.17.6",
+    "installedVersion": "1.17.11",
     "author": "Krzysztof Borowy <hello@krizzu.dev>"
   },
   {
     "name": "@react-native-community/datetimepicker",
     "licenseType": "MIT",
     "link": "git+https://github.com/react-native-community/datetimepicker.git",
-    "installedVersion": "6.5.2",
+    "installedVersion": "6.7.3",
     "author": "Martijn Swaagman <mswaagman@godaddy.com> (https://github.com/swaagie)"
   },
   {
     "name": "@react-navigation/drawer",
     "licenseType": "MIT",
     "link": "git+https://github.com/react-navigation/react-navigation.git",
-    "installedVersion": "6.5.0",
+    "installedVersion": "6.6.2",
     "author": "React Navigation Contributors"
   },
   {
     "name": "@react-navigation/native",
     "licenseType": "MIT",
     "link": "git+https://github.com/react-navigation/react-navigation.git",
-    "installedVersion": "6.0.13",
+    "installedVersion": "6.1.6",
     "author": "React Navigation Contributors"
   },
   {
     "name": "@react-navigation/stack",
     "licenseType": "MIT",
     "link": "git+https://github.com/react-navigation/react-navigation.git",
-    "installedVersion": "6.3.1",
+    "installedVersion": "6.3.16",
     "author": "React Navigation Contributors"
   },
   {
     "name": "@reduxjs/toolkit",
     "licenseType": "MIT",
     "link": "git+https://github.com/reduxjs/redux-toolkit.git",
-    "installedVersion": "1.8.5",
+    "installedVersion": "1.9.3",
     "author": "Mark Erikson <mark@isquaredsoftware.com>"
   },
   {
     "name": "expo",
     "licenseType": "MIT",
     "link": "git+https://github.com/expo/expo.git",
-    "installedVersion": "47.0.13",
+    "installedVersion": "48.0.9",
     "author": "Expo"
   },
   {
     "name": "expo-clipboard",
     "licenseType": "MIT",
     "link": "git+https://github.com/expo/expo.git",
-    "installedVersion": "4.0.1",
+    "installedVersion": "4.1.2",
+    "author": "650 Industries, Inc."
+  },
+  {
+    "name": "expo-constants",
+    "licenseType": "MIT",
+    "link": "git+https://github.com/expo/expo.git",
+    "installedVersion": "14.2.1",
+    "author": "650 Industries, Inc."
+  },
+  {
+    "name": "expo-crypto",
+    "licenseType": "MIT",
+    "link": "git+https://github.com/expo/expo.git",
+    "installedVersion": "12.2.1",
     "author": "650 Industries, Inc."
   },
   {
     "name": "expo-localization",
     "licenseType": "MIT",
     "link": "git+https://github.com/expo/expo.git",
-    "installedVersion": "14.0.0",
+    "installedVersion": "14.1.1",
     "author": "650 Industries, Inc."
   },
   {
     "name": "expo-notifications",
     "licenseType": "MIT",
     "link": "git+https://github.com/expo/expo.git",
-    "installedVersion": "0.17.0",
+    "installedVersion": "0.18.1",
     "author": "650 Industries, Inc."
   },
   {
     "name": "expo-permissions",
     "licenseType": "MIT",
     "link": "git+https://github.com/expo/expo.git",
-    "installedVersion": "14.0.0",
+    "installedVersion": "14.1.1",
     "author": "650 Industries, Inc."
   },
   {
     "name": "expo-splash-screen",
     "licenseType": "MIT",
     "link": "git+https://github.com/expo/expo.git",
-    "installedVersion": "0.17.5",
+    "installedVersion": "0.18.1",
     "author": "650 Industries, Inc."
   },
   {
     "name": "expo-status-bar",
     "licenseType": "MIT",
     "link": "git+https://github.com/expo/expo.git",
-    "installedVersion": "1.4.2",
+    "installedVersion": "1.4.4",
     "author": "650 Industries, Inc."
   },
   {
     "name": "expo-system-ui",
     "licenseType": "MIT",
     "link": "git+https://github.com/expo/expo.git",
-    "installedVersion": "2.0.1",
+    "installedVersion": "2.2.1",
     "author": "650 Industries, Inc."
   },
   {
     "name": "expo-updates",
     "licenseType": "MIT",
     "link": "git+https://github.com/expo/expo.git",
-    "installedVersion": "0.15.6",
+    "installedVersion": "0.16.3",
     "author": "650 Industries, Inc."
   },
   {
@@ -143,14 +157,14 @@
     "name": "react",
     "licenseType": "MIT",
     "link": "git+https://github.com/facebook/react.git",
-    "installedVersion": "18.1.0",
+    "installedVersion": "18.2.0",
     "author": "Facebook, Inc. and its affiliates."
   },
   {
     "name": "react-dom",
     "licenseType": "MIT",
     "link": "git+https://github.com/facebook/react.git",
-    "installedVersion": "18.1.0",
+    "installedVersion": "18.2.0",
     "author": "Facebook, Inc. and its affiliates."
   },
   {
@@ -164,7 +178,7 @@
     "name": "react-native",
     "licenseType": "MIT",
     "link": "git+https://github.com/facebook/react-native.git",
-    "installedVersion": "0.70.5",
+    "installedVersion": "0.71.4",
     "author": "Meta Platforms, Inc. and affiliates."
   },
   {
@@ -178,22 +192,15 @@
     "name": "react-native-draggable-flatlist",
     "licenseType": "MIT",
     "link": "git+https://github.com/computerjazz/react-native-draggable-flatlist.git",
-    "installedVersion": "3.1.2",
+    "installedVersion": "4.0.1",
     "author": "Daniel Merrill"
   },
   {
     "name": "react-native-gesture-handler",
     "licenseType": "MIT",
     "link": "git+https://github.com/software-mansion/react-native-gesture-handler.git",
-    "installedVersion": "2.8.0",
+    "installedVersion": "2.9.0",
     "author": "Krzysztof Magiera krzys.magiera@gmail.com"
-  },
-  {
-    "name": "react-native-get-random-values",
-    "licenseType": "MIT",
-    "link": "git+https://github.com/LinusU/react-native-get-random-values.git",
-    "installedVersion": "1.8.0",
-    "author": "Linus Unnebäck"
   },
   {
     "name": "react-native-modal-datetime-picker",
@@ -213,21 +220,21 @@
     "name": "react-native-reanimated",
     "licenseType": "MIT",
     "link": "git+https://github.com/software-mansion/react-native-reanimated.git",
-    "installedVersion": "2.12.0",
+    "installedVersion": "2.14.4",
     "author": "Krzysztof Magiera krzys.magiera@gmail.com"
   },
   {
     "name": "react-native-safe-area-context",
     "licenseType": "MIT",
     "link": "git+https://github.com/th3rdwave/react-native-safe-area-context.git",
-    "installedVersion": "4.4.1",
+    "installedVersion": "4.5.0",
     "author": "Janic Duplessis <janicduplessis@gmail.com>"
   },
   {
     "name": "react-native-screens",
     "licenseType": "MIT",
     "link": "git+https://github.com/software-mansion/react-native-screens.git",
-    "installedVersion": "3.18.2",
+    "installedVersion": "3.20.0",
     "author": "Krzysztof Magiera krzys.magiera@gmail.com"
   },
   {
@@ -235,27 +242,27 @@
     "licenseType": "MIT",
     "link": "git+https://github.com/react-native-community/react-native-svg.git",
     "installedVersion": "13.4.0",
-    "author": "Horcrux"
+    "author": "n/a"
   },
   {
     "name": "react-native-web",
     "licenseType": "MIT",
     "link": "git://github.com/necolas/react-native-web.git",
-    "installedVersion": "0.18.9",
+    "installedVersion": "0.18.12",
     "author": "Nicolas Gallagher"
   },
   {
     "name": "react-redux",
     "licenseType": "MIT",
     "link": "git+https://github.com/reduxjs/react-redux.git",
-    "installedVersion": "8.0.4",
+    "installedVersion": "8.0.5",
     "author": "Dan Abramov <dan.abramov@me.com> (https://github.com/gaearon)"
   },
   {
     "name": "redux",
     "licenseType": "MIT",
     "link": "git+https://github.com/reduxjs/redux.git",
-    "installedVersion": "4.2.0",
+    "installedVersion": "4.2.1",
     "author": "Dan Abramov"
   },
   {
@@ -263,13 +270,5 @@
     "licenseType": "MIT",
     "link": "git+https://github.com/rt2zz/redux-persist.git",
     "installedVersion": "6.0.0",
-    "author": "Zack Story"
-  },
-  {
-    "name": "uuid",
-    "licenseType": "MIT",
-    "link": "git+https://github.com/uuidjs/uuid.git",
-    "installedVersion": "8.3.2",
-    "author": "Robert Kieffer and other contributors"
-  }
+    "author": "Zack Story"  }
 ]
