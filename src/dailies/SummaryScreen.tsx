@@ -205,22 +205,23 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
     // intentionally not awaited to not block the UI
     Notifications.dismissAllNotificationsAsync();
   };
+  const wasClickSpammed = () => lastShareTimeInMs + SHARE_TIMEOUT_IN_MS > Date.now()
   const handleSharePressed = async () => {
     // manual debouncing because lodash.debounce does not work when we immediately
     // the state in handleConfirmAndSharePressed to show 'written to storage' success message,
     // thereby causing a rerender and a new debounce instance
-    const wasClickSpammed =
-      lastShareTimeInMs + SHARE_TIMEOUT_IN_MS > Date.now();
-    if (!wasClickSpammed) {
+    if (!wasClickSpammed()) {
+      setLastShareTimeInMs(Date.now());
       await Share.share({
         message: formatExportMessage(),
       });
-      setLastShareTimeInMs(Date.now());
     }
   };
   const handleConfirmAndSharePressed = async () => {
-    await handleSharePressed();
-    handleConfirmPressed();
+    if (!wasClickSpammed()) {
+      handleConfirmPressed();
+      await handleSharePressed();
+    }
   };
 
   return (
