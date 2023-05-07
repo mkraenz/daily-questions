@@ -186,7 +186,6 @@ const en = {
     titleInputA11yLabel: "Title of the question, required input.",
     placeHolderExample: "Example: {{ example }}",
     longQuestion: "Full Question",
-    longQuestionRequiredError: "Full Question is required",
     longQuestionInputA11yLabel:
       "Full Question of the question, optional input.",
     save: "Save Changes",
@@ -456,7 +455,6 @@ export const translations: Translations = {
       titleInputA11yLabel: "Titel der Frage. Eingabe erfordert.",
       placeHolderExample: "Beispiel: {{ example }}",
       longQuestion: "Vollständige Frage",
-      longQuestionRequiredError: "Vollständige Frage ist erforderlich",
       longQuestionInputA11yLabel: "Vollständiger Fragetext. Optional.",
       save: "Änderungen speichern",
       saveA11yHint: "Änderungen speichern und zur Fragenliste zurücknavigieren",
@@ -703,7 +701,6 @@ export const translations: Translations = {
       titleInputA11yLabel: "質問のタイトル。入力が必要。",
       placeHolderExample: "例文：{{ example }}",
       longQuestion: "質問の全体",
-      longQuestionRequiredError: "質問の全体は必須です",
       longQuestionInputA11yLabel: "質問の全体。オプション。",
       save: "変更を保存する",
       saveA11yHint: "変更を保存して質問一覧に戻る",
