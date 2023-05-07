@@ -182,9 +182,11 @@ const en = {
     addNewQuestionA11yHint: 'Navigate to "Add New Question"',
     listItemA11yHint: "Go to Edit question", // long press does not work with Android TalkBack
     title: "Title*",
+    titleRequiredError: "Title is required",
     titleInputA11yLabel: "Title of the question, required input.",
     placeHolderExample: "Example: {{ example }}",
     longQuestion: "Full Question",
+    longQuestionRequiredError: "Full Question is required",
     longQuestionInputA11yLabel:
       "Full Question of the question, optional input.",
     save: "Save Changes",
@@ -240,7 +242,7 @@ const en = {
 
 // Typescript magic to have more type-safety in custom useTranslation() hook
 type Keys = keyof typeof en;
-type SubPropsKeys<S> = S extends Keys ? keyof typeof en[S] : never;
+type SubPropsKeys<S> = S extends Keys ? keyof (typeof en)[S] : never;
 type TranslationKey<S extends Keys> = `${S}:${SubPropsKeys<S>}`;
 // MANUALLY add additional properties of `en` here to make them available in useTranslation() hook
 export type TranslationKeys =
@@ -450,9 +452,11 @@ export const translations: Translations = {
       addNewQuestionA11yHint: 'Navigiere zu "Neue Frage hinzufügen"',
       listItemA11yHint: "Zu Frage Bearbeiten navigieren.",
       title: "Titel*",
+      titleRequiredError: "Titel ist erforderlich",
       titleInputA11yLabel: "Titel der Frage. Eingabe erfordert.",
       placeHolderExample: "Beispiel: {{ example }}",
       longQuestion: "Vollständige Frage",
+      longQuestionRequiredError: "Vollständige Frage ist erforderlich",
       longQuestionInputA11yLabel: "Vollständiger Fragetext. Optional.",
       save: "Änderungen speichern",
       saveA11yHint: "Änderungen speichern und zur Fragenliste zurücknavigieren",
@@ -695,9 +699,11 @@ export const translations: Translations = {
       addNewQuestionA11yHint: "「新しい質問を追加する」に移動する",
       listItemA11yHint: "質問を編集するためにタップしてください。",
       title: "タイトル*",
+      titleRequiredError: "タイトルは必須です",
       titleInputA11yLabel: "質問のタイトル。入力が必要。",
       placeHolderExample: "例文：{{ example }}",
       longQuestion: "質問の全体",
+      longQuestionRequiredError: "質問の全体は必須です",
       longQuestionInputA11yLabel: "質問の全体。オプション。",
       save: "変更を保存する",
       saveA11yHint: "変更を保存して質問一覧に戻る",

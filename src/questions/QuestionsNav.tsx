@@ -4,6 +4,7 @@ import BackAppBar from "../BackAppBar";
 import BaseAppBar from "../BaseAppBar";
 import { useTranslation } from "../localization/useTranslations";
 import AddNewQuestionScreen from "./AddNewQuestionScreen";
+import AddNewQuestionScreenRHF from "./AddNewQuestionScreenRHF";
 import EditQuestionScreen from "./EditQuestionScreen";
 import { QuestionsStackParamList } from "./questions-nav";
 import QuestionsListScreen from "./QuestionsListScreen";
@@ -30,7 +31,7 @@ const QuestionsNav = () => {
       />
       <Stack.Screen
         name="Add new question"
-        component={AddNewQuestionScreen}
+        component={AddNewQuestionScreenRHF}
         options={{
           header: BackAppBar,
           title: t("routes:addNewQuestion"),
