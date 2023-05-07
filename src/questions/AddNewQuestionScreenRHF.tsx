@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 import { FC, useEffect } from "react";
@@ -12,7 +13,11 @@ import {
 } from "react-native";
 import { Button, HelperText, TextInput } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
-import { useTranslation } from "../localization/useTranslations";
+import { z } from "zod";
+import {
+  TranslateFunction,
+  useTranslation,
+} from "../localization/useTranslations";
 import { RootState } from "../store";
 import { QuestionsNavigationProp } from "./questions-nav";
 import { addQuestion } from "./questions.slice";
@@ -35,11 +40,13 @@ const mapDispatch = { addQuestion };
 const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-interface FormValues {
-  title: string;
-  longQuestion: string;
-  type: "points" | "fulltext";
-}
+const questionSchema = (t: TranslateFunction) =>
+  z.object({
+    title: z.string().nonempty(t("questions:titleRequiredError", { min: 3 })), // with this pattern, we can pass variables to the error message
+    longQuestion: z.string(),
+    type: z.enum(["points", "fulltext"]),
+  });
+type Question = z.infer<ReturnType<typeof questionSchema>>;
 
 const AddNewQuestionScreen: FC<PropsFromRedux> = ({
   autofocusEnabled,
@@ -55,7 +62,8 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({
     getValues,
     formState: { errors, isDirty },
     trigger,
-  } = useForm<FormValues>({
+  } = useForm<Question>({
+    resolver: zodResolver(questionSchema(t)),
     defaultValues: {
       title: "",
       longQuestion: "",
@@ -92,7 +100,7 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({
             <Controller
               control={control}
               name="title"
-              rules={{ required: t("questions:titleRequiredError") }}
+              // rules={{ required: t("questions:titleRequiredError") }}
               render={({ field: { onChange, value, name } }) => (
                 <TextInput
                   label={t("questions:title")}
