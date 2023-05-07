@@ -16,6 +16,7 @@ import { useTranslation } from "../localization/useTranslations";
 import { RootState } from "../store";
 import { QuestionsNavigationProp } from "./questions-nav";
 import { addQuestion } from "./questions.slice";
+import TypeSelection from "./TypeSelection";
 
 const styles = StyleSheet.create({
   marginBottom: {
@@ -48,11 +49,10 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({
   const { t, i18n } = useTranslation();
 
   const {
-    register,
     setValue,
     handleSubmit,
     control,
-    reset,
+    getValues,
     formState: { errors, isDirty },
     trigger,
   } = useForm<FormValues>({
@@ -73,11 +73,12 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({
     nav.goBack();
   });
   useEffect(() => {
-    // isDirty to avoid triggering on mount
-    if (isDirty) trigger(); // intentionally only passing language into the dependency array. We only want to run this when the language changes.
-  }, [i18n.language]); // react-hook-forms keeps it error state messages when language changes. Since we use {required: t("myerrormessage")}, we need to reevaluate the state when language changes. Alternatively, we could use {required: true} and then use then error our own translated error message depending on the type but then writing the components for each error type becomes quite cumbersome.
+    // isDirty to avoid triggering on mount (because it would show error message for required title)
+    if (isDirty) trigger();
+  }, [i18n.language, isDirty, trigger]); // react-hook-forms keeps it error state messages when language changes. Since we use {required: t("myerrormessage")}, we need to reevaluate the state when language changes. Alternatively, we could use {required: true} and then use then error our own translated error message depending on the type but then writing the components for each error type becomes quite cumbersome.
 
   console.log("errors", errors);
+  console.log("values", getValues());
   const hasErrors = Object.keys(errors).length > 0;
 
   return (
@@ -92,7 +93,7 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({
               control={control}
               name="title"
               rules={{ required: t("questions:titleRequiredError") }}
-              render={({ field: { onChange, onBlur, value, name } }) => (
+              render={({ field: { onChange, value, name } }) => (
                 <TextInput
                   label={t("questions:title")}
                   onChangeText={onChange}
@@ -104,7 +105,6 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({
                   })}
                   error={Boolean(errors[name])}
                   accessibilityLabel={t("questions:titleInputA11yLabel")}
-                  onBlur={onBlur}
                 />
               )}
             />
@@ -118,13 +118,12 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({
             <Controller
               control={control}
               name="longQuestion"
-              render={({ field: { onChange, onBlur, value } }) => (
+              render={({ field: { onChange, value } }) => (
                 <TextInput
                   label={t("questions:longQuestion")}
                   multiline={true}
                   onChangeText={onChange}
                   value={value}
-                  onBlur={onBlur}
                   autoComplete="off"
                   placeholder={t("questions:placeHolderExample", {
                     example: t("defaultQuestions:questionLongGoals"),
@@ -135,10 +134,24 @@ const AddNewQuestionScreen: FC<PropsFromRedux> = ({
             />
           </View>
 
+          <Controller
+            control={control}
+            name="type"
+            rules={{ required: true }}
+            render={({ field: { value } }) => (
+              <TypeSelection
+                type={value}
+                // using setValue instead of onChange because onChange allows param type any. We also don't need to trigger validation here because the type is always valid (thanks to TS)
+                setType={(t) => setValue("type", t)}
+                style={styles.marginBottom}
+              />
+            )}
+          />
+
           <Button
             mode="contained"
             onPress={onSubmit}
-            disabled={hasErrors}
+            disabled={!isDirty || hasErrors}
             accessibilityLabel={t("questions:create")}
             accessibilityHint={t("questions:createButtonA11yHint")}
           >
