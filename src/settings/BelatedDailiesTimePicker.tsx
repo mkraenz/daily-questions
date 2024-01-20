@@ -27,11 +27,11 @@ const BelatedDailiesTimePicker: FC<PropsFromRedux> = ({
   const { t } = useTranslation();
 
   const handleConfirm = (date: Date) => {
+    showTimePicker(false); // must come first to avoid opening the datetime picker twice https://github.com/react-native-datetimepicker/datetimepicker/issues/54#issuecomment-1240496220
     setBelatedDailiesUntilNextDayAtHour({
       hour: date.getHours(),
       minute: date.getMinutes(),
     });
-    showTimePicker(false);
   };
 
   const date = new Date();
