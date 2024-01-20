@@ -21,7 +21,6 @@
     "generate:used-licenses": "license-report --output=json --config license-report.config.json --only=prod > ./src/generated/prod-licenses.json"
   },
   "dependencies": {
-    "@expo/metro-runtime": "^3.1.1",
     "@expo/vector-icons": "^14.0.0",
     "@react-native-async-storage/async-storage": "1.21.0",
     "@react-native-community/datetimepicker": "7.6.1",
@@ -64,6 +63,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
+    "@expo/metro-runtime": "^3.1.1",
     "@types/jest": "^29.5.0",
     "@types/lodash": "^4.14.185",
     "@types/react": "~18.2.14",
