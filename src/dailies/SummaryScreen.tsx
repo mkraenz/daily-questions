@@ -132,6 +132,7 @@ const FullTextAnswer: FC<{
       accessibilityHint={t("dailies:goto", { questionTitle: title })}
     >
       <View style={styles.fulltextRow}>
+        {/* TODO #18 color */}
         <Paragraph>
           {title}: {answer}
         </Paragraph>
