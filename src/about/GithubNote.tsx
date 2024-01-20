@@ -1,6 +1,11 @@
 import React, { FC } from "react";
 import { Linking, StyleSheet } from "react-native";
-import { Paragraph, TouchableRipple, useTheme } from "react-native-paper";
+import {
+  MD2Theme,
+  Paragraph,
+  TouchableRipple,
+  useTheme,
+} from "react-native-paper";
 import { useTranslation } from "../localization/useTranslations";
 
 const styles = StyleSheet.create({
@@ -13,7 +18,7 @@ const styles = StyleSheet.create({
 });
 
 const GithubNote: FC = () => {
-  const theme = useTheme();
+  const theme = useTheme<MD2Theme>();
   const { t } = useTranslation();
   const openGithub = () => {
     Linking.openURL("https://github.com/proSingularity/daily-questions");

@@ -5,6 +5,7 @@ import React, { FC, useState } from "react";
 import { ScrollView, Share, StyleSheet, View } from "react-native";
 import {
   Button,
+  MD2Theme,
   Paragraph,
   Title,
   TouchableRipple,
@@ -92,7 +93,7 @@ const PointsAnswer: FC<{
   answer: string | number;
   onClick: () => void;
 }> = ({ title, answer, onClick }) => {
-  const theme = useTheme();
+  const theme = useTheme<MD2Theme>();
   const { t } = useTranslation();
   return (
     <TouchableRipple
@@ -205,7 +206,8 @@ const SummaryScreen: FC<Props & PropsFromRedux> = ({
     // intentionally not awaited to not block the UI
     Notifications.dismissAllNotificationsAsync();
   };
-  const wasClickSpammed = () => lastShareTimeInMs + SHARE_TIMEOUT_IN_MS > Date.now()
+  const wasClickSpammed = () =>
+    lastShareTimeInMs + SHARE_TIMEOUT_IN_MS > Date.now();
   const handleSharePressed = async () => {
     // manual debouncing because lodash.debounce does not work when we immediately
     // the state in handleConfirmAndSharePressed to show 'written to storage' success message,

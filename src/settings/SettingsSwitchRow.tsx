@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { AccessibilityRole } from "react-native";
-import { List, Switch, useTheme } from "react-native-paper";
+import { List, MD2Theme, Switch, useTheme } from "react-native-paper";
 import { useTranslation } from "../localization/useTranslations";
 
 interface Props {
@@ -25,7 +25,7 @@ const SettingsSwitchRow: FC<Props> = ({
   accessibilityRole = "button", // not using switch as it is not working properly with accessibility
   disabled,
 }) => {
-  const theme = useTheme();
+  const theme = useTheme<MD2Theme>();
   const { t } = useTranslation();
   return (
     <List.Item

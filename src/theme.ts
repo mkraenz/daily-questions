@@ -1,6 +1,6 @@
-import { DarkTheme, DefaultTheme } from "react-native-paper";
+import { MD2LightTheme, MD2DarkTheme } from "react-native-paper";
 
-export type FullTheme = typeof DefaultTheme;
+export type FullTheme = typeof MD2LightTheme;
 
 export enum Color {
   LightBlue = "#00C0FA",
@@ -16,10 +16,10 @@ export enum Color {
 }
 
 export const lightTheme: FullTheme = {
-  ...DefaultTheme,
+  ...MD2LightTheme,
   roundness: 12,
   colors: {
-    ...DefaultTheme.colors,
+    ...MD2LightTheme.colors,
     primary: Color.CorporateBlue,
     accent: Color.Orange,
   },
@@ -38,10 +38,10 @@ export const highContrastLightTheme: FullTheme = {
 };
 
 export const darkTheme: FullTheme = {
-  ...DarkTheme,
+  ...MD2DarkTheme,
   roundness: 12,
   colors: {
-    ...DarkTheme.colors,
+    ...MD2DarkTheme.colors,
     primary: Color.LightBlue,
     accent: Color.LightOrange,
   },
