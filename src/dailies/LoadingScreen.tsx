@@ -4,7 +4,7 @@ import { ActivityIndicator } from "react-native-paper";
 
 const styles = StyleSheet.create({
   container: {
-    justignContent: "center",
+    justifyContent: "center",
     alignItems: "center",
   },
 });

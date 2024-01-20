@@ -22,6 +22,7 @@ export const lightTheme: FullTheme = {
     ...MD2LightTheme.colors,
     primary: Color.CorporateBlue,
     accent: Color.Orange,
+    tooltip: Color.White,
   },
 };
 
@@ -34,6 +35,7 @@ export const highContrastLightTheme: FullTheme = {
     ...lightTheme.colors,
     primary: Color.DarkCorporateBlue,
     accent: Color.DarkerOrange,
+    tooltip: Color.White,
   },
 };
 
@@ -44,5 +46,6 @@ export const darkTheme: FullTheme = {
     ...MD2DarkTheme.colors,
     primary: Color.LightBlue,
     accent: Color.LightOrange,
+    tooltip: Color.Grey,
   },
 };
