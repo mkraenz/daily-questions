@@ -1,7 +1,13 @@
 import { isInteger, isString } from "lodash";
 import React, { FC } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Button, Paragraph, Title, useTheme } from "react-native-paper";
+import {
+  Button,
+  MD2Theme,
+  Paragraph,
+  Title,
+  useTheme,
+} from "react-native-paper";
 import { useTranslation } from "../localization/useTranslations";
 import { HistoricEntryParams } from "./history-nav";
 
@@ -39,7 +45,7 @@ const PointsAnswer: FC<{
   title?: string;
   answer: string | number;
 }> = ({ title, answer }) => {
-  const theme = useTheme();
+  const theme = useTheme<MD2Theme>();
   const { t } = useTranslation();
   return (
     <View

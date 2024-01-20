@@ -6,7 +6,7 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React, { FC } from "react";
-import { List, useTheme } from "react-native-paper";
+import { List, MD2Theme, useTheme } from "react-native-paper";
 import { connect, ConnectedProps } from "react-redux";
 import AboutNav from "./about/AboutNav";
 import BaseAppBar from "./BaseAppBar";
@@ -30,7 +30,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 const Drawer = createDrawerNavigator<GlobalDrawerParamList>();
 
 const CustomDrawer: FC<DrawerContentComponentProps> = (props) => {
-  const theme = useTheme();
+  const theme = useTheme<MD2Theme>();
   const { t } = useTranslation();
   return (
     <DrawerContentScrollView {...props}>
@@ -81,7 +81,7 @@ const NavigationApp: FC<PropsFromRedux> = ({
   appbarShownInDailies,
   devMode,
 }) => {
-  const theme = useTheme();
+  const theme = useTheme<MD2Theme>();
   const { t } = useTranslation();
 
   const initialRoute: Routes = "Dailies";

@@ -5,6 +5,7 @@ import { View } from "react-native";
 import {
   Button,
   Dialog,
+  MD2Theme,
   Paragraph,
   Portal,
   useTheme,
@@ -17,7 +18,7 @@ interface Props {
 }
 
 const WarningIcon: FC = () => {
-  const theme = useTheme();
+  const theme = useTheme<MD2Theme>();
   return <FontAwesome name={"warning"} size={24} color={theme.colors.accent} />;
 };
 
