@@ -10,9 +10,9 @@ const persistedLangStorageKey = "daily-questions/language";
 const languageDetector: LanguageDetectorAsyncModule = {
   type: "languageDetector" as const,
   async: true, // flags below detection to be async
-  detect: async (callback) => {
+  detect: async () => {
     const cachedLang = await AsyncStorage.getItem(persistedLangStorageKey);
-    callback(cachedLang ?? Localization.locale.slice(0, 2));
+    return cachedLang ?? Localization.locale.slice(0, 2);
   },
   init: noop,
   cacheUserLanguage: (lng) => {
