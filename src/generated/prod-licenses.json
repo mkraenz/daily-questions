@@ -129,14 +129,14 @@
     "name": "fuse.js",
     "licenseType": "Apache-2.0",
     "link": "git+https://github.com/krisk/Fuse.git",
-    "installedVersion": "6.6.2",
+    "installedVersion": "7.0.0",
     "author": "Kiro Risk kirollos@gmail.com http://kiro.me"
   },
   {
     "name": "i18next",
     "licenseType": "MIT",
     "link": "git+https://github.com/i18next/i18next.git",
-    "installedVersion": "21.10.0",
+    "installedVersion": "23.7.17",
     "author": "Jan Mühlemann <jan.muehlemann@gmail.com> (https://github.com/jamuhl)"
   },
   {
@@ -171,7 +171,7 @@
     "name": "react-i18next",
     "licenseType": "MIT",
     "link": "git+https://github.com/i18next/react-i18next.git",
-    "installedVersion": "11.18.6",
+    "installedVersion": "14.0.1",
     "author": "Jan Mühlemann <jan.muehlemann@gmail.com> (https://github.com/jamuhl)"
   },
   {
