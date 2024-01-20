@@ -39,7 +39,7 @@
     "expo-status-bar": "~1.11.1",
     "expo-system-ui": "~2.9.3",
     "expo-updates": "~0.24.8",
-    "fuse.js": "^6.6.2",
+    "fuse.js": "^7.0.0",
     "i18next": "^23.7.17",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
