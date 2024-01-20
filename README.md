@@ -4,6 +4,15 @@ Inofficial app to follow Marshall Goldsmith's 6 Daily Questions from his book [T
 
 Check the [Readme of You are Awesome App! Daily Motivation Up!](https://github.com/proSingularity/you-are-awesome-app) on how to debug and much more.
 
+## Getting Started
+
+```sh
+yarn install --frozen-lockfile
+yarn dev
+```
+
+**Warning**: At least for me on Ubuntu 22 with Expo 49 and 50, I was not able to run the app inside Expo Go on an Android Emulator. However, using an actual device with Expo Go (v2.30.8) installed everything works just fine, as long as you're on the same wifi network.
+
 ## Deployment
 
 See also [EAS Build Guide](https://docs.expo.dev/build/setup/).
