@@ -4,6 +4,10 @@ Inofficial app to follow Marshall Goldsmith's 6 Daily Questions from his book [T
 
 Check the [Readme of You are Awesome App! Daily Motivation Up!](https://github.com/proSingularity/you-are-awesome-app) on how to debug and much more.
 
+## IMPORTANT NOTICE
+
+This repo has moved into mono repo [mkraenz/teatime](https://github.com/mkraenz/teatime/tree/main/apps/daily-questions)
+
 ## Getting Started
 
 ```sh
