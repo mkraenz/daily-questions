@@ -1,3 +1,5 @@
+## THIS REPO HAS MOVED TO https://github.com/mkraenz/teatime/tree/main/apps/daily-questions
+
 # Daily Questions App
 
 Inofficial app to follow Marshall Goldsmith's 6 Daily Questions from his book [Triggers](https://marshallgoldsmith.com/book-page-triggers/).
